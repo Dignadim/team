@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 데이터베이스 연결 정보가 저장된 파일의 위치 -->
+	<properties resource="com/tjoeun/mybatis/db.properties" />
+	
+	<typeAliases>
+		<!-- 별명 설정 -->
+		<typeAlias type="com.tjoeun.vo.ItemVO" alias="vo" />
+		<typeAlias type="com.tjoeun.vo.ItemCommentVO" alias="co" />
+	</typeAliases> 
+	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${driver}" />
+				<property name="url" value="${url}" />
+				<property name="username" value="${username}" />
+				<property name="password" value="${password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- 실행할 sql 명령이 저장된 파일의 위치 -->
+		<mapper resource="com/tjoeun/mybatis/item.xml" />
+		<mapper resource="com/tjoeun/mybatis/itemComment.xml" />
+	</mappers>
+	
+</configuration>
