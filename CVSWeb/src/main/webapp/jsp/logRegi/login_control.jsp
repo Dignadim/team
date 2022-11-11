@@ -20,28 +20,40 @@ request.setCharacterEncoding("UTF-8");
 <%
 String action = request.getParameter("action");
 	
-	if(action.equals("login")){
+	if(action.equals("login") && v.getId() != null){
 		MemberService m = MemberService.getInstance();
-		MemberVO vo = m.searchID(v.getId());
+		MemberVO vo = m.searchID(v.getId().trim());
 			
-			out.println("<script>");
-			if(vo != null ){
-		 		if(vo.getId().equals(v.getId())){
-					if(vo.getPassword().equals(v.getPassword())){
+			if(vo != null){
+		 		if(vo.getId().equals(v.getId().trim())){
+					if(vo.getPassword().trim().equals(v.getPassword().trim())){
+						out.println("<script>");
 						out.println("alert('로그인되었습니다.')");
 						out.println("location.href='../main.jsp'");
+						out.println("</script>");
+						session.setAttribute("id", vo.getId());
+						session.setAttribute("nickname", vo.getNickname());
+						session.setAttribute("password", vo.getPassword());
+						session.setAttribute("grade", vo.getGrade());
 					}
 					else{
+						out.println("<script>");
 						out.println("alert('비밀번호가 틀렸습니다.')");
 						out.println("history.back()");
+						out.println("</script>");
 					}
 				}
-			}
-			else{
+			}else{
+				out.println("<script>");
 				out.println("alert('아이디가 틀렸습니다.')");
 				out.println("history.back()");
+				out.println("</script>");
 			}
-			out.println("</script>");
+	}else{
+		out.println("<script>");
+		out.println("alert('아이디를 입력해주세요.')");
+		out.println("history.back()");
+		out.println("</script>");
 	}
 	
 	

@@ -25,6 +25,7 @@
 						<td colspan=2>
 							<input type=submit name=submit value="로그인">
 							<input type=button name=register value="회원가입" onClick="location.href='register.jsp'">
+							<input type=button name=register value="홈으로" onClick="location.href='../main.jsp'">
 						</td>
 					</tr>
 				</table>
