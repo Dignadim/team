@@ -1,6 +1,5 @@
 package project.board.free;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -36,6 +35,7 @@ public class FreeboardService {
 		hmap.put("startNo", freeboardList.getStartNo());
 		hmap.put("endNo", freeboardList.getEndNo());
 		freeboardList.setList(fb_dao.selectList(mapper, hmap));
+		System.out.println(freeboardList);
 		
 		mapper.close();
 		return freeboardList;
@@ -56,31 +56,4 @@ public class FreeboardService {
 		mapper.close();
 		return vo;
 	}
-	
-	public void delete(int fb_idx) {
-		System.out.println("FreeboardService의 delete() 메소드");
-		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().delete(mapper, fb_idx);
-		mapper.commit();
-		mapper.close();
-	}
-	
-	public void update(FreeboardVO fb_vo) {
-		System.out.println("FreeboardService의 update() 메소드");
-		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().update(mapper, fb_vo);
-		mapper.commit();
-		mapper.close();
-	}
-	
-	public ArrayList<FreeboardVO> selectNotice() {
-		System.out.println("FreeboardService의 selectNotice() 메소드");
-		SqlSession mapper = MySession.getSession();
-		ArrayList<FreeboardVO> fb_notice = FreeboardDAO.getInstance().selectNotice(mapper);
-		mapper.close();
-		return fb_notice;
-	}
-	
-	
-	
 }

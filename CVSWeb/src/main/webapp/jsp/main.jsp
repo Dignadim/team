@@ -55,9 +55,20 @@
 					<button type="button" class="btn btn-primary" onclick="#">검색</button>
 				</div>
 				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary" onclick="location.href='login.jsp'">로그인</button>					
-					<!-- 관리자만 보이는 부분 -->
-					<button class="btn btn-info" onclick="#">관리 페이지로</button>					
+					<c:if test="${id == null}">
+						<button type="button" class="btn btn-primary" onclick="location.href='./logRegi/login_form.jsp'">로그인</button>	
+					</c:if>				
+					<c:if test="${id != null}">
+						<button type="button" class="btn btn-danger" onclick="location.href='./logRegi/login_out.jsp'">로그아웃</button>
+						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
+							<button class="btn btn-info" style="padding: 6px;" onclick="#">관리 페이지로</button>	
+						</c:if>
+						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
+							<button type="button" class="btn btn-warning" onclick="location.href='./myPage/myPageView.jsp'">마이페이지</button>	
+							<input type="hidden" value="${grade}">
+						</c:if>
+					</c:if>				
+					
 				</div>
 			</nav>
 		</div>

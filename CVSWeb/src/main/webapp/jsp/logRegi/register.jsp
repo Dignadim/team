@@ -60,9 +60,13 @@
 					<tr>
 						<td colspan="3" style="text-align: center;">
 							<!-- 비밀번호 일치 검사 결과 메시지가 출력될 영역 -->
-							<h5 id="passwordCheckMessage" style="color: red; font-weight: bold;"></h5>
+							<h5 id="passwordCheckMessage" style="color: red; font-weight: bold;">
+								
+							</h5>
 							<!-- 아이디 중복 검사 결과 메시지가 출력될 영역 -->
-							<h5 id="idCheckMessage" style="color: blue; font-weight: bold;"></h5>
+							<h5 id="idCheckMessage" style="color: blue; font-weight: bold;">
+								
+							</h5>
 							<!-- 오류 메시지가 출력될 영역 -->
 							<h5 id="errorMessage" style="color: lime; font-weight: bold;">
 								${messageContent}					

@@ -23,53 +23,6 @@
 </head>
 <body>
 
-	<header>
-		<div class="container">
-			<nav class="navbar navbar-expand-sm bg-light">
-				<div class="col-sm-2">
-					<h2 style="width: 200px;">타이틀</h2>
-				</div>
-				<div class="container-fluid col-sm-5">
-					<ul class="navbar-nav">
-						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="#">모든 상품 보기</a>
-					    </li>					
-						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">GS25</a></li>
-								<li><a class="dropdown-item" href="#">CU</a></li>
-								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-								<li><a class="dropdown-item" href="#">ministop</a></li>
-								<li><a class="dropdown-item" href="#">이마트24</a></li>
-								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="#">신상게시판</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
-				</div>
-				<div class="col-sm-1">
-					<button type="button" class="btn btn-primary" onclick="#">검색</button>
-				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary" onclick="location.href='login.jsp'">로그인</button>					
-					<!-- 관리자만 보이는 부분 -->
-					<button class="btn btn-info" onclick="#">관리 페이지로</button>					
-				</div>
-			</nav>
-		</div>
-	</header>
-
 	<div class="m-3">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">
 			<tr class="table-secondary">
@@ -81,60 +34,62 @@
 				</td>
 			</tr>
 			<tr class="table-secondary">
-				<th style="width: 150px; text-align: center;">번호</th>
+				<th style="width: 150px; text-align: center;">닉네임</th>
 				<th style="width: 560px; text-align: center;">제목</th>
-				<th style="width: 70px; text-align: center;">닉네임</th>
+				<th style="width: 70px; text-align: center;">댓글</th>
 				<th style="width: 150px; text-align: center;">작성일</th>
 				<th style="width: 70px; text-align: center;">조회수</th>
 			</tr>
 			<jsp:useBean id="date" class="java.util.Date"/>
 			
 			<!-- 공지글 -->
+<%-- 		
 			<c:if test="${currentPage == 1}">
-			<c:forEach var="fb_vo" items="${fb_notice}">
+			<c:forEach var="vo" items="${notice}">
 				<tr class="table-warning">
 					<td align="center">
 						<i class="bi bi-envelope-exclamation-fill"></i>
 					</td>
 					<td>
 						<i class="bi bi-tags"></i>
-						<c:set var="fb_subject" value="${fn:replace(fb_vo.fb_subject, '<', '&lt;')}"/>
-						<c:set var="fb_subject" value="${fn:replace(fb_subject, '>', '&gt;')}"/>
+						<c:set var="subject" value="${fn:replace(vo.subject, '<', '&lt;')}"/>
+						<c:set var="subject" value="${fn:replace(subject, '>', '&gt;')}"/>
 						
-						<a href="increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}">
-							${fb_subject} (${fb_vo.fb_commentCount})
+						<a href="increment.jsp?idx=${vo.idx}&currentPage=${freeboardList.currentPage}">
+							${subject}(${vo.commentCount})
 						</a>
 						
-						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-							<img alt="New" src="../../../images/ic_new.gif"/>
+						<c:if test="${date.year == vo.writeDate.year && date.month == vo.writeDate.month && date.date == vo.writeDate.date}">
+							<img alt="New" src="./images/ic_new.gif"/>
 						</c:if>
 						
-						<c:if test="${fb_vo.fb_hit > 100}">
-							<img alt="hot" src="../../../images/hot.gif"/>
+						<c:if test="${vo.hit > 10}">
+							<img alt="hot" src="./images/hot.gif"/>
 						</c:if>
 					</td>
 					<td align="center">
-<%-- 						<c:set var="name" value="${fn:replace(vo.name, '<', '&lt;')}"/>
-						<c:set var="name" value="${fn:replace(vo.name, '>', '&gt;')}"/> --%>
-						nickname
+						<c:set var="name" value="${fn:replace(vo.name, '<', '&lt;')}"/>
+						<c:set var="name" value="${fn:replace(vo.name, '>', '&gt;')}"/>
+						${name}
 					</td>
 					<td align="center">
-						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-							<fmt:formatDate value="${fb_vo.fb_date}" pattern="a h:mm"/>
+						<c:if test="${date.year == vo.writeDate.year && date.month == vo.writeDate.month && date.date == vo.writeDate.date}">
+							<fmt:formatDate value="${vo.writeDate}" pattern="a h:mm:ss"/>
 						</c:if>
-						<c:if test="${date.year != fb_vo.fb_date.year || date.month != fb_vo.fb_date.month || date.date != fb_vo.fb_date.date}">
-							<fmt:formatDate value="${fb_vo.fb_date}" pattern="yyyy.MM.dd(E)"/>
+						<c:if test="${date.year != vo.writeDate.year || date.month != vo.writeDate.month || date.date != vo.writeDate.date}">
+							<fmt:formatDate value="${vo.writeDate}" pattern="yyyy.MM.dd(E)"/>
 						</c:if>
 					</td>
 					<td align="center">
-						${fb_vo.fb_hit}
+						${vo.hit}
 					</td>
 				</tr>
 			</c:forEach>
 			</c:if>
-			
+ --%>
+			<!-- 메인글 -->
 			<c:set var="list" value="${freeboardList.list}"/>
-			
+			<!-- 글이 없을때 -->
 			<c:if test="${list.size() == 0}">
 			<tr>
 				<td colspan="5">
@@ -142,50 +97,52 @@
 				</td>
 			</tr>		
 			</c:if>
-
+			<!-- 글이 하나라도 있을 때 -->
 			<c:if test="${list.size() != 0}">
-			<c:set var="num" value="${freeboardList.totalCount - ((freeboardList.currentPage-1) * 10) }"/>
 			<c:forEach var="fb_vo" items="${list}">
-			<tr>
-				<td align="center">
-					${num}
-				</td>
-				<td>
-					<i class="bi bi-tags"></i>
-					<c:set var="fb_subject" value="${fn:replace(fb_vo.fb_subject, '<', '&lt;')}"/>
-					<c:set var="fb_subject" value="${fn:replace(fb_subject, '>', '&gt;')}"/>
+<tr>
+					<td align="center">
+<%-- 					
+						<c:set var="name" value="${fn:replace(vo.name, '<', '&lt;')}"/>
+						<c:set var="name" value="${fn:replace(vo.name, '>', '&gt;')}"/>
+ --%>
+						nickname
+					</td>
+					<td>
+						<i class="bi bi-tags"></i>
+						<c:set var="fb_subject" value="${fn:replace(fb_vo.fb_subject, '<', '&lt;')}"/>
+						<c:set var="fb_subject" value="${fn:replace(fb_subject, '>', '&gt;')}"/>
 						
-					<a href="increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}">
-						${fb_subject} (${fb_vo.fb_commentCount})
-					</a>
+						<a href="increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}">
+							${fb_subject}
+						</a>
 						
-					<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-						<img alt="New" src="../../../images/ic_new.gif"/>
-					</c:if>
+						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
+							<img alt="New" src="../../../images/ic_new.gif"/>
+						</c:if>
 						
-					<c:if test="${fb_vo.fb_hit > 100}">
-						<img alt="hot" src="../../../images/hot.gif"/>
-					</c:if>
-				</td>
-				<td align="center">
-					nickname
-				</td>
-				<td align="center">
-					<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-						<fmt:formatDate value="${fb_vo.fb_date}" pattern="a h:mm"/>
-					</c:if>
-					<c:if test="${date.year != fb_vo.fb_date.year || date.month != fb_vo.fb_date.month || date.date != fb_vo.fb_date.date}">
-						<fmt:formatDate value="${fb_vo.fb_date}" pattern="yyyy.MM.dd(E)"/>
-					</c:if>
-				</td>
-				<td align="center">
-					${fb_vo.fb_hit}
-				</td>
-			</tr>	
-			<c:set var="num" value="${num-1}"/>		<!--  -->
+						<c:if test="${fb_vo.fb_hit > 10}">
+							<img alt="hot" src="../../../images/hot.gif"/>
+						</c:if>
+					</td>
+					<td align="center">
+						(${fb_vo.fb_commentCount})
+					</td>
+					<td align="center">
+						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
+							<fmt:formatDate value="${fb_vo.fb_date}" pattern="a h:mm"/>
+						</c:if>
+						<c:if test="${date.year != fb_vo.fb_date.year || date.month != fb_vo.fb_date.month || date.date != fb_vo.fb_date.date}">
+							<fmt:formatDate value="${fb_vo.fb_date}" pattern="yyyy.MM.dd(E)"/>(fb_date)
+						</c:if>
+					</td>
+					<td align="center">
+						${fb_vo.fb_hit}
+					</td>
+				</tr>			
 			</c:forEach>
 			</c:if>
-
+			<!-- 페이지 이동 -->
 			<tr>
 				<td colspan="5" align="center">
 					<c:if test="${freeboardList.currentPage > 1}">
@@ -276,40 +233,12 @@
 			</tr>
 			<tr class="table-secondary">
 				<td colspan="5" align="right">
-				<!-- 
-					만약 로그인 하지 않고 누르는 경우 alert('회원만 이용 가능한 서비스입니다.')
-					alert가 나온 후 바로 로그인 모달창 띄우기
-				  -->
 					<input class="btn btn-outline-primary btn-sm" type="button" value="글쓰기" 
 						 onclick="location.href='insert.jsp'"/>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<footer>
-		<div class="container" style="background-color: #e7e7e7; color: #777;">
-			<div class="row">
-				<div class="col-sm-3">
-					copyright 김철수 all rights reserved<br/>
-					사업자 등록번호 123456-123-456789
-				</div>
-				<div class="col-sm-3">
-					고객센터
-					02-123-4567<br/>
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-			</div>
-		</div>
-	</footer>
 
 </body>
 </html>

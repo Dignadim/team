@@ -19,11 +19,9 @@
 	
 	
 <%
-	out.println("<script>");
-	out.println("alert('게시글이 등록되었습니다.')");
-	FreeboardService.getInstance().insert(fb_vo);
-	out.println("location.href='list.jsp'");
-	out.println("</script>");	
+	FreeboardService.getInstance().insert(fb_vo);	
+	
+	response.sendRedirect("list.jsp");
 %>
 
 </body>
