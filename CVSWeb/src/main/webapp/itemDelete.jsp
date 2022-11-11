@@ -27,7 +27,7 @@
 	
 		<div class="m-3" style="width: 1000px; padding: 30px; margin-left: auto; margin-right: auto;">
 			<form action="itemDeleteOK.jsp" method="post">
-				<table class="table table-hover table-bordered">
+				<table class="table table-bordered">
 					<thead>
 						<tr>
 							<th class="info" colspan="2" style="text-align: center; vertical-align: middle;">
@@ -36,6 +36,12 @@
 						</tr>
 					</thead>
 					<tbody>
+						<tr>
+							<th style="text-align: center; width: 150px; vertical-align: middle;">사진</th>
+							<td>
+								<img alt="상품 이미지" src="${vo.itemImage}" style="width: 400px;">
+							</td>
+						</tr>
 						<tr>
 							<th style="text-align: center; width: 150px; vertical-align: middle;">상품명</th>
 							<td>
@@ -54,6 +60,24 @@
 								${vo.category}
 							</td>
 						</tr>
+						<tr>
+							<th style="text-align: center; width: 150px; vertical-align: middle;">판매 편의점</th>
+							<td>
+								${vo.sellCVS}
+							</td>
+						</tr>
+						<tr>
+							<th style="text-align: center; width: 150px; vertical-align: middle;">행사</th>
+							<td>
+								${vo.eventType}
+							</td>
+						</tr>
+						<tr>
+							<th style="text-align: center; width: 150px; vertical-align: middle;">평점</th>
+							<td>
+								${vo.averscore}
+							</td>
+						</tr>						
 						<tr>
 							<td colspan="2" align="center">
 								<input class="btn btn-primary" type="submit" value="삭제">

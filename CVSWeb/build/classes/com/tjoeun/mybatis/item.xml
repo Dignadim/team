@@ -7,8 +7,8 @@
 	<!-- resultType: sql 명령 실행결과 리턴되는 데이터의 타입을 적는다. -->
 	
 	<!-- 상품 1건을 저장한다. -->
-	<insert id="insert" parameterType="vo">
-		insert into item (idx, category, itemname, itemprice, hit) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit})
+	<insert id="itemInsert" parameterType="vo">
+		insert into item (idx, category, itemname, itemprice, hit, sellCVS, averscore, eventType) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit}, #{sellCVS}, #{averscore}, #{eventType})
 	</insert>
 
 	<!-- 모든 글을 얻어온다. -->
@@ -22,7 +22,7 @@
 	</select>	 
 	 
 	 <!-- 1페이지 분량의 상품 목록을 얻어온다. -->
-	 <select id="selectList" parameterType="java.util.HashMap" resultType="vo">
+	 <select id="selectItemList" parameterType="java.util.HashMap" resultType="vo">
 	 	<![CDATA[
 			select * from (
 				select rownum rnum, TT.* from (
@@ -44,7 +44,7 @@
 	 
 	 <!-- 상품 1건을 수정한다. -->
 	 <update id="itemUpdate" parameterType="vo">
-	 	update item set itemname = #{itemName}, itemprice = #{itemPrice} where idx = #{idx}
+	 	update item set itemname = #{itemName}, itemprice = #{itemPrice}, itemimage = #{itemImage}, category = #{category}, sellCVS = #{sellCVS}, eventType = #{eventType} where idx = #{idx}
 	 </update>
 	 
 	 <!-- 상품 1건을 삭제한다. -->	 
@@ -52,7 +52,16 @@
 	 	delete from item where idx = #{idx}
 	 </delete>
 	 
+	  <!-- 조회수 순위별 상품 탑 5를 얻어온다. -->
+	 <select id="selectItemTOP5" resultType="vo">
+		<![CDATA[
+	 		select * from item where rownum <= 5 order by hit desc, idx desc
+	 	]]>
+	 </select>
 	 
+	 <select id="search" parameterType="String" resultType="vo">
+	 	select * from item where itemname like '%' || #{itemName} || '%' order by idx desc
+	 </select>	
 </mapper>
 
 

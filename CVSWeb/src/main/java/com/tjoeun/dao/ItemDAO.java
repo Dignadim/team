@@ -18,9 +18,9 @@ public class ItemDAO {
 	}
 	
 	// ItemService 클래스에서 호출되는, mapper와 메인글이 저장된 객체를 넘겨받고, item.xml 파일의 insert.sql 명령을 실행하는 메소드
-	public void insert(SqlSession mapper, ItemVO vo) {
-		System.out.println("ItemDAO 클래스의 insert() 메소드 실행");
-		mapper.insert("insert", vo);			
+	public void itemInsert(SqlSession mapper, ItemVO vo) {
+		System.out.println("ItemDAO 클래스의 itemInsert() 메소드 실행");
+		mapper.insert("itemInsert", vo);			
 	}
 	
 	// ItemService 클래스에서 호출되는, mapper를 넘겨 받고 모든 상품을 얻어오는 item.xml 파일의 select sql 명령을 실행하는 메소드
@@ -36,9 +36,9 @@ public class ItemDAO {
 	}
 	
 	// ItemService 클래스에서 호출되는, mapper와 1페이지 분량의 시작 인덱스, 끝 인덱스가 저장된 HashMap 객체를 넘겨 받고 1페이지 분량의 메인 글 목록을 얻어오는 , item.xml 파일의 select sql 명령을 실행하는 메소드
-	public ArrayList<ItemVO> selectList(SqlSession mapper, HashMap<String, Integer> hmap) {
-		System.out.println("ItemDAO의 selectList() 메소드 실행");
-		return (ArrayList<ItemVO>) mapper.selectList("selectList", hmap); 
+	public ArrayList<ItemVO> selectItemList(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemList() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemList", hmap); 
 	}
 	
 	// ItemService 클래스에서 호출되는, mapper와 조회수를 증가시킨 메인 글의 글 번호를 넘겨 받고 조회수를 증가시킨 글 1건을 얻어오는, item.xml 파일의 select sql 명령을 실행하는 메소드
@@ -63,4 +63,27 @@ public class ItemDAO {
 		mapper.delete("itemDelete", idx);		
 	}
 	
+	public ArrayList<ItemVO> selectItemTOP5(SqlSession mapper) {
+		System.out.println("ItemDAO의 selectItemTOP5() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemTOP5");
+	}
+	
+	public ArrayList<ItemVO> search(SqlSession mapper, String itemName) {
+		System.out.println("ItemDAO 클래스의 search() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("search", itemName);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

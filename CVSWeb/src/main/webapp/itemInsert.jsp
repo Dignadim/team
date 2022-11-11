@@ -16,7 +16,7 @@
 </head>
 <body>
 
-		<div class="container" style="margin-top: 100px; width: 800px">
+	<div class="container" style="margin-top: 100px; width: 800px">
 		<form method="post" action="itemInsertOK.jsp"> 
 			<table class="table table-hover table-bordered">
 				<thead>
@@ -27,6 +27,12 @@
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+					<th style="text-align: center; width: 150px; vertical-align: middle;">상품 사진</th>
+						<td>
+							<input type="file" name="itemImage"/><br/>
+						</td>
+					</tr>				
 					<tr>
 						<th style="text-align: center; width: 150px; vertical-align: middle;">상품명</th>
 						<td>
@@ -43,7 +49,7 @@
 						<th style="text-align: center; width: 150px; vertical-align: middle;">카테고리</th>
 						<td>
 							<select class="form-select" name="category">
-								<option>과자</option>
+								<option selected>과자</option>
 								<option>음료</option>
 								<option>즉석식품</option>
 								<option>생필품</option>
@@ -51,8 +57,33 @@
 						</td>
 					</tr>
 					<tr>
+						<th style="text-align: center; width: 150px; vertical-align: middle;">판매 편의점</th>
+						<td>
+							<select class="form-select" name="sellCVS" size="6">
+								<option selected>CU</option>
+								<option>GS25</option>
+								<option>세븐일레븐</option>
+								<option>ministop</option>
+								<option>이마트24</option>
+								<option>기타 편의점</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th style="text-align: center; width: 150px; vertical-align: middle;">행사</th>
+						<td>
+							<select class="form-select" name="eventType">
+								<option selected>(행사없음)</option>
+								<option>1+1</option>
+								<option>2+1</option>
+								<option>포인트 적립</option>
+								<option>카드사 할인</option>
+							</select>
+						</td>
+					</tr>
+					<tr>
 						<td colspan="1" align="center">
-							<input class="btn btn-secondary" type="button" onclick="location.href='main.jsp'" value="돌아가기">
+							<input class="btn btn-success" type="button" onclick="location.href='connectMain.jsp'" value="메인으로">
 						</td>
 						<td colspan="1" align="center">
 							<input class="btn btn-primary" type="submit" value="등록">

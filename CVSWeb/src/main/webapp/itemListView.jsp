@@ -12,7 +12,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="./css/main.css">
-<script type="text/javascript" src="./js/main.js" defer></script>
+<script type="text/javascript" src="./js/itemListView.js" defer></script>
 </head>
 <body>
 
@@ -20,7 +20,7 @@
 		request.setCharacterEncoding("UTF-8");
 	%>
 	<div class="m-3">
-		<input type="button" class="btn btn-outline-primary" onclick="location.href='main.jsp'" value="메인으로">
+		<input type="button" class="btn btn-outline-primary" onclick="location.href='connectMain.jsp'" value="메인으로">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto;">
 			<tr class="table-primary">
 				<th colspan="6" style="font-size: 20px; text-align: center;">모든 상품 보기</th>
@@ -32,38 +32,47 @@
 						<div style="padding: 20px 20px;">
 							<h4>편의점별 보기</h4>	
 							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="CU"> CU</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="GS25"> GS25</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="세븐일레븐"> 세븐일레븐</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="ministop"> ministop</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="이마트24"> 이마트24</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타편의점"> 기타 편의점</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="CU" onclick="searchFunction()"> CU</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="GS25" onclick="searchFunction()"> GS25</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="세븐일레븐" onclick="searchFunction()"> 세븐일레븐</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="ministop" onclick="searchFunction()"> ministop</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="이마트24" onclick="searchFunction()"> 이마트24</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타편의점" onclick="searchFunction()"> 기타 편의점</span>
 							</div><br/>		
 							<h4>행사별 보기</h4>	
 							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1+1"> 1+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="2+1"> 2+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="카드사할인"> 카드사 할인</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="포인트적립"> 포인트 적립</span>							
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1+1" onclick="searchFunction()"> 1+1</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="2+1" onclick="searchFunction()"> 2+1</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="카드사할인" onclick="searchFunction()"> 카드사 할인</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="포인트적립" onclick="searchFunction()"> 포인트 적립</span>							
 							</div><br/>	
 							<h4>가격별 보기</h4>	
 							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1000원"> ~ 1,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="5000원"> ~ 5,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="10000원"> ~ 10,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="50000원"> ~ 50,000원</span>							
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타가격"> 기타</span>							
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1000원" onclick="searchFunction()"> ~ 1,000원</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="5000원" onclick="searchFunction()"> ~ 5,000원</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="10000원" onclick="searchFunction()"> ~ 10,000원</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="50000원" onclick="searchFunction()"> ~ 50,000원</span>							
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타가격" onclick="searchFunction()"> 기타</span>							
 							</div><br/>	
 							<h4>카테고리별 보기</h4>	
 							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="과자"> 과자</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="음료"> 음료</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="라면"> 라면</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="생필품"> 생필품</span>							
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="과자" onclick="searchFunction()"> 과자</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="음료" onclick="searchFunction()"> 음료</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="라면" onclick="searchFunction()"> 라면</span>
+								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="생필품" onclick="searchFunction()"> 생필품</span>							
 							</div>			
 						</div>
 					</div>
 				</td>						
+			</tr>
+			<tr>
+				<td colspan="4">&nbsp;</td>
+				<td colspan="1">
+					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
+				</td>
+				<td colspan="1">
+					<button type="button" class="btn btn-primary" onclick="searchFunction()">검색</button>
+				</td>
 			</tr>
 			
 			<tr>
@@ -80,6 +89,7 @@
 				<th style="text-align: center; width: 100px">행사여부</th>
 			</tr>		
 		
+			<tbody id="ajaxTable">
 			<!-- 상품 목록을 출력한다. -->
 			<!-- itemList.jsp에서 request 영역에 저장한 itemList에서 1페이지 분량의 글이 저장된 ArrayList를 꺼내온다. -->
 			<c:set var="list" value="${itemList.list}"/>
@@ -117,15 +127,7 @@
 					</tr>
 				</c:forEach>
 			</c:if>
-			<tr>
-				<td colspan="4">&nbsp;</td>
-				<td colspan="1">
-					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
-				</td>
-				<td colspan="1">
-					<button type="button" class="btn btn-primary" onclick="#">검색</button>
-				</td>
-			</tr>
+	
 			<!-- 페이지 이동 버튼 -->
 			<tr align="center" class="table table-light">
 				<td colspan="5">
@@ -178,6 +180,7 @@
 					<input class="btn btn-outline-primary" type="button" value="상품 입력" onclick="location.href='itemInsert.jsp'"/>
 				</td>					
 			</tr>
+			</tbody>
 		</table>
 	</div>	
 
