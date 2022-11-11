@@ -10,7 +10,7 @@
 	<center>
 		<h3>로그인</h3>
 		<hr>
-			<form action=login_control.jsp method=post>
+			<form action=login_control.jsp method=post name="login_form">
 				<input type="hidden" name=action value=login>
 				<table border=1>
 					<tr>
@@ -19,7 +19,7 @@
 					</tr>
 					<tr>
 						<td>비밀번호</td>
-						<td><input type=text name=password></td>
+						<td><input type="password" name=password></td>
 					</tr>
 					<tr>
 						<td colspan=2>
