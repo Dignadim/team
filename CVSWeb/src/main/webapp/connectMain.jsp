@@ -1,4 +1,6 @@
+<%@page import="com.tjoeun.vo.ItemList"%>
 <%@page import="com.tjoeun.vo.ItemVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.tjoeun.service.ItemService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>item Select By Idx</title>
+<title>connect Main</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -18,19 +20,31 @@
 </head>
 <body>
 
+
 	<%
 		request.setCharacterEncoding("UTF-8");
-		int currentPage = 1;
-		int idx = Integer.parseInt(request.getParameter("idx"));
-		try {
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		} catch (NumberFormatException e) {
-			
-		}
-		
-		ItemService.getInstance().itemIncrement(idx);
-		
-		response.sendRedirect("itemSelectByIdx.jsp?idx=" + idx + "&currentPage=" + currentPage + "&job=itemView");
+	
+	    ItemService service = ItemService.getInstance();
+	    
+	    // 모든 상품 목록을 얻어온다.
+	    ArrayList<ItemVO> items = service.selectItems();
+	    
+	    // 현재 행사 목록을 찾아와서 저장한다.
+	    
+	    // 현재 행사 상품을 찾아와서 저장한다.
+	    
+	    
+	    // 인기상품 탑 5를 가져와서 저장한다.
+	    ItemList itemTOP5 = service.selectItemTOP5();
+		// System.out.println(itemTOP5);    
+	    // 인기 게시글 탑 3을 가져와서 저장한다.
+	    
+	    
+	    // 데이터를 request로 넘긴다.
+	    request.setAttribute("items", items);
+	    request.setAttribute("itemTOP5", itemTOP5);	
+	
+		pageContext.forward("main.jsp");
 	%>
 
 </body>

@@ -21,11 +21,11 @@ public class ItemService {
 	}
 	
 	// itemInsertOK.jsp에서 호출되는, 메인글이 저장된 객체를 넘겨받고 mapper를 얻어온 후 메인글을 저장하는 ItemDAO 클래스의 insert sql 명령을 실행하는 메소드를 호출하는 메소드 
-	public void insert(ItemVO vo) {
-		System.out.println("ItemService의 insert()");
+	public void itemInsert(ItemVO vo) {
+		System.out.println("ItemService의 itemInsert()");
 		SqlSession mapper = MySession.getSession();
 		
-		ItemDAO.getInstance().insert(mapper, vo);
+		ItemDAO.getInstance().itemInsert(mapper, vo);
 		
 		mapper.commit();
 		mapper.close();
@@ -59,7 +59,7 @@ public class ItemService {
 		hmap.put("startNo", itemList.getStartNo());
 		hmap.put("endNo", itemList.getEndNo());		
 		
-		itemList.setList(dao.selectList(mapper, hmap));
+		itemList.setList(dao.selectItemList(mapper, hmap));
 		
 		mapper.close();		
 		return itemList;
@@ -108,6 +108,19 @@ public class ItemService {
 		mapper.close();
 	}
 	
+	public ItemList selectItemTOP5() {
+		System.out.println("ItemService의 selectItemTOP5()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemList itemTOP5 = new ItemList();
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		itemTOP5.setList(dao.selectItemTOP5(mapper));
+		
+		mapper.close();
+		return itemTOP5;
+	}
+		
 	
 }
 

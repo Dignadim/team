@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<div class="container" style="margin-top: 100px; width: 1400px">
+	<div class="container" style="margin-top: 100px; width: 1200px">
 		<table class="table table-bordered">
 			<thead>
 				<tr class="table-primary">
@@ -27,8 +27,8 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td rowspan="6" width="550px;">
-						<img alt="/" src="./images/img02.jpg" style="width: 400px;">
+					<td rowspan="7" width="550px;">
+						<img alt="상품 이미지" src="${vo.itemImage}" style="width: 400px;">
 					</td>
 				</tr>
 				<tr>
@@ -47,6 +47,12 @@
 					<th>가격</th>
 					<td>
 						${vo.itemPrice}
+						<c:if test="${vo.eventType == '1+1'}">
+							<br/>개당 가격 ${vo.itemPrice / 2}원!
+						</c:if>
+						<c:if test="${vo.eventType == '2+1'}">
+							<br/>개당 가격 ${vo.itemPrice / 3 * 2}원!
+						</c:if>
 					</td>
 				</tr>
 				<tr>
@@ -59,6 +65,44 @@
 					<th>행사</th>
 					<td>
 						${vo.eventType}
+					</td>
+				</tr>
+				<tr>
+					<th>평점</th>
+					<td>
+						<c:if test="${vo.averscore < 0.5}">
+							${vo.averscore}
+						</c:if>
+						<c:if test="${vo.averscore >= 0.5 && vo.averscore < 1}">
+							${vo.averscore}(<img alt="별점" src="./images/halfstar.png" height="20px">)
+						</c:if>						
+						<c:if test="${vo.averscore >= 1 && vo.averscore < 1.5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 1.5 && vo.averscore < 2}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 2 && vo.averscore < 2.5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 2.5 && vo.averscore < 3}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 3 && vo.averscore < 3.5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 3.5 && vo.averscore < 4}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 4 && vo.averscore < 4.5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore >= 4.5 && vo.averscore < 5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+						</c:if>
+						<c:if test="${vo.averscore == 5}">
+							${vo.averscore}(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)						
+						</c:if>
 					</td>
 				</tr>
 				<tr>
@@ -85,7 +129,7 @@
 			</tr>
 	
 			<!-- <tr style="display: none;"> -->
-			<tr">
+			<tr>
 				<td colspan="4">
 					<!-- 수정 또는 삭제할 댓글의 글 번호를 넘겨준다. -->
 					idx: <input type="text" name="idx" value="${vo.idx}" size="1"> 
@@ -98,10 +142,10 @@
 			</tr>
 			
 			<tr>
-				<th class="align-middle" style="width: 100px; text-align: center;">
+				<th colspan="1" class="align-middle" style="width: 100px; text-align: center;">
 					<label for="content">내용</label>
 				</th>
-				<th colspan="2" style="width: 500px;">
+				<th colspan="2" style="width: 600px;">
 					<textarea class="form-control form-control-sm" id="content" name="content" rows="3" style="resize: none;">지금은 테스트 중이라 idx gup currentPage nickname 내용 다 값을 채워야 입력됨</textarea>
 				</th>
 				<th colspan="1" style="width: 200px; vertical-align: middle;" align="center">
@@ -128,7 +172,9 @@
 					<tr>
 						<td>${co.nickname}</td>
 						<td>${co.content}</td>
-						<td>${co.writeDate}</td>
+						<td>
+							<fmt:formatDate value="${co.writeDate}" pattern="yyyy.MM.dd(E) a h:mm:ss"/>	
+						</td>
 					</tr>
 				</c:forEach>
 			</c:if>

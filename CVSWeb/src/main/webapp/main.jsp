@@ -14,7 +14,7 @@
 <script type="text/javascript" src="./js/main.js" defer></script>
 </head>
 <body>
-
+	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>
 		<div class="container">
@@ -41,18 +41,19 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">자유게시판</a></li>
+								<li><a class="dropdown-item" href="./jsp/board/free/list.jsp">자유게시판</a></li>
 								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
 					</ul>
 				</div>
+				<!-- 검색은 추후 구현 -->
 				<div class="col-sm-2">
-					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
-				</div>
+					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px; display: none;">
+				</div> 
 				<div class="col-sm-1">
-					<button type="button" class="btn btn-primary" onclick="#">검색</button>
+					<button type="button" class="btn btn-primary" onclick="#" style="display:none;">검색</button>
 				</div>
 				<div class="col-sm-2">
 					<button type="button" class="btn btn-primary" onclick="location.href='login.jsp'">로그인</button>					
@@ -68,7 +69,7 @@
 	<div class="container">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				&nbsp;&nbsp;&nbsp;2022년 11월 행사 목록
+				&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 행사 목록
 			</h3>
 		</div>
 		<div class="container">
@@ -102,10 +103,10 @@
 		<div class="panel panel-primary">
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					&nbsp;&nbsp;&nbsp;2022년 11월 행사 상품
+					&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 행사 상품
 				</h3>
 			</div>
-			<div class="container"  style="margin-top: 20px; padding: 5px 50px;">
+			<div class="container"  style="margin-top: 20px; padding: 5px 20px;">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="panel panel-primary">
@@ -122,31 +123,31 @@
 									</tr>
 									<tr>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="CU logo" src="./images/cu.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="CU logo" src="./images/cu.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="gs logo" src="./images/gs25.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="gs logo" src="./images/gs25.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="711 logo" src="./images/7eleven.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="711 logo" src="./images/7eleven.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="mini logo" src="./images/ministop.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="mini logo" src="./images/ministop.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="emart logo" src="./images/emart24.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="emart logo" src="./images/emart24.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="other logo" src="./images/other.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="other logo" src="./images/other.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 										<td>
-											<h5><a href="main.jsp">새우깡</a><span><img alt="logo" src="./images/cu.png" height="20px;" align="right"></span></h5>
+											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="logo" src="./images/cu.png" height="20px;" align="right"></span></h5>
 											1+1
 										</td>
 
@@ -178,42 +179,27 @@
 
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					&nbsp;&nbsp;&nbsp;2022년 11월 인기 상품 TOP5
+					&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 인기 상품 TOP5
+					<c:set var="list" value="${itemTOP5.list}"></c:set>
 				</h3>				
 			</div>
-			<div class="container"  style="margin-top: 20px; padding: 5px 50px;"  align="center">
+			<div class="container"  style="margin-top: 20px; padding: 5px 20px;"  align="center">
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="panel panel-primary">
 							<table class="table bg-light">
 								<tr>
-									<td><img alt="alt" src="./images/img02.jpg" width="150px"></td>
-									<td><img alt="alt" src="./images/img02.jpg" width="150px"></td>
-									<td><img alt="alt" src="./images/img02.jpg" width="150px"></td>
-									<td><img alt="alt" src="./images/img02.jpg" width="150px"></td>
-									<td><img alt="alt" src="./images/img02.jpg" width="150px"></td>
+									<c:forEach var="vo" items="${list}">
+										<td><img alt="alt" src="${vo.itemImage}" width="150px"></td>
+									</c:forEach>
 								</tr>
 								<tr>
+									<c:forEach var="vo" items="${list}">
 									<td>
-										<h4><a href="main.jsp">새우깡</a></h4>
-										1+1
+										<h4><a href="itemIncrement.jsp?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h4>
+										${vo.eventType}
 									</td>
-									<td>
-										<h4><a href="main.jsp">새우깡</a></h4>
-										1+1
-									</td>
-									<td>
-										<h4><a href="main.jsp">새우깡</a></h4>
-										1+1
-									</td>
-									<td>
-										<h4><a href="main.jsp">새우깡</a></h4>
-										1+1
-									</td>
-									<td>
-										<h4><a href="main.jsp">새우깡</a></h4>
-										1+1
-									</td>
+									</c:forEach>									
 								</tr>
 							</table>
 						</div>
@@ -223,7 +209,7 @@
 		
 			<div class="panel-heading">
 				<h3 class="panel-title">
-					&nbsp;&nbsp;&nbsp;2022년 11월 8일 인기 게시글
+					&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 ${date.date}일 인기 게시글
 				</h3>
 			</div>
 			<div class="container">
