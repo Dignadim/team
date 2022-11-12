@@ -8,15 +8,6 @@ function searchFunction() {
 	// 데이터를 url의 일부인 쿼리 스트링(?~~~~)으로 전송할 경우 send() 함수의 인수로 null을 사용한다.
 	searchRequest.send(null);
 	
-	// POST 방식 요청
-	// let url = './AjaxSearch'; // Post 방식은 url에 쿼리 스트링을 사용하지 않는다.
-	// searchRequest.open('POST', url, true);
-	// POST 방식은 정보가 헤더에 담겨 넘어간다.
-	// setRequestHeader() 함수로 반드시 헤더 정보를 포함시켜야 한다.
-	// searchRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');	
-	// 데이터를 send() 함수의 인수로 전달한다.
-	// searchRequest.send('name=' + encodeURIComponent(document.getElementById('username').value));
-	
 	// onreadystatechange를 사용해서 ajax 요청이 완료되면 실행할 콜백 함수 이름을 지정한다.
 	searchRequest.onreadystatechange = searchProcess; // ()를 쓰면 안 된다. 
 	
