@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 
 import project.mybatis.MySession;
 
-
 public class MemberService {
 	private static MemberService instance = new MemberService();
 	private MemberService() { }
@@ -31,17 +30,4 @@ public class MemberService {
 		mapper.commit();
 		mapper.close();
 	}
-	
-//	문자열 id를 받아서 MemberDB 테이블에 같은 id가 있는지 확인해서 있으면 해당 아이디를 가진 MemberVO 전체를 리턴해준다.
-	public MemberVO searchID(String id)
-	{
-		SqlSession mapper = MySession.getSession();
-		MemberVO vo = MemberDAO.getInstance().search(mapper, id);
-		
-		mapper.close();
-		
-		return vo;
-	}
-	
-	
 }
