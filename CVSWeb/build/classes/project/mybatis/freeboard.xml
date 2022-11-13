@@ -3,8 +3,8 @@
 <mapper namespace="project.board.free.FreeboardVO">
 
  	<insert id="fbInsert" parameterType="fb_vo">
-	 	insert into fb_board (fb_idx, fb_subject, fb_content, fb_notice) 
-	 	values (fb_board_idx_seq.nextval, #{fb_subject}, #{fb_content}, #{fb_notice})
+	 	insert into fb_board (fb_idx, fb_subject, fb_content) 
+	 	values (fb_board_idx_seq.nextval, #{fb_subject}, #{fb_content})
  	</insert>
  	
  	 <select id="selectCount" resultType="int">
@@ -24,24 +24,6 @@
  	<update id="increment" parameterType="int">
  		update fb_board set fb_hit = fb_hit + 1 where fb_idx = #{fb_idx}
  	</update>
- 	
- 	<select id="selectByIdx" parameterType="int" resultType="fb_vo">
- 		select * from fb_board where fb_idx = #{fb_idx}
- 	</select>
- 	
- 	<delete id="delete" parameterType="int">
-		delete from fb_board where fb_idx = #{fb_idx} 	
- 	</delete>
- 	
- 	<update id="update" parameterType="fb_vo">
- 		update fb_board set fb_subject = #{fb_subject}, fb_content = #{fb_content}, fb_notice = #{fb_notice} where fb_idx = #{fb_idx}
- 	</update>
- 	
- 	 <select id="selectNotice" resultType="fb_vo">
- 		select * from fb_board where fb_notice = 'yes' order by fb_idx desc
- 	</select>
- 	
- 	
 
 </mapper>
 
