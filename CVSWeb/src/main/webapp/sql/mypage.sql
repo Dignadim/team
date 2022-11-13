@@ -1,5 +1,5 @@
 
- CREATE TABLE "SSH"."MYPAGE" 
+ CREATE TABLE "TEAM"."MYPAGE" 
    (	"ID" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
     "PASSWORD" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
 	"NICKNAME" VARCHAR2(30 BYTE) NOT NULL ENABLE, 
@@ -13,7 +13,6 @@
 delete from mypage;
 drop sequence mypage_id_seq;
 create sequence mypage_id_seq;
- 
  
 insert into mypage (id, password, nickname, email, image, introduce) 
 values ('test', '1111', '별명', 'e@e', '이미지입니다', '자기소개입니다');

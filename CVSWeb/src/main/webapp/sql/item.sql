@@ -1,19 +1,32 @@
-select * from item order by idx desc;
-ALTER TABLE item modify averscore number(*,2);
+
+CREATE TABLE "TEAM"."ITEM" 
+   (	"IDX" NUMBER NOT NULL ENABLE, 
+	"COLUMN2" CHAR(20 BYTE) NOT NULL ENABLE, 
+	"ITEMNAME" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	"ITEMPRICE" NUMBER NOT NULL ENABLE, 
+	"SELLCVS" VARCHAR2(20 BYTE), 
+	"AVERSCORE" NUMBER, 
+	"EVENTTYPE" VARCHAR2(20 BYTE), 
+	"EVENTSALE" NUMBER, 
+	"HIT" VARCHAR2(20 BYTE), 
+	 CONSTRAINT "ITEM_PK" PRIMARY KEY ("IDX")
+	 );
 
 delete from item;
 drop sequence item_idx_seq;
 create sequence item_idx_seq;
 
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'CU', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½', 1000, 0, 1.1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'GS25', 'ï¿½ï¿½ï¿½', 'ï¿½Å¶ï¿½ï¿½', 900, 0, 1.11);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Ä«ï¿½ï¿½', 1500, 0, 3.20);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'ï¿½Ì´Ï½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 2000, 0, 1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'CU', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½', 1000, 100);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'GS25', 'ï¿½ï¿½ï¿½', 'ï¿½Å¶ï¿½ï¿½', 900, 90);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Ä«ï¿½ï¿½', 1500, 80);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'ï¿½Ì´Ï½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 2000, 70);
+
+select * from item order by idx desc;
+select count(*) from ITEM;
 commit;
 
-
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'CU', '°úÀÚ', '»õ¿ì±ø', 1000, 0, 1.1);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'GS25', '¶ó¸é', '½Å¶ó¸é', 900, 0, 1.11);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, '¼¼ºìÀÏ·¹ºì', 'À½·á', 'Æ÷Ä«¸®', 1500, 0, 3.20);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, '¹Ì´Ï½ºÅé', '»ýÇÊ', 'º¼Ææ', 2000, 0, 1);
-
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'CU', '°úÀÚ', '»õ¿ì±ø', 1000, 100);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'GS25', '¶ó¸é', '½Å¶ó¸é', 900, 90);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, '¼¼ºìÀÏ·¹ºì', 'À½·á', 'Æ÷Ä«¸®', 1500, 80);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, '¹Ì´Ï½ºÅé', '»ýÇÊ', 'º¼Ææ', 2000, 70);
+ALTER TABLE item modify averscore number(*,2);
