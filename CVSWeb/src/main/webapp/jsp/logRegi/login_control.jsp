@@ -1,9 +1,9 @@
 <%@page import="project.member.MemberVO"%>
 <%@page import="project.member.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <jsp:useBean id="v" class="project.member.MemberVO" scope="page"></jsp:useBean>
-<jsp:setProperty property="*" name="v" />
+<jsp:setProperty property="*" name="v"/>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,44 +20,30 @@ request.setCharacterEncoding("UTF-8");
 <%
 String action = request.getParameter("action");
 	
-	if(action.equals("login") && v.getId() != null){
+	if(action.equals("login"))
+	{
 		MemberService m = MemberService.getInstance();
-		MemberVO vo = m.searchID(v.getId().trim());
+		MemberVO vo = m.searchID(v.getId());
 			
-			if(vo != null){
-		 		if(vo.getId().equals(v.getId().trim())){
-					if(vo.getPassword().trim().equals(v.getPassword().trim())){
-						out.println("<script>");
-						out.println("alert('로그인되었습니다.')");
-						out.println("location.href='../connectMain.jsp'");
-						out.println("</script>");
-						session.setAttribute("id", vo.getId());
-						session.setAttribute("nickname", vo.getNickname());
-						session.setAttribute("email", vo.getEmail());
-						session.setAttribute("signupdate", vo.getSignupdate());
-						session.setAttribute("password", vo.getPassword());
-						session.setAttribute("grade", vo.getGrade());
+			if(vo != null )
+			{
+		 		if(vo.getId().equals(v.getId()))
+		 		{
+					if(vo.getPassword().equals(v.getPassword()))
+					{
+						out.println("로그인 되었습니다.");
 					}
-					else{
-						out.println("<script>");
-						out.println("alert('비밀번호가 틀렸습니다.')");
-						out.println("history.back()");
-						out.println("</script>");
+					else
+					{
+						out.println("비밀번호가 틀렸습니다.");
 					}
 				}
-			}else{
-				out.println("<script>");
-				out.println("alert('아이디가 틀렸습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
 			}
-	}else{
-		out.println("<script>");
-		out.println("alert('아이디를 입력해주세요.')");
-		out.println("history.back()");
-		out.println("</script>");
+			else
+			{
+				out.println("아이디가 틀렸습니다.");
+			}
 	}
-	
 	
 %>
 </body>
