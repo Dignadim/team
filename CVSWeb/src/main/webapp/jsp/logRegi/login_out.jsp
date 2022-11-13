@@ -12,12 +12,14 @@
 	
 	session.removeAttribute("id");
 	session.removeAttribute("nickname");
+	session.removeAttribute("signupdate");
+	session.removeAttribute("email");
 	session.removeAttribute("password");
 	session.removeAttribute("grade");
 	
 	out.println("<script>");
 	out.println("alert('로그아웃되었습니다.')");
-	out.println("location.href='../main.jsp'");
+	out.println("location.href='../connectMain.jsp'");
 	out.println("</script>");
 %>
 </body>
