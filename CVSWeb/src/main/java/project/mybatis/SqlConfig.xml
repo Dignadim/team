@@ -10,8 +10,6 @@
 		<!-- 별명 설정 -->
 		<typeAlias type="project.member.MemberVO" alias="mb_vo" />
 		<typeAlias type="project.board.free.FreeboardVO" alias="fb_vo" />
-		<typeAlias type="project.item.ItemVO" alias="item_vo" />
-		<typeAlias type="project.item.ItemCommentVO" alias="item_co" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -30,8 +28,6 @@
 		<!-- 실행할 sql 명령이 저장된 파일의 위치 -->
 		<mapper resource="project/mybatis/member.xml" />
 		<mapper resource="project/mybatis/freeboard.xml" />
-		<mapper resource="project/mybatis/item.xml" />
-		<mapper resource="project/mybatis/itemComment.xml" />
 	</mappers>
 	
 </configuration>
