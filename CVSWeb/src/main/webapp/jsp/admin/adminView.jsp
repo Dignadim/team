@@ -7,15 +7,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지 뷰</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<link rel="stylesheet" href="../../css/myPageView.css">
-
+<title>메인 페이지</title>
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../../css/adminpage.css">
+<script type="text/javascript" src="./js/main.js" defer></script>
 </head>
 <body>
-<div class="m-3">
-
-<jsp:useBean id="date" class="java.util.Date"/>
+	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>
 		<div class="container">
@@ -79,111 +80,63 @@
 
 <!-- header 끝  -->
 
-
-<div id= "wrap">
-<nav>
-메뉴영역
-</nav>
-<div id="content">
-<div class="b">
-	<div class="container mt-3" align="center" >
-	  <img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
-	  <h2>프로필 사진</h2>	       
-	아이디<br/><br>
-	닉네임<br/><br>
-	이메일<br/><br>
-	</div>
-
+<div class="body1">
+<!-- 버그리포트 게시글을 이곳에 표시  -->
+QNA/버그리포트
 </div>
-<div class="b"> 
-	<form id=f action="checkPasswordOK.jsp"  method="post"  align="center">
-	<br/><br/><br/><br/><br/>
-		<table align="center" border="1" cellpadding="5" cellspacing="0">
-			<tr>
-				<th>
-					  <div class="mb-3 mt-3">
-					    <label for="id" class="form-label">ID</label>
-					  </div>
-				<th>
-						회원정보
-				</th>
-				
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-					  <label for="nickname" class="form-label">닉네임</label> 
-					</div>
-				</th>
-				<td>
-						회원 닉네임
-				</td>
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="email" class="form-label">E-mail</label>
-					</div>
-				</th>
-				<td>
-						회원 E-mail
-				</td>
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="signupdate" class="form-label">가입일자</label>
-					</div>
-				</th>
-				<td>
-						회원 가입일자
-				</td>
-			</tr> 
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="selfIntroduce" class="form-label">자기소개</label>
-					</div>
-				</th>
-				<td>
-						회원 자기소개
-				</td>
-			</tr> 
-			
-					
-		<tr>
-		<td colspan="2" align="center">		   
-			  
-			<button
-				class="btn btn-primary"
-				type= "button"
-				title="쪽지함"
-				onclick="location.href=noteBox.jsp"
-				>쪽지함 (차후 구현)</button>	
-			
-			 <button type="submit"
-			 		 class="btn btn-primary"
-			 		 title="비밀번호변경"
-			 		 >비밀번호 변경</button>
+
+<div class="body1">
+<!-- 각 게시판에 썻던 공지글이 나오게
+
+ex) 자유게시판
+	공지 : ~~
+	공지 : ~~
 	
-			<button
-				class="btn btn-primary"
-				type= "button"
-				title="정보수정"
-				onclick="location.href=changeInformation.jsp"
-				>정보수정</button>	
-		</td>
-		</tr>
-				
-				
-		</table>
-	</form>
+	상품게시판
+	공지 : ~
+	공지 : ~
+	
+	이런식으로
+  -->
+게시판 관리
 </div>
+
+
+<div class="clear"></div>
+
+
+<div class="body1">
+<!-- 회원들의 정보와 쓴 글목록, 쓴 댓글, 차단상태등을 표시   -->
+회원관리
 </div>
+
+<div class="body1">
+<!-- 한달 단위로 신규회원가입시 표시  -->
+신규회원표시
 </div>
+
+<div class="body2">
+<!-- 캘린더에 행사기간이 나오는 표시  -->
+캘린더 구현
 </div>
-<div class="clear">
-</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- footer  -->
@@ -214,26 +167,6 @@
 	</footer>
 <!-- footer 끝 -->
 
-
-
-	
-
-
-
-
-
-
-
-
-
-		<!--   <div class="form-check mb-3">
-		    <label class="form-check-label">
-		      <input class="form-check-input" type="checkbox" name="remember"> Remember me
-		    </label>
-		  </div>
-		  
-
-</div> -->
 
 </body>
 </html>
