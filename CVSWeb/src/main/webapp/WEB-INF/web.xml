@@ -9,18 +9,4 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
-  
-  <servlet>
-  <!-- 서블릿을 불러오기 위해 WAS에게 주는 정보 -->
-  <!-- 1. 배포할 Servlet 2. 해당 Servlet 매핑 URL -->
-      <servlet-name>svtRegi</servlet-name>
-      <servlet-class>project.member.controller.SvtRegister</servlet-class>
-  </servlet>
-  
-  <servlet-mapping>
-      <servlet-name>svtRegi</servlet-name>
-      <url-pattern>/svtRegi</url-pattern>
-  </servlet-mapping>
-  
-  
 </web-app>

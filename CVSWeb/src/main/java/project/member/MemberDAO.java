@@ -18,9 +18,4 @@ public class MemberDAO {
 		System.out.println("MemberDao의 changePassword" );
 		mapper.update("mbChangePassword", mbvo);
 	}
-	
-	public MemberVO search(SqlSession mapper, String id) 
-	{
-		return (MemberVO) mapper.selectOne("mbSearch", id);
-	}
 }
