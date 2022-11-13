@@ -16,11 +16,49 @@ request.setCharacterEncoding("UTF-8");
 	<jsp:useBean id="vo" class="project.member.MemberVO">
 		<jsp:setProperty property="*" name="vo"/>
 	</jsp:useBean>
-	${mbvo}
-	
 	
 <%	
-	MemberService.getInstance().changePassword(vo);
+	String id = (String) session.getAttribute("id");
+	String nickname = (String) session.getAttribute("nickname");
+	String email = (String) session.getAttribute("email");
+	String password = (String) session.getAttribute("password");
+	
+
 %>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
