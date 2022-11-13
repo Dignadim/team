@@ -33,19 +33,4 @@ public class FreeboardDAO {
 		System.out.println("FreeboardDAO의 selectByIdx() 메소드");
 		return (FreeboardVO) mapper.selectOne("selectByIdx", fb_idx);
 	}
-	public void delete(SqlSession mapper, int fb_idx) {
-		System.out.println("FreeboardDAO의 delete() 메소드");
-		mapper.delete("delete", fb_idx);
-	}
-	
-	public void update(SqlSession mapper, FreeboardVO fb_vo) {
-		System.out.println("FreeboardDAO의 update() 메소드");
-		mapper.update("update", fb_vo);
-	}
-	
-	public ArrayList<FreeboardVO> selectNotice(SqlSession mapper) {
-		System.out.println("FreeboardDAO의 selectNotice() 메소드");
-		return (ArrayList<FreeboardVO>) mapper.selectList("selectNotice");
-	}
-	
 }
