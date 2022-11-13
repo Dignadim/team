@@ -1,5 +1,3 @@
-<%@page import="project.board.free.FreeboardCommentService"%>
-<%@page import="project.board.free.FreeboardCommentList"%>
 <%@page import="project.board.free.FreeboardVO"%>
 <%@page import="project.board.free.FreeboardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -19,16 +17,12 @@
 	String job = request.getParameter("job");
 	
 	FreeboardService service = FreeboardService.getInstance();
-	FreeboardVO fb_vo = service.selectByIdx(fb_idx);
+	
+	FreeboardVO vo = service.selectByIdx(fb_idx);
 
-	request.setAttribute("fb_vo", fb_vo);
+	request.setAttribute("vo", vo);
 	request.setAttribute("currentPage", currentPage);
 	request.setAttribute("enter", "\r\n");
-	
-	if(job.equals("contentView")) {
-		FreeboardCommentList freeboardCommentList = FreeboardCommentService.getInstance().selectCommentList(fb_idx);
-		request.setAttribute("freeboardCommentList", freeboardCommentList);
-	}	
 	
 	pageContext.forward(job + ".jsp");
 %>
