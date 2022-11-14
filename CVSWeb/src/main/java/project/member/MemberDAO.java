@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 public class MemberDAO {
 	private static MemberDAO instance = new MemberDAO();
 	private MemberDAO() { }
+	
 	public static MemberDAO getInstance() {
 		return instance;
 	}

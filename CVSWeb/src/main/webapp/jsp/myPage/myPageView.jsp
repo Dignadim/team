@@ -16,24 +16,36 @@
 헤더영역
 </header>
 
-
-<div id= "wrap">
+</div>
+<div id= "wrap" class="m-3">
 <nav>
 메뉴영역
 </nav>
 <div id="content">
 <div class="b">
 	<div class="container mt-3" align="center" >
-	  <img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
-	  <h2>프로필 사진</h2>	       
-	아이디<br/><br>
-	닉네임<br/><br>
-	이메일<br/><br>
+		<img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
+		<h2>프로필 사진</h2>	
+	  	<table>    
+			<tr>
+				<th>		  
+					<div class="mb-3 mt-2">
+						<label for="selfIntroduce" class="form-label">자기소개:</label>
+					</div>
+				</th>
+				<td>
+					<div class="mb-3 mt-1">
+						<span id="selfIntroduce" style="display: table-cell; padding-left: 10px; text-align: left; vertical-align: top;">회원 자기소개</span>
+					</div>
+				</td>
+			</tr>
+		</table>   
 	</div>
+	
 
 </div>
 <div class="b"> 
-	<form id=f action="checkPasswordOK.jsp"  method="post"  align="center">
+	<form id=f action="changeInformation.jsp"  method="post"  align="center">
 		<table align="center" border="1" cellpadding="5" cellspacing="0">
 			<tr>
 				<th>
@@ -41,7 +53,7 @@
 					    <label for="id" class="form-label">ID</label>
 					  </div>
 				<th>
-						회원정보
+					${id}
 				</th>
 				
 			</tr>
@@ -52,7 +64,7 @@
 					</div>
 				</th>
 				<td>
-						회원 닉네임
+					${nickname}
 				</td>
 			</tr>
 			<tr>
@@ -62,7 +74,7 @@
 					</div>
 				</th>
 				<td>
-						회원 E-mail
+					${email}
 				</td>
 			</tr>
 			<tr>
@@ -72,23 +84,18 @@
 					</div>
 				</th>
 				<td>
-						회원 가입일자
+					${signupdate.year + 1900} - ${signupdate.month + 1} - ${signupdate.date}
 				</td>
 			</tr> 
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="selfIntroduce" class="form-label">자기소개</label>
-					</div>
-				</th>
-				<td>
-						회원 자기소개
-				</td>
-			</tr> 
+			 
 			
 					
 		<tr>
 		<td colspan="2" align="center">		   
+			 <button type="submit"
+			 		 class="btn btn-primary"
+			 		 title="비밀번호변경"
+			 		 >정보수정</button>
 			  
 			<button
 				class="btn btn-primary"
@@ -97,17 +104,13 @@
 				onclick="location.href=noteBox.jsp"
 				>쪽지함 (차후 구현)</button>	
 			
-			 <button type="submit"
-			 		 class="btn btn-primary"
-			 		 title="비밀번호변경"
-			 		 >비밀번호 변경</button>
 	
 			<button
 				class="btn btn-primary"
 				type= "button"
 				title="정보수정"
-				onclick="location.href=changeInformation.jsp"
-				>정보수정</button>	
+				onclick="history.back()"
+				>홈으로</button>	
 		</td>
 		</tr>
 				
@@ -117,10 +120,11 @@
 </div>
 </div>
 </div>
+<div class="m-3">
 <footer>
 푸터영역
 </footer>
-
+</div>
 
 
 	
