@@ -43,5 +43,13 @@ public class MemberService {
 		return vo;
 	}
 	
+	public void update(MemberVO vo) {
+		
+		SqlSession mapper = MySession.getSession();
+		MemberDAO.getInstance().update(mapper, vo);
+		
+		mapper.commit();
+		mapper.close();
+	}
 	
 }

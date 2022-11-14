@@ -18,12 +18,19 @@ request.setCharacterEncoding("UTF-8");
 	</jsp:useBean>
 	
 <%	
-	String id = (String) session.getAttribute("id");
-	String nickname = (String) session.getAttribute("nickname");
-	String email = (String) session.getAttribute("email");
-	String password = (String) session.getAttribute("password");
+	String password = request.getParameter("password");
+	String password2 = request.getParameter("password2");
 	
+	if(!password.equals(password2)){
+		out.println("<script>");
+		out.println("alert('변경할 비밀번호가 서로 일치하지 않습니다.')");
+		out.println("history.back()");
+		out.println("</script>");
+	}
+	
+		MemberService.getInstance().update(vo);
 
+	response.sendRedirect("../main.jsp");
 %>
 </body>
 </html>

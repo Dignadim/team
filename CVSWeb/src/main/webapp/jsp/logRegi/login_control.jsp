@@ -29,13 +29,13 @@ String action = request.getParameter("action");
 					if(vo.getPassword().trim().equals(v.getPassword().trim())){
 						out.println("<script>");
 						out.println("alert('로그인되었습니다.')");
-						out.println("location.href='../connectMain.jsp'");
+						out.println("location.href='../main.jsp'");
 						out.println("</script>");
 						session.setAttribute("id", vo.getId());
 						session.setAttribute("nickname", vo.getNickname());
 						session.setAttribute("email", vo.getEmail());
-						session.setAttribute("signupdate", vo.getSignupdate());
 						session.setAttribute("password", vo.getPassword());
+						session.setAttribute("signupdate", vo.getSignupdate());
 						session.setAttribute("grade", vo.getGrade());
 					}
 					else{
