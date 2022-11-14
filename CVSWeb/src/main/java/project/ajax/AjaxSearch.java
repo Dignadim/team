@@ -35,7 +35,7 @@ public class AjaxSearch extends HttpServlet {
 		response.setContentType("text/html; charset=UTF-8");
 		
 		String itemName = request.getParameter("itemName");
-		System.out.println(itemName);
+		// System.out.println(itemName);
 		
 		// ajax 방식으로 요청한 곳으로 데이터를 리턴한다.
 		// ajax로 서블릿을 호출한 곳에서는 responseText를 사용해서 받는다.

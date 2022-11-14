@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import project.board.free.FreeboardVO;
+
 public class ItemDAO {
 	
 	private static ItemDAO instance = new ItemDAO();
@@ -69,6 +71,36 @@ public class ItemDAO {
 	public ArrayList<ItemVO> search(SqlSession mapper, String itemName) {
 		System.out.println("ItemDAO 클래스의 search() 메소드 실행");
 		return (ArrayList<ItemVO>) mapper.selectList("search", itemName);
+	}
+	
+	public ArrayList<FreeboardVO> selectFreeHitList(SqlSession mapper) {
+		System.out.println("ItemDAO의 selectFreeHitList() 메소드 실행");
+		return (ArrayList<FreeboardVO>) mapper.selectList("selectFreeHitList");
+	}
+	
+	public ArrayList<ItemVO> categorySearch(SqlSession mapper, String category) {
+		System.out.println("ItemDAO 클래스의 categorySearch() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("categorySearch", category);
+	}
+	
+	public ArrayList<ItemVO> SellCVSSearch(SqlSession mapper, String sellCVS) {
+		System.out.println("ItemDAO 클래스의 SellCVSSearch() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("SellCVSSearch", sellCVS);
+	}
+	
+	public ArrayList<ItemVO> eventTypeSearch(SqlSession mapper, String eventType) {
+		System.out.println("ItemDAO 클래스의 eventTypeSearch() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("eventTypeSearch", eventType);
+	}
+	
+	public ArrayList<ItemVO> itemPriceSearch(SqlSession mapper, int itemPrice) {
+		System.out.println("ItemDAO 클래스의 itemPriceSearch() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("itemPriceSearch", itemPrice);
+	}
+	
+	public void averscoreUpdate(SqlSession mapper, ItemVO vo) {
+		System.out.println("ItemDAO 클래스의 averscoreUpdate() 메소드 실행");
+		mapper.update("averscoreUpdate", vo);		
 	}
 
 }

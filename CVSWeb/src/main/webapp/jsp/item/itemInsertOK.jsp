@@ -1,3 +1,4 @@
+<%@page import="javax.tools.DocumentationTool.Location"%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.File"%>
@@ -30,48 +31,16 @@
 	</jsp:useBean>
 	
 	<%
-	/*
-	// itemInsert.jsp에서 넘어온 데이터를 메인글 테이블에 저장하는 메소드를 실행한다.
-		MultipartRequest multipartRequest = new MultipartRequest(request, application.getRealPath("/upload"), 5 * 1024 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
-		// getOriginalFileName(): 사용자가 업로드한 파일 이름을 얻어온다.		
-		String filename = multipartRequest.getOriginalFileName("itemImage");
-		// getFilesystemName(): 업로드되어 실제 디스크에 저장된 파일 이름을 얻어온다.
-		String fileRealname = multipartRequest.getFilesystemName("itemImage");
-		
-		File realFile = multipartRequest.getFile("itemImage");
-		// length(): 파일의 크기를 얻어온다.		
-		long fileLength = realFile.length();	
-		
-		if (fileLength > 5 * 1024 * 1024) { // 용량 제한
-			out.println("<script>");
-			out.println("alert('용량 초과: 5MB까지만 업로드 가능합니다.')");
-			out.println("</script>");
-			// 업로드된 파일 삭제
-			File file = new File(application.getRealPath("/upload/") + fileRealname);
-			// delete(): 파일을 삭제한다.
-			file.delete();
-		} else if (!fileRealname.endsWith(".png") && !fileRealname.endsWith(".jpg")) { // 파일 종류 제한
-			out.println("<script>");
-			out.println("alert('.png 또는 .jpg 확장자만 업로드 가능합니다.')");			
-			out.println("</script>");
-			File file = new File(application.getRealPath("/upload/") + fileRealname);
-			file.delete();
-		} else {
-			String itemRealPath = application.getRealPath("/upload") + "/" + fileRealname;
-			vo.setItemImage(itemRealPath);
-		}
-		System.out.println(vo);
-		*/
+		out.println("<script>");
 		try {
 			ItemService.getInstance().itemInsert(vo);		
+			out.println("alert('상품을 입력했습니다.')");						
 		} catch (Exception e) {
-			out.println("<script>");
 			out.println("alert('모든 정보를 입력하세요.')");			
-			out.println("</script>");	
 		}
-		
 		// 메인글 1페이지 분량의 글 목록을 얻어오는 페이지(itemList.jsp)로 넘겨준다.
-		response.sendRedirect("itemList.jsp");	
+		out.println("location.href='itemList.jsp'");	
+		out.println("</script>");	
 		
 	%>	
 </body>

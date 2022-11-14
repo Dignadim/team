@@ -12,10 +12,11 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/main.css">
-<script type="text/javascript" src="./js/itemView.js" defer></script>
+<script type="text/javascript" src="../../js/itemView.js" defer></script>
 </head>
 <body>
 
+	<input type="hidden" id="itemIdx" value="${vo.idx}">
 	<div class="container" style="margin-top: 100px; width: 1200px">
 		<table class="table table-bordered">
 			<thead>
@@ -28,7 +29,7 @@
 			<tbody>
 				<tr>
 					<td rowspan="7" width="550px;">
-						<img alt="상품 이미지" src="../${vo.itemImage}" style="width: 400px;">
+						<img alt="상품 이미지" src="${vo.itemImage}" style="width: 500px;">
 					</td>
 				</tr>
 				<tr>
@@ -46,19 +47,43 @@
 				<tr>
 					<th>가격</th>
 					<td>
-						${vo.itemPrice}
+						<fmt:formatNumber value="${vo.itemPrice}" pattern="#,###원"/>
 						<c:if test="${vo.eventType == '1+1'}">
-							<br/><fmt:formatNumber value="${vo.itemPrice / 2}" pattern="개당 #,###.0원!"/>
+							<br/><fmt:formatNumber value="${vo.itemPrice / 2}" pattern="(개당 #,###.0원)"/>
 						</c:if>
 						<c:if test="${vo.eventType == '2+1'}">
-							<br/><fmt:formatNumber value="${vo.itemPrice / 3 * 2}" pattern="개당 #,###.0원!"/>
+							<br/><fmt:formatNumber value="${vo.itemPrice / 3 * 2}" pattern="(개당 #,###.0원)"/>
 						</c:if>
 					</td>
 				</tr>
 				<tr>
 					<th>판매 편의점</th>
 					<td>
-						${vo.sellCVS}
+						<c:if test="${vo.sellCVS == 'CU'}">
+							<img alt="CU logo" src="../../images/cu.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3821600492383!2d126.98137292694796!3d37.5696178151788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8997954a9%3A0xa2ed1e3817e7b2d9!2zQ1Ug7KKF66Gc7KSR7JWZ7KCQ!5e0!3m2!1sko!2skr!4v1668227950249!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</c:if>
+						<c:if test="${vo.sellCVS == 'GS25'}">
+							<img alt="GS logo" src="../../images/gs25.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1935.4668399954119!2d126.98242737232472!3d37.569456602090085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8dcae3cc9%3A0x94a435a373a6744!2zR1MyNSDsooXqsIHsoJA!5e0!3m2!1sko!2skr!4v1668228075583!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</c:if>
+						<c:if test="${vo.sellCVS == '세븐일레븐'}">
+							<img alt="711 logo" src="../../images/7eleven.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1581.2017416599197!2d126.98376299081372!3d37.56911559768425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8cf20e3b9%3A0x89d788e635b74329!2z7IS467iQ7J2866CI67iQIOyiheqwgeygkA!5e0!3m2!1sko!2skr!4v1668228222061!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+								
+						</c:if>
+						<c:if test="${vo.sellCVS == 'ministop'}">
+							<img alt="mini logo" src="../../images/ministop.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1070.6773883622582!2d126.98381273587631!3d37.56899528979441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8d27b7071%3A0x6d7f39083e9cb50f!2z66-464uI7Iqk7YaxIOyyreqzhOyEvO2EsOygkA!5e0!3m2!1sko!2skr!4v1668228185522!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</c:if>
+						<c:if test="${vo.sellCVS == '이마트24'}">
+							<img alt="emart logo" src="../../images/emart24.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6324.67179741723!2d126.97837037619794!3d37.570707368254006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e91d47728f%3A0x4598afb5329bec27!2z7J2066eI7Yq4MjTsooXroZztg4Dsm4zsoJA!5e0!3m2!1sko!2skr!4v1668399063235!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</c:if>
+						<c:if test="${vo.sellCVS == '기타 편의점'}">
+							<img alt="other logo" src="../../images/other.png" height="25px"><br/>
+							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3744758438597!2d126.98140911744352!3d37.56979879644267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e7a005c9c5%3A0xac4890a924a29f30!2z642U7KGw7J2A7Lu07ZOo7YSw7JWE7Lm0642w66-47ZWZ7JuQIOyiheuhnOy6oO2NvOyKpA!5e0!3m2!1sko!2skr!4v1668226910469!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+						</c:if>
 					</td>
 				</tr>
 				<tr>
@@ -103,6 +128,7 @@
 						<c:if test="${vo.averscore == 5}">
 							${vo.averscore}/5.0(<img alt="별점" src="../../images/star.png" height="20px"><img alt="별점" src="../../images/star.png" height="20px"><img alt="별점" src="../../images/star.png" height="20px"><img alt="별점" src="../../images/star.png" height="20px"><img alt="별점" src="../../images/star.png" height="20px">)						
 						</c:if>
+						<br/><span>평점 주기: <input type="number" max="5" min="0" id="updateAverscore"> <input type="button" value="확인" onclick="updateAverscore()"> </span>
 					</td>
 				</tr>
 				<tr>
@@ -118,6 +144,7 @@
 		</table>
 	</div><br/>
 	
+	
 	<hr style="width: 1200px; margin-left: auto; margin-right: auto;"/><br/>
 	
 	<c:set var="comment" value="${itemCommentList.list}"/>
@@ -129,14 +156,10 @@
 			</tr>			
 			<!-- <tr style="display: none;"> -->
 			<tr>
-				<td colspan="4">
-					<!-- 수정 또는 삭제할 댓글의 글 번호를 넘겨준다. -->
-					idx: <input type="text" name="idx" value="${vo.idx}" size="1"> 
-					<!-- 현재 댓글이 어떤 메인 글의 댓글인지 넘겨준다. -->
-					gup: <input type="text" name="gup" value="${vo.idx}" size="1">
-					<!-- 메인 글이 표시되던 페이지 번호를 넘겨준다. -->
-					currentPage: <input type="text" name="currentPage" value="${currentPage}" size="1">
-					nickname: <input type="text" name="nickname">
+				<td colspan="4" style="display: hidden;">
+					gup: <input type="text" id="itemCommentGup" name="gup" value="${vo.idx}" size="1">
+					currentPage: <input type="text" id="itemCommentCurrentPage" name="currentPage" value="${currentPage}" size="1">
+					nickname: <input type="text" name="nickname" value="익명">
 				</td>
 			</tr>
 			
@@ -170,9 +193,13 @@
 				<c:forEach var="co" items="${comment}">
 					<tr>
 						<td>${co.nickname}</td>
-						<td>${co.content}</td>
+						<td class="itemComment${co.idx}"> ${co.content}</td>
 						<td>
+							<input type="hidden" id="itemCommentIdx" name="idx" value="${co.idx}" size="1"> 
 							<fmt:formatDate value="${co.writeDate}" pattern="yyyy.MM.dd(E) a h:mm:ss"/>	
+							<span id="itemCommentUpdateButton">
+								<input type="button" class="btn btn-outline-warning" value="수정" onclick="itemCommentUpdate1()"/>
+							</span>
 						</td>
 					</tr>
 				</c:forEach>

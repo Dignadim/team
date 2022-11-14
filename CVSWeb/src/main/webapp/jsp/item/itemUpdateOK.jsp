@@ -27,10 +27,14 @@
 	</jsp:useBean>
 
 	<%
-	ItemService service = ItemService.getInstance();
 	out.println("<script>"); 
-	service.itemUpdate(vo);
-	out.println("alert('" + vo.getIdx() + "번 글을 수정했습니다.')");	
+	try {
+		ItemService service = ItemService.getInstance();
+		service.itemUpdate(vo);
+		out.println("alert('" + vo.getIdx() + "번 글을 수정했습니다.')");			
+	} catch (Exception e) {
+		out.println("alert('모든 정보를 입력하세요.')");		
+	}
 	out.println("location.href='itemList.jsp?currentPage=" + currentPage +"'");
 	out.println("</script>");
 	%>	 

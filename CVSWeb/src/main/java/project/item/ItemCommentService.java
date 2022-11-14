@@ -34,6 +34,17 @@ public class ItemCommentService {
 		return itemCommentList;
 	}
 	
+	public void itemCommentUpdate(ItemCommentVO co) {
+		System.out.println("ItemCommentService의 itemCommentUpdate() 메소드 실행");
+		SqlSession mapper = MySession.getSession();
+		
+		ItemCommentDAO dao = ItemCommentDAO.getInstance();
+		dao.itemCommentUpdate(mapper, co);
+		
+		mapper.commit();
+		mapper.close();
+	}
+	
 }
 
 

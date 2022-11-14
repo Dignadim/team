@@ -1,3 +1,4 @@
+<%@page import="project.board.free.FreeboardList"%>
 <%@page import="project.item.ItemList"%>
 <%@page import="project.item.ItemVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -36,14 +37,15 @@
 	    
 	    // 인기상품 탑 5를 가져와서 저장한다.
 	    ItemList itemTOP5 = service.selectItemTOP5();
-		// System.out.println(itemTOP5);    
-	    // 인기 게시글 탑 3을 가져와서 저장한다.
 	    
+	    // 인기 게시글 탑 3을 가져와서 저장한다.
+	    FreeboardList freeHitList = service.selectFreeHitList();
 	    
 	    // 데이터를 request로 넘긴다.
 	    request.setAttribute("items", items);
 	    request.setAttribute("itemTOP5", itemTOP5);	
-	
+		request.setAttribute("freeHitList", freeHitList);
+	    
 		pageContext.forward("main.jsp");
 	%>
 

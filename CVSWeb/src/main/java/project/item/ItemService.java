@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
+
+import project.board.free.FreeboardList;
 import project.mybatis.MySession;
 
 public class ItemService {
@@ -117,6 +119,28 @@ public class ItemService {
 		return itemTOP5;
 	}
 		
+	public FreeboardList selectFreeHitList() {
+		System.out.println("ItemService의 selectFreeHitList()");
+		SqlSession mapper = MySession.getSession();		
+		
+		FreeboardList freeHitList = new FreeboardList();
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		freeHitList.setList(dao.selectFreeHitList(mapper));
+		
+		mapper.close();
+		return freeHitList;
+	}
+	
+	public void averscoreUpdate(ItemVO vo) {
+		System.out.println("ItemService의 averscoreUpdate()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemDAO.getInstance().averscoreUpdate(mapper, vo);
+		
+		mapper.commit();
+		mapper.close();
+	}
 	
 }
 

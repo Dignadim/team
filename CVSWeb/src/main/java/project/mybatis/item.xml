@@ -8,7 +8,7 @@
 	
 	<!-- 상품 1건을 저장한다. -->
 	<insert id="itemInsert" parameterType="item_vo">
-		insert into item (idx, category, itemname, itemprice, hit, sellCVS, averscore, eventType) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit}, #{sellCVS}, #{averscore}, #{eventType})
+		insert into item (idx, category, itemname, itemprice, hit, sellCVS, averscore, eventType, itemImage) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit}, #{sellCVS}, #{averscore}, #{eventType}, #{itemImage})
 	</insert>
 
 	<!-- 모든 글을 얻어온다. -->
@@ -62,11 +62,37 @@
 	 <select id="search" parameterType="String" resultType="item_vo">
 	 	select * from item where itemname like '%' || #{itemName} || '%' order by idx desc
 	 </select>	
+
+	  <!-- 인기글 탑 3을 얻어온다. -->
+	 <select id="selectFreeHitList" resultType="fb_vo">
+		<![CDATA[
+	 		select * from fb_board where rownum <= 3 order by fb_hit desc, fb_idx desc
+	 	]]>	
+	 </select>
+	
+	 <select id="categorySearch" parameterType="String" resultType="item_vo">
+	 	select * from item where trim(category) like '%' || #{category} || '%' order by idx desc
+	 </select>	
+	
+	 <select id="SellCVSSearch" parameterType="String" resultType="item_vo">
+	 	select * from item where trim(sellCVS) like '%' || #{sellCVS} || '%' order by idx desc
+	 </select>	
+
+	 <select id="eventTypeSearch" parameterType="String" resultType="item_vo">
+	 	select * from item where trim(eventType) like '%' || #{eventType} || '%' order by idx desc
+	 </select>	
+
+	 <select id="itemPriceSearch" parameterType="int" resultType="item_vo">
+	 	<![CDATA[	
+	 		select * from item where trim(itemPrice) <= #{itemPrice}  order by idx desc
+	 	]]>		
+	 </select>	
+
+	<update id="averscoreUpdate" parameterType="item_vo">
+		update item set averscore = #{averscore} where idx = #{idx}
+	</update>
+
 </mapper>
-
-
-
-
 
 
 
