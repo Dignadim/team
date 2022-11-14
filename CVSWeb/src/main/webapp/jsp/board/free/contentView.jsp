@@ -20,7 +20,7 @@
 	
 	<header>
 	 	<div>
-	 		<a href="#" style="color: black; font-weight: bold; position: relative; top: 20px; left: 20px; 
+	 		<a href="../../connectMain.jsp" style="color: black; font-weight: bold; position: relative; top: 20px; left: 20px; 
 	 				border: 10px solid;">사이트 이름</a>
 	 	</div>
 	</header>

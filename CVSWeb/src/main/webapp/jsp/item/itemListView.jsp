@@ -20,53 +20,29 @@
 		request.setCharacterEncoding("UTF-8");
 	%>
 	<div class="m-3">
-		<input type="button" class="btn btn-outline-primary" onclick="location.href='../connectMain.jsp'" value="메인으로">
+		<input type="button" class="btn btn-outline-primary" onclick="location.href='../connectMain.jsp'" value="메인으로" style="margin: 10px;">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto;">
 			<tr class="table-primary">
-				<th colspan="6" style="font-size: 20px; text-align: center;">모든 상품 보기</th>
+				<th colspan="6" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px;">모든 상품 보기</th>
 			</tr>			
-			
 			<tr>
-				<td colspan="6">
-					<div class="container">
-						<div style="padding: 20px 20px;">
-							<h4>편의점별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="CU" onclick="searchFunction()"> CU</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="GS25" onclick="searchFunction()"> GS25</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="세븐일레븐" onclick="searchFunction()"> 세븐일레븐</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="ministop" onclick="searchFunction()"> ministop</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="이마트24" onclick="searchFunction()"> 이마트24</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타편의점" onclick="searchFunction()"> 기타 편의점</span>
-							</div><br/>		
-							<h4>행사별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1+1" onclick="searchFunction()"> 1+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="2+1" onclick="searchFunction()"> 2+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="카드사할인" onclick="searchFunction()"> 카드사 할인</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="포인트적립" onclick="searchFunction()"> 포인트 적립</span>							
-							</div><br/>	
-							<h4>가격별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1000원" onclick="searchFunction()"> ~ 1,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="5000원" onclick="searchFunction()"> ~ 5,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="10000원" onclick="searchFunction()"> ~ 10,000원</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="50000원" onclick="searchFunction()"> ~ 50,000원</span>							
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타가격" onclick="searchFunction()"> 기타</span>							
-							</div><br/>	
-							<h4>카테고리별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="과자" onclick="searchFunction()"> 과자</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="음료" onclick="searchFunction()"> 음료</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="라면" onclick="searchFunction()"> 라면</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="생필품" onclick="searchFunction()"> 생필품</span>							
-							</div>			
-						</div>
-					</div>
-				</td>						
-			</tr>
-			<tr>
-				<td colspan="4">&nbsp;</td>
+				<td colspan="2">
+					<select class="form-select" width="100" onchange="itemSelectChange()" id="selectChange">
+						<option selected>전체</option>
+						<option>편의점별</option>
+						<option>행사별</option>
+						<option>가격별</option>
+						<option>카테고리별</option>
+					</select>
+				</td>
+				<td colspan="1"id="subSelectChange">
+					<select class="form-select" width="100">
+						<option selected>(상위 항목 선택)</option>
+					</select>
+				</td>
+				<td colspan="1">
+					<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='itemList.jsp?currentPage=' + ${itemList.currentPage}">
+				</td>
 				<td colspan="1">
 					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 250px;">
 				</td>

@@ -192,7 +192,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 인기 상품 TOP5
-					<c:set var="list" value="${itemTOP5.list}"></c:set>
+					<c:set var="list" value="${itemTOP5.list}"/>
 				</h3>				
 			</div>
 			<div class="container"  style="margin-top: 20px; padding: 5px 20px;"  align="center">
@@ -237,27 +237,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td>홍길동</td>
-										<td>
-											<a href="#">글 제목</a>
-										</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td>장길산</td>
-										<td>
-											<a href="#">글 제목</a>
-										</td>						
-									</tr>
-									<tr>
-										<td>3</td>
-										<td>임꺽정</td>
-										<td>
-											<a href="#">글 제목</a>
-										</td>
-									</tr>
+									<c:set var="freeHitList" value="${freeHitList.list}"/>
+									<c:forEach var="fb_vo" items="${freeHitList}">
+										<tr>
+											<td>1</td>
+											<td>(테스트)</td>
+											<td>
+												<a href="./board/free/increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=1">${fb_vo.fb_subject}</a>
+											</td>
+										</tr>
+									</c:forEach>
 								</tbody>
 							</table>
 						</div>
