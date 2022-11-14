@@ -1,4 +1,4 @@
-  CREATE TABLE "TEAM"."MEMBER" 
+  CREATE TABLE "SSH"."MEMBER" 
    (	
     "ID" VARCHAR2(30 BYTE) NOT NULL, 
 	"PASSWORD" VARCHAR2(30 BYTE) NOT NULL, 
@@ -12,12 +12,16 @@
 
 delete from member;
 drop sequence member_id_seq;
-create sequence member_id_seq;   
-insert into member (id, password, nickname, email, grade) 
-    values ('ȫ�浿', '1111', '�浿', 'gildong@naver.com', 'n');
+create sequence member_id_seq;
+
 select * from member order by id desc;
 select count(*) from member;
 commit;
+
+    
+insert into member (id, password, nickname, email, grade) 
+values ('ȫ�浿', '1111', '�浿', 'gildong@naver.com', 'n');
+
 
 
 
