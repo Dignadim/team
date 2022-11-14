@@ -12,8 +12,7 @@ public class MemberVO
 	private String grade;
 	
 	public MemberVO() {}
-
-
+	
 	public MemberVO(String id, String pss, String nick, String email) 
 	{
 		this.id = id;
@@ -21,7 +20,6 @@ public class MemberVO
 		this.nickname = nick;
 		this.email = email;
 	}
-	
 	
 	public String getId() {
 		return id;
