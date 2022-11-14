@@ -12,18 +12,9 @@
 		update member set password =
 	</update>
 	
+	<!-- MemberVO에서 String id를 넘겨받아서 같은 아이디를 가진 memberVO를 찾아주는 명령문 -->
+	 <select id="mbSearch" resultType="mb_vo" parameterType="String">
+   		 select * from member where id=#{id}
+  	</select>
+	
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

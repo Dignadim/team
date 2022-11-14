@@ -21,11 +21,11 @@ request.setCharacterEncoding("UTF-8");
 String action = request.getParameter("action");
 	
 	if(action.equals("login")){
-	LoginVO vo = m.getDB(v.getId());
+	LoginVO vo = m.getDB(vo.getId());
 		
 		if(vo != null ){
-	 		if(vo.getId().equals(v.getId())){
-		if(vo.getpassword().equals(v.getpassword())){
+	 		if(vo.getId().equals(vo.getId())){
+		if(vo.getpassword().equals(vo.getpassword())){
 			out.println("로그인 되었습니다.");
 		}
 		else{

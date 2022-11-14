@@ -10,4 +10,6 @@
   <insert id="insert" parameterType="com.tjoeun.mybatis.LoginVO">
     insert into login (id, password, name) values(#{id}, #{password}, #{name})
   </insert>
+
+
 </mapper>

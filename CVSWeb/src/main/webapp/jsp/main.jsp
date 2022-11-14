@@ -69,6 +69,7 @@
 							<input type="hidden" value="${grade}">
 						</c:if>
 					</c:if>				
+							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='./admin/adminView.jsp'">관리 페이지로</button>
 					
 				</div>
 			</nav>
