@@ -22,7 +22,10 @@
 		<div class="container">
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
-					<h2 style="width: 200px;">타이틀</h2>
+				<label>
+				<a href="../main.jsp" >
+					<h2 style="width: 200px;">타이틀</h2></a>
+					</label>
 				</div>
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
@@ -107,18 +110,17 @@
 	
 	<table class="table" style="width: 100%; margin-left: auto; margin-right: auto; max-width : 800px;">
 				<tr class="table-secondary">
-					<th colspan="5" style="font-size: 20px; text-align: center;">자유게시판(공지?)</th>
+					<th colspan="5" style="font-size: 20px; text-align: center;">공지글</th>
 				</tr>
 				
 				<tr class="table-secondary">
-					<th style="width: 100px; text-align: center;">번호</th>
-					<th style="width: 400px; text-align: center;">제목</th>
-					<th style="width: 100px; text-align: center;">닉네임</th>
-					<th style="width: 100px; text-align: center;">작성일</th>
-					<th style="width: 100px; text-align: center;">조회수</th>
+					<th style="width: 125px; text-align: center;">게시판</th>
+					<th style="width: 425px; text-align: center;">제목</th>
+					<th style="width: 125px; text-align: center;">닉네임</th>
+					<th style="width: 125px; text-align: center;">작성일</th>
 				</tr>
 				
-				<%-- <jsp:useBean id="date" class="java.util.Date"/> --%>
+				
 				<!-- 공지글 -->
 				<c:if test="${currentPage == 1}">
 				<c:forEach var="fb_vo" items="${fb_notice}">
@@ -212,7 +214,7 @@
 						${fb_vo.fb_hit}
 					</td>
 				</tr>	
-				<c:set var="num" value="${num-1}"/>		<!--  -->
+				<c:set var="num" value="${num-1}"/>
 				</c:forEach>
 				</c:if>
 	

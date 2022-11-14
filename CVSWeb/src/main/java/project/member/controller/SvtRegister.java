@@ -58,7 +58,7 @@ public class SvtRegister extends HttpServlet {
 				
 				vo = service.searchID(userID);
 				
-				//	vo가 null이 아니란건 넘겨받은 usertID가 DB안에 있었다는 뜻
+				//	vo가 null이 아니란건 넘겨받은 userID가 DB안에 있었다는 뜻
 				//	중복된 아이디가 존재한다는 뜻이다.
 				if(vo != null )
 				{
