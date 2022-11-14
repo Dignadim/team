@@ -68,7 +68,7 @@
 						<tr>
 							<th style="text-align: center; width: 150px; vertical-align: middle;">판매 편의점</th>
 							<td>
-								<select class="form-select" name="sellCVS" size="6">
+								<select class="form-select" name="sellCVS">
 									<option>CU</option>
 									<option>GS25</option>
 									<option>세븐일레븐</option>

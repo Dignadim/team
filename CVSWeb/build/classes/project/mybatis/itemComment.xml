@@ -16,6 +16,11 @@
 	 	select * from itemcomment where gup = #{idx} order by idx desc
 	 </select>
 	 
+	 <!-- 댓글 1건을 수정한다. -->
+	 <update id="itemCommentUpdate" parameterType="item_co">
+	 	update itemcomment set content=#{content} where idx = #{idx}
+	 </update>
+	 
 </mapper>
 
 

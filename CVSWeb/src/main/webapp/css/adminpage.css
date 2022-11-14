@@ -1,18 +1,46 @@
-.body1 {
+#contentLeft{
+	background-color : #80ffff;
+	text-decoration:none;
+	width : 50%;
+	margin-left : 50px;
+	height: 1080px;
+	min-height : 500px;
+	max-height : 1080px; 
+	max-width : 800px;
+	min-width : 200px;
 	float:left;
-	margin : 30px 0px 40px 30px;
+}
+
+#contentRight{
+	background-color : #c0c0c0;
+	text-decoration:none;
+	margin : 0% 0% 0% 45%;
+	width : 50%;
+	height: 1080px;
+	min-height : 500px;
+	max-height : 1080px; 
+	max-width : 800px;
+	min-width : 200px;
+	
+	
+}
+
+
+.body1 {
+	margin : 30px auto;
 	background-color : #808080;
 	text-decoration:none;
-	width : 45%;
-	height: 90%;
+	width : 90%;
+	height: 45%;
 	min-height : 500px; 
 	max-width : 800px;
 	min-width : 200px;
 }
 
+
 .body2 {
 	clear:both;
-	margin : 30px 0px 40px 30px;
+	margin : 30px 15px 40px 15px;
 	background-color : #808080;
 	text-decoration:none;
 	width : 90%;
@@ -23,6 +51,20 @@
 	
 	
 	
+}
+
+
+.body3 {
+	float:left;
+	margin : auto auto;
+	background-color : #808080;
+	text-decoration:none;
+	width : 90%;
+	height: 1000px;
+	min-height : 500px;
+	max-height : 1030px; 
+	max-width : 800px;
+	min-width : 200px;
 }
 
 

@@ -12,7 +12,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/main.css">
-<script type="text/javascript" src="./js/main.js" defer></script>
+<script type="text/javascript" src="../../js/itemInsert.js" defer></script>
 </head>
 <body>
 
@@ -30,7 +30,9 @@
 					<tr>
 					<th style="text-align: center; width: 150px; vertical-align: middle;">상품 사진</th>
 						<td>
-							<input type="file" name="itemImage"/><br/>
+							<input type="text" class="form-control" name="itemImage" value="" placeholder="사진 업로드 버튼을 클릭하세요.">
+							<input type="button" class="btn btn-outline-success" onclick="openWin()" value="사진 업로드">
+							<br/>
 						</td>
 					</tr>				
 					<tr>

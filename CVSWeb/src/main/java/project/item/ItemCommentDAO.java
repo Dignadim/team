@@ -24,6 +24,10 @@ public class ItemCommentDAO {
 		return (ArrayList<ItemVO>) mapper.selectList("selectItemCommentList", idx);
 	}
 	
+	public void itemCommentUpdate(SqlSession mapper, ItemCommentVO co) {
+		System.out.println("ItemCommentDAO의 itemCommentUpdate() 메소드 실행");	
+		mapper.update("itemCommentUpdate", co);	
+	}
 	
 	
 }
