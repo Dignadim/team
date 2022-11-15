@@ -11,6 +11,8 @@
 		<typeAlias type="project.member.MemberVO" alias="mb_vo" />
 		<typeAlias type="project.board.free.FreeboardVO" alias="fb_vo" />
 		<typeAlias type="project.board.free.FreeboardCommentVO" alias="fbc_vo"/>
+		<typeAlias type="project.board.event.EventboardVO" alias="ev_vo" />
+		<typeAlias type="project.board.event.EventboardCommentVO" alias="evc_vo" />
 		<typeAlias type="project.item.ItemVO" alias="item_vo" />
 		<typeAlias type="project.item.ItemCommentVO" alias="item_co" />
 	</typeAliases>
@@ -32,12 +34,13 @@
 		<mapper resource="project/mybatis/member.xml" />
 		<mapper resource="project/mybatis/freeboard.xml" />
 		<mapper resource="project/mybatis/freeboardcomment.xml" />
+		<mapper resource="project/mybatis/eventboard.xml" />
+		<mapper resource="project/mybatis/eventboardcomment.xml" />
 		<mapper resource="project/mybatis/item.xml" />
 		<mapper resource="project/mybatis/itemComment.xml" />
 	</mappers>
 	
 </configuration>
-
 
 
 

@@ -40,7 +40,7 @@
 	request.setAttribute("fb_notice", fb_notice);
 	request.setAttribute("freeboardList", freeboardList);
 	request.setAttribute("currentPage", currentPage);
-	pageContext.forward("listView.jsp");
+	pageContext.forward("adminView.jsp");
 	
 %>
 

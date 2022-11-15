@@ -193,11 +193,11 @@ ${id}
 						</a>
 							
 						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-							<img alt="New" src="../../../images/ic_new.gif"/>
+							<img alt="New" src="../../images/ic_new.gif"/>
 						</c:if>
 							
 						<c:if test="${fb_vo.fb_hit > 100}">
-							<img alt="hot" src="../../../images/hot.gif"/>
+							<img alt="hot" src="../../images/hot.gif"/>
 						</c:if>
 					</td>
 					<td align="center">
