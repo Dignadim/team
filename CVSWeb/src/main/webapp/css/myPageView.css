@@ -1,0 +1,100 @@
+
+
+/* header{
+	background-color : hotpink;
+	text-decoration:none;
+	width : 100%;
+	height: 100px;
+ }*/
+
+/* nav {
+	float:left;
+	background-color : yellow;
+	text-decoration:none;
+	width : 20%;
+	max-width : 400px;
+	min-width : 200px;
+	height: 800px;
+}
+ */
+#content {
+	float:left;
+	margin-left : 10%;
+	background-color : red;
+	text-decoration:none;
+	width : 80%;
+	max-width : 1640px;
+	min-width : 440px;
+	height: 950px;
+}
+.b {
+	float:left;
+	margin : 30px 0px 40px 30px;
+	background-color : #808080;
+	text-decoration:none;
+	width : 45%;
+	height: 90%;
+	min-height : 800px; 
+	max-width : 800px;
+	min-width : 200px;
+}
+.clear {
+	clear:both;
+}
+
+/* footer{
+	clear:both;
+	background-color : pink;
+	text-decoration:none;
+	width : 100%;
+	height: 100px;
+} */
+
+
+/* .container {
+	
+		
+		border: 4px solid dodgerblue;
+		display: grid;
+
+		grid-template:
+			"header header header" 80px
+			"main . aside"	350px
+			"footer footer footer" 130px
+			/ 2fr 500px 1fr;
+			;
+
+		gap: 30px 15px;
+	}
+
+
+	.container .item{
+	border: 4px solid red;
+	}
+	
+	
+	.container .item:nth-child(1){
+		grid-area: header;
+	}
+	
+	.container .item:nth-child(2){
+		grid-area: main;
+	}
+	
+	.container .item:nth-child(3){
+		grid-area: aside;
+	}
+	
+	.container .item:nth-child(4){
+		grid-area: footer;
+	} */
+	
+
+
+/* 	<div class="container">
+		<div class="item">Header</div>
+		<div class="item">Main</div>
+		<div class="item">Aside</div>
+		<div class="item">Footer</div>
+	</div> */
+	

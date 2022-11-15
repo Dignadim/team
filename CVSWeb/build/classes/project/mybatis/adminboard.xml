@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.admin.board.adminboardVO">
+
+<select id="adSelectList" parameterType="java.util.HashMap" resultType="ab_vo">
+ 		<![CDATA[
+ 		select * from (
+ 			select rownum rnum, GG.* from (
+ 				select * from fb_board order by fb_idx desc
+ 			) GG where rownum <= #{endNo}
+ 		) where rnum >= #{startNo}		
+ 		]]>
+ 	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
