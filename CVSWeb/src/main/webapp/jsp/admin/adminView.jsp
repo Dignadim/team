@@ -24,7 +24,7 @@ ${id}
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
 				<label>
-				<a href="../main.jsp" >
+				<a href="../connectMain.jsp" >
 					<h2 style="width: 200px;">타이틀</h2></a>
 					</label>
 				</div>

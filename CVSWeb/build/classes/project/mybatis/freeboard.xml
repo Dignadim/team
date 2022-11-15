@@ -7,11 +7,11 @@
 	 	values (fb_board_idx_seq.nextval, #{fb_subject}, #{fb_content}, #{fb_notice})
  	</insert>
  	
- 	 <select id="selectCount" resultType="int">
+ 	 <select id="fbSelectCount" resultType="int">
  		select count(*) from fb_board
  	</select>
  	
- 	 <select id="selectList" parameterType="java.util.HashMap" resultType="fb_vo">
+ 	 <select id="fbSelectList" parameterType="java.util.HashMap" resultType="fb_vo">
  		<![CDATA[
  		select * from (
  			select rownum rnum, GG.* from (
@@ -21,23 +21,23 @@
  		]]>
  	</select>
  	
- 	<update id="increment" parameterType="int">
+ 	<update id="fbIncrement" parameterType="int">
  		update fb_board set fb_hit = fb_hit + 1 where fb_idx = #{fb_idx}
  	</update>
  	
- 	<select id="selectByIdx" parameterType="int" resultType="fb_vo">
+ 	<select id="fbSelectByIdx" parameterType="int" resultType="fb_vo">
  		select * from fb_board where fb_idx = #{fb_idx}
  	</select>
  	
- 	<delete id="delete" parameterType="int">
+ 	<delete id="fbDelete" parameterType="int">
 		delete from fb_board where fb_idx = #{fb_idx} 	
  	</delete>
  	
- 	<update id="update" parameterType="fb_vo">
+ 	<update id="fbUpdate" parameterType="fb_vo">
  		update fb_board set fb_subject = #{fb_subject}, fb_content = #{fb_content}, fb_notice = #{fb_notice} where fb_idx = #{fb_idx}
  	</update>
  	
- 	 <select id="selectNotice" resultType="fb_vo">
+ 	 <select id="fbSelectNotice" resultType="fb_vo">
  		select * from fb_board where fb_notice = 'yes' order by fb_idx desc
  	</select>
  	
