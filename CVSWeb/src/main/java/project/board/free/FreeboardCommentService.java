@@ -12,10 +12,10 @@ public class FreeboardCommentService {
 		return instance;
 	}
 	
-	public boolean insertComment(FreeboardCommentVO fbc_vo) {
-		System.out.println("FreeboardCommentService의 insertComment() 메소드");
+	public boolean fbInsertComment(FreeboardCommentVO fbc_vo) {
+		System.out.println("FreeboardCommentService의 fbInsertComment() 메소드");
 		SqlSession mapper = MySession.getSession();
-		int result = FreeboardCommentDAO.getInstance().insertComment(mapper, fbc_vo);
+		int result = FreeboardCommentDAO.getInstance().fbInsertComment(mapper, fbc_vo);
 		System.out.println("result: " + result);
 		if(result == 1) {
 			mapper.commit();
@@ -27,29 +27,29 @@ public class FreeboardCommentService {
 		}
 		
 	}
-	public int fb_commentCount (int fbc_idx) {
-		System.out.println("FreeboardCommentService의 commentCount() 메소드");
+	public int fbCommentCount (int fbc_idx) {
+		System.out.println("FreeboardCommentService의 fbCommentCount() 메소드");
 		SqlSession mapper = MySession.getSession();
-		int fb_commentCount = FreeboardCommentDAO.getInstance().fb_commentCount(mapper, fbc_idx);
-		return fb_commentCount;
+		int fbCommentCount = FreeboardCommentDAO.getInstance().fbCommentCount(mapper, fbc_idx);
+		return fbCommentCount;
 	}		
 	
-	public FreeboardCommentList selectCommentList(int fbc_idx) {
-		System.out.println("FreeboardCommentService의 selectCommentList() 메소드");
+	public FreeboardCommentList fbSelectCommentList(int fbc_idx) {
+		System.out.println("FreeboardCommentService의 fbSelectCommentList() 메소드");
 		SqlSession mapper = MySession.getSession();
 		FreeboardCommentList freeboardCommentList = new FreeboardCommentList();
-		freeboardCommentList.setList(FreeboardCommentDAO.getInstance().selectCommentList(mapper, fbc_idx));
+		freeboardCommentList.setList(FreeboardCommentDAO.getInstance().fbSelectCommentList(mapper, fbc_idx));
 		mapper.close();
 		return freeboardCommentList;
 	}
 	
-	public boolean updateComment(FreeboardCommentVO fbc_vo) {
-		System.out.println("FreeboardCommentService의 updateComent() 메소드");
+	public boolean fbUpdateComment(FreeboardCommentVO fbc_vo) {
+		System.out.println("FreeboardCommentService의 fbUpdateComment() 메소드");
 		SqlSession mapper = MySession.getSession();
 		FreeboardCommentDAO dao = FreeboardCommentDAO.getInstance();
 
 		try {
-			dao.updateComment(mapper, fbc_vo);
+			dao.fbUpdateComment(mapper, fbc_vo);
 			mapper.commit();
 			mapper.close();
 			return true;
@@ -59,13 +59,13 @@ public class FreeboardCommentService {
 		}
 	}
 	
-	public boolean deleteComment(FreeboardCommentVO fbc_vo) {
-		System.out.println("FreeboardCommentService의 updateComent() 메소드");
+	public boolean fbDeleteComment(int fbc_idx) {
+		System.out.println("FreeboardCommentService의 fbDeleteComment() 메소드");
 		SqlSession mapper = MySession.getSession();
 		FreeboardCommentDAO dao = FreeboardCommentDAO.getInstance();
 		
 		try {
-			dao.deleteComment(mapper, fbc_vo);
+			dao.fbDeleteComment(mapper, fbc_idx);
 			mapper.commit();
 			mapper.close();
 			return true;

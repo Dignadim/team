@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>          
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="../../../css/freeboard.css"/>
+<script type="text/javascript" src="../../../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
 	body {
 		font-family: 'Pretendard Variable';
@@ -64,7 +68,7 @@
 			</nav>
 		</div>
 	</header>
-	<form class="m-3" action="insertOK.jsp" method="post">
+	<form class="m-3" action="insertOK.jsp" method="post" name='insertForm'>
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
 			<tr class="table-secondary" style="height: 30px;">
 				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
@@ -91,8 +95,8 @@
 			</tr>
 			<tr class="table-secondary">
 				<td colspan="4" align="right">
-					<input class="btn btn-primary btn-lg" type="submit" value="등록"
-						style="font-size: 13px;"/>
+					<input class="btn btn-primary btn-lg" type="button" value="등록"
+						style="font-size: 13px;" onclick="insertEmptyChk()"/>
 				</td>
 			</tr>		
 			<tr>
@@ -102,6 +106,6 @@
 			</tr>	
 		</table>	
 	</form>	
-
+	
 </body>
 </html>

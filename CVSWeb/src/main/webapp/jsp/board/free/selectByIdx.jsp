@@ -19,14 +19,14 @@
 	String job = request.getParameter("job");
 	
 	FreeboardService service = FreeboardService.getInstance();
-	FreeboardVO fb_vo = service.selectByIdx(fb_idx);
+	FreeboardVO fb_vo = service.fbSelectByIdx(fb_idx);
 
 	request.setAttribute("fb_vo", fb_vo);
 	request.setAttribute("currentPage", currentPage);
 	request.setAttribute("enter", "\r\n");
 	
 	if(job.equals("contentView")) {
-		FreeboardCommentList freeboardCommentList = FreeboardCommentService.getInstance().selectCommentList(fb_idx);
+		FreeboardCommentList freeboardCommentList = FreeboardCommentService.getInstance().fbSelectCommentList(fb_idx);
 		request.setAttribute("freeboardCommentList", freeboardCommentList);
 	}	
 	

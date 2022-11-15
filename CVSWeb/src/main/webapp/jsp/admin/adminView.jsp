@@ -16,6 +16,7 @@
 <script type="text/javascript" src="./js/main.js" defer></script>
 </head>
 <body>
+${id}
 	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>

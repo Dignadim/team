@@ -18,7 +18,7 @@
 	
 
 	out.println("<script>");
-	FreeboardService.getInstance().delete(fb_idx);	
+	FreeboardService.getInstance().fbDelete(fb_idx);	
 	out.println("alert('게시글이 성공적으로 삭제되었습니다.')");
 	out.println("location.href='list.jsp?currentPage=" + currentPage + "'");
 	out.println("</script>");

@@ -15,68 +15,68 @@ public class FreeboardService {
 		return instance;
 	}
 	
-	public void insert(FreeboardVO fb_vo) {
-		System.out.println("FreeboardService의 insert() 메소드");
+	public void fbInsert(FreeboardVO fb_vo) {
+		System.out.println("FreeboardService의 fbInsert() 메소드");
 		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().insert(mapper, fb_vo);
+		FreeboardDAO.getInstance().fbInsert(mapper, fb_vo);
 		mapper.commit();
 		mapper.close();
 	}
 	
-	public FreeboardList selectList(int currentPage) {
-		System.out.println("FreeboardService의 selectList() 메소드");
+	public FreeboardList fbSelectList(int currentPage) {
+		System.out.println("FreeboardService의 fbSelectCount() 메소드");
 		SqlSession mapper = MySession.getSession();
 		FreeboardDAO fb_dao = FreeboardDAO.getInstance();
 		
 		int pageSize = 10;
-		int totalCount = fb_dao.selectCount(mapper);
+		int totalCount = fb_dao.fbSelectCount(mapper);
 		
 		FreeboardList freeboardList = new FreeboardList(pageSize, totalCount, currentPage);
 		HashMap<String, Integer> hmap = new HashMap<>();
 		hmap.put("startNo", freeboardList.getStartNo());
 		hmap.put("endNo", freeboardList.getEndNo());
-		freeboardList.setList(fb_dao.selectList(mapper, hmap));
+		freeboardList.setList(fb_dao.fbSelectList(mapper, hmap));
 		
 		mapper.close();
 		return freeboardList;
 	}
 	
-	public void increment(int fb_idx) {
-		System.out.println("FreeboardService의 increment() 메소드");
+	public void fbIncrement(int fb_idx) {
+		System.out.println("FreeboardService의 fbIncrement() 메소드");
 		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().increment(mapper, fb_idx);
+		FreeboardDAO.getInstance().fbIncrement(mapper, fb_idx);
 		mapper.commit();
 		mapper.close();
 	}
 	
-	public FreeboardVO selectByIdx(int fb_idx) {
-		System.out.println("FreeboardService의 selectByIdx() 메소드");
+	public FreeboardVO fbSelectByIdx(int fb_idx) {
+		System.out.println("FreeboardService의 fbSelectByIdx() 메소드");
 		SqlSession mapper = MySession.getSession();
-		FreeboardVO vo = FreeboardDAO.getInstance().selectByIdx(mapper, fb_idx);
+		FreeboardVO vo = FreeboardDAO.getInstance().fbSelectByIdx(mapper, fb_idx);
 		mapper.close();
 		return vo;
 	}
 	
-	public void delete(int fb_idx) {
-		System.out.println("FreeboardService의 delete() 메소드");
+	public void fbDelete(int fb_idx) {
+		System.out.println("FreeboardService의 fbDelete() 메소드");
 		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().delete(mapper, fb_idx);
+		FreeboardDAO.getInstance().fbDelete(mapper, fb_idx);
 		mapper.commit();
 		mapper.close();
 	}
 	
-	public void update(FreeboardVO fb_vo) {
-		System.out.println("FreeboardService의 update() 메소드");
+	public void fbUpdate(FreeboardVO fb_vo) {
+		System.out.println("FreeboardService의 fbUpdate() 메소드");
 		SqlSession mapper = MySession.getSession();
-		FreeboardDAO.getInstance().update(mapper, fb_vo);
+		FreeboardDAO.getInstance().fbUpdate(mapper, fb_vo);
 		mapper.commit();
 		mapper.close();
 	}
 	
-	public ArrayList<FreeboardVO> selectNotice() {
-		System.out.println("FreeboardService의 selectNotice() 메소드");
+	public ArrayList<FreeboardVO> fbSelectNotice() {
+		System.out.println("FreeboardService의 fbSelectNotice() 메소드");
 		SqlSession mapper = MySession.getSession();
-		ArrayList<FreeboardVO> fb_notice = FreeboardDAO.getInstance().selectNotice(mapper);
+		ArrayList<FreeboardVO> fb_notice = FreeboardDAO.getInstance().fbSelectNotice(mapper);
 		mapper.close();
 		return fb_notice;
 	}

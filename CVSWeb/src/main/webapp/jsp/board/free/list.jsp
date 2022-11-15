@@ -25,15 +25,15 @@
 	FreeboardService service = FreeboardService.getInstance();
 	FreeboardCommentService commentService = FreeboardCommentService.getInstance();
 
-	ArrayList<FreeboardVO> fb_notice = service.selectNotice();
-	FreeboardList freeboardList = service.selectList(currentPage);
+	ArrayList<FreeboardVO> fb_notice = service.fbSelectNotice();
+	FreeboardList freeboardList = service.fbSelectList(currentPage);
 
 //	공지글과 메인글의 댓글 개수를 얻어와서 FreeboardVO 클래스의 commentCount에 저장한다.
 	for (FreeboardVO fb_vo : fb_notice) {
-		fb_vo.setFb_commentCount(commentService.fb_commentCount(fb_vo.getFb_idx()));
+		fb_vo.setFb_commentCount(commentService.fbCommentCount(fb_vo.getFb_idx()));
 	}
 	for (FreeboardVO fb_vo : freeboardList.getList()) {
-		fb_vo.setFb_commentCount(commentService.fb_commentCount(fb_vo.getFb_idx()));
+		fb_vo.setFb_commentCount(commentService.fbCommentCount(fb_vo.getFb_idx()));
 	}
 
 //	공지글과 메인글의 목록을 request 영역에 저장해서 메인글을 화면에 표시하는 페이지(listView.jsp)로 넘겨준다.

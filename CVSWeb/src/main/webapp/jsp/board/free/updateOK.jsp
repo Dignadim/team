@@ -12,6 +12,7 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	int fb_idx = Integer.parseInt(request.getParameter("fb_idx"));
 	int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 %>
 
@@ -21,9 +22,10 @@
 	
 <%	
 	out.println("<script>");
-	FreeboardService.getInstance().update(fb_vo);	
+	FreeboardService.getInstance().fbUpdate(fb_vo);	
 	out.println("alert('게시글이 성공적으로 수정되었습니다.')");
 	out.println("location.href='list.jsp?currentPage=" + currentPage + "'");
+	out.println("location.href='selectByIdx.jsp?fb_idx="+fb_idx+"&currentPage="+currentPage+"&job=contentView'");
 	out.println("</script>");
 %>
 

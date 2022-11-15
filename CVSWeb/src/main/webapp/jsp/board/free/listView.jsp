@@ -88,7 +88,7 @@
 				<th style="width: 70px; text-align: center;">조회수</th>
 			</tr>
 			<jsp:useBean id="date" class="java.util.Date"/>
-				
+			
 			<!-- 공지글 -->
 			<c:if test="${currentPage == 1}">
 			<c:forEach var="fb_vo" items="${fb_notice}">

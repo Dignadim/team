@@ -100,10 +100,10 @@
 			</tr>
 			<tr class="table-secondary">
 				<td colspan="4" align="right">
-					<button type="button" class="btn btn-light" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#myModal">
+					<button type="button" class="btn btn-light" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#update">
 	 				 		수정</button>
 	 				<!-- The Modal -->
-					<div class="modal" id="myModal">
+					<div class="modal" id="update">
 						<div class="modal-dialog">
 							<div class="modal-content">
 					
