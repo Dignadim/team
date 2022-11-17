@@ -87,7 +87,7 @@
 <div id="content">
 <div class="b">
 	<div class="container mt-3" align="center" >
-	  <img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
+	  <img src="./profiles/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
 	  <h2>프로필 사진</h2>	       
 	  회원 자기소개
 </div>

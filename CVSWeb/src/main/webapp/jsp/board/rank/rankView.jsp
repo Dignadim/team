@@ -29,12 +29,18 @@
 				<td colspan="2" align="right">
 				현재 선택된 카테고리 : ${category}
 					<select id="category" class="form-select" width="100" onchange="categorySelect()">
-						<option selected>카테고리 고르기</option>
-						<option>모두</option>
-						<option>과자</option>
-						<option>음료</option>
-						<option>라면</option>
-						<option>생필</option>
+						       <option selected>카테고리 고르기</option>
+                  <option>모두</option>
+                  <option>간편식품</option>
+                  <option>가공식품</option>
+                  <option>즉석식품</option>
+                  <option>신선식품</option>
+                  <option>과자/빵</option>
+                  <option>아이스크림</option>
+                  <option>음료</option>
+                  <option>잡화</option>
+                  <option>기호식품</option>
+                  <option>기타상품</option>
 					</select>
 				</td>
 			</tr>

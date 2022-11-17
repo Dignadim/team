@@ -69,6 +69,10 @@ public class ItemDAO {
 		return (ArrayList<ItemVO>) mapper.selectList("selectItemTOP5");
 	}
 	
+	public ArrayList<ItemVO> selectItemTOP(SqlSession mapper, int count) {
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemTOP", count);
+	}
+	
 	public ArrayList<ItemVO> search(SqlSession mapper, String itemName) {
 		System.out.println("ItemDAO 클래스의 search() 메소드 실행");
 		return (ArrayList<ItemVO>) mapper.selectList("search", itemName);
@@ -107,6 +111,44 @@ public class ItemDAO {
 	public ArrayList<EventboardVO> selectEVList(SqlSession mapper) {
 		System.out.println("ItemDAO 클래스의 selectEVList() 메소드 실행");
 		return (ArrayList<EventboardVO>) mapper.selectList("selectEVList");
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	//	특정 카테고리아이템만 아이템 리스트로 반환해주는 용도
+	public ArrayList<ItemVO> selectItemCateList(SqlSession mapper, String cate) 
+	{
+		//System.out.println(cate);
+		ArrayList<ItemVO> list = null;
+		switch(cate)
+		{
+		//	카테고리가 전부이면 모든 아이템을 리스트에 담아준다.
+			case "모두":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItems");
+				break;
+		//	카테고리가 특정 카테고리이면 그 카테고리만 받아오는 xml을 실행한다.
+			case "과자":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "음료":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "라면":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				//System.out.println("dao에서 " + list);
+				break;
+			case "생필":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+		}
+		
+		return list;
 	}
 
 }

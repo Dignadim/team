@@ -1,7 +1,10 @@
 package project.item;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -119,6 +122,19 @@ public class ItemService {
 		mapper.close();
 		return itemTOP5;
 	}
+	
+	//	조회수 순위별 탑 아이템을 얻어온다.(count의 개수만큼)
+	public ItemList selectItemTOP(int count) {
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemList itemTOP = new ItemList();
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		itemTOP.setList(dao.selectItemTOP(mapper, count));
+		
+		mapper.close();
+		return itemTOP;
+	}
 		
 	public FreeboardList selectFreeHitList() {
 		System.out.println("ItemService의 selectFreeHitList()");
@@ -174,10 +190,84 @@ public class ItemService {
 		return evList;
 	}
 	
+	
+	
+	
+	
+	
+	
+	
+	//	특정 카테고리의 상품만 리스트로 반환해주는 용도
+	public ItemList selectItemCateList(String category)
+	{
+		SqlSession mapper = MySession.getSession();		
+
+		
+		ItemList itemCate = new ItemList();
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		itemCate.setList(dao.selectItemCateList(mapper, category));
+		//System.out.println(itemCate);
+		mapper.close();
+		return itemCate;
+	}
+	
+
+	
+	//	특정 카테고리의 상품만 담긴 리스트를 받아서 그중에 조회수 높은 count 개수만큼만 담아서 반환하는 메소드
+	public ItemList selectItemCateListHit(ItemList list, int count)
+	{
+		//	리스트가 공백이면 함수에서 내쫓는다.
+		if(list.getList().size() == 0) return null;
+		
+		// 리스트를 temp에 담아준다.
+		ArrayList<ItemVO> tempList = list.getList();
+		List<ItemVO> result = null;
+		
+		//	조회수 기준으로 정렬을 해준다.
+		 MiniComparator comp = new MiniComparator();  
+	        Collections.sort(tempList, comp); 
+		//System.out.println(tempList.size());
+		
+		//	요구하는 개수보다 리스트 크기가 작은지 큰지 구분해서
+		if(tempList.size() <= count)
+		{
+			result = tempList.subList(0, tempList.size());
+		}
+		else 
+		{
+			//	요구하는 크기만큼 리스트를 잘라서 옮겨담아준다.
+			result = tempList.subList(0, count);
+		}
+		//	마지막으로 빈 리스트를 만든뒤
+		ArrayList<ItemVO> tempList2 = new ArrayList<ItemVO>();
+		tempList2.addAll(result);	//	자른 리스트를 담아주고
+		list.setList(tempList2);	//	그 리스트를 ItemList(ArrayList가 아니다) 형태의 list에 담아주고
+		
+		// 내쫓는다.
+		return list;
+	}
+	
 }
 
-
-
+//	list안의 조회수 기준으로 정렬해주는 기능
+class MiniComparator implements Comparator<ItemVO> 
+{  
+    @Override  
+    public int compare(ItemVO first, ItemVO second) {  
+        int firstValue = first.getHit();  
+        int secondValue = second.getHit();  
+          
+        // Order by descending   
+        if (firstValue > secondValue) {  
+            return -1;  
+        } else if (firstValue < secondValue) {  
+            return 1;  
+        } else {  
+            return 0;  
+        }  
+    }
+}
 
 
 

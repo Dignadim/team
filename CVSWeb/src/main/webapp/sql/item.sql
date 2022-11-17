@@ -1,7 +1,7 @@
 
 CREATE TABLE "TEAM"."ITEM" 
    (	"IDX" NUMBER NOT NULL ENABLE, 
-	"category" CHAR(20 BYTE) NOT NULL ENABLE, 
+	"CATEGORY" CHAR(20 BYTE) NOT NULL ENABLE, 
 	"ITEMNAME" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
 	"ITEMPRICE" NUMBER NOT NULL ENABLE, 
 	"SELLCVS" VARCHAR2(20 BYTE), 
@@ -12,19 +12,49 @@ CREATE TABLE "TEAM"."ITEM"
 	 CONSTRAINT "ITEM_PK" PRIMARY KEY ("IDX")
 	 );
 
-delete from item;
+delete from item;   
 drop sequence item_idx_seq;
 create sequence item_idx_seq;
 
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'CU', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½', 1000, 0, 1.1);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'GS25', 'ï¿½ï¿½ï¿½', 'ï¿½Å¶ï¿½ï¿½', 900, 0, 1.11);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Ä«ï¿½ï¿½', 1500, 0, 3.20);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) values (item_idx_seq.nextval, 'ï¿½Ì´Ï½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 2000, 0, 1);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'CU', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½ï¿½', 1000, 100);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'GS25', 'ï¿½ï¿½ï¿½', 'ï¿½Å¶ï¿½ï¿½', 900, 90);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½Ä«ï¿½ï¿½', 1500, 80);
-insert into item (idx, sellcvs, category, itemname, itemprice, hit) values (item_idx_seq.nextval, 'ï¿½Ì´Ï½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 'ï¿½ï¿½ï¿½ï¿½', 2000, 70);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore)
+ values (item_idx_seq.nextval, 'CU', '°úÀÚ', '»õ¿ì±ø', 1000, 0, 1.1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, 'GS25', '°úÀÚ', 'È¨·±º¼', 900, 0, 1.11);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, '¼¼ºìÀÏ·¹ºì', '°úÀÚ', 'ÇÁ¸µ±Û½º', 1500, 0, 3.20);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, 'ÀÌ¸¶Æ®24', '°úÀÚ', '°ÅºÏÄ¨', 2000, 0, 1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'CU', '°úÀÚ', 'ÃÊÄÚÆÄÀÌ', 1000, 100);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'GS25', '°úÀÚ', '¸ù½©', 900, 90);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, '±âÅ¸ ÆíÀÇÁ¡', '°úÀÚ', 'ÃÊÄÚÄÜ', 1500, 80);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'ministop', '°úÀÚ', '¾çÆÄ¸µ', 2000, 70);
 
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore)
+ values (item_idx_seq.nextval, 'CU', 'À½·á', 'µ¥ÀÚ¿Í', 1000, 900, 1.1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, 'GS25', 'À½·á', 'ÆÄ¿ö¿¡ÀÌµå', 900, 290, 1.11);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, '¼¼ºìÀÏ·¹ºì', 'À½·á', '°ÔÅä·¹ÀÌ', 1500, 8, 3.20);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit, averscore) 
+values (item_idx_seq.nextval, 'ÀÌ¸¶Æ®24', '¶ó¸é', '¹Î»ý¶ó¸é', 2000, 12, 1);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'CU', '¶ó¸é', 'Áø¶ó¸é', 1000, 150);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'GS25', '¶ó¸é', '½Å¶ó¸é', 900, 99);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, '±âÅ¸ ÆíÀÇÁ¡', '»ýÇÊ', '¾ç¸»', 1500, 88);
+insert into item (idx, sellcvs, category, itemname, itemprice, hit) 
+values (item_idx_seq.nextval, 'ministop', '»ýÇÊ', 'ÃæÀü±â', 2000, 77);
+
+select * from item where category = '°úÀÚ';
+
+select * from(select * from item order by hit desc) where rownum <= 2;
+
+select * from item order by hit desc;
 select * from item order by idx desc;
 select count(*) from ITEM;
 commit;
