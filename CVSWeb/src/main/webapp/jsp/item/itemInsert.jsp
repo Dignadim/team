@@ -85,7 +85,7 @@
 					</tr>
 					<tr>
 						<td colspan="1" align="center">
-							<input class="btn btn-success" type="button" onclick="location.href='connectMain.jsp'" value="메인으로">
+							<input class="btn btn-success" type="button" onclick="location.href='../connectMain.jsp'" value="메인으로">
 						</td>
 						<td colspan="1" align="center">
 							<input class="btn btn-primary" type="submit" value="등록">

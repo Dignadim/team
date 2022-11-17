@@ -15,6 +15,7 @@
 		<typeAlias type="project.board.event.EventboardCommentVO" alias="evc_vo" />
 		<typeAlias type="project.item.ItemVO" alias="item_vo" />
 		<typeAlias type="project.item.ItemCommentVO" alias="item_co" />
+		<typeAlias type="project.item.ItemAvgVO" alias="item_ao" />
 		<typeAlias type="project.board.admin.AdminboardVO" alias="ab_vo" />
 	</typeAliases>
 	

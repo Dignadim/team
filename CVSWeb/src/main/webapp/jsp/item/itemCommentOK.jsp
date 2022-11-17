@@ -22,19 +22,26 @@
 		request.setCharacterEncoding("UTF-8");
 		// contentView.jsp에서 넘어오는 데이터를 받는다.
 		int currentPage = Integer.parseInt((String) request.getParameter("currentPage"));
+		int mode = Integer.parseInt(request.getParameter("mode"));
 	%>
 	
 	<jsp:useBean id="co" class="project.item.ItemCommentVO">
 		<jsp:setProperty property="*" name="co"/>
 	</jsp:useBean>
-	
 	<%
+		System.out.println(co);
 		ItemCommentService service = ItemCommentService.getInstance();
 		out.println("<script>");
-		service.insertItemComment(co);
-		out.println("location.href='itemSelectByIdx.jsp?idx=" + co.getGup() + "&currentPage=" + currentPage + "&job=itemView'");
-		out.println("</script>");
-	%>
+		if (mode == 1) {
+			service.insertItemComment(co);
+		} else if (mode == 2) {
+			service.updateItemComment(co);	
+		} else {
+			service.deleteItemComment(co.getIdx());	
+		}
+			out.println("location.href='itemSelectByIdx.jsp?idx=" + co.getGup() + "&currentPage=" + currentPage + "&job=itemView'");
+			out.println("</script>");
+		%>
 	
 </body>
 </html>

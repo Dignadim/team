@@ -1,3 +1,4 @@
+<%@page import="project.board.event.EventboardList"%>
 <%@page import="project.board.free.FreeboardList"%>
 <%@page import="project.item.ItemList"%>
 <%@page import="project.item.ItemVO"%>
@@ -21,6 +22,7 @@
 </head>
 <body>
 
+
 	<%
 		request.setCharacterEncoding("UTF-8");
 	
@@ -30,6 +32,7 @@
 	    ArrayList<ItemVO> items = service.selectItems();
 	    
 	    // 현재 행사 목록을 찾아와서 저장한다.
+	    EventboardList evList = service.selectEVList();
 	    
 	    // 현재 행사 상품을 찾아와서 저장한다.
 	    
@@ -44,6 +47,7 @@
 	    request.setAttribute("items", items);
 	    request.setAttribute("itemTOP5", itemTOP5);	
 		request.setAttribute("freeHitList", freeHitList);
+		request.setAttribute("evList", evList);
 	    
 		pageContext.forward("main.jsp");
 	%>

@@ -1,5 +1,6 @@
+<%@page import="project.member.MemberList"%>
 <%@page import="project.board.admin.AdminboardList"%>
-<%@page import="project.board.admin.AdminboardService"%>
+<%@page import="project.board.admin.AdminService"%>
 <%@page import="project.board.free.FreeboardCommentService"%>
 <%@page import="project.board.free.FreeboardVO"%>
 <%@page import="project.board.free.FreeboardList"%>
@@ -16,32 +17,26 @@
 <body>
 
 <%
-	request.setCharacterEncoding("UTF-8");
-int currentPage = 1;
-try {
-	currentPage = Integer.parseInt(request.getParameter("currentPage"));
-} catch (NumberFormatException e) {
+request.setCharacterEncoding("UTF-8");
 
-}
 	
-	AdminboardService service = AdminboardService.getInstance();
-	 
-	AdminboardList adminboardList = service.adSelectList(currentPage);
+	AdminService service = AdminService.getInstance(); 
+//freeboard 데이터를 freeboardList에 담음
+	FreeboardList freeboardList = service.abSelectList();
   
-//	공지글과 메인글의 댓글 개수를 얻어와서 FreeboardVO 클래스의 commentCount에 저장한다.
-	/* for (FreeboardVO fb_vo : fb_notice) {
-		fb_vo.setFb_commentCount(commentService.fbCommentCount(fb_vo.getFb_idx()));
-	}
-	for (FreeboardVO fb_vo : freeboardList.getList()) {
-		fb_vo.setFb_commentCount(commentService.fbCommentCount(fb_vo.getFb_idx()));
-	} */
+//member 데이터를 memberList에 담음
+	MemberList memberList = service.amSelectList();
 
-//	공지글과 메인글의 목록을 request 영역에 저장해서 메인글을 화면에 표시하는 페이지(listView.jsp)로 넘겨준다.
-/* 	request.setAttribute("fb_notice", fb_notice);*/
-	request.setAttribute("currentPage", currentPage); 
-	request.setAttribute("adminboardList", adminboardList);
-	pageContext.forward("adminView.jsp");
 	
+	
+	
+	
+	
+
+//	데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
+	request.setAttribute("freeboardList", freeboardList);
+	request.setAttribute("memberList", memberList);
+	pageContext.forward("adminView.jsp");
 %>
 
 

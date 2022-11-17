@@ -22,6 +22,7 @@
 
 	<%
 	request.setCharacterEncoding("UTF-8");
+	
 	// 이전 페이지에서 넘어오는 화면에 표시할 페이지 번호를 받는다.
 	int currentPage = 1;
 	try {

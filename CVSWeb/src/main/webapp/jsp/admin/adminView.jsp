@@ -16,7 +16,7 @@
 <script type="text/javascript" src="./js/main.js" defer></script>
 </head>
 <body>
-${id}
+
 	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>
@@ -82,16 +82,35 @@ ${id}
 	<br/><br/><br/>
 
 <!-- header 끝  -->
+
+
 <div id="contentLeft">
 	<div class="body1">
-	<!-- 버그리포트 게시글을 이곳에 표시  -->
-	QNA/버그리포트
+		<!-- 가입된지 1달이하의 회원을 idx역순으로 표시   -->
+			<c:set var="list" value="${memberList.list}"/>
+			
+		<table class="table" style="width: 100%;">
+			<%-- <c:if test="${date.year == mb_vo.signupdate.year && date.month == mb_vo.signupdate.month}"> --%>
+				<c:forEach var="mb_vo" items="${list}">
+					<tr>
+						<th align="center">
+							프로필사진
+						</th>
+						<th align="center">
+							${mb_vo.nickname}님이 새로 가입하셧습니다.
+						</th>	
+					</tr>
+				</c:forEach>
+			<%-- </c:if> --%>
+		</table>
 	</div>
 
-	<div class="body1">
-	<!-- 회원들의 정보와 쓴 글목록, 쓴 댓글, 차단상태등을 표시   -->
-	회원관리
+	<div class="body1">	
+	<!-- 버그리포트 게시글을 이곳에 표시  -->
+	버그리포트
 	</div>
+	
+	
 </div>
 
 <div id="contentRight">
@@ -108,64 +127,21 @@ ${id}
 		
 		이런식으로
 	  -->
-	
 	<table class="table" style="width: 100%; margin-left: auto; margin-right: auto; max-width : 800px;">
 				<tr class="table-secondary">
 					<th colspan="5" style="font-size: 20px; text-align: center;">공지글</th>
 				</tr>
 				
 				<tr class="table-secondary">
-					<th style="width: 125px; text-align: center;">게시판</th>
+					<th style="width: 125px; text-align: center;">게시판이름</th>
 					<th style="width: 425px; text-align: center;">제목</th>
 					<th style="width: 125px; text-align: center;">닉네임</th>
 					<th style="width: 125px; text-align: center;">작성일</th>
 				</tr>
 				
 				
-				<!-- 공지글 -->
-				<c:if test="${currentPage == 1}">
-				<c:forEach var="fb_vo" items="${fb_notice}">
-					<tr class="table-warning">
-						<td align="center">
-							<i class="bi bi-envelope-exclamation-fill"></i>
-						</td>
-						<td>
-							<i class="bi bi-tags"></i>
-							<c:set var="fb_subject" value="${fn:replace(fb_vo.fb_subject, '<', '&lt;')}"/>
-							<c:set var="fb_subject" value="${fn:replace(fb_subject, '>', '&gt;')}"/>
-							
-							<a href="increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}">
-								${fb_subject} (${fb_vo.fb_commentCount})
-							</a>
-							
-							<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-								<img alt="New" src="../../../images/ic_new.gif"/>
-							</c:if>
-							
-							<c:if test="${fb_vo.fb_hit > 100}">
-								<img alt="hot" src="../../../images/hot.gif"/>
-							</c:if>
-						</td>
-						<td align="center">
-	<%-- 						<c:set var="name" value="${fn:replace(vo.name, '<', '&lt;')}"/>
-							<c:set var="name" value="${fn:replace(vo.name, '>', '&gt;')}"/> --%>
-							nickname
-						</td>
-						<td align="center">
-							<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
-								<fmt:formatDate value="${fb_vo.fb_date}" pattern="a h:mm"/>
-							</c:if>
-							<c:if test="${date.year != fb_vo.fb_date.year || date.month != fb_vo.fb_date.month || date.date != fb_vo.fb_date.date}">
-								<fmt:formatDate value="${fb_vo.fb_date}" pattern="yyyy.MM.dd(E)"/>
-							</c:if>
-						</td>
-						<td align="center">
-							${fb_vo.fb_hit}
-						</td>
-					</tr>
-				</c:forEach>
-				</c:if>
-				
+
+		
 				<c:set var="list" value="${freeboardList.list}"/>
 				
 				<c:if test="${list.size() == 0}">
@@ -177,18 +153,18 @@ ${id}
 				</c:if>
 	
 				<c:if test="${list.size() != 0}">
-				<c:set var="num" value="${freeboardList.totalCount - ((freeboardList.currentPage-1) * 10) }"/>
+				
 				<c:forEach var="fb_vo" items="${list}">
 				<tr>
 					<td align="center">
-						${num}
+						자유게시판
 					</td>
-					<td>
+					<td align="center">
 						<i class="bi bi-tags"></i>
 						<c:set var="fb_subject" value="${fn:replace(fb_vo.fb_subject, '<', '&lt;')}"/>
 						<c:set var="fb_subject" value="${fn:replace(fb_subject, '>', '&gt;')}"/>
 							
-						<a href="increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}">
+						<a href="../board/free/selectByIdx.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=${freeboardList.currentPage}&job=contentView">
 							${fb_subject} (${fb_vo.fb_commentCount})
 						</a>
 							
@@ -196,12 +172,10 @@ ${id}
 							<img alt="New" src="../../images/ic_new.gif"/>
 						</c:if>
 							
-						<c:if test="${fb_vo.fb_hit > 100}">
-							<img alt="hot" src="../../images/hot.gif"/>
-						</c:if>
+						
 					</td>
 					<td align="center">
-						nickname
+						닉네임
 					</td>
 					<td align="center">
 						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
@@ -211,11 +185,9 @@ ${id}
 							<fmt:formatDate value="${fb_vo.fb_date}" pattern="yyyy.MM.dd(E)"/>
 						</c:if>
 					</td>
-					<td align="center">
-						${fb_vo.fb_hit}
-					</td>
+					
 				</tr>	
-				<c:set var="num" value="${num-1}"/>
+				<%-- <c:set var="num" value="${num-1}"/> --%>
 				</c:forEach>
 				</c:if>
 	
@@ -238,15 +210,10 @@ ${id}
 	신규회원표시
 	</div> -->
 	
-	<div class="body2">
+	<div class="body2" style=" display:none;">
 	<!-- 캘린더에 행사기간이 나오는 표시  -->
 	캘린더 구현
 	</div>
-	
-	
-	
-	
-	
 	
 	
 	

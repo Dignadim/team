@@ -23,12 +23,12 @@
 		int currentPage = 1;
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		try {
-		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+			currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		} catch (NumberFormatException e) {
 			
 		}
-		
-		ItemService.getInstance().itemIncrement(idx);
+		ItemService service = ItemService.getInstance();
+		service.itemIncrement(idx);
 		
 		response.sendRedirect("itemSelectByIdx.jsp?idx=" + idx + "&currentPage=" + currentPage + "&job=itemView");
 	%>

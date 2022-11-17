@@ -1,3 +1,4 @@
+<%@page import="project.board.admin.AdminService"%>
 <%@page import="project.board.free.FreeboardList"%>
 <%@page import="project.item.ItemList"%>
 <%@page import="project.item.ItemVO"%>
@@ -23,30 +24,27 @@
 
 
 	<%
-		request.setCharacterEncoding("UTF-8");
 	
-	    ItemService service = ItemService.getInstance();
-	    
-	    // 모든 상품 목록을 얻어온다.
-	    ArrayList<ItemVO> items = service.selectItems();
-	    
-	    // 현재 행사 목록을 찾아와서 저장한다.
-	    
-	    // 현재 행사 상품을 찾아와서 저장한다.
-	    
-	    
-	    // 인기상품 탑 5를 가져와서 저장한다.
-	    ItemList itemTOP5 = service.selectItemTOP5();
-	    
-	    // 인기 게시글 탑 3을 가져와서 저장한다.
-	    FreeboardList freeHitList = service.selectFreeHitList();
-	    
-	    // 데이터를 request로 넘긴다.
-	    request.setAttribute("items", items);
-	    request.setAttribute("itemTOP5", itemTOP5);	
-		request.setAttribute("freeHitList", freeHitList);
-	    
-		pageContext.forward("main.jsp");
+
+			request.setCharacterEncoding("UTF-8");
+		
+		// freeboard 데이터를 freeboard 리스트에 담음 
+		AdminService service = AdminService.getInstance(); 
+		FreeboardList freeboardList = service.abSelectList();
+		
+		
+		
+		 
+		    
+		    // 데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
+		   request.setAttribute("freeboardList", freeboardList);
+
+		 
+		    
+		    
+		    
+		    
+			pageContext.forward("adminView.jsp");
 	%>
 
 </body>

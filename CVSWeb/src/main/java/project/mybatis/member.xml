@@ -19,4 +19,12 @@
 	<update  id="update" parameterType="mb_vo">
 		update member set nickname = #{nickname}, email = #{email}, password = #{password} where id = #{id} 
 	</update>
+	
+	
+	
+	<select id="amSelectList" resultType="mb_vo">
+		select * from member order by signupdate desc
+	</select>
+	
+	
 </mapper>

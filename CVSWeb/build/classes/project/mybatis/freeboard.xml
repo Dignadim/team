@@ -42,7 +42,19 @@
  	</select>
  	
  	
-
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<!-- admin에 쓰임  -->
+ 	
+	 <select id="abSelectList" resultType="fb_vo">
+ 		select * from fb_board where fb_notice = 'yes' 
+	</select>
 </mapper>
 
 

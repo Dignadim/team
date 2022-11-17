@@ -57,7 +57,7 @@
 			file.delete();
 		} else {
 			String itemRealPath = application.getRealPath("/images") + "/" + fileRealname;
-			vo.setItemImage("D:/web/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/CVSWeb/images/" + fileRealname);
+			vo.setItemImage(itemRealPath);
 		}
 		// System.out.println(vo.getItemImage());
 	%>	

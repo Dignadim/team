@@ -16,11 +16,6 @@
 	 	select * from item order by idx desc
 	</select>
 	
-	<!-- 특정 카테고리인 아이템만 얻어온다. -->
-	<select id="selectItemCate" parameterType="String" resultType="item_vo">
-	 	select * from item where trim(category) = #{cate}
-	</select>
-	
 	<!-- 모든 글의 개수를 얻어온다. -->
 	<select id="selectItemCount" resultType="int">
 		select count(*) from item
@@ -60,14 +55,7 @@
 	  <!-- 조회수 순위별 상품 탑 5를 얻어온다. -->
 	 <select id="selectItemTOP5" resultType="item_vo">
 		<![CDATA[
-	 		select * from item where rownum <= 5 order by hit desc, idx desc
-	 	]]>
-	 </select>
-	 
-	  <!-- 조회수 순위별 상품 탑을 넘겨받은 인수만큼 얻어온다. -->
-	 <select id="selectItemTOP" resultType="item_vo" parameterType="int">
-		<![CDATA[
-	 		select * from(select * from item order by hit desc) where rownum <= #{count}
+	 		select * from(select * from item order by hit desc) where rownum <= 5
 	 	]]>
 	 </select>
 	 
@@ -78,7 +66,7 @@
 	  <!-- 인기글 탑 3을 얻어온다. -->
 	 <select id="selectFreeHitList" resultType="fb_vo">
 		<![CDATA[
-	 		select * from fb_board where rownum <= 3 order by fb_hit desc, fb_idx desc
+			select * from(select * from fb_board order by fb_hit desc, fb_idx desc) where rownum <= 3
 	 	]]>	
 	 </select>
 	
@@ -100,9 +88,27 @@
 	 	]]>		
 	 </select>	
 
-	<update id="averscoreUpdate" parameterType="item_vo">
-		update item set averscore = #{averscore} where idx = #{idx}
+	<insert id="insertUpdateScore" parameterType="item_ao">
+		insert into itemavg (itemidx, averscore, avgindex, id) values (#{itemIdx}, #{updateScore}, itemavg_avgindex_seq.nextval, #{ID})
+	</insert>
+
+	<select id="selectNewAvg" parameterType="int" resultType="double">
+		select avg(averscore) from itemavg where itemidx = #{idx}
+	</select>
+
+	<update id="UpdateScore" parameterType="item_ao">
+		update item set averscore = #{newAvg} where idx = #{itemIdx}
 	</update>
+
+	<select id="selectAvgID" parameterType="int" resultType="String">
+		select ID from itemavg where itemidx = #{idx} 
+	</select>
+
+	 <select id="selectEVList" resultType="ev_vo">
+		<![CDATA[
+			select * from ev_board where extract (month from ev_date) = extract (month from sysdate) and extract (year from ev_date) = extract (year from sysdate)
+	 	]]>	
+	 </select>
 
 </mapper>
 

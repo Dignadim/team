@@ -11,25 +11,26 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
-<script type="text/javascript" src="./js/main.js" defer></script>
+<script type="text/javascript" src="../js/main.js" defer></script>
 </head>
 <body>
 	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>
-		<div class="container">
+		<div class="container-fluid">
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
-					<h2 style="width: 200px;">타이틀</h2>
+					<a href="connectMain.jsp"><img src="../images/teamlogo.png" style="width: 30px;"></a>
 				</div>
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="./item/itemList.jsp">모든 상품 보기</a>
+					    	<a class="nav-link" href="./item/itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
+							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
 							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="./board/event/list.jsp">모든 행사 보기</a></li>
 								<li><a class="dropdown-item" href="#">GS25</a></li>
 								<li><a class="dropdown-item" href="#">CU</a></li>
 								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
@@ -42,7 +43,7 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="./board/rank/rank.jsp">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -69,14 +70,12 @@
 							<input type="hidden" value="${grade}">
 						</c:if>
 					</c:if>				
-							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='./admin/adminView.jsp'">관리 페이지로</button>
 					
 				</div>
 			</nav>
 		</div>
 	</header>
 	<br/><br/><br/>
-	
 	
 	<div class="container">
 		<div class="panel-heading">
@@ -89,26 +88,40 @@
 				<table class="table">
 					<thead class="table-primary">
 						<tr>
-							<td>편의점</td>
-							<td>내용</td>
+							<td align="center" width="250px">편의점</td>
+							<td align="center">행사 내용</td>
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td><img alt="CU logo" src="../images/cu.png" height="20px;" align="left"></td>
-							<td>CU 첫 회원가입시 5000원 할인 쿠폰 증정!</td>
-						</tr>
-						<tr>
-							<td><img alt="CU logo" src="../images/gs25.png" height="20px;" align="left"></td>
-							<td>GS25 첫 회원가입시 5000원 할인 쿠폰 증정!</td>
-						</tr>
-						<tr>
-							<td><img alt="CU logo" src="../images/emart24.png" height="20px;" align="left"></td>
-							<td>11월 18일 단 하루! 새우깡이 600원!</td>
-						</tr>
+						<c:set var="evList" value="${evList.list}"/>
+						<c:forEach var="ev_vo" items="${evList}">
+							<tr>
+								<td align="center">
+									<c:if test="${ev_vo.ev_sellcvs.trim() == 'CU'}">
+										<img alt="CU logo" src="../images/cu.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${ev_vo.ev_sellcvs.trim() == 'GS25'}">
+										<img alt="GS logo" src="../images/gs25.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${ev_vo.ev_sellcvs.trim() == '세븐일레븐'}">
+										<img alt="711 logo" src="../images/7eleven.png" height="25px"><br/>						
+									</c:if>
+									<c:if test="${ev_vo.ev_sellcvs.trim() == 'ministop'}">
+										<img alt="mini logo" src="../images/ministop.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${ev_vo.ev_sellcvs.trim() == '이마트24'}">
+										<img alt="emart logo" src="../images/emart24.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${ev_vo.ev_sellcvs.trim() == '기타 편의점' || ev_vo.ev_sellcvs.trim() == '기타편의점'}">
+										<img alt="other logo" src="../images/other.png" height="25px"><br/>
+									</c:if>
+								</td>
+								<td><a href="./board/event/increment.jsp?ev_idx=${ev_vo.ev_idx}&currentPage=1">${ev_vo.ev_subject}</a></td>
+							</tr>
+						</c:forEach>
 					</tbody>
 				</table>
-				<button type="button" class="btn btn-primary" onclick="#">모든 행사 보러가기</button>
+				<button type="button" class="btn btn-primary" onclick="location.href='./board/event/list.jsp'">모든 행사 보러가기</button>
 			</div>
 		</div><br/><br/><br/><br/>
 			
@@ -200,19 +213,28 @@
 					<div class="col-sm-12">
 						<div class="panel panel-primary">
 							<table class="table bg-light">
-								<tr>
-									<c:forEach var="vo" items="${list}">
-										<td><img alt="alt" src="${vo.itemImage}" width="150px"></td>
-									</c:forEach>
-								</tr>
-								<tr>
-									<c:forEach var="vo" items="${list}">
-									<td>
-										<h4><a href="./item/itemIncrement.jsp?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h4>
-										${vo.eventType}
-									</td>
-									</c:forEach>									
-								</tr>
+								<thead class="table-primary">
+									<tr>
+										<c:forEach var="vo" items="${list}" varStatus="i">
+											<td>${i.count}위</td>
+										</c:forEach>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<c:forEach var="vo" items="${list}">
+											<td><img alt="alt" src="${vo.itemImage}" height="150px"></td>
+										</c:forEach>
+									</tr>
+									<tr>
+										<c:forEach var="vo" items="${list}">
+										<td>
+											<h4><a href="./item/itemIncrement.jsp?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h4>
+											${vo.eventType}
+										</td>
+										</c:forEach>									
+									</tr>
+								</tbody>
 							</table>
 						</div>
 					</div>
@@ -238,9 +260,9 @@
 								</thead>
 								<tbody>
 									<c:set var="freeHitList" value="${freeHitList.list}"/>
-									<c:forEach var="fb_vo" items="${freeHitList}">
+									<c:forEach var="fb_vo" items="${freeHitList}" varStatus="i">
 										<tr>
-											<td>1</td>
+											<td>${i.count}</td>
 											<td>(테스트)</td>
 											<td>
 												<a href="./board/free/increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=1">${fb_vo.fb_subject}</a>
@@ -254,29 +276,22 @@
 					</div>
 				</div>	
 		</div><br/><br/><br/><br/>
-</div>
+	</div>
 	</div>
 	<!-- footer  -->
 	<footer>
-		<div class="container" style="background-color: #e7e7e7; color: #777;">
-			<div class="row">
+		<div class="container-fluid" style="background-color: #f8f9fa; color: #777;">
+			<div class="row" style="padding: 30px; font-size: 16px;" align="center">
 				<div class="col-sm-3">
-					copyright &copy;김철수 all rights reserved<br/>
-					사업자 등록번호 123456-123-456789
+					&nbsp;
+				</div>
+				<div class="col-sm-6">
+					<br/>
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동혁&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&nbsp;<br/>
 				</div>
 				<div class="col-sm-3">
-					고객센터
-					02-123-4567<br/>
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
+					&nbsp;
 				</div>
 			</div>
 		</div>

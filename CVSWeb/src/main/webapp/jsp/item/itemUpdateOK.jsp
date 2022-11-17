@@ -35,7 +35,7 @@
 	} catch (Exception e) {
 		out.println("alert('모든 정보를 입력하세요.')");		
 	}
-	out.println("location.href='itemList.jsp?currentPage=" + currentPage +"'");
+	out.println("location.href='itemSelectByIdx.jsp?currentPage=" + currentPage + "&idx=" + vo.getIdx() + "&job=itemView'");
 	out.println("</script>");
 	%>	 
 

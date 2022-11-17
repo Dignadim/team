@@ -19,8 +19,68 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 	%>
+	<!-- header -->
+	<header>
+		<div class="container-fluid">
+			<nav class="navbar navbar-expand-sm bg-light">
+				<div class="col-sm-2">
+					<a href="../connectMain.jsp"><img src="../../images/teamlogo.png" style="width: 30px;"></a>
+				</div>
+				<div class="container-fluid col-sm-5">
+					<ul class="navbar-nav">
+						<li class="nav-item" style="padding-right: 70px;">
+					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
+					    </li>					
+						<li class="nav-item dropdown" style="padding-right: 70px;">
+							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href=".././board/event/list.jsp">모든 행사 보기</a></li>
+								<li><a class="dropdown-item" href="#">GS25</a></li>
+								<li><a class="dropdown-item" href="#">CU</a></li>
+								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
+								<li><a class="dropdown-item" href="#">ministop</a></li>
+								<li><a class="dropdown-item" href="#">이마트24</a></li>
+								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
+							</ul>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
+							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
+								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="#">신상게시판</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+				<!-- 검색은 추후 구현 -->
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px; display: none;">
+				</div> 
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-primary" onclick="#" style="display:none;">검색</button>
+				</div>
+				<div class="col-sm-2">
+					<c:if test="${id == null}">
+						<button type="button" class="btn btn-primary" onclick="location.href='../logRegi/login_form.jsp'">로그인</button>	
+					</c:if>				
+					<c:if test="${id != null}">
+						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
+						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
+							<button class="btn btn-info" style="padding: 6px;" onclick="../item/itemInsert.jsp">관리 페이지로</button>	
+						</c:if>
+						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
+							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
+							<input type="hidden" value="${grade}">
+						</c:if>
+					</c:if>					
+				</div>
+			</nav>
+		</div>
+	</header>
+	<br/><br/><br/>
+	
 	<div class="m-3">
-		<input type="button" class="btn btn-outline-primary" onclick="location.href='../connectMain.jsp'" value="메인으로" style="margin: 10px;">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto;">
 			<tr class="table-primary">
 				<th colspan="6" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px;">모든 상품 보기</th>
@@ -53,7 +113,7 @@
 			
 			<tr>
 				<td colspan="6" align="right">
-					${itemList.totalCount} 건 (${itemList.currentPage} / ${itemList.totalPage})<br/>				
+					${itemList.totalCount} 건 (${itemList.currentPage} / ${itemList.totalPage})<br/>	
 				</td>
 			</tr>
 			<tr class="table table-light">
@@ -153,12 +213,31 @@
 					
 				<!-- 상품 입력 버튼 -->
 				<td align="right" colspan="1">
-					<input class="btn btn-outline-primary" type="button" value="상품 입력" onclick="location.href='itemInsert.jsp'"/>
+					<c:if test="${grade == 'y'}">
+						<input class="btn btn-outline-primary" type="button" value="상품 입력" onclick="location.href='itemInsert.jsp'"/>
+					</c:if>
 				</td>					
 			</tr>
 			</tbody>
 		</table>
 	</div>	
-
+	<!-- footer  -->
+	<footer>
+		<div class="container-fluid" style="background-color: #f8f9fa; color: #777;">
+			<div class="row" style="padding: 30px; font-size: 16px;" align="center">
+				<div class="col-sm-3">
+					&nbsp;
+				</div>
+				<div class="col-sm-6">
+					<br/>
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동혁&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&nbsp;<br/>
+				</div>
+				<div class="col-sm-3">
+					&nbsp;
+				</div>
+			</div>
+		</div>
+	</footer>
 </body>
 </html>

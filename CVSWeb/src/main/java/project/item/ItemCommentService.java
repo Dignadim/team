@@ -34,12 +34,23 @@ public class ItemCommentService {
 		return itemCommentList;
 	}
 	
-	public void itemCommentUpdate(ItemCommentVO co) {
-		System.out.println("ItemCommentService의 itemCommentUpdate() 메소드 실행");
+	public void updateItemComment(ItemCommentVO co) {
+		System.out.println("ItemCommentService의 updateItemComment() 메소드 실행");
 		SqlSession mapper = MySession.getSession();
 		
 		ItemCommentDAO dao = ItemCommentDAO.getInstance();
-		dao.itemCommentUpdate(mapper, co);
+		dao.updateItemComment(mapper, co);
+		
+		mapper.commit();
+		mapper.close();
+	}
+	
+	public void deleteItemComment(int idx) {
+		System.out.println("ItemCommentService의 deleteItemComment() 메소드 실행");
+		SqlSession mapper = MySession.getSession();
+		
+		ItemCommentDAO dao = ItemCommentDAO.getInstance();
+		dao.deleteItemComment(mapper, idx);
 		
 		mapper.commit();
 		mapper.close();

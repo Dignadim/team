@@ -1,26 +1,32 @@
-	let originalIdx = document.getElementById('itemCommentIdx').value; 
-	let itemComment = document.getElementsByClassName('itemComment' + originalIdx)[0];
-	let originalComment = itemComment.innerHTML;	
-	let newComment = document.getElementById('itemCommentNew').value;
-	let currentPage = document.getElementById('itemCommentCurrentPage').value;	
-	let originalGup = document.getElementById('itemCommentGup').value;
-
 function updateAverscore() {
 	let itemIdx = document.getElementById('itemIdx').value;
-	let averscore = document.getElementById('updateAverscore').value
-	location.href='updateAverscoreOK.jsp?averscore=' + averscore + '&idx=' + itemIdx
-}
+	let updateScore = document.getElementById('updateAverscore').value
+	let originalScore = document.getElementById('originalItemAverscore').value;
+	let ID = document.getElementsByName('ID')[0].value;
 	
-function itemCommentUpdate1() {
-	itemComment.innerHTML = '<textarea id="itemCommentNew" class="form-control form-control-sm" rows="3" style="resize: none;">' + originalComment + '</textarea>';
-	document.getElementById('itemCommentUpdateButton').innerHTML = 
-	'<input type="button" class="btn btn-outline-primary" value="저장" onclick="itemCommentUpdate2()"/>';
+	location.href='updateAverscoreOK.jsp?averscore=' + originalScore + '&itemIdx=' + itemIdx + '&updateScore=' + updateScore + '&ID=' + ID;
 }
 
-function itemCommentUpdate2() {
-	let originalIdx = document.getElementById('itemCommentIdx').value;
-	document.getElementById('itemCommentUpdateButton').innerHTML = 
-	'<input type="button" class="btn btn-outline-warning" value="수정" onclick="itemCommentUpdate1()"/>';	
+function test(idx, mode, title, content) {
+	let frm = document.itemCommentForm
+	frm.idx.value = idx;
+	frm.mode.value = mode;
+	frm.submit.value = title;
+	console.log(idx)
 	
-	location.href='itemCommentUpdateOK.jsp?currentPage=' + currentPage + '&idx=' + originalIdx + '&gup=' + originalGup + '&content=' + newComment;
+	if (mode == 2) {
+		while (content.indexOf('<br/>') != -1) {
+			content = content.replace('<br/>', '\r\n');
+		}
+		frm.content.value = content;
+		frm.content.focus();			
+	}
+	
+}
+
+function deleteItemComment(idx, currentPage, gup) {
+	let b = confirm('댓글을 삭제하시겠습니까?')
+	if (b == true) {
+		location.href='itemCommentOK.jsp?mode=3&idx=' + idx +'&currentPage=' + currentPage + '&gup=' + gup
+	}
 }

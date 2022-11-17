@@ -1,5 +1,7 @@
 package project.member;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 
 
@@ -24,5 +26,13 @@ public class MemberDAO {
 	}
 	public void update(SqlSession mapper, MemberVO vo) {
 		mapper.update("update", vo);
+	}
+	
+	
+	// 어드민List로가는 코드
+	
+	public ArrayList<MemberVO> amSelectList(SqlSession mapper) {
+		System.out.println("MemberDAO의 abSelectList() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectList");
 	}
 }

@@ -25,6 +25,7 @@
 		int idx = Integer.parseInt(request.getParameter("idx"));
 		int currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		String job = request.getParameter("job");
+		String avgID = request.getParameter("avgID");
 	
 		ItemService service = ItemService.getInstance();
 		ItemVO vo = service.itemSelectByIdx(idx);
