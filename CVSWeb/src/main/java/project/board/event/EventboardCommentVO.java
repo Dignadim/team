@@ -8,6 +8,8 @@ public class EventboardCommentVO {
 	private int evc_gup;
 	private String evc_content;
 	private Date evc_date;
+	private String id;
+	private String nickname;
 	
 	public int getEvc_idx() {
 		return evc_idx;
@@ -33,11 +35,23 @@ public class EventboardCommentVO {
 	public void setEvc_date(Date evc_date) {
 		this.evc_date = evc_date;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	@Override
 	public String toString() {
 		return "EventboardCommentVO [evc_idx=" + evc_idx + ", evc_gup=" + evc_gup + ", evc_content=" + evc_content
-				+ ", evc_date=" + evc_date + "]";
+				+ ", evc_date=" + evc_date + ", id=" + id + ", nickname=" + nickname + "]";
 	}
 	
 	

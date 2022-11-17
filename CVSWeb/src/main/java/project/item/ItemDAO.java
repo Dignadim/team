@@ -41,6 +41,21 @@ public class ItemDAO {
 		System.out.println("ItemDAO의 selectItemList() 메소드 실행");
 		return (ArrayList<ItemVO>) mapper.selectList("selectItemList", hmap); 
 	}
+
+	public ArrayList<ItemVO> selectItemListReverse(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemListReverse() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemListReverse", hmap); 
+	}
+
+	public ArrayList<ItemVO> selectItemListHigher(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemListHigher() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemListHigher", hmap); 
+	}
+
+	public ArrayList<ItemVO> selectItemListLower(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemListLower() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemListLower", hmap); 
+	}
 	
 	// ItemService 클래스에서 호출되는, mapper와 조회수를 증가시킨 메인 글의 글 번호를 넘겨 받고 조회수를 증가시킨 글 1건을 얻어오는, item.xml 파일의 select sql 명령을 실행하는 메소드
 	public ItemVO itemSelectByIdx(SqlSession mapper, int idx) {
@@ -112,16 +127,8 @@ public class ItemDAO {
 		System.out.println("ItemDAO 클래스의 selectEVList() 메소드 실행");
 		return (ArrayList<EventboardVO>) mapper.selectList("selectEVList");
 	}
-
 	
-	
-	
-	
-	
-	
-	
-	
-	//	특정 카테고리아이템만 아이템 리스트로 반환해주는 용도
+//	특정 카테고리아이템만 아이템 리스트로 반환해주는 용도
 	public ArrayList<ItemVO> selectItemCateList(SqlSession mapper, String cate) 
 	{
 		//System.out.println(cate);
@@ -150,7 +157,7 @@ public class ItemDAO {
 		
 		return list;
 	}
-
+	
 }
 
 

@@ -18,10 +18,17 @@
 	<jsp:useBean id="evc_vo" class="project.board.event.EventboardCommentVO">
 		<jsp:setProperty property="*" name="evc_vo"/>
 	</jsp:useBean>
+	<jsp:useBean id="mb_vo" class="project.member.MemberVO">
+		<jsp:setProperty property="*" name="mb_vo"/>
+	</jsp:useBean>
 	
 	
 <%
+	evc_vo.setId(mb_vo.getId());
+	evc_vo.setNickname(mb_vo.getNickname());
+	
    	EventboardCommentService service = EventboardCommentService.getInstance();
+   	
 	//contentView.jsp에서 넘어온 mode에 따라 1은 댓글 저장, 2는 댓글 수정, 3은 댓글 삭제 작업을 한다.
  	out.println("<script>");
 	switch (mode) {

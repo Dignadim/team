@@ -83,7 +83,7 @@ function itemSelectChange() {
 	let selectChange = document.getElementById('selectChange').value;
 	if (selectChange == '카테고리별') {
 		document.getElementById('subSelectChange').innerHTML =
-		'<select id="itemSubSelect" class="form-select" width="100" onchange="itemCategorySelect()"><option selected>전체</option><option>과자</option><option>음료</option><option>라면</option><option>생필</option></select>'
+		'<select id="itemSubSelect" class="form-select" width="100" onchange="itemCategorySelect()"><option selected>전체</option><option>간편식품</option><option>가공식품</option><option>즉석조리</option><option>신선식품</option><option>과자/빵</option><option>아이스크림</option><option>음료</option><option>잡화</option><option>기호식품</option><option>기타상품</option></select>'
 	} else if (selectChange == '편의점별') {
 		document.getElementById('subSelectChange').innerHTML =
 		'<select id="itemSubSelect" class="form-select" width="100" onchange="itemCVSSelect()"><option selected>전체</option><option>CU</option><option>GS25</option><option>세븐일레븐</option><option>ministop</option><option>이마트24</option><option>기타 편의점</option></select>'		
@@ -126,6 +126,10 @@ function itemPriceSelect() {
 	searchRequest.open('GET', url, true);	
 	searchRequest.send(null);
 	searchRequest.onreadystatechange = categorySearchProcess;	
+}
+
+function sort(currentPage, mode){
+	location.href='itemListSort.jsp?currentPage=' + currentPage + '&mode=' + mode
 }
 
 

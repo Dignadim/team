@@ -24,6 +24,10 @@ public class MemberDAO {
 	{
 		return (MemberVO) mapper.selectOne("mbSearch", id);
 	}
+	
+	public MemberVO selectById(SqlSession mapper, String id) {
+		return (MemberVO) mapper.selectOne("selectById", id);
+	}
 	public void update(SqlSession mapper, MemberVO vo) {
 		mapper.update("update", vo);
 	}

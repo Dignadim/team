@@ -15,6 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../../../css/listView.css"/>
+<script type="text/javascript" src="../../../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
 
 
@@ -23,52 +24,66 @@
 </head>
 <body>
 
-	<header>
-		<div class="container">
-			<nav class="navbar navbar-expand-sm bg-light">
-				<div class="col-sm-2">
-					<h2 style="width: 200px;">타이틀</h2>
-				</div>
-				<div class="container-fluid col-sm-5">
-					<ul class="navbar-nav">
-						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="#">모든 상품 보기</a>
-					    </li>					
-						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">GS25</a></li>
-								<li><a class="dropdown-item" href="#">CU</a></li>
-								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-								<li><a class="dropdown-item" href="#">ministop</a></li>
-								<li><a class="dropdown-item" href="#">이마트24</a></li>
-								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
-							</ul>
-						</li>
-						<li class="nav-item dropdown">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="#">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="#">신상게시판</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-				<div class="col-sm-2">
-					<input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
-				</div>
-				<div class="col-sm-1">
-					<button type="button" class="btn btn-primary" onclick="#">검색</button>
-				</div>
-				<div class="col-sm-2">
-					<button type="button" class="btn btn-primary" onclick="location.href='login.jsp'">로그인</button>					
-					<!-- 관리자만 보이는 부분 -->
-					<button class="btn btn-info" onclick="#">관리 페이지로</button>					
-				</div>
-			</nav>
-		</div>
-	</header>
+   <!-- header -->
+   <header>
+      <div class="container-fluid">
+         <nav class="navbar navbar-expand-sm bg-light">
+            <div class="col-sm-2">
+               <a href="../../connectMain.jsp"><img src="../../../images/teamlogo.png" style="width: 30px;"></a>
+            </div>
+            <div class="container-fluid col-sm-5">
+               <ul class="navbar-nav">
+                  <li class="nav-item" style="padding-right: 70px;">
+                      <a class="nav-link" href="../../item/itemList.jsp?">모든 상품 보기</a>
+                   </li>               
+                  <li class="nav-item dropdown" style="padding-right: 70px;">
+                     <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">행사 보기</a>
+                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="../event/list.jsp">모든 행사 보기</a></li>
+                        <li><a class="dropdown-item" href="#">GS25</a></li>
+                        <li><a class="dropdown-item" href="#">CU</a></li>
+                        <li><a class="dropdown-item" href="#">세븐일레븐</a></li>
+                        <li><a class="dropdown-item" href="#">ministop</a></li>
+                        <li><a class="dropdown-item" href="#">이마트24</a></li>
+                        <li><a class="dropdown-item" href="#">기타 편의점</a></li>
+                     </ul>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">게시판</a>
+                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="./list.jsp">자유게시판</a></li>
+                        <li><a class="dropdown-item" href="../rank/rank.jsp">랭킹게시판</a></li>
+                        <li><a class="dropdown-item" href="#">신상게시판</a></li>
+                     </ul>
+                  </li>
+               </ul>
+            </div>
+            <!-- 검색은 추후 구현 -->
+            <div class="col-sm-2">
+               <input type="text" class="form-control" placeholder="검색할 내용을 입력하세요." style="width: 200px; display: none;">
+            </div> 
+            <div class="col-sm-1">
+               <button type="button" class="btn btn-primary" onclick="#" style="display:none;">검색</button>
+            </div>
+            <div class="col-sm-2">
+               <c:if test="${id == null}">
+                  <button type="button" class="btn btn-primary" onclick="location.href='../../logRegi/login_form.jsp'">로그인</button>   
+               </c:if>            
+               <c:if test="${id != null}">
+                  <button type="button" class="btn btn-danger" onclick="location.href='../../logRegi/login_out.jsp'">로그아웃</button>
+                  <c:if test="${grade.trim() != null && grade.trim() == 'y'}">
+                     <button class="btn btn-info" style="padding: 6px;" onclick="../../item/itemInsert.jsp">관리 페이지로</button>   
+                  </c:if>
+                  <c:if test="${grade.trim() == null || grade.trim() != 'y'}">
+                     <button type="button" class="btn btn-warning" onclick="location.href='../../myPage/myPageView.jsp'">마이페이지</button>   
+                     <input type="hidden" value="${grade}">
+                  </c:if>
+               </c:if>               
+            </div>
+         </nav>
+      </div>
+   </header>
+   <br/><br/><br/>
 
 	<div class="m-3">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">
@@ -114,9 +129,7 @@
 						</c:if>
 					</td>
 					<td align="center">
-<%-- 						<c:set var="name" value="${fn:replace(vo.name, '<', '&lt;')}"/>
-						<c:set var="name" value="${fn:replace(vo.name, '>', '&gt;')}"/> --%>
-						nickname
+						${fb_vo.nickname}
 					</td>
 					<td align="center">
 						<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
@@ -168,7 +181,7 @@
 					</c:if>
 				</td>
 				<td align="center">
-					nickname
+					${fb_vo.nickname}
 				</td>
 				<td align="center">
 					<c:if test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
@@ -280,36 +293,38 @@
 					만약 로그인 하지 않고 누르는 경우 alert('회원만 이용 가능한 서비스입니다.')
 					alert가 나온 후 바로 로그인 모달창 띄우기
 				  -->
+				<c:if test="${id == null}">
+					<input class="btn btn-outline-primary btn-sm" type="button" value="글쓰기" 
+						 onclick="cautionMsg()"/>
+				</c:if>
+				<c:if test="${id != null}">
+					<input type="hidden" id="id" name="id" value="${id}">
 					<input class="btn btn-outline-primary btn-sm" type="button" value="글쓰기" 
 						 onclick="location.href='insert.jsp'"/>
+				</c:if>
 				</td>
 			</tr>
 		</table>
 	</div>
-	<footer>
-		<div class="container" style="background-color: #e7e7e7; color: #777;">
-			<div class="row">
-				<div class="col-sm-3">
-					copyright 김철수 all rights reserved<br/>
-					사업자 등록번호 123456-123-456789
-				</div>
-				<div class="col-sm-3">
-					고객센터
-					02-123-4567<br/>
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-			</div>
-		</div>
-	</footer>
+	
+   <!-- footer  -->
+   <footer>
+      <div class="container-fluid" style="background-color: #f8f9fa; color: #777;">
+         <div class="row" style="padding: 30px; font-size: 16px;" align="center">
+            <div class="col-sm-3">
+               &nbsp;
+            </div>
+            <div class="col-sm-6">
+               <br/>
+               &copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+               &nbsp;<br/>
+            </div>
+            <div class="col-sm-3">
+               &nbsp;
+            </div>
+         </div>
+      </div>
+   </footer>
 
 </body>
 </html>

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class ItemList {
 	
 	ArrayList<ItemVO> list = new ArrayList<>();
-	private int pageSize = 10; 
+	private int pageSize = 12; 
 	private int totalCount = 0; 
 	private int totalPage = 0; 
 	private int currentPage = 1; 

@@ -3,8 +3,8 @@
 <mapper namespace="project.board.event.EventboardVO">
 
  	<insert id="evInsert" parameterType="ev_vo">
-	 	insert into ev_board (ev_idx, ev_sellcvs, ev_subject, ev_content, ev_notice) 
-	 	values (ev_board_idx_seq.nextval, #{ev_sellcvs}, #{ev_subject}, #{ev_content}, #{ev_notice})
+	 	insert into ev_board (ev_idx, ev_sellcvs, ev_subject, ev_content, ev_notice, ev_filename, id, nickname) 
+	 	values (ev_board_idx_seq.nextval, #{ev_sellcvs}, #{ev_subject}, #{ev_content}, #{ev_notice}, #{ev_filename, jdbcType=VARCHAR}, #{id}, #{nickname})
  	</insert>
  	
  	 <select id="evSelectCount" resultType="int">

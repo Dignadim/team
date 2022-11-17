@@ -52,7 +52,7 @@ public class ItemService {
 		ItemList itemList = null;
 		ItemDAO dao = ItemDAO.getInstance();
 		
-		int pageSize = 10;
+		int pageSize = 12;
 		int totalCount = dao.selectItemCount(mapper);
 		
 		itemList = new ItemList(pageSize, totalCount, currentPage);
@@ -168,11 +168,11 @@ public class ItemService {
 		mapper.close();
 	}
 	
-	public String selectAvgID(int idx) {
+	public String selectAvgID(ItemAvgVO ao) {
 		System.out.println("ItemService의 selectAvgID()");
 		SqlSession mapper = MySession.getSession();
 		
-		String avgID = ItemAvgDAO.getInstance().selectAvgID(mapper, idx);
+		String avgID = ItemAvgDAO.getInstance().selectAvgID(mapper, ao);
 		
 		mapper.close();
 		return avgID;
@@ -189,12 +189,6 @@ public class ItemService {
 		mapper.close();
 		return evList;
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	//	특정 카테고리의 상품만 리스트로 반환해주는 용도
@@ -267,6 +261,36 @@ class MiniComparator implements Comparator<ItemVO>
             return 0;  
         }  
     }
+
+    public ItemList itemListSort(int currentPage, int mode) {
+		System.out.println("ItemService의 itemListSort()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemList itemList = null;
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		int pageSize = 10;
+		int totalCount = dao.selectItemCount(mapper);
+		
+		itemList = new ItemList(pageSize, totalCount, currentPage);
+		
+		HashMap<String, Integer> hmap = new HashMap<>();
+		hmap.put("startNo", itemList.getStartNo());
+		hmap.put("endNo", itemList.getEndNo());		
+		
+		if (mode == 1) {
+			itemList.setList(dao.selectItemList(mapper, hmap));
+		} else if (mode == 2) {
+			itemList.setList(dao.selectItemListReverse(mapper, hmap));			
+		} else if (mode == 3) {
+			itemList.setList(dao.selectItemListHigher(mapper, hmap));			
+		} else {
+			itemList.setList(dao.selectItemListLower(mapper, hmap));						
+		}
+		
+		mapper.close();		
+		return itemList;
+	}
 }
 
 

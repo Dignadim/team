@@ -15,7 +15,7 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	int currentPage = 1;
+ 	int currentPage = 1;
 	try {
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	} catch (NumberFormatException e) {
@@ -41,7 +41,6 @@
 	request.setAttribute("freeboardList", freeboardList);
 	request.setAttribute("currentPage", currentPage);
 	pageContext.forward("listView.jsp");
-	
 %>
 
 

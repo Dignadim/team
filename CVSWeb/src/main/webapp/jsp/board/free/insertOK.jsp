@@ -17,11 +17,17 @@
 	<jsp:useBean id="fb_vo" class="project.board.free.FreeboardVO">
 		<jsp:setProperty property="*" name="fb_vo"/>
 	</jsp:useBean>
-	<%-- ${fb_vo} --%>
+	
+	<jsp:useBean id="mb_vo" class="project.member.MemberVO">
+		<jsp:setProperty property="*" name="mb_vo"/>
+	</jsp:useBean>
 	
 	
 <%
-	out.println("<script>");
+	fb_vo.setId(mb_vo.getId());
+	fb_vo.setNickname(mb_vo.getNickname());
+	
+ 	out.println("<script>");
 	out.println("alert('게시글이 등록되었습니다.')");
 	FreeboardService.getInstance().fbInsert(fb_vo);
 	out.println("location.href='list.jsp'");

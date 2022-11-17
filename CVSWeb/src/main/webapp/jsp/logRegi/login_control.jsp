@@ -23,13 +23,13 @@ String action = request.getParameter("action");
 	out.println("<script>");
 	if(action.equals("login") && v.getId() != null){
 		MemberService m = MemberService.getInstance();
-		MemberVO vo = m.searchID(v.getId().trim());
-			
+		MemberVO vo = m.searchID(v.getId().trim());		
 			if(vo != null){
 		 		if(vo.getId().equals(v.getId().trim())){
 					if(vo.getPassword().trim().equals(v.getPassword().trim())){
 						out.println("alert('로그인되었습니다.')");
 						out.println("location.href='../connectMain.jsp'");
+						//out.println("history.go(2)'");
 						session.setAttribute("id", vo.getId());
 						session.setAttribute("nickname", vo.getNickname());
 						session.setAttribute("email", vo.getEmail());

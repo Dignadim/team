@@ -8,7 +8,7 @@
 	
 	<!-- 상품 1건을 저장한다. -->
 	<insert id="itemInsert" parameterType="item_vo">
-		insert into item (idx, category, itemname, itemprice, hit, sellCVS, averscore, eventType, itemImage) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit}, #{sellCVS}, #{averscore}, #{eventType}, #{itemImage})
+		insert into item (idx, category, itemname, itemprice, hit, sellCVS, averscore, eventType, itemimage) values (item_idx_seq.nextval, #{category}, #{itemName}, #{itemPrice}, #{hit}, #{sellCVS}, #{averscore}, #{eventType}, #{itemImage})
 	</insert>
 
 	<!-- 모든 글을 얻어온다. -->
@@ -32,6 +32,36 @@
 			select * from (
 				select rownum rnum, TT.* from (
 					select * from item order by idx desc 
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo} 		
+		]]>
+	 </select>
+	
+	 <select id="selectItemListReverse" parameterType="java.util.HashMap" resultType="item_vo">
+	 	<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from item order by idx 
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo} 		
+		]]>
+	 </select>
+	
+	 <select id="selectItemListHigher" parameterType="java.util.HashMap" resultType="item_vo">
+	 	<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from item order by itemPrice desc 
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo} 		
+		]]>
+	 </select>
+	
+	 <select id="selectItemListLower" parameterType="java.util.HashMap" resultType="item_vo">
+	 	<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from item order by itemPrice
 				) TT where rownum <= #{endNo}
 			) where rnum >= #{startNo} 		
 		]]>
@@ -116,8 +146,8 @@
 		update item set averscore = #{newAvg} where idx = #{itemIdx}
 	</update>
 
-	<select id="selectAvgID" parameterType="int" resultType="String">
-		select ID from itemavg where itemidx = #{idx} 
+	<select id="selectAvgID" parameterType="item_ao" resultType="String">
+		select ID from itemavg where itemidx = #{itemIdx} and id = #{ID}
 	</select>
 
 	 <select id="selectEVList" resultType="ev_vo">
@@ -125,30 +155,8 @@
 			select * from ev_board where extract (month from ev_date) = extract (month from sysdate) and extract (year from ev_date) = extract (year from sysdate)
 	 	]]>	
 	 </select>
-	 
+
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

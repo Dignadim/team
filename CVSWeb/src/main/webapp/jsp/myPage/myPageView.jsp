@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 뷰</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/myPageView.css">
 
 </head>
@@ -26,7 +27,7 @@
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="./item/itemList.jsp">모든 상품 보기</a>
+					    	<a class="nav-link" href="../item/itemList.jsp">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
@@ -42,8 +43,8 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
+								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -58,15 +59,15 @@
 				</div>
 				<div class="col-sm-2">
 					<c:if test="${id == null}">
-						<button type="button" class="btn btn-primary" onclick="location.href='./logRegi/login_form.jsp'">로그인</button>	
+						<button type="button" class="btn btn-primary" onclick="location.href='../logRegi/login_form.jsp'">로그인</button>	
 					</c:if>				
 					<c:if test="${id != null}">
-						<button type="button" class="btn btn-danger" onclick="location.href='./logRegi/login_out.jsp'">로그아웃</button>
+						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
 						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="./item/itemInsert.jsp">관리 페이지로</button>	
+							<button class="btn btn-info" style="padding: 6px;" onclick="../item/itemInsert.jsp">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
-							<button type="button" class="btn btn-warning" onclick="location.href='./myPage/myPageView.jsp'">마이페이지</button>	
+							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
 							<input type="hidden" value="${grade}">
 						</c:if>
 					</c:if>				
@@ -87,7 +88,7 @@
 <div id="content">
 <div class="b">
 	<div class="container mt-3" align="center" >
-	  <img src="./profiles/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
+	  <img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
 	  <h2>프로필 사진</h2>	       
 	  회원 자기소개
 </div>

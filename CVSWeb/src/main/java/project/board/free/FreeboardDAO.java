@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import project.member.MemberVO;
+
 public class FreeboardDAO {
 
 	private static FreeboardDAO instance = new FreeboardDAO();
@@ -48,19 +50,10 @@ public class FreeboardDAO {
 		return (ArrayList<FreeboardVO>) mapper.selectList("fbSelectNotice");
 	}
 	
-	
-	
-	
-	
-	
 	// 어드민List로가는 코드
-	
-	
-	
-	public ArrayList<FreeboardVO> abSelectList(SqlSession mapper) {
-		System.out.println("AdminboardDAO의 abSelectList() 메소드");
-		return (ArrayList<FreeboardVO>) mapper.selectList("abSelectList");
-	}
-
-	
+		public ArrayList<FreeboardVO> abSelectList(SqlSession mapper) {
+			System.out.println("AdminboardDAO의 abSelectList() 메소드");
+			return (ArrayList<FreeboardVO>) mapper.selectList("abSelectList");
+		}
+	// 어드민 코드 끝
 }

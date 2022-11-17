@@ -42,6 +42,12 @@ public class MemberService {
 		
 		return vo;
 	}
+	public MemberVO selectById(String id) {
+		SqlSession mapper = MySession.getSession();
+		MemberVO vo = MemberDAO.getInstance().selectById(mapper, id);
+		mapper.close();
+		return vo;
+	}
 	
 	public void update(MemberVO vo) {
 		

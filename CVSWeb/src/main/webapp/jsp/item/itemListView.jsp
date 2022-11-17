@@ -83,10 +83,10 @@
 	<div class="m-3">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto;">
 			<tr class="table-primary">
-				<th colspan="6" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px;">모든 상품 보기</th>
+				<th colspan="4" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px; font-size: 30px;">모든 상품 보기</th>
 			</tr>			
 			<tr>
-				<td colspan="2">
+				<td colspan="1">
 					<select class="form-select" width="100" onchange="itemSelectChange()" id="selectChange">
 						<option selected>전체</option>
 						<option>편의점별</option>
@@ -100,11 +100,8 @@
 						<option selected>(상위 항목 선택)</option>
 					</select>
 				</td>
-				<td colspan="1">
-					<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='itemList.jsp?currentPage=' + ${itemList.currentPage}">
-				</td>
-				<td colspan="1">
-					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 250px;">
+				<td colspan="1" align="right">
+					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
 				</td>
 				<td colspan="1">
 					<button type="button" class="btn btn-primary" onclick="searchFunction()">검색</button>
@@ -112,17 +109,19 @@
 			</tr>
 			
 			<tr>
-				<td colspan="6" align="right">
+				<td colspan="3" align="left">
+					<input type="button" class="btn btn-outline-info" value="최신순" onclick="sort('${itemList.currentPage}', 1)">
+					<input type="button" class="btn btn-outline-info" value="오래된순" onclick="sort('${itemList.currentPage}', 2)">
+					<input type="button" class="btn btn-outline-info" value="높은 가격 순" onclick="sort('${itemList.currentPage}', 3)">
+					<input type="button" class="btn btn-outline-info" value="낮은 가격 순" onclick="sort('${itemList.currentPage}', 4)"> 
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='itemList.jsp?currentPage=' + ${itemList.currentPage}">
+				</td>
+				<td colspan="1" align="right" style="vertical-align: middle;">
 					${itemList.totalCount} 건 (${itemList.currentPage} / ${itemList.totalPage})<br/>	
 				</td>
 			</tr>
 			<tr class="table table-light">
-				<th style="text-align: center; width: 100px">상품번호</th>
-				<th style="text-align: center; width: 100px">편의점</th>
-				<th style="text-align: center; width: 200px">카테고리</th>
-				<th style="text-align: center; width: 500px">상품명</th>
-				<th style="text-align: center; width: 200px">가격</th>
-				<th style="text-align: center; width: 100px">행사여부</th>
+				<th colspan="4" style="text-align: center; font-size: 20px;">상품 목록</th>
 			</tr>		
 		
 			<tbody id="ajaxTable">
@@ -140,7 +139,45 @@
 			</c:if>
 			
 			<c:if test="${list.size() != 0}">
-				<c:forEach var="vo" items="${list}">
+					<tr>
+						<c:forEach var="vo" items="${list}" varStatus="i">
+							<td>
+								<div style="padding: 30px 10px;">
+									<a href="itemIncrement.jsp?idx=${vo.idx}&currentPage=${itemList.currentPage}&job=itemView">
+										<img alt="상품 이미지" class="rounded" src="../${vo.itemImage}" style="height: 250px; margin: 10px;"><br/>
+										<span style="font-size: 20px;">${vo.itemName}</span><br/>
+									</a>
+									<c:if test="${vo.sellCVS.trim() == 'CU'}">
+										<img alt="CU logo" src="../../images/cu.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${vo.sellCVS == 'GS25'}">
+										<img alt="GS logo" src="../../images/gs25.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${vo.sellCVS == '세븐일레븐'}">
+										<img alt="711 logo" src="../../images/7eleven.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${vo.sellCVS == 'ministop'}">
+										<img alt="mini logo" src="../../images/ministop.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${vo.sellCVS == '이마트24'}">
+										<img alt="emart logo" src="../../images/emart24.png" height="25px"><br/>
+									</c:if>
+									<c:if test="${vo.sellCVS == '기타 편의점'}">
+										<img alt="other logo" src="../../images/other.png" height="25px"><br/>
+									</c:if>
+								</div>
+							</td>				
+						<c:if test="${i.count % 4 == 0}">
+								<tr>
+									<td colspan="4">
+										&nbsp;
+									</td>
+								</tr>
+						</c:if>
+						</c:forEach>
+					</tr>
+				
+				<%-- 
 					<tr>
 						<td align="center">
 							${vo.idx}
@@ -161,7 +198,9 @@
 							${vo.eventType}
 						</td>					
 					</tr>
-				</c:forEach>
+					
+					 --%>
+
 			</c:if>
 	
 			<!-- 페이지 이동 버튼 -->
@@ -230,7 +269,7 @@
 				</div>
 				<div class="col-sm-6">
 					<br/>
-					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동혁&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
 					&nbsp;<br/>
 				</div>
 				<div class="col-sm-3">

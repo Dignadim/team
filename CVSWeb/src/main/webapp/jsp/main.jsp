@@ -43,7 +43,7 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="./board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -287,7 +287,7 @@
 				</div>
 				<div class="col-sm-6">
 					<br/>
-					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동혁&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
 					&nbsp;<br/>
 				</div>
 				<div class="col-sm-3">

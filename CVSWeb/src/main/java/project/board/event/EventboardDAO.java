@@ -47,5 +47,9 @@ public class EventboardDAO {
 		System.out.println("EventboardDAO의 evSelectNotice() 메소드");
 		return (ArrayList<EventboardVO>) mapper.selectList("evSelectNotice");
 	}
+	public void evUpload(SqlSession mapper, EventboardVO ev_vo) {
+		System.out.println("EventboardDAO의 evUpload() 메소드");
+		mapper.update("evUpload", ev_vo);
+	}
 	
 }

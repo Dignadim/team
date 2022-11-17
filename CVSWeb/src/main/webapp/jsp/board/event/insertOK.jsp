@@ -1,10 +1,7 @@
 <%@page import="project.board.event.EventboardVO"%>
 <%@page import="project.board.event.EventboardService"%>
-<%@page import="project.board.free.FreeboardService"%>
 <%@page import="java.io.File"%>
 <%@page import="java.io.IOException"%>
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -23,13 +20,20 @@
 		<jsp:setProperty property="*" name="ev_vo"/>
 	</jsp:useBean>
 	<%-- ${ev_vo} --%>
+	<jsp:useBean id="mb_vo" class="project.member.MemberVO">
+		<jsp:setProperty property="*" name="mb_vo"/>
+	</jsp:useBean>
+	<%-- ${mb_vo} --%>
 	
-<%
- 	out.println("<script>");
+<%	
+	ev_vo.setId(mb_vo.getId());
+	ev_vo.setNickname(mb_vo.getNickname());
+
+	out.println("<script>");
 	out.println("alert('게시글이 등록되었습니다.')");
 	EventboardService.getInstance().evInsert(ev_vo);
 	out.println("location.href='list.jsp'");
-	out.println("</script>");
+	out.println("</script>"); 
 %>
 
 </body>

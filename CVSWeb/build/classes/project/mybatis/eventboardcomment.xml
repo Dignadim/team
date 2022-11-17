@@ -3,8 +3,8 @@
 <mapper namespace="project.board.event.EventboardCommentVO">
 
 	<insert id="evInsertComment" parameterType="evc_vo">
-		insert into ev_boardcomment (evc_idx, evc_gup, evc_content) 
-			values (ev_boardcomment_idx_seq.nextval, #{evc_gup}, #{evc_content})
+		insert into ev_boardcomment (evc_idx, evc_gup, evc_content, id, nickname) 
+			values (ev_boardcomment_idx_seq.nextval, #{evc_gup}, #{evc_content}, #{id}, #{nickname})
 	</insert>
 	
 	<select id="evCommentCount" parameterType="int" resultType="int">

@@ -14,7 +14,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/main.css">
-<script type="text/javascript" src="./js/updateOrDelete.js" defer></script>
+<script type="text/javascript" src="../../js/itemInsert.js" defer></script>
 </head>
 <body>
 
@@ -39,7 +39,8 @@
 						<tr>
 						<th style="text-align: center; width: 150px; vertical-align: middle;">상품 사진</th>
 							<td>
-								<input type="file" name="itemImage"/><br/>
+								<input type="text" class="form-control" name="itemImage" value="${vo.itemImage}" placeholder="사진 업로드 버튼을 클릭하세요.">
+								<input type="button" class="btn btn-outline-warning" onclick="openWin()" value="사진 수정"><br/>
 							</td>
 						</tr>
 						<tr>
@@ -58,10 +59,30 @@
 							<th style="text-align: center; width: 150px; vertical-align: middle;">카테고리</th>
 							<td>
 								<select class="form-select" name="category">
-									<option>과자</option>
-									<option>음료</option>
-									<option>즉석식품</option>
-									<option>생필품</option>
+									<c:if test="${vo.category.trim() == '과자'}">
+										<option selected>과자</option>
+									</c:if>
+									<c:if test="${vo.category.trim() != '과자'}">
+										<option>과자</option>
+									</c:if>
+									<c:if test="${vo.category.trim() == '음료'}">
+										<option selected>음료</option>
+									</c:if>
+									<c:if test="${vo.category.trim() != '음료'}">
+										<option>음료</option>
+									</c:if>
+									<c:if test="${vo.category.trim() == '즉석식품'}">
+										<option selected>즉석식품</option>
+									</c:if>
+									<c:if test="${vo.category.trim() != '즉석식품'}">
+										<option>즉석식품</option>
+									</c:if>
+									<c:if test="${vo.category.trim() == '생필품'}">
+										<option selected>생필품</option>
+									</c:if>
+									<c:if test="${vo.category.trim() != '생필품'}">
+										<option>생필품</option>
+									</c:if>
 								</select>
 							</td>
 						</tr>
@@ -69,12 +90,42 @@
 							<th style="text-align: center; width: 150px; vertical-align: middle;">판매 편의점</th>
 							<td>
 								<select class="form-select" name="sellCVS">
-									<option>CU</option>
-									<option>GS25</option>
-									<option>세븐일레븐</option>
-									<option>ministop</option>
-									<option>이마트24</option>
-									<option>기타 편의점</option>
+									<c:if test="${vo.sellCVS.trim() == 'CU'}">
+										<option selected>CU</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != 'CU'}">
+										<option>CU</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() == 'GS25'}">
+										<option selected>GS25</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != 'GS25'}">
+										<option>GS25</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() == '세븐일레븐'}">
+										<option selected>세븐일레븐</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != '세븐일레븐'}">
+										<option>세븐일레븐</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() == 'ministop'}">
+										<option selected>ministop</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != 'ministop'}">
+										<option>ministop</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() == '이마트24'}">
+										<option selected>이마트24</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != '이마트24'}">
+										<option>이마트24</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() == '기타 편의점'}">
+										<option selected>기타 편의점</option>
+									</c:if>								
+									<c:if test="${vo.sellCVS.trim() != '기타 편의점'}">
+										<option>기타 편의점</option>
+									</c:if>					
 								</select>
 							</td>
 						</tr>
@@ -82,11 +133,36 @@
 							<th style="text-align: center; width: 150px; vertical-align: middle;">행사</th>
 							<td>
 								<select class="form-select" name="eventType">
-									<option selected>(행사없음)</option>
-									<option>1+1</option>
-									<option>2+1</option>
-									<option>포인트 적립</option>
-									<option>카드사 할인</option>
+									<c:if test="${vo.eventType.trim() == '(행사없음)'}">
+										<option selected>(행사없음)</option>
+									</c:if>								
+									<c:if test="${vo.eventType.trim() != '(행사없음)'}">
+										<option>(행사없음)</option>
+									</c:if>
+									<c:if test="${vo.eventType.trim() == '1+1'}">
+										<option selected>1+1</option>
+									</c:if>								
+									<c:if test="${vo.eventType.trim() != '1+1'}">
+										<option>1+1</option>
+									</c:if>
+									<c:if test="${vo.eventType.trim() == '2+1'}">
+										<option selected>2+1</option>
+									</c:if>								
+									<c:if test="${vo.eventType.trim() != '2+1'}">
+										<option>2+1</option>
+									</c:if>
+									<c:if test="${vo.eventType.trim() == '포인트 적립'}">
+										<option selected>포인트 적립</option>
+									</c:if>								
+									<c:if test="${vo.eventType.trim() != '포인트 적립'}">
+										<option>포인트 적립</option>
+									</c:if>
+									<c:if test="${vo.eventType.trim() == '카드사 할인'}">
+										<option selected>카드사 할인</option>
+									</c:if>								
+									<c:if test="${vo.eventType.trim() != '카드사 할인'}">
+										<option>카드사 할인</option>
+									</c:if>
 								</select>
 							</td>
 						</tr>

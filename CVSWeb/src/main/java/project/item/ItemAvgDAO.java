@@ -29,9 +29,9 @@ public class ItemAvgDAO {
 		mapper.update("UpdateScore", ao);
 	}
 	
-	public String selectAvgID(SqlSession mapper, int idx) {
+	public String selectAvgID(SqlSession mapper, ItemAvgVO ao) {
 		System.out.println("ItemAvgDAO의 selectAvgID() 메소드 실행");
-		return (String) mapper.selectOne("selectAvgID", idx);
+		return (String) mapper.selectOne("selectAvgID", ao);
 	}
 
 }

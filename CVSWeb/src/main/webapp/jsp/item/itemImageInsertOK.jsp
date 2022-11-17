@@ -2,6 +2,8 @@
 <%@page import="java.io.IOException"%>
 <%@page import="java.io.File"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.util.Enumeration" %>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="project.item.ItemService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -24,13 +26,36 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 	%>
-
-	<jsp:useBean id="vo" class="project.item.ItemVO">
+	
+ 	<jsp:useBean id="vo" class="project.item.ItemVO">
 		<jsp:setProperty property="*" name="vo"/>
 	</jsp:useBean>
 	
 	<%
-	// itemImageInsert.jsp에서 넘어온 데이터를 메인글 테이블에 저장하는 메소드를 실행한다.
+	/*	String realFolder="";
+	String saveFolder = "images";		//사진을 저장할 경로
+	String encType = "UTF-8";				//변환형식
+	int maxSize=5*1024*1024;
+	
+	ServletContext context = this.getServletContext(); // 절대 경로를 얻는다.
+	realFolder = context.getRealPath(saveFolder); // saveFolder의 절대 경로를 얻는다
+	
+	MultipartRequest multi = null;
+	
+	// 파일 업로드를 직접적으로 담당
+	multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+	
+	// form으로 전달받은 데이터를 가져온다.
+	String itemImage = multi.getFilesystemName("itemImage");
+	vo.setItemImage(itemImage);
+	
+	if (itemImage != null) {
+		File oldFile = new File(realFolder + "\\" + itemImage);
+		File newFile = new File(realFolder + "\\" + vo.getIdx() + "사진.jpg");
+		oldFile.renameTo(newFile);
+	} 
+	
+ 	// itemImageInsert.jsp에서 넘어온 데이터를 메인글 테이블에 저장하는 메소드를 실행한다.
 		MultipartRequest multipartRequest = new MultipartRequest(request, application.getRealPath("/images"), 5 * 1024 * 1024 * 1024, "UTF-8", new DefaultFileRenamePolicy());
 		// getOriginalFileName(): 사용자가 업로드한 파일 이름을 얻어온다.		
 		String filename = multipartRequest.getOriginalFileName("itemImage");
@@ -58,12 +83,10 @@
 		} else {
 			String itemRealPath = application.getRealPath("/images") + "/" + fileRealname;
 			vo.setItemImage(itemRealPath);
-		}
-		// System.out.println(vo.getItemImage());
-	%>	
-		사진 업로드 완료
-		
-		<input type="button" class="btn btn-outline-secondary" value="돌아가기" onclick="thisClose('${vo.itemImage}')">
-	
+		}  */
+	%>	 
+		사진 선택 완료
+		<!-- <input type="button" class="btn btn-outline-secondary" value="돌아가기" onclick="thisClose()"> -->
+		<input type="button" class="btn btn-outline-secondary" value="창 닫기" onclick="thisClose('${vo.getItemImage()}')"> 	
 </body>
 </html>

@@ -3,8 +3,8 @@
 <mapper namespace="project.board.free.FreeboardVO">
 
  	<insert id="fbInsert" parameterType="fb_vo">
-	 	insert into fb_board (fb_idx, fb_subject, fb_content, fb_notice) 
-	 	values (fb_board_idx_seq.nextval, #{fb_subject}, #{fb_content}, #{fb_notice})
+	 	insert into fb_board (fb_idx, fb_subject, fb_content, fb_notice, id, nickname) 
+	 	values (fb_board_idx_seq.nextval, #{fb_subject}, #{fb_content}, #{fb_notice}, #{id}, #{nickname})
  	</insert>
  	
  	 <select id="fbSelectCount" resultType="int">

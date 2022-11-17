@@ -11,7 +11,10 @@ public class EventboardVO {
 	private int ev_hit;
 	private Date ev_date;
 	private String ev_notice;
+	private String ev_filename;
 	private int ev_commentCount;
+	private String id;
+	private String nickname;
 	
 	public int getEv_idx() {
 		return ev_idx;
@@ -55,18 +58,37 @@ public class EventboardVO {
 	public void setEv_notice(String ev_notice) {
 		this.ev_notice = ev_notice;
 	}
+	public String getEv_filename() {
+		return ev_filename;
+	}
+	public void setEv_filename(String ev_filename) {
+		this.ev_filename = ev_filename;
+	}
 	public int getEv_commentCount() {
 		return ev_commentCount;
 	}
 	public void setEv_commentCount(int ev_commentCount) {
 		this.ev_commentCount = ev_commentCount;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	@Override
 	public String toString() {
 		return "EventboardVO [ev_idx=" + ev_idx + ", ev_sellcvs=" + ev_sellcvs + ", ev_subject=" + ev_subject
 				+ ", ev_content=" + ev_content + ", ev_hit=" + ev_hit + ", ev_date=" + ev_date + ", ev_notice="
-				+ ev_notice + ", ev_commentCount=" + ev_commentCount + "]";
+				+ ev_notice + ", ev_filename=" + ev_filename + ", ev_commentCount=" + ev_commentCount + ", id=" + id
+				+ ", nickname=" + nickname + "]";
 	}
 	
 }

@@ -1,4 +1,6 @@
-//	제목, 내용의 빈칸을 확인하는 함수
+//=========================insert========================
+
+//	게시글 작성 시, 제목과 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function insertEmptyChk() {
 	let fb_subject = $('#fb_subject').val();
 	let fb_content = $('#fb_content').val();
@@ -35,32 +37,9 @@ function insertEmptyChk() {
 	});
 }
 
-function updateComment(fbc_idx, mode, title, fbc_content) {
+//=========================Comment========================
 
-	let frm = document.commentForm;
-	frm.fbc_idx.value = fbc_idx;
-	frm.mode.value = mode;
-	frm.commentBtn.value = title;	
-	while (fbc_content.indexOf('<br/>') != -1) {
-		fbc_content = fbc_content.replace('<br/>', '\r\n');
-	}
-	frm.fbc_content.value = fbc_content;	
-	frm.fbc_content.focus();	
-}
-
-function deleteComment(fbc_idx, mode) {
-	let frm = document.commentForm;
-	frm.fbc_idx.value = fbc_idx; 
-	frm.mode.value = mode;
-	let returnValue = confirm('삭제된 댓글은 복구가 어렵습니다.\n그래도 삭제하시겠습니까?');
-	if(returnValue == true){
-		frm.submit();
-	}
-	
-}
-
-
-
+//	댓글 작성 시, 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function commentEmptyChk() {
 	let fbc_content = $('#fbc_content').val();
 	
@@ -86,8 +65,37 @@ function commentEmptyChk() {
 	});
 }
 
+//	댓글 수정 시, 입력폼을 수정폼으로 바꿔주는 함수
+function updateComment(fbc_idx, mode, title, fbc_content) {
 
+	let frm = document.commentForm;
+	frm.fbc_idx.value = fbc_idx;
+	frm.mode.value = mode;
+	frm.commentBtn.value = title;	
+	while (fbc_content.indexOf('<br/>') != -1) {
+		fbc_content = fbc_content.replace('<br/>', '\r\n');
+	}
+	frm.fbc_content.value = fbc_content;	
+	frm.fbc_content.focus();	
+}
 
+//	댓글 삭제 시, confilm을 통해 경고 메시지를 띄우고 확인 버튼 시 삭제를 진행시켜주는 함수
+function deleteComment(fbc_idx, mode) {
+	let frm = document.commentForm;
+	frm.fbc_idx.value = fbc_idx; 
+	frm.mode.value = mode;
+	let returnValue = confirm('삭제된 댓글은 복구가 어렵습니다.\n그래도 삭제하시겠습니까?');
+	if(returnValue == true){
+		frm.submit();
+	} else {
+		frm.fbc_content.value = '';
+		frm.commentBtn.value = '등록';
+		frm.mode.value = 1;
+	}
+	
+}
+
+	
 
 
 

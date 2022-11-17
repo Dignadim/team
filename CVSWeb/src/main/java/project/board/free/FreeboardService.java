@@ -5,6 +5,8 @@ import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
 
+import project.member.MemberDAO;
+import project.member.MemberVO;
 import project.mybatis.MySession;
 
 public class FreeboardService {
@@ -80,9 +82,6 @@ public class FreeboardService {
 		mapper.close();
 		return fb_notice;
 	}
-	
-	
-	
 	
 	
 	

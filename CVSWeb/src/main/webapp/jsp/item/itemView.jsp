@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -90,7 +91,7 @@
 			<tbody>
 				<tr>
 					<td rowspan="7" width="550px;">
-						<img alt="상품 이미지" src="../${vo.itemImage}" style="width: 500px;">
+						<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 500px;">
 					</td>
 				</tr>
 				<tr>
@@ -317,7 +318,7 @@
 				</div>
 				<div class="col-sm-6">
 					<br/>
-					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동혁&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
 					&nbsp;<br/>
 				</div>
 				<div class="col-sm-3">

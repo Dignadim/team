@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -51,10 +52,16 @@
 						<th style="text-align: center; width: 150px; vertical-align: middle;">카테고리</th>
 						<td>
 							<select class="form-select" name="category">
-								<option selected>과자</option>
-								<option>음료</option>
+								<option selected>간편식품</option>
+								<option>가공식품</option>
 								<option>즉석식품</option>
-								<option>생필품</option>
+								<option>신선식품</option>
+								<option>과자/빵</option>
+								<option>아이스크림</option>
+								<option>음료</option>
+								<option>잡화</option>
+								<option>기호식품</option>
+								<option>기타상품</option>
 							</select>
 						</td>
 					</tr>
@@ -83,6 +90,8 @@
 							</select>
 						</td>
 					</tr>
+				</tbody>
+				<tfoot>
 					<tr>
 						<td colspan="1" align="center">
 							<input class="btn btn-success" type="button" onclick="location.href='../connectMain.jsp'" value="메인으로">
@@ -91,7 +100,7 @@
 							<input class="btn btn-primary" type="submit" value="등록">
 						</td>
 					</tr>					
-				</tbody>
+				</tfoot>
 			</table>
 		</form>
 	</div>

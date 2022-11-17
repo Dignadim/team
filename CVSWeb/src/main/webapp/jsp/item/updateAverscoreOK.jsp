@@ -28,16 +28,20 @@
 	</jsp:useBean>
 	
 	<%
-	// System.out.println(ao);
+	System.out.println(ao);
 	ItemService service = ItemService.getInstance();
 	out.println("<script>"); 
 	try {
-		String avgID = service.selectAvgID(ao.getItemIdx());
-		if (ao.getUpdateScore() > 5 || ao.getUpdateScore()< 0) {		
-			out.println("alert('0 ~ 5 사이의 값을 입력하세요.')");			
+		String avgID = service.selectAvgID(ao);
+		if (avgID != null) {
+			out.println("alert('평점을 이미 등록했습니다.')");						
 		} else {
-			service.averscoreUpdate(ao);
-			out.println("alert('평점을 등록했습니다.')");					
+			if (ao.getUpdateScore() > 5 || ao.getUpdateScore()< 0) {		
+				out.println("alert('0 ~ 5 사이의 값을 입력하세요.')");			
+			} else {
+				service.averscoreUpdate(ao);
+				out.println("alert('평점을 등록했습니다.')");					
+			}			
 		}
 	} catch (NumberFormatException e) {
 		out.println("alert('숫자를 입력하세요.')");

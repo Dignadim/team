@@ -1,4 +1,6 @@
-//	제목, 내용의 빈칸을 확인하는 함수
+//=========================insert========================
+
+//	게시글 작성 시, 제목과 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function insertEmptyChk() {
 	let ev_sellcvs = $('#ev_sellcvs').val();
 	let ev_subject = $('#ev_subject').val();
@@ -40,6 +42,7 @@ function insertEmptyChk() {
 	});
 }
 
+//	게시글 작성 시, 머리말을 [공지]로 설정하면 일반글에서 공지글로 바뀌게 해주는 함수(수정에도 적용)
 function notice() {
 	let ev_sellcvs = $('#ev_sellcvs').val()
 	let noticeOn = document.getElementById('noticeOn');
@@ -52,6 +55,20 @@ function notice() {
 	console.log(noticeOn.value);
 }
 
+function uploadWin() {
+	let url = './eventImageInsert.jsp';
+	let title = '이미지 업로드';
+	let option = 'top=50px, left=100px, width=500px, height=600px';
+	window.open(url, title, option);
+}
+
+function thisClose(ev_filename) {
+	opener.document.getElementById('ev_filename').value = ev_filename;
+	self.close();
+}
+//=========================Update========================
+
+//	게시글 수정 시, 기존에 머리말 옵션에 selected를 걸어주는 함수
 function fixSelected() {
 	let before = document.getElementById('beforeCvs').value;
 	let options = document.getElementsByTagName('option')
@@ -62,6 +79,9 @@ function fixSelected() {
 	} 
 }
 
+//=========================Comment========================
+
+//	댓글 작성 시, 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function commentEmptyChk() {
 	let evc_content = $('#evc_content').val();
 	
@@ -87,6 +107,7 @@ function commentEmptyChk() {
 	});
 }
 
+//	댓글 수정 시, 입력폼을 수정폼으로 바꿔주는 함수
 function updateComment(evc_idx, mode, title, evc_content) {
 
 	let frm = document.commentForm;
@@ -100,6 +121,7 @@ function updateComment(evc_idx, mode, title, evc_content) {
 	frm.evc_content.focus();	
 }
 
+//	댓글 삭제 시, confilm을 통해 경고 메시지를 띄우고 확인 버튼 시 삭제를 진행시켜주는 함수
 function deleteComment(evc_idx, mode) {
 	let frm = document.commentForm;
 	frm.evc_idx.value = evc_idx; 
@@ -107,6 +129,10 @@ function deleteComment(evc_idx, mode) {
 	let returnValue = confirm('삭제된 댓글은 복구가 어렵습니다.\n그래도 삭제하시겠습니까?');
 	if(returnValue == true){
 		frm.submit();
+	} else {
+	frm.evc_content.value = '';
+	frm.commentBtn.value = '등록';
+	frm.mode.value = 1;
 	}
 	
 }

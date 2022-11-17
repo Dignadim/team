@@ -6,7 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>회원정보 수정</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/myPageView.css">
 <script type="text/javascript" src="../../js/myPage.js"></script>
 </head>
@@ -23,7 +25,7 @@
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="./item/itemList.jsp">모든 상품 보기</a>
+					    	<a class="nav-link" href="../item/itemList.jsp">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
@@ -39,8 +41,8 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
+								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -54,8 +56,8 @@
 					<button type="button" class="btn btn-primary" onclick="#" style="display:none;">검색</button>
 				</div>
 				<div class="col-sm-2">
-						<button type="button" class="btn btn-danger" onclick="location.href='./logRegi/login_out.jsp'">로그아웃</button>
-						<button type="button" class="btn btn-warning" onclick="location.href='./myPage/myPageView.jsp'">마이페이지</button>	
+						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
+						<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
 				</div>
 			</nav>
 		</div>
@@ -86,7 +88,7 @@
 	</div>
 </div>
 <div class="b"> 
-	<form id=f action="./changeInformationOK.jsp"  method="post"  align="center" onsubmit="return checkInfo(this);">
+	<form id=f action="./selectById.jsp"  method="post"  align="center" onsubmit="return checkInfo(this);">
 		<table align="center" border="1" cellpadding="5" cellspacing="0">
 			<tr>
 				<th>
@@ -94,7 +96,7 @@
 					    <label for="id" class="form-label">ID</label>
 					  </div>
 				<th>
-					<span>${id}</span>
+					<input id="id" name="id" value="${id}" readonly="readonly" style="background-color: gray;">
 				</th>
 				
 			</tr>
@@ -105,7 +107,7 @@
 					</div>
 				</th>
 				<td>
-					<input id="nickname" type="text" value="${nickname}">
+					<input id="nickname" name="nickname" type="text" value="${nickname}">
 				</td>
 			</tr>
 			<tr>
@@ -115,7 +117,7 @@
 					</div>
 				</th>
 				<td>
-					<input id="email" type="email" value="${email}">
+					<input id="email" name="email" type="email" value="${email}">
 				</td>
 			</tr>
 			<tr>
@@ -125,7 +127,7 @@
 					</div>
 				</th>
 				<td>
-					${signupdate.year + 1900} - ${signupdate.month + 1} - ${signupdate.date}
+					<input id="signupdate" name="signupdate" value="${signupdate.year + 1900} - ${signupdate.month + 1} - ${signupdate.date}" readonly="readonly" style="background-color: gray;">
 				</td>
 			</tr> 
 			<tr>
@@ -135,7 +137,7 @@
 					</div>
 				</th>
 				<td>
-					<input id="password" type="password" value="${password}">
+					<input id="password" name="password" type="password" value="${password}">
 				</td>
 			</tr>
 			<tr>
@@ -145,7 +147,7 @@
 					</div>
 				</th>
 				<td>
-					<input id="password2" type="password" value="${password}">
+					<input id="password2" name="password2" type="password" value="${password}">
 				</td>
 			</tr>					
 		<tr>
@@ -201,9 +203,10 @@
 			</div>
 		</div>
 	</footer>
-		  
+		 
 
 </div>
+<input type="hidden" name="id" value="${id}"/> 
 
 </body>
 </html>

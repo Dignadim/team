@@ -11,6 +11,8 @@ public class FreeboardVO {
 	private int fb_hit;
 	private String fb_notice="no";
 	private int fb_commentCount;
+	private String id;
+	private String nickname;
 	
 	public int getFb_idx() {
 		return fb_idx;
@@ -54,12 +56,26 @@ public class FreeboardVO {
 	public void setFb_commentCount(int fb_commentCount) {
 		this.fb_commentCount = fb_commentCount;
 	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 	
 	@Override
 	public String toString() {
 		return "FreeboardVO [fb_idx=" + fb_idx + ", fb_subject=" + fb_subject + ", fb_content=" + fb_content
 				+ ", fb_date=" + fb_date + ", fb_hit=" + fb_hit + ", fb_notice=" + fb_notice + ", fb_commentCount="
-				+ fb_commentCount + "]";
+				+ fb_commentCount + ", id=" + id + ", nickname=" + nickname + "]";
 	}
+	
+	
 	
 }
