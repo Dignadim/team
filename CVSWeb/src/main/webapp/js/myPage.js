@@ -1,5 +1,6 @@
 function checkInfo(form)
 {	
+	let id = form.id.value.trim();
 	let nickname = form.nickname.value.trim();
 	let email = form.email.value.trim();
 	let password = form.password.value;
@@ -19,6 +20,10 @@ function checkInfo(form)
 		alert('비밀번호가 일치하지 않습니다.');
 		return false;
 	}else{
+		var sessionData = "sessionData";
+		sessionStorage.setItem("mineSession", sessionData ); // 저장
+		sessionStorage.getItem("mineSession");
 		return true;
 	}
+	
 }

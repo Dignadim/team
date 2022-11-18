@@ -57,12 +57,21 @@ public class ItemDAO {
 		return (ArrayList<ItemVO>) mapper.selectList("selectItemListLower", hmap); 
 	}
 	
+	public ArrayList<ItemVO> selectItemListBetter(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemListBetter() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemListBetter", hmap);
+	}
+	
+	public ArrayList<ItemVO> selectItemListWorse(SqlSession mapper, HashMap<String, Integer> hmap) {
+		System.out.println("ItemDAO의 selectItemListWorse() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectItemListWorse", hmap);
+	}
+	
 	// ItemService 클래스에서 호출되는, mapper와 조회수를 증가시킨 메인 글의 글 번호를 넘겨 받고 조회수를 증가시킨 글 1건을 얻어오는, item.xml 파일의 select sql 명령을 실행하는 메소드
 	public ItemVO itemSelectByIdx(SqlSession mapper, int idx) {
 		System.out.println("ItemDAO의 itemSelectByIdx() 메소드 실행");
 		return (ItemVO) mapper.selectOne("itemSelectByIdx", idx);
 	}
-	
 	
 	public void itemIncrement(SqlSession mapper, int idx) {
 		System.out.println("ItemDAO의 increment() 메소드 실행");
@@ -157,7 +166,7 @@ public class ItemDAO {
 		
 		return list;
 	}
-	
+
 }
 
 

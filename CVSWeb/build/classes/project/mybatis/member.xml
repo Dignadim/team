@@ -16,11 +16,14 @@
 	 <select id="mbSearch" resultType="mb_vo" parameterType="String">
    		 select * from member where id=#{id}
   	</select>
+  	
+	 <select id="selectById" resultType="mb_vo" parameterType="String">
+   		 select * from member where id=#{id}
+  	</select>
+  	
 	<update  id="update" parameterType="mb_vo">
 		update member set nickname = #{nickname}, email = #{email}, password = #{password} where id = #{id} 
 	</update>
-	
-	
 	
 	<select id="amSelectList" resultType="mb_vo">
 		select * from member order by signupdate desc

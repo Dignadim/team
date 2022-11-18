@@ -17,9 +17,9 @@ drop sequence ev_board_idx_seq;
 create sequence ev_board_idx_seq;
 
 insert into ev_board (ev_idx, ev_sellcvs, ev_subject, ev_content, ev_notice, ev_filename, id, nickname) 
- 	values (ev_board_idx_seq.nextval, 'ministop', 'ê¸€ì œëª©', 'ê¸€ë‚´ìš©', 'no', null, 'system', 'ì‹œìŠ¤í…œ');
+ 	values (ev_board_idx_seq.nextval, 'ministop', 'ê¸?? œëª?', 'ê¸??‚´?š©', 'no', null, 'system', '?‹œ?Š¤?…œ');
 
 select * from ev_board;
-select count(*) from ev_board
+select count(*) from ev_board;
 
 commit;

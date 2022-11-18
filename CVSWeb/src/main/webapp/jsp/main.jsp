@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>메인 페이지</title>
+<link rel="icon" href="../images/favicon.png"/>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -63,7 +64,7 @@
 					<c:if test="${id != null}">
 						<button type="button" class="btn btn-danger" onclick="location.href='./logRegi/login_out.jsp'">로그아웃</button>
 						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="./item/itemInsert.jsp">관리 페이지로</button>	
+							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='./admin/connectadmin.jsp'">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
 							<button type="button" class="btn btn-warning" onclick="location.href='./myPage/myPageView.jsp'">마이페이지</button>	
@@ -223,7 +224,7 @@
 								<tbody>
 									<tr>
 										<c:forEach var="vo" items="${list}">
-											<td><img alt="alt" src="${vo.itemImage}" height="150px"></td>
+											<td><img style="border-radius: 10px;" alt="alt" src="${vo.itemImage}" height="150px"></td>
 										</c:forEach>
 									</tr>
 									<tr>
@@ -272,7 +273,7 @@
 								</tbody>
 							</table>
 						</div>
-						<button type="button" class="btn btn-primary" onclick="#" align="right">인기글 보러가기</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='./board/free/list.jsp'" align="right">인기글 보러가기</button>
 					</div>
 				</div>	
 		</div><br/><br/><br/><br/>

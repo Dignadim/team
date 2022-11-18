@@ -18,7 +18,7 @@ insert into fb_board (fb_idx, fb_subject, fb_content, fb_hit, fb_notice)
     values (fb_board_idx_seq.nextval, '1111', '1111', 0, 'no');
 
 select * from fb_board;
-select count(*) from fb_board
+select count(*) from fb_board;
 
 commit;
 

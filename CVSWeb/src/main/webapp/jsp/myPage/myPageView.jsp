@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
@@ -7,31 +8,33 @@
 <head>
 <meta charset="UTF-8">
 <title>마이페이지 뷰</title>
-<script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="../../css/myPageView.css">
 
 </head>
 <body>
-<div class="m-3">
-
-<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
 	<header>
-		<div class="container">
+		<div class="container-fluid">
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
-					<h2 style="width: 200px;">타이틀</h2>
+					<a href="../connectMain.jsp"><img src="../../images/teamlogo.png" style="width: 30px;"></a>
 				</div>
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="../item/itemList.jsp">모든 상품 보기</a>
+					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
+							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
 							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href="../board/event/list.jsp">모든 행사 보기</a></li>
 								<li><a class="dropdown-item" href="#">GS25</a></li>
 								<li><a class="dropdown-item" href="#">CU</a></li>
 								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
@@ -70,163 +73,87 @@
 							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
 							<input type="hidden" value="${grade}">
 						</c:if>
-					</c:if>				
-					
+					</c:if>					
 				</div>
 			</nav>
 		</div>
 	</header>
 	<br/><br/><br/>
 
-<!-- header 끝  -->
+	<!-- header 끝  -->
 
-
-<div id= "wrap">
-<nav>
-메뉴영역
-</nav>
-<div id="content">
-<div class="b">
-	<div class="container mt-3" align="center" >
-	  <img src="../../images/img03.jpg" class="rounded" alt="프로필사진" width="304" height="536"> 
-	  <h2>프로필 사진</h2>	       
-	  회원 자기소개
-</div>
-
-</div>
-<div class="b"> 
-	<form id=f action="changeInformation.jsp"  method="post"  align="center">
-	<br/><br/><br/><br/><br/>
-		<table align="center" border="1" cellpadding="5" cellspacing="0">
-			<tr>
-				<th>
-					  <div class="mb-3 mt-3">
-					    <label for="id" class="form-label">ID</label>
-					  </div>
-				<th>
-					${id}
-				</th>
-				
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-					  <label for="nickname" class="form-label">닉네임</label> 
+	<div class="m-3">
+		<jsp:useBean id="date" class="java.util.Date" />
+		<div id="wrap">
+			<nav style="display: none;">메뉴영역</nav>
+			<div id="content">
+				<div class="b">
+					<div class="container mt-3" align="center" style="vertical-align: middle;">
+						<div style="padding: 80px 20px;">
+							<img src="../../images/img03.jpg" alt="프로필사진" id="profile">
+						</div>
+						<h2 style="padding-bottom: 15px">프로필 사진</h2>
+						<div style="width: 450px; height: 200px;">회원 자기소개</div>
 					</div>
-				</th>
-				<td>
-					${nickname}
-				</td>
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="email" class="form-label">E-mail</label>
-					</div>
-				</th>
-				<td>
-					${email}
-				</td>
-			</tr>
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="signupdate" class="form-label">가입일자</label>
-					</div>
-				</th>
-				<td>
-					${signupdate.year + 1900} - ${signupdate.month + 1} - ${signupdate.date}
-				</td>
-			</tr> 
-			<tr>
-				<th>		  
-					<div class="mb-3 mt-3">
-						<label for="selfIntroduce" class="form-label">자기소개</label>
-					</div>
-				</th>
-				<td>
-						회원 자기소개
-				</td>
-			</tr> 
-			
-					
-		<tr>
-		<td colspan="2" align="center">		   
-	
-			<button
-				class="btn btn-primary"
-				type= "submit"
-				title="정보수정"
-				>정보수정</button>	
-			  
-			<button
-				class="btn btn-primary"
-				type= "button"
-				title="쪽지함"
-				onclick="location.href=noteBox.jsp"
-				>쪽지함 (차후 구현)</button>	
-			  
-			<button
-				class="btn btn-primary"
-				type= "button"
-				title="돌아가기"
-				onclick="history.back()"
-				>돌아가기</button>	
-		</td>
-		</tr>
-				
-				
-		</table>
-	</form>
-</div>
-</div>
-</div>
-</div>
-<div class="clear">
-</div>
+				</div>
+				<div class="b">
+					<form id=f action="changeInformation.jsp" method="post"	align="center"><br /><br /><br /><br /><br />
+						<table class="table table-borderless table-hover" align="center" style="width: 500px; vertical-align: middle; margin: 20px; border-radius: 5px;">
+							<tr height="70px">
+								<th>ID</th>
+								<td>${id}</td>
+							</tr>
+							<tr height="70px">
+								<th>닉네임</th>
+								<td>${nickname}</td>
+							</tr>
+							<tr height="70px">
+								<th>이메일</th>
+								<td>${email}</td>
+							</tr>
+							<tr height="70px">
+								<th>가입일자</th>
+								<td>${signupdate.year + 1900} - ${signupdate.month + 1} - ${signupdate.date}</td>
+							</tr>
+							<tr height="70px">
+								<th>자기소개</th>
+								<td>회원 자기소개 내용</td>
+							</tr>
+							<tr>
+								<td colspan="2" align="center">
+									<button style="margin: 5px;" class="btn btn-outline-warning" type="submit" title="정보수정">정보수정</button>
+									<button style="margin: 5px;" class="btn btn-outline-info" type="button" title="쪽지함"
+										onclick="location.href=noteBox.jsp">쪽지함 (차후 구현)</button>
+									<button style="margin: 5px;" class="btn btn-outline-secondary" type="button" title="돌아가기"
+										onclick="history.back()">돌아가기</button>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div><br/><br/><br/>
+	</div>
 
+	<div class="clear">&nbsp;</div>
 
-<!-- footer  -->
-<hr/>
+	<!-- footer  -->
 	<footer>
-		<div class="container" style="background-color: #e7e7e7; color: #777;">
-			<div class="row">
-				<div class="col-sm-3">
-					copyright &copy;김철수 all rights reserved<br/>
-					사업자 등록번호 123456-123-456789
+		<div class="container-fluid"
+			style="background-color: #f8f9fa; color: #777;">
+			<div class="row" style="padding: 30px; font-size: 16px;"
+				align="center">
+				<div class="col-sm-3">&nbsp;</div>
+				<div class="col-sm-6">
+					<br />
+					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
+					&nbsp;<br />
 				</div>
-				<div class="col-sm-3">
-					고객센터
-					02-123-4567<br/>
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
-				<div class="col-sm-3">
-					내용입니다.<br/>
-					내용입니다.<br/>
-					내용입니다.
-				</div>
+				<div class="col-sm-3">&nbsp;</div>
 			</div>
 		</div>
 	</footer>
-<!-- footer 끝 -->
-
-
-
-	
-
-
-
-
-
-
-
-
-
-		<!--   <div class="form-check mb-3">
+	<!--   <div class="form-check mb-3">
 		    <label class="form-check-label">
 		      <input class="form-check-input" type="checkbox" name="remember"> Remember me
 		    </label>

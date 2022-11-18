@@ -16,6 +16,6 @@ insert into fb_boardcomment (fbc_idx, fbc_gup, fbc_content)
     values (fb_boardcomment_idx_seq.nextval, 0, '룰루');
 
 select * from fb_boardcomment;
-select count(*) from fb_boardcomment
+select count(*) from fb_boardcomment;
 
 commit;

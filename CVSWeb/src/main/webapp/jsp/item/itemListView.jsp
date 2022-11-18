@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>모든 상품 페이지</title>
+<link rel="icon" href="../../images/favicon.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -47,7 +48,7 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -78,12 +79,12 @@
 			</nav>
 		</div>
 	</header>
-	<br/><br/><br/>
+	<br/><br/>
 	
 	<div class="m-3">
-		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto;">
-			<tr class="table-primary">
-				<th colspan="4" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px; font-size: 30px;">모든 상품 보기</th>
+		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
+			<tr class="table-primary" style="box-sizing: border-box;">
+				<th colspan="4" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px; font-size: 25px;">모든 상품 보기</th>
 			</tr>			
 			<tr>
 				<td colspan="1">
@@ -114,6 +115,8 @@
 					<input type="button" class="btn btn-outline-info" value="오래된순" onclick="sort('${itemList.currentPage}', 2)">
 					<input type="button" class="btn btn-outline-info" value="높은 가격 순" onclick="sort('${itemList.currentPage}', 3)">
 					<input type="button" class="btn btn-outline-info" value="낮은 가격 순" onclick="sort('${itemList.currentPage}', 4)"> 
+					<input type="button" class="btn btn-outline-info" value="평점 높은 순" onclick="sort('${itemList.currentPage}', 5)"> 
+					<input type="button" class="btn btn-outline-info" value="평점 낮은 순" onclick="sort('${itemList.currentPage}', 6)"> 
 					&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='itemList.jsp?currentPage=' + ${itemList.currentPage}">
 				</td>
 				<td colspan="1" align="right" style="vertical-align: middle;">
@@ -121,7 +124,7 @@
 				</td>
 			</tr>
 			<tr class="table table-light">
-				<th colspan="4" style="text-align: center; font-size: 20px;">상품 목록</th>
+				<th colspan="4" style="text-align: center; font-size: 20px; padding: 18px">상품 목록</th>
 			</tr>		
 		
 			<tbody id="ajaxTable">
@@ -133,74 +136,58 @@
 			<c:if test="${list.size() == 0}">
 			<tr>
 				<td colspan="6" align="center">
-					<h2>테이블에 저장된 글이 없습니다.</h2>			
+					<h2>테이블에 저장된 상품이 없습니다.</h2>			
 				</td>
 			</tr>
 			</c:if>
 			
 			<c:if test="${list.size() != 0}">
-					<tr>
-						<c:forEach var="vo" items="${list}" varStatus="i">
-							<td>
-								<div style="padding: 30px 10px;">
+				<tr>
+					<c:forEach var="vo" items="${list}" varStatus="i">
+						<td>
+							<div style="box-sizing: border-box;">
+								<div style="padding: 30px 10px; box-sizing: border-box;" id="hov_item">
 									<a href="itemIncrement.jsp?idx=${vo.idx}&currentPage=${itemList.currentPage}&job=itemView">
-										<img alt="상품 이미지" class="rounded" src="../${vo.itemImage}" style="height: 250px; margin: 10px;"><br/>
-										<span style="font-size: 20px;">${vo.itemName}</span><br/>
+										<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 230px; margin: 15px; padding: 5px 5px; border-radius: 20px; align-content: center;"><br/>
+										&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;">${vo.itemName}</span>
 									</a>
 									<c:if test="${vo.sellCVS.trim() == 'CU'}">
-										<img alt="CU logo" src="../../images/cu.png" height="25px"><br/>
+										<img alt="CU logo" src="../../images/cu.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == 'GS25'}">
-										<img alt="GS logo" src="../../images/gs25.png" height="25px"><br/>
+										<img alt="GS logo" src="../../images/gs25.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == '세븐일레븐'}">
-										<img alt="711 logo" src="../../images/7eleven.png" height="25px"><br/>
+										<img alt="711 logo" src="../../images/7eleven.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == 'ministop'}">
-										<img alt="mini logo" src="../../images/ministop.png" height="25px"><br/>
+										<img alt="mini logo" src="../../images/ministop.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == '이마트24'}">
-										<img alt="emart logo" src="../../images/emart24.png" height="25px"><br/>
+										<img alt="emart logo" src="../../images/emart24.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == '기타 편의점'}">
-										<img alt="other logo" src="../../images/other.png" height="25px"><br/>
+										<img alt="other logo" src="../../images/other.png" height="25px" align="right"><br/>
+									</c:if>
+									&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${vo.itemPrice}" pattern="#,###원"/>
+									<c:if test="${vo.eventType == '1+1'}">
+										<img alt="1on1" src="../../images/1on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 2}" pattern="(개당 #,###.0원)"/>
+									</c:if>
+									<c:if test="${vo.eventType == '2+1'}">
+										<img alt="2on1" src="../../images/2on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 3 * 2}" pattern="(개당 #,###.0원)"/>
 									</c:if>
 								</div>
-							</td>				
-						<c:if test="${i.count % 4 == 0}">
-								<tr>
-									<td colspan="4">
-										&nbsp;
-									</td>
-								</tr>
-						</c:if>
-						</c:forEach>
-					</tr>
-				
-				<%-- 
-					<tr>
-						<td align="center">
-							${vo.idx}
-						</td>
-						<td align="center">
-							${vo.sellCVS}
-						</td>					
-						<td align="center">
-							${vo.category}
-						</td>					
-						<td align="center">
-							<a class="aaa" href="itemIncrement.jsp?idx=${vo.idx}&currentPage=${itemList.currentPage}&job=itemView">${vo.itemName}</a>				
-						</td>					
-						<td align="center">
-							${vo.itemPrice}
-						</td>					
-						<td align="center">
-							${vo.eventType}
-						</td>					
-					</tr>
-					
-					 --%>
-
+							</div>
+						</td>				
+					<c:if test="${i.count % 4 == 0}">
+							<tr style="border-color: transparent;">
+								<td colspan="4">
+									&nbsp;
+								</td>
+							</tr>
+					</c:if>
+					</c:forEach>
+				</tr>
 			</c:if>
 	
 			<!-- 페이지 이동 버튼 -->
@@ -259,6 +246,7 @@
 			</tr>
 			</tbody>
 		</table>
+		<br/><br/>
 	</div>	
 	<!-- footer  -->
 	<footer>

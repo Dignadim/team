@@ -1,3 +1,4 @@
+<%@page import="project.member.MemberList"%>
 <%@page import="project.board.admin.AdminService"%>
 <%@page import="project.board.free.FreeboardList"%>
 <%@page import="project.item.ItemList"%>
@@ -18,34 +19,35 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
+<!-- <script type="text/javascript" src="./js/main.js" defer></script> -->
 <script type="text/javascript" src="./js/main.js" defer></script>
 </head>
 <body>
 
 
-	<%
+<%
+request.setCharacterEncoding("UTF-8");
+
+	
+	AdminService service = AdminService.getInstance(); 
+//freeboard 데이터를 freeboardList에 담음
+	FreeboardList freeboardList = service.abSelectList();
+  
+//member 데이터를 memberList에 담음
+	MemberList memberList = service.amSelectList();
+
+	
+	
+	
+	
 	
 
-			request.setCharacterEncoding("UTF-8");
-		
-		// freeboard 데이터를 freeboard 리스트에 담음 
-		AdminService service = AdminService.getInstance(); 
-		FreeboardList freeboardList = service.abSelectList();
-		
-		
-		
-		 
-		    
-		    // 데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
-		   request.setAttribute("freeboardList", freeboardList);
+//	데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
+	request.setAttribute("freeboardList", freeboardList);
+	request.setAttribute("memberList", memberList);
+	pageContext.forward("adminView.jsp");
+%>
 
-		 
-		    
-		    
-		    
-		    
-			pageContext.forward("adminView.jsp");
-	%>
 
 </body>
 </html>

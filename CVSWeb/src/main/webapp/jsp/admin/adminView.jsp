@@ -13,7 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../../css/adminpage.css">
-<script type="text/javascript" src="./js/main.js" defer></script>
+<script type="text/javascript" src="./js/adminmember.js" defer></script>
 </head>
 <body>
 
@@ -87,31 +87,86 @@
 <div id="contentLeft">
 	<div class="body1">
 		<!-- 가입된지 1달이하의 회원을 idx역순으로 표시   -->
-			<c:set var="list" value="${memberList.list}"/>
+		<c:set var="list" value="${memberList.list}"/>
 			
 		<table class="table" style="width: 100%;">
-			<%-- <c:if test="${date.year == mb_vo.signupdate.year && date.month == mb_vo.signupdate.month}"> --%>
+		<tr class="table-secondary">
+		<th colspan="2" style="font-size: 20px; text-align: center;">신규가입</th>
+		</tr>
 				<c:forEach var="mb_vo" items="${list}">
+			<c:if test="${date.year == mb_vo.signupdate.year && date.month == mb_vo.signupdate.month}">
 					<tr>
-						<th align="center">
-							프로필사진
+						<th align= center>
+							<img style ="width:30px;" alt="프로필사진" src="../../images/profile.jpg">
 						</th>
 						<th align="center">
 							${mb_vo.nickname}님이 새로 가입하셧습니다.
 						</th>	
 					</tr>
+			</c:if>
 				</c:forEach>
-			<%-- </c:if> --%>
 		</table>
 	</div>
 
 	<div class="body1">	
-	<!-- 버그리포트 게시글을 이곳에 표시  -->
-	버그리포트
+	<!-- 회원 관리  -->
+	
+	<c:set var="list" value="${memberList.list}"/>
+			
+		<table class="table" style="width: 100%; border: 1px solid black;">
+		
+		<label onclick="">
+		<tr class="table-secondary">
+		<th colspan="5" style="font-size: 20px; text-align: center;">회원관리</th>
+		</tr>
+		</label>
+			<tr>
+			<th>아이디</th>
+			<th>닉네임</th>
+			<th>이메일</th>
+			<th>가입일</th>
+			<th>상태(경고)</th>
+			</tr>
+		
+				<c:forEach var="mb_vo" items="${list}">
+			
+					<tr>
+						<td align= center>
+							${mb_vo.id}
+						</td>
+						<td align="center">
+							${mb_vo.nickname}
+						</td>
+						<td align="center">
+							${mb_vo.email}
+						</td>
+						<td align="center">
+							<fmt:formatDate value="${mb_vo.signupdate}" pattern="yyyy.MM.dd"/>
+						</td>
+						<td align="center">
+							${mb_vo.grade}
+						</td>	
+					</tr>
+			
+				</c:forEach>
+		</table>
+		
+				<div class="col-sm-2">
+					<input type="text" class="form-control" placeholder="아이디 입력하세요." style="width: 200px;">
+				</div> 
+				<div class="col-sm-1">
+					<button type="button" class="btn btn-primary" btn-modal" onclick="memberAdministrate()">검색</button>
+				</div>
+		
 	</div>
 	
 	
-</div>
+	
+	
+	</div>
+	
+	
+
 
 <div id="contentRight">
 	<div class="body3">
@@ -187,7 +242,7 @@
 					</td>
 					
 				</tr>	
-				<%-- <c:set var="num" value="${num-1}"/> --%>
+				
 				</c:forEach>
 				</c:if>
 	
@@ -205,14 +260,11 @@
 	
 	
 	
-	<!-- <div class="body1">
-	한달 단위로 신규회원가입시 표시 
-	신규회원표시
-	</div> -->
 	
-	<div class="body2" style=" display:none;">
-	<!-- 캘린더에 행사기간이 나오는 표시  -->
-	캘린더 구현
+	
+	<div class="body2">
+	<!--  월 방문자 표시 그래프 -->
+	그래프 구현
 	</div>
 	
 	

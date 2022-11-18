@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>개별 페이지</title>
+<link rel="icon" href="../../images/favicon.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
@@ -45,7 +46,7 @@
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -76,8 +77,8 @@
 			</nav>
 		</div>
 	</header>
-	<br/><br/><br/>
-
+	<br/><br/>
+	
 	<input type="hidden" id="itemIdx" value="${vo.idx}">
 	<div class="container" style="margin-top: 100px; width: 1200px">
 		<table class="table table-bordered">
@@ -91,7 +92,7 @@
 			<tbody>
 				<tr>
 					<td rowspan="7" width="550px;">
-						<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 500px;">
+						<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 500px; border-radius: 10px;">
 					</td>
 				</tr>
 				<tr>

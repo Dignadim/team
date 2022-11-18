@@ -15,7 +15,7 @@ drop sequence mypage_id_seq;
 create sequence mypage_id_seq;
  
 insert into mypage (id, password, nickname, email, image, introduce) 
-values ('test', '1111', 'ë³„ëª…', 'e@e', 'ì´ë¯¸ì§€ì…ë‹ˆë‹¤', 'ìê¸°ì†Œê°œì…ë‹ˆë‹¤');
+values ('test22', '1111', 'ë³„ëª…', 'e@e', '?´ë¯¸ì??…?‹ˆ?‹¤', '?ê¸°ì†Œê°œì…?‹ˆ?‹¤');
 select * from mypage order by id desc;
 select count(*) from mypage;
 commit;

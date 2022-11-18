@@ -9,6 +9,7 @@
 <body>
 <%
 	request.setCharacterEncoding("UTF-8");
+	String ogUrl = request.getHeader("referer");
 	
 	session.removeAttribute("id");
 	session.removeAttribute("nickname");
@@ -19,7 +20,7 @@
 	
 	out.println("<script>");
 	out.println("alert('로그아웃되었습니다.')");
-	out.println("location.href='../connectMain.jsp'");
+	out.println("location.href='"+ogUrl+"'");
 	out.println("</script>");
 %>
 </body>

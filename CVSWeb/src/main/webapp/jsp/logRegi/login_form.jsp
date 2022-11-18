@@ -11,6 +11,11 @@
 <link rel="stylesheet" href="../../css/main.css">
 </head>
 <body>
+
+<%
+	String ogUrl = request.getHeader("referer");
+	/* out.println(ogUrl); */
+%>
 	<center>
 		<h3>로그인</h3>
 		<hr>
@@ -28,6 +33,7 @@
 					</tr>
 					<tr>
 						<td colspan=2 align="center">
+							<input type="hidden" name="ogUrl" value="<%=ogUrl%>"> <!--로그인폼에 오기 전 페이지의 url주소를 넘겨주기 위한 -->
 							<input class="btn btn-outline-success" type=submit name=submit value="로그인">
 							<input class="btn btn-outline-primary" type=button name=register value="회원가입" onClick="location.href='register.jsp'">
 							<input class="btn btn-outline-secondary" type=button name=register value="홈으로" onClick="location.href='../connectMain.jsp'">

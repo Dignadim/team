@@ -66,6 +66,26 @@
 			) where rnum >= #{startNo} 		
 		]]>
 	 </select>
+	 
+	 <select id="selectItemListBetter" parameterType="java.util.HashMap" resultType="item_vo">
+	 	<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from item order by averscore desc 
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo} 		
+		]]>
+	 </select>
+	
+	 <select id="selectItemListWorse" parameterType="java.util.HashMap" resultType="item_vo">
+	 	<![CDATA[
+			select * from (
+				select rownum rnum, TT.* from (
+					select * from item order by averscore
+				) TT where rownum <= #{endNo}
+			) where rnum >= #{startNo} 		
+		]]>
+	 </select>
 	
 	<!-- 상품 1건을 얻어온다. -->	 
 	 <select id="itemSelectByIdx" parameterType="int" resultType="item_vo">

@@ -17,8 +17,10 @@
 <link rel="stylesheet" href="../../../css/listView.css"/>
 <script type="text/javascript" src="../../../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
-
-
+	
+	* {
+		font-family: "Pretendard";
+	}
 	
 </style>
 </head>
@@ -83,22 +85,22 @@
          </nav>
       </div>
    </header>
-   <br/><br/><br/>
+   <br/><br/>
 
 	<div class="m-3">
-		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">
-			<tr class="table-secondary">
+		<table class="table table-bordered" style="width: 1000px; margin-left: auto; margin-right: auto;">
+			<tr class="table-primary">
 				<th colspan="5" style="font-size: 30px; text-align: center;">자유게시판</th>
 			</tr>
-			<tr class="table-secondary">
+			<tr>
 				<td colspan="5" align="right"> 
-					${freeboardList.totalCount}(${freeboardList.currentPage} / ${freeboardList.totalPage})
+					${freeboardList.totalCount}건 (${freeboardList.currentPage} / ${freeboardList.totalPage})
 				</td>
 			</tr>
-			<tr class="table-secondary">
-				<th style="width: 150px; text-align: center;">번호</th>
+			<tr class="table-light">
+				<th style="width: 100px; text-align: center;">번호</th>
 				<th style="width: 560px; text-align: center;">제목</th>
-				<th style="width: 70px; text-align: center;">닉네임</th>
+				<th style="width: 120px; text-align: center;">닉네임</th>
 				<th style="width: 150px; text-align: center;">작성일</th>
 				<th style="width: 70px; text-align: center;">조회수</th>
 			</tr>
@@ -199,40 +201,40 @@
 			</c:forEach>
 			</c:if>
 
-			<tr>
-				<td colspan="5" align="center">
+			<tr align="center" class="table table-light">
+				<td colspan="4" align="center">
 					<c:if test="${freeboardList.currentPage > 1}">
 						<button 
-							class="btn btn-outline-secondary" 
+							class="btn btn-outline-primary" 
 							type="button" 
 							title="첫 페이지로 이동합니다."
 							onclick="location.href='?currentPage=1'"
-						>처음</button> 
+						>≪</button> 
 					</c:if>
 					<c:if test="${freeboardList.currentPage <= 1}">
 						<button 
-							class="btn btn-secondary" 
+							class="btn btn-outline-secondary" 
 							type="button" 
 							disabled="disabled" 
 							title="이미 첫 페이지입니다."
-						>처음</button>
+						>≪</button>
 					</c:if>
 					
 					<c:if test="${freeboardList.startPage > 1}">
 						<button 
-							class="btn btn-outline-secondary"
+							class="btn btn-outline-primary"
 							type="button" 
 							title="이전 10페이지로 이동합니다."
 							onclick="location.href='?currentPage=${freeboardList.startPage - 1}'"
-						>이전</button>
+						>＜</button>
 					</c:if>
 					<c:if test="${freeboardList.startPage <= 1}">
 						<button 
-							class="btn btn-secondary" 
+							class="btn btn-outline-secondary" 
 							type="button" 
 							disabled="disabled" 
 							title="이미 첫 10페이지입니다."
-						>이전</button>
+						>＜</button>
 					</c:if>
 					
 					<c:forEach var="i" begin="${freeboardList.startPage}" end="${freeboardList.endPage}" step="1">
@@ -245,7 +247,7 @@
 						</c:if>
 						<c:if test="${freeboardList.currentPage != i}">
 							<button 
-								class="btn btn-outline-secondary" 
+								class="btn btn-outline-primary" 
 								type="button" 
 								onclick="location.href='?currentPage=${i}'"
 							>${i}</button>
@@ -254,41 +256,39 @@
 				
 					<c:if test="${freeboardList.endPage < freeboardList.totalPage}">
 					<button 
-						class="btn btn-outline-secondary" 
+						class="btn btn-outline-primary" 
 						type="button" 
 						title="다음 10페이지로 이동합니다."
 						onclick="location.href='?currentPage=${freeboardList.endPage + 1}'"
-					>다음</button>
+					>＞</button>
 					</c:if>
 					<c:if test="${freeboardList.endPage >= freeboardList.totalPage}">
 					<button 
-						class="btn btn-secondary" 
+						class="btn btn-outline-secondary" 
 						type="button" 
 						disabled="disabled" 
 						title="이미 마지막 10페이지입니다."
-					>다음</button>
+					>＞</button>
 					</c:if>
 					
 					<c:if test="${freeboardList.currentPage < freeboardList.totalPage}">
 					<button 
-						class="btn btn-outline-secondary" 
+						class="btn btn-outline-primary" 
 						type="button" 
 						title="마지막 페이지로 이동합니다."
 						onclick="location.href='?currentPage=${freeboardList.totalPage}'"
-					>끝</button>
+					>≫</button>
 					</c:if>
 					<c:if test="${freeboardList.currentPage >= freeboardList.totalPage}">
 					<button 
-						class="btn btn-secondary" 
+						class="btn btn-outline-secondary" 
 						type="button" 
 						disabled="disabled" 
 						title="이미 마지막 페이지입니다."
-					>끝</button>
+					>≫</button>
 					</c:if>
 				</td>
-			</tr>
-			<tr class="table-secondary">
-				<td colspan="5" align="right">
+				<td colspan="1" align="right">
 				<!-- 
 					만약 로그인 하지 않고 누르는 경우 alert('회원만 이용 가능한 서비스입니다.')
 					alert가 나온 후 바로 로그인 모달창 띄우기
@@ -305,7 +305,7 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div><br/><br/>
 	
    <!-- footer  -->
    <footer>
