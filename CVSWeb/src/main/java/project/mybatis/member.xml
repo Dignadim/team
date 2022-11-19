@@ -30,4 +30,11 @@
 	</select>
 	
 	
+	
+	
+	
+	<!-- admin에 쓰임  -->
+	
+	<!-- <select id="amselectAll" resultSets="mb_vo" parameterType="String"></select>
+	slelct * from member -->
 </mapper>

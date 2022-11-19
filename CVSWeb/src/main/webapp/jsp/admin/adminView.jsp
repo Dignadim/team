@@ -18,24 +18,24 @@
 <body>
 
 	<jsp:useBean id="date" class="java.util.Date"/>
-	<!-- header -->
+	
+	
+		<!-- header -->
 	<header>
-		<div class="container">
+		<div class="container-fluid">
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
-				<label>
-				<a href="../connectMain.jsp" >
-					<h2 style="width: 200px;">타이틀</h2></a>
-					</label>
+					<a href="../connectMain.jsp"><img src="../../images/teamlogo.png" style="width: 30px;"></a>
 				</div>
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="./item/itemList.jsp">모든 상품 보기</a>
+					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">모든 행사 보기</a>
+							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
 							<ul class="dropdown-menu">
+								<li><a class="dropdown-item" href=".././board/event/list.jsp">모든 행사 보기</a></li>
 								<li><a class="dropdown-item" href="#">GS25</a></li>
 								<li><a class="dropdown-item" href="#">CU</a></li>
 								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
@@ -47,8 +47,8 @@
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
-								<li><a class="dropdown-item" href="#">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
+								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
 								<li><a class="dropdown-item" href="#">신상게시판</a></li>
 							</ul>
 						</li>
@@ -63,23 +63,23 @@
 				</div>
 				<div class="col-sm-2">
 					<c:if test="${id == null}">
-						<button type="button" class="btn btn-primary" onclick="location.href='./logRegi/login_form.jsp'">로그인</button>	
+						<button type="button" class="btn btn-primary" onclick="location.href='../logRegi/login_form.jsp'">로그인</button>	
 					</c:if>				
 					<c:if test="${id != null}">
-						<button type="button" class="btn btn-danger" onclick="location.href='./logRegi/login_out.jsp'">로그아웃</button>
-						<c:if test="${grade.trim() != null && grade.trim() == 'n'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="./admin/adminView.jsp">관리 페이지로</button>	
+						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
+						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
+							<button class="btn btn-info" style="padding: 6px;" onclick="../item/itemInsert.jsp">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
-							<button type="button" class="btn btn-warning" onclick="location.href='./myPage/myPageView.jsp'">마이페이지</button>	
+							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
 							<input type="hidden" value="${grade}">
 						</c:if>
-					</c:if>				
+					</c:if>					
 				</div>
 			</nav>
 		</div>
 	</header>
-	<br/><br/><br/>
+	<br/><br/>
 
 <!-- header 끝  -->
 
@@ -115,11 +115,25 @@
 			
 		<table class="table" style="width: 100%; border: 1px solid black;">
 		
-		<label onclick="">
+		
 		<tr class="table-secondary">
 		<th colspan="5" style="font-size: 20px; text-align: center;">회원관리</th>
+		
 		</tr>
-		</label>
+		<tr>
+		<th colspan="5">
+		<select class="form-select" width="100" onchange="memberCheck()" id="memberCheck">
+		
+						<option selected>모든 회원</option>
+						<option>관리자</option>
+						<option>일반 회원</option>
+						<option>경고 회원</option>
+						<option>차단 회원</option>
+		</select>
+		</th>
+		
+		</tr>
+		
 			<tr>
 			<th>아이디</th>
 			<th>닉네임</th>
@@ -127,10 +141,11 @@
 			<th>가입일</th>
 			<th>상태(경고)</th>
 			</tr>
-		
+				<!-- <div id = "listOfMember"> -->
 				<c:forEach var="mb_vo" items="${list}">
-			
+				
 					<tr>
+			
 						<td align= center>
 							${mb_vo.id}
 						</td>
@@ -146,9 +161,10 @@
 						<td align="center">
 							${mb_vo.grade}
 						</td>	
-					</tr>
 			
+					</tr>
 				</c:forEach>
+				<!-- </div> -->
 		</table>
 		
 				<div class="col-sm-2">

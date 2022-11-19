@@ -27,6 +27,7 @@ request.setCharacterEncoding("UTF-8");
 //member 데이터를 memberList에 담음
 	MemberList memberList = service.amSelectList();
 
+
 	
 	
 	
