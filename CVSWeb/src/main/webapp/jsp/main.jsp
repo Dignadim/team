@@ -12,7 +12,7 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
-<script type="text/javascript" src="../js/main.js" defer></script>
+<!-- <script type="text/javascript" src="../js/main.js" defer></script> -->
 </head>
 <body>
 	<jsp:useBean id="date" class="java.util.Date"/>
@@ -99,10 +99,10 @@
 							<tr>
 								<td align="center">
 									<c:if test="${ev_vo.ev_sellcvs.trim() == 'CU'}">
-										<img alt="CU logo" src="../images/cu.png" height="25px"><br/>
+										<img alt="CU" src="../images/cu.png" height="25px"><br/>
 									</c:if>
 									<c:if test="${ev_vo.ev_sellcvs.trim() == 'GS25'}">
-										<img alt="GS logo" src="../images/gs25.png" height="25px"><br/>
+										<img alt="GS25" src="../images/gs25.png" height="25px"><br/>
 									</c:if>
 									<c:if test="${ev_vo.ev_sellcvs.trim() == '세븐일레븐'}">
 										<img alt="711 logo" src="../images/7eleven.png" height="25px"><br/>						
@@ -264,7 +264,7 @@
 									<c:forEach var="fb_vo" items="${freeHitList}" varStatus="i">
 										<tr>
 											<td>${i.count}</td>
-											<td>(테스트)</td>
+											<td>${fb_vo.nickname}</td>
 											<td>
 												<a href="./board/free/increment.jsp?fb_idx=${fb_vo.fb_idx}&currentPage=1">${fb_vo.fb_subject}</a>
 											</td>
@@ -279,6 +279,11 @@
 		</div><br/><br/><br/><br/>
 	</div>
 	</div>
+	
+	<div>
+	<iframe src="../jsp/util/calendar/calendar.jsp" width="900" height="700" style="border:0; margin-left: 300px;" ></iframe>
+	</div>
+	
 	<!-- footer  -->
 	<footer>
 		<div class="container-fluid" style="background-color: #f8f9fa; color: #777;">

@@ -54,15 +54,15 @@ public MemberList memberListSort(int mode) {
 	MemberDAO dao = MemberDAO.getInstance();
 	
 	if (mode == 1) {
-		memberList.setList(dao.amselectAll(mapper));
+		memberList.setList(dao.amSelectAll(mapper));
 	} else if (mode == 2) {
-		memberList.setList(dao.amselectAdmin(mapper));
+		memberList.setList(dao.amSelectAdmin(mapper));
 	} else if (mode == 3) {
-		memberList.setList(dao.amselectNomal(mapper));
+		memberList.setList(dao.amSelectNomal(mapper));
 	} else if (mode == 4){
-		memberList.setList(dao.amselectWarning(mapper));
+		memberList.setList(dao.amSelectWarning(mapper));
 	} else { 
-		memberList.setList(dao.amselectblock(mapper));
+		memberList.setList(dao.amSelectBlock(mapper));
 	}
 
 	mapper.close();

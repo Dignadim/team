@@ -9,6 +9,8 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../../css/register.css"/>
+<script defer="defer" type="text/javascript" src="../../js/register.js"></script>
 </head>
 <body>
 
@@ -35,7 +37,7 @@
 						<td colspan=2 align="center">
 							<input type="hidden" name="ogUrl" value="<%=ogUrl%>"> <!--로그인폼에 오기 전 페이지의 url주소를 넘겨주기 위한 -->
 							<input class="btn btn-outline-success" type=submit name=submit value="로그인">
-							<input class="btn btn-outline-primary" type=button name=register value="회원가입" onClick="location.href='register.jsp'">
+							<input  id='modal-open' class="btn btn-outline-primary" type=button name=register value="회원가입" >
 							<input class="btn btn-outline-secondary" type=button name=register value="홈으로" onClick="location.href='../connectMain.jsp'">
 						</td>
 					</tr>
@@ -43,5 +45,70 @@
 			</form>
 		</div>
 	</center>
+	
+	<div id="modal">
+		<div id="content">
+			<input type='button' value='X' class="close" id='modal-close'/>
+			<div class="container" id="container">
+				<div class="form-container sign-up-container">
+					<h1>회원 가입하기</h1>
+					<span>소중한 개인정보를 공짜로 적어주세요.</span>
+					<table>
+						<tr>
+							<td>
+								<input type="text" name="regiid" placeholder="ID" autocomplete="off" />
+							</td>
+							<td>
+								<button onclick="idChk()">
+									중복검사
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- 아이디 중복 검사 결과 메시지가 출력될 영역 -->
+								<h5 id="idChkMsg" style="color: red; font-weight: bold;"></h5>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="password" name="regipassword" placeholder="Password" 
+								onkeyup="pssChk()"/>
+							</td>
+							<td>
+								<input type="password" name="regipasswordCh" placeholder="Password 확인" 
+								onkeyup="pssChk()"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- 비밀번호 일치 검사 결과 메시지가 출력될 영역 -->
+								<h5 id="pssChkMsg" style="color: red; font-weight: bold;"></h5>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="text" name="reginickname" placeholder="NickName" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<input type="email" name="regiemail" placeholder="Email" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<button onclick="register()">Sign Up</button>
+							</td>
+						</tr>
+					</table>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </body>
 </html>

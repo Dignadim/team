@@ -33,11 +33,11 @@
 		ItemCommentService service = ItemCommentService.getInstance();
 		out.println("<script>");
 		if (mode == 1) {
-			service.insertItemComment(co);
+			out.println("alert('댓글 저장에 " + (service.insertItemComment(co) ? "성공했습니다." : "실패했습니다.") + "')");
 		} else if (mode == 2) {
-			service.updateItemComment(co);	
+			out.println("alert('댓글 수정에 " + (service.updateItemComment(co) ? "성공했습니다." : "실패했습니다.") + "')");
 		} else {
-			service.deleteItemComment(co.getIdx());	
+			out.println("alert('댓글 삭제에 " + (service.deleteItemComment(co.getIdx()) ? "성공했습니다." : "실패했습니다.") + "')");
 		}
 			out.println("location.href='itemSelectByIdx.jsp?idx=" + co.getGup() + "&currentPage=" + currentPage + "&job=itemView'");
 			out.println("</script>");

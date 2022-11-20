@@ -41,7 +41,28 @@
  		select * from ev_board where ev_notice = 'yes' order by ev_idx desc
  	</select>
  	
+ 	<!-- 스케줄들 관련된 sql 명령문들 -->
  	
+	<!-- 모든 스케줄을 받아오는 용도 -->
+	<select id="initSchedList" resultType="sche_vo">
+	 	select * from schedule
+	</select>
+	
+	<!-- 스케줄을 추가하는 용도 -->
+	<insert id="insertSched" parameterType="sche_vo">
+	 	insert into schedule (syear, smonth, sday, eyear, emonth, eday, event, gup)
+	 	values (#{sYear}, #{sMonth}, #{sDay}, #{eYear}, #{eMonth}, #{eDay}, #{event}, schedule_gup_seq.nextval)
+ 	</insert>
+
+	<!-- 스케줄을 수정해주는 용도 -->
+	 <update id="updateSched" parameterType="sche_vo">
+ 		update schedule set syear = #{sYear}, smonth = #{sMonth}, sday = #{sDay}, eyear = #{eYear}, emonth = #{eMonth}, eday = #{eDay}, event = #{event} where gup = #{gup}
+ 	</update>
+
+	<!-- 스케줄을 삭제해주는 용도 -->
+ 	<delete id="deleteSched" parameterType="int">
+		delete from schedule where gup = #{gup} 	
+ 	</delete>
 
 </mapper>
 

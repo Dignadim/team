@@ -43,26 +43,27 @@ public class MemberDAO {
 	
 	
 	// 어드민 회원관리 정렬 코드
-	public ArrayList<MemberVO> amselectAll(SqlSession mapper) {
-		System.out.println("MemberDAO의 amselectAll() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amselectAll");
+	public ArrayList<MemberVO> amSelectAll(SqlSession mapper) {
+		System.out.println("MemberDAO의 amSelectAll() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectAll");
 	}
-	public ArrayList<MemberVO> amselectAdmin(SqlSession mapper) {
-		System.out.println("MemberDAO의 amselectAdmin() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amselectAdmin");
+	public ArrayList<MemberVO> amSelectAdmin(SqlSession mapper) {
+		System.out.println("MemberDAO의 amSelectAdmin() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectAdmin");
 	}
-	public ArrayList<MemberVO> amselectNomal(SqlSession mapper) {
-		System.out.println("MemberDAO의 amselectNomal() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amselectNomal");
+	public ArrayList<MemberVO> amSelectNomal(SqlSession mapper) {
+		System.out.println("MemberDAO의 amSelectNomal() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectNomal");
 	}
-	public ArrayList<MemberVO> amselectWarning(SqlSession mapper) {
-		System.out.println("MemberDAO의 amselectWarning() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amselectWarning");
+	public ArrayList<MemberVO> amSelectWarning(SqlSession mapper) {
+		System.out.println("MemberDAO의 amSelectWarning() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectWarning");
 	}
-	public ArrayList<MemberVO> amselectblock(SqlSession mapper) {
-		System.out.println("MemberDAO의 amselectblock() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amselectblock");
+	public ArrayList<MemberVO> amSelectBlock(SqlSession mapper) {
+		System.out.println("MemberDAO의 amSelectblock() 메소드");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectblock");
 	}
+	
 	
 	
 }

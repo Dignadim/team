@@ -37,6 +37,13 @@ function insertEmptyChk() {
 	});
 }
 
+function cautionMsg() {
+	let returnValue = confirm('로그인 후 이용 가능합니다.\n로그인페이지로 이동하시겠습니까?');
+		if (returnValue == true) {
+			location.href='../../logRegi/login_form.jsp'
+		}
+}
+
 //=========================Comment========================
 
 //	댓글 작성 시, 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)

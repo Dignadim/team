@@ -9,6 +9,13 @@ var closeRtn = () =>
 	modal.style.display = 'none';
 }
 
+var closeRtnRegiSucc = () =>
+{
+	alert('회원가입에 성공하셨습니다. 환영합니다.');
+	var modal = document.getElementById('modal');
+	modal.style.display = 'none';
+}
+
 
 // modal 창을 보여줌
 modalOpen.onclick = () =>
@@ -25,7 +32,7 @@ function idChk()
 {
 //	console.log('아이디를 체크합니다.');
 	
-	let id = $('input[name=id]').val().trim();
+	let id = $('input[name=regiid]').val().trim();
 	//	console.log(id);
 	if(id == null || id == '')
 	{
@@ -57,7 +64,7 @@ function idChk()
 				{
 					case '0':
 						$('#idChkMsg').html('사용중인 아이디 입니다~~~');
-						$('input[name=id]').val('');
+						$('input[name=regiid]').val('');
 						break;
 					case '1':
 						$('#idChkMsg').html('사용 가능한 아이디입니다.');
@@ -77,8 +84,8 @@ function idChk()
 //	비밀번호와 비밀번호 확인이 같은지 확인하는 함수
 function pssChk()
 {
-	let pss1 = $('input[name=password]').val();
-	let pss2 = $('input[name=passwordCh]').val();
+	let pss1 = $('input[name=regipassword]').val();
+	let pss2 = $('input[name=regipasswordCh]').val();
 	
 	if(pss1 == null || pss1 == ''
 	 || pss2 == null || pss2 == '') return;
@@ -105,10 +112,10 @@ function register()
 		return;
 	}
 	
-	let id = $('input[name=id]').val().trim();
-	let pss = $('input[name=password]').val().trim();
-	let nick = $('input[name=nickname]').val().trim();
-	let email = $('input[name=email]').val().trim();
+	let id = $('input[name=regiid]').val().trim();
+	let pss = $('input[name=regipassword]').val().trim();
+	let nick = $('input[name=reginickname]').val().trim();
+	let email = $('input[name=regiemail]').val().trim();
 	
 	if(id == null || id == '' ||
 		nick == null || nick == '' ||
@@ -137,7 +144,7 @@ function register()
 				{
 					case '0':
 						$('#idChkMsg').html('사용중인 아이디 입니다~~~');
-						$('input[name=id]').val('');
+						$('input[name=regiid]').val('');
 						break;
 					case '1':
 						$('input[type=text]').val('');
@@ -145,7 +152,7 @@ function register()
 						$('input[type=email]').val('');
 						$('#idChkMsg').html('');
 						$('#pssChkMsg').html('');
-						closeRtn();
+						closeRtnRegiSucc();
 						break;
 				}
 				

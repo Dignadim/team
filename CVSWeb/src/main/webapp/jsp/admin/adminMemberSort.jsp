@@ -26,7 +26,11 @@
 	MemberList memberList = service.amSelectList();
 	
 	// mode대로 정렬된 멤버를 얻어옴.
-	memberList = service.memberListSort(mode); 
+	memberList = service.memberListSort(mode);
+	
+	//adminView로 넘겨줌
+	request.setAttribute("memberList", memberList);
+	pageContext.forward("adminView.jsp");
 %>
 
 </body>

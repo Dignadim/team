@@ -15,11 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script type="text/javascript" src="../../../js/freeboard.js" defer="defer"></script>
-<style type="text/css">
-	* {
-		font-family: "Pretendard";
-	}
-</style>
+
 </head>
 <body>
 	
@@ -86,13 +82,13 @@
 	
 	<div class="m-5">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">			
-			<tr class="table-primary">
+			<tr class="table-secondary">
 				<th style="width: 70px; text-align: center;">닉네임</th>
 				<th style="width: 150px; text-align: center;">제목</th>
 				<th style="width: 150px; text-align: center;">작성일</th>
 				<th style="width: 70px; text-align: center;">조회수</th>
 			</tr>	
-			<tr class="table-light">
+			<tr class="table-secondary">
 				<td align="center">
 					${fb_vo.nickname}
 				</td>
@@ -114,17 +110,17 @@
 					${fb_vo.fb_hit}
 				</td>
 			</tr>	
-			<tr class="table-light">
-				<th style="text-align: center; vertical-align: middle;">내용</th>
-				<td colspan="3" height="400" style="background-color: white;" >
+			<tr class="table-secondary">
+				<th style="text-align: center;">내용</th>
+				<td colspan="3" height="400" style="background-color: #F2F2F2;" >
 					<c:set var="fb_content" value="${fn:replace(fb_vo.fb_content, '<', '&lt;')}"/>
 					<c:set var="fb_content" value="${fn:replace(fb_content, '>', '&gt;')}"/>
 					<c:set var="fb_content" value="${fn:replace(fb_content, enter, '<br/>')}"/>
-					<div style="margin: 10px 15px;">${fb_content}</div>
+					${fb_content}
 				</td>
 			</tr>	
 			
-			<tr class="table-light">
+			<tr class="table-secondary">
 				<c:if test="${!id.trim().equals(fb_vo.id)}">
 				<td colspan="4" height="45px"></td>
 				</c:if>
@@ -285,6 +281,7 @@
 		</table>
 	</form>
 	
+	
    <!-- footer  -->
    <footer>
       <div class="container-fluid" style="background-color: #f8f9fa; color: #777;">
@@ -304,6 +301,14 @@
       </div>
    </footer>
 	
+	
 </body>
 </html>
+
+
+
+
+
+
+
 

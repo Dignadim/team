@@ -24,6 +24,32 @@ function test(idx, mode, title, content) {
 	
 }
 
+function commentEmptyChk() {
+	let content = $('#content').val();
+	// console.log(content)
+	
+	$.ajax({
+		type: 'POST',
+		url: '../../ItemCommentEmptyCheck',
+		data: { 
+			content: content,
+		},
+		success: response => {
+			switch(response) {
+				case '1':
+					alert('내용을 입력해주세요.');
+					break;
+				case '2':
+					document.itemCommentForm.submit();
+					break
+			}
+		},
+		error: error => {
+			console.log('요청실패: ', error.status);
+		}
+	});
+}
+
 function deleteItemComment(idx, currentPage, gup) {
 	let b = confirm('댓글을 삭제하시겠습니까?')
 	if (b == true) {

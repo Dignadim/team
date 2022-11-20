@@ -1,3 +1,4 @@
+<%@page import="project.util.calendar.ScheduleManager"%>
 <%@page import="project.board.event.EventboardCommentService"%>
 <%@page import="project.board.event.EventboardCommentList"%>
 <%@page import="project.board.event.EventboardVO"%>
@@ -28,6 +29,8 @@
 	request.setAttribute("ev_vo", ev_vo);
 	request.setAttribute("currentPage", currentPage);
 	request.setAttribute("enter", "\r\n");
+	//	이동하려는 게시판 idx를 받아서 해당하는 schedVO를 넘겨줌
+	request.setAttribute("schedVO", ScheduleManager.getInstance().getFindVOByGup(ev_idx));
 
 
 	if(job.equals("contentView")) {

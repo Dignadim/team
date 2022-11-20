@@ -1,3 +1,4 @@
+<%@page import="project.util.calendar.ScheduleManager"%>
 <%@page import="project.board.event.EventboardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,6 +19,7 @@
 
 	out.println("<script>");
 	EventboardService.getInstance().evDelete(ev_idx);	
+	ScheduleManager.getInstance().delete(ev_idx);
 	out.println("alert('게시글이 성공적으로 삭제되었습니다.')");
 	out.println("location.href='list.jsp?currentPage=" + currentPage + "'");
 	out.println("</script>");

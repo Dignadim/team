@@ -1,3 +1,4 @@
+<%@page import="project.util.calendar.ScheduleManager"%>
 <%@page import="project.board.event.EventboardCommentService"%>
 <%@page import="project.board.event.EventboardList"%>
 <%@page import="project.board.event.EventboardVO"%>
@@ -36,7 +37,10 @@
 	for (EventboardVO ev_vo : eventboardList.getList()) {
 		ev_vo.setEv_commentCount(commentService.evCommentCount(ev_vo.getEv_idx()));
 	}
-
+	
+	//	스케줄이 들어있는 리스트를 불러온다.
+	request.setAttribute("schedList", ScheduleManager.getInstance().getList());
+	
 //	공지글과 메인글의 목록을 request 영역에 저장해서 메인글을 화면에 표시하는 페이지(listView.jsp)로 넘겨준다.
 	request.setAttribute("ev_notice", ev_notice);
 	request.setAttribute("eventboardList", eventboardList);

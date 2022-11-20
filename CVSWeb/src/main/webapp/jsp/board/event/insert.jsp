@@ -99,9 +99,9 @@
 						<option>-머리말선택-</option>
 						<option>GS25</option>
 						<option>CU</option>
-						<option>7-Eleven</option>
+						<option>세븐일레븐</option>
 						<option>ministop</option>
-						<option>emart24</option>
+						<option>이마트24</option>
 						<option>기타편의점</option>
 						<option>공지</option>
 					</select>
@@ -129,6 +129,21 @@
 					</i>
 				</td>
 			</tr>		
+			
+			<!-- 이벤트 기간과 내용을 적어주는 공간 -->
+			<tr class="table-secodary">
+				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+					<label>행사정보</label>
+				</th>
+				<td colspan="3">
+					시작일: <input type="text" name="startSch" placeholder="ex)2022-11-19"/>&nbsp;&nbsp;
+					종료일: <input type="text" name="endSch" placeholder="하루만 하는 행사는 적을필요X."/><br/>
+					내용: <input type="text" name="contentSch" placeholder="행사내용 간략히"/>
+				</td>	
+			
+			</tr>
+			
+			
 			<tr class="table-secondary">
 				<th class="align-top table-secondary" style="padding: 10px; text-align: center;">
 					<label for="content">내용</label>

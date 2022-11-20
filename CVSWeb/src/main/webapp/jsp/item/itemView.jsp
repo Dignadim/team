@@ -262,10 +262,10 @@
 				</th>
 				<th colspan="1" style="width: 200px; vertical-align: middle;" align="center">
 					<c:if test="${nickname != null}">
-						<input class="btn btn-outline-primary btn-sm" type="submit" name="submit" value="저장" style="margin: auto;"/>				
+						<input class="btn btn-outline-primary btn-sm" type="button" name="insertBtn" value="저장" style="margin: auto;" onclick="commentEmptyChk()"/>				
 					</c:if>
 					<c:if test="${nickname == null}">
-						<input class="btn btn-outline-secondary btn-sm" type="submit" name="submit" value="저장" style="margin: auto;" disabled/>					
+						<input class="btn btn-outline-secondary btn-sm" type="button" name="insertBtn" value="저장" style="margin: auto;" disabled/>					
 					</c:if>						
 				</th>
 			</tr>

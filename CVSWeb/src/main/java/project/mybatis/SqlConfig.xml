@@ -17,6 +17,7 @@
 		<typeAlias type="project.item.ItemCommentVO" alias="item_co" />
 		<typeAlias type="project.item.ItemAvgVO" alias="item_ao" />
 		<typeAlias type="project.board.admin.AdminboardVO" alias="ab_vo" />
+		<typeAlias type="project.util.calendar.ScheduleVO" alias="sche_vo"/>
 	</typeAliases>
 	
 	<environments default="development">

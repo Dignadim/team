@@ -1,6 +1,8 @@
 package project.item;
 
 import org.apache.ibatis.session.SqlSession;
+
+import project.board.free.FreeboardCommentDAO;
 import project.mybatis.MySession;
 
 public class ItemCommentService {
@@ -13,14 +15,22 @@ public class ItemCommentService {
 		return instance;
 	}
 	
-	public void insertItemComment(ItemCommentVO co) {
+	public boolean insertItemComment(ItemCommentVO co) {
 		System.out.println("ItemCommentService의 insertItemComment() 메소드 실행");
 		SqlSession mapper = MySession.getSession();
 		
-		ItemCommentDAO.getInstance().insertItemComment(mapper, co);
+		ItemCommentDAO dao = ItemCommentDAO.getInstance();
 		
-		mapper.commit();
-		mapper.close();
+		try {
+			dao.insertItemComment(mapper, co);
+			mapper.commit();
+			mapper.close();
+			return true;
+		} catch (NullPointerException e) {
+			mapper.close();
+			return false;
+		}
+		
 	}
 	
 	public ItemCommentList selectItemCommentList(int idx) {
@@ -34,26 +44,38 @@ public class ItemCommentService {
 		return itemCommentList;
 	}
 	
-	public void updateItemComment(ItemCommentVO co) {
+	public boolean updateItemComment(ItemCommentVO co) {
 		System.out.println("ItemCommentService의 updateItemComment() 메소드 실행");
 		SqlSession mapper = MySession.getSession();
 		
 		ItemCommentDAO dao = ItemCommentDAO.getInstance();
-		dao.updateItemComment(mapper, co);
 		
-		mapper.commit();
-		mapper.close();
+		try {
+			dao.updateItemComment(mapper, co);
+			mapper.commit();
+			mapper.close();
+			return true;
+		} catch (NullPointerException e) {
+			mapper.close();
+			return false;
+		}
 	}
 	
-	public void deleteItemComment(int idx) {
+	public boolean deleteItemComment(int idx) {
 		System.out.println("ItemCommentService의 deleteItemComment() 메소드 실행");
 		SqlSession mapper = MySession.getSession();
 		
 		ItemCommentDAO dao = ItemCommentDAO.getInstance();
-		dao.deleteItemComment(mapper, idx);
 		
-		mapper.commit();
-		mapper.close();
+		try {
+			dao.deleteItemComment(mapper, idx);
+			mapper.commit();
+			mapper.close();	
+			return true;
+		} catch(NullPointerException e) {
+			mapper.close();
+			return false;
+		}
 	}
 	
 }
