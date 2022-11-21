@@ -61,7 +61,7 @@ public class MemberDAO {
 	}
 	public ArrayList<MemberVO> amSelectBlock(SqlSession mapper) {
 		System.out.println("MemberDAO의 amSelectblock() 메소드");
-		return (ArrayList<MemberVO>) mapper.selectList("amSelectblock");
+		return (ArrayList<MemberVO>) mapper.selectList("amSelectBlock");
 	}
 	
 	

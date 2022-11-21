@@ -39,18 +39,18 @@
 	</select>
 	
 	<select id="amSelectAdmin" resultType="mb_vo">
-	select * from member where grade = y
+	select * from member where grade = 'y'
 	</select>
 	
 	<select id="amSelectNomal" resultType="mb_vo">
-	select * from member where grade = n
+	select * from member where grade = 'n'
 	</select>
 	
 	<select id="amSelectWarning" resultType="mb_vo">
-	select * from member where grade = w
+	select * from member where grade = 'w'
 	</select>
 	
 	<select id="amSelectBlock" resultType="mb_vo">
-	select * from member where grade = b
+	select * from member where grade = 'b'
 	</select>
 </mapper>

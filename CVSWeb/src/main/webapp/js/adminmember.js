@@ -1,7 +1,8 @@
 function memberCheck() {
 	let selectMember = document.getElementById('memberCheck').value;
-	if (selectMember == '모든 회원') {
-		let mode = 1;
+	let mode = 1;
+	if (selectMember == '모든회원') {
+		mode = 1;
 	} else if (selectMember == '관리자') {
 		mode = 2;
 	} else if (selectMember == '일반회원') {
@@ -12,7 +13,7 @@ function memberCheck() {
 		mode = 5;
 	}
 	
-	location.href='adminMemberSort.jsp?mode=' + mode 
+	location.href='connectadmin.jsp?mode=' + mode 
 	
 	}
 

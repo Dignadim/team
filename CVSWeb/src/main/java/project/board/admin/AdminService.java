@@ -50,7 +50,7 @@ public MemberList memberListSort(int mode) {
 	System.out.println("adminService의 memberListSort() 메소드");
 	SqlSession mapper = MySession.getSession();
 	
-	MemberList memberList = null;
+	MemberList memberList = new MemberList();
 	MemberDAO dao = MemberDAO.getInstance();
 	
 	if (mode == 1) {

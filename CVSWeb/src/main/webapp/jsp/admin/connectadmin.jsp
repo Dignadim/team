@@ -28,8 +28,25 @@
 <%
 request.setCharacterEncoding("UTF-8");
 
+//Adminmember.js 에서 가져온 mode 넘버를 받음
+	int mode = 1;
+	try{
+		mode = Integer.parseInt(request.getParameter("mode"));
+	} catch (NumberFormatException e) {
+		
+	}
 	
-	AdminService service = AdminService.getInstance(); 
+	AdminService service = AdminService.getInstance();
+	
+	// 모든 멤버 목록 얻어옴
+	MemberList memberListSort = service.amSelectList();
+	
+	// mode대로 정렬된 멤버를 얻어옴.
+	memberListSort = service.memberListSort(mode);	
+
+
+
+	
 //freeboard 데이터를 freeboardList에 담음
 	FreeboardList freeboardList = service.abSelectList();
   
@@ -43,6 +60,7 @@ request.setCharacterEncoding("UTF-8");
 	
 
 //	데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
+	request.setAttribute("memberListSort", memberListSort);
 	request.setAttribute("freeboardList", freeboardList);
 	request.setAttribute("memberList", memberList);
 	pageContext.forward("adminView.jsp");

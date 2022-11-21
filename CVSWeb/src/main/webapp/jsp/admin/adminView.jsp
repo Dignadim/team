@@ -13,7 +13,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../../css/adminpage.css">
-<script type="text/javascript" src="./js/adminmember.js" defer></script>
+<script type="text/javascript" src="../../js/adminmember.js" defer></script>
 </head>
 <body>
 
@@ -85,7 +85,7 @@
 
 
 <div id="contentLeft">
-	<div class="body1">
+	<div class="body1" style= "overflow: auto">
 		<!-- 가입된지 1달이하의 회원을 idx역순으로 표시   -->
 		<c:set var="list" value="${memberList.list}"/>
 			
@@ -108,10 +108,10 @@
 		</table>
 	</div>
 
-	<div class="body1">	
+	<div class="body1" style= "overflow: auto">	
 	<!-- 회원 관리  -->
 	
-	<c:set var="list" value="${memberList.list}"/>
+	<c:set var="list" value="${memberListSort.list}"/>
 			
 		<table class="table" style="width: 100%; border: 1px solid black;">
 		
@@ -124,16 +124,14 @@
 		<th colspan="5">
 		<select class="form-select" width="100" onchange="memberCheck()" id="memberCheck">
 		
-						<option selected>모든 회원</option>
+						<option>모든회원</option>
 						<option>관리자</option>
-						<option>일반 회원</option>
-						<option>경고 회원</option>
-						<option>차단 회원</option>
+						<option>일반회원</option>
+						<option>경고회원</option>
+						<option>차단회원</option>
 		</select>
-		</th>
-		
+		</th>		
 		</tr>
-		
 			<tr>
 			<th>아이디</th>
 			<th>닉네임</th>
@@ -141,30 +139,30 @@
 			<th>가입일</th>
 			<th>상태(경고)</th>
 			</tr>
-				<!-- <div id = "listOfMember"> -->
-				<c:forEach var="mb_vo" items="${list}">
 				
+				<c:forEach var="memberListSort" items="${list}">
+			
 					<tr>
 			
 						<td align= center>
-							${mb_vo.id}
+							${memberListSort.id}
 						</td>
 						<td align="center">
-							${mb_vo.nickname}
+							${memberListSort.nickname}
 						</td>
 						<td align="center">
-							${mb_vo.email}
+							${memberListSort.email}
 						</td>
 						<td align="center">
-							<fmt:formatDate value="${mb_vo.signupdate}" pattern="yyyy.MM.dd"/>
+							<fmt:formatDate value="${memberListSort.signupdate}" pattern="yyyy.MM.dd"/>
 						</td>
 						<td align="center">
-							${mb_vo.grade}
+							${memberListSort.grade}
 						</td>	
 			
 					</tr>
 				</c:forEach>
-				<!-- </div> -->
+				
 		</table>
 		
 				<div class="col-sm-2">
@@ -185,7 +183,7 @@
 
 
 <div id="contentRight">
-	<div class="body3">
+	<div class="body3" style= "overflow: auto">
 	<!-- 각 게시판에 썻던 공지글이 나오게
 	
 	ex) 자유게시판
@@ -278,7 +276,8 @@
 	
 	
 	
-	<div class="body2">
+	<div class="body2" style= "display:none">
+	
 	<!--  월 방문자 표시 그래프 -->
 	그래프 구현
 	</div>
