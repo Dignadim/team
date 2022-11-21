@@ -149,17 +149,35 @@ public class ItemDAO {
 				list = (ArrayList<ItemVO>) mapper.selectList("selectItems");
 				break;
 		//	카테고리가 특정 카테고리이면 그 카테고리만 받아오는 xml을 실행한다.
-			case "과자":
+			case "간편식품":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "가공식품":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "즉석식품":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				//System.out.println("dao에서 " + list);
+				break;
+			case "신선식품":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "과자/빵":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "아이스크림":
 				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
 				break;
 			case "음료":
 				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
 				break;
-			case "라면":
+			case "잡화":
 				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
-				//System.out.println("dao에서 " + list);
 				break;
-			case "생필":
+			case "기호식품":
+				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
+				break;
+			case "기타상품":
 				list = (ArrayList<ItemVO>) mapper.selectList("selectItemCate", cate);
 				break;
 		}

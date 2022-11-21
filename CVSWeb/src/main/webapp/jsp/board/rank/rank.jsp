@@ -32,14 +32,21 @@
 	ItemList itemCate = service.selectItemCateList(category);
 	
 	//	카테고리 속성의 상품만 담은 리스트에서 조회수 상위 ()개의 상품만 가져온다.
-	itemCate = service.selectItemCateListHit(itemCate, 12);
+	try {
+		itemCate = service.selectItemCateListHit(itemCate, 12);		
+		 request.setAttribute("itemTOP", itemCate);	
+	} catch (NullPointerException e) {
+		out.println("<script>");
+		out.println("alert('카테고리가 존재하지 않습니다.')");
+		out.println("</script>");
+	}
+	
 	
 	//	조회수 상위 ()개의 상품을 리스트로 받아온다.
 	//ItemList itemTOP = service.selectItemTOP(12);
 
 	 //request.setAttribute("itemTOP", itemTOP);	
 	 request.setAttribute("category", category);
-	 request.setAttribute("itemTOP", itemCate);	
 	    
 	pageContext.forward("rankView.jsp");
 %>

@@ -82,10 +82,15 @@
          </nav>
       </div>
    </header>
-   <br/><br/><br/>
+   <br/><br/>
 	
 	<form class="m-3" action="updateOK.jsp" method="post">
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
+			<tr>
+				<th colspan="4" class="table-primary" align="center">
+					게시글 수정
+				</th>
+			</tr>
 			<tr>
 				<td colspan="4" style="display: none;">
 					id: <input type="text" id="memberID" name="id" value="${id}">
@@ -93,8 +98,8 @@
 					postID: <input type="text" id="postID" name="postID" value="${fb_vo.id}">
 				</td>
 			</tr>
-			<tr class="table-secondary" style="height: 30px;">
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+			<tr style="height: 30px;">
+				<th class="align-middle table-light" style="padding: 10px; text-align: center;">
 					<label for="fb_subject">제목</label>
 				</th>
 				<td colspan="2">
@@ -113,8 +118,8 @@
 				</c:if>			
 				</th>
 			</tr>		
-			<tr class="table-secondary">
-				<th class="align-top table-secondary" style="padding: 10px; text-align: center;">
+			<tr>
+				<th class="align-top table-light" style="padding: 10px; text-align: center; vertical-align: middle;">
 					<label for="fb_content">내용</label>
 				</th>
 				<td colspan="2">
@@ -123,9 +128,9 @@
 				</td>
 				<th></th>
 			</tr>
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<td colspan="4" align="right">
-					<button type="button" class="btn btn-light" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#update">
+					<button type="button" class="btn btn-outline-primary" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#update">
 	 				 		수정</button>
 	 				<!-- The Modal -->
 					<div class="modal" id="update">
@@ -162,7 +167,7 @@
 		</table>	
 		<input type="hidden" name="fb_idx" id="fb_idx" value="${fb_vo.fb_idx}">
 		<input type="hidden" name="currentPage" value="${currentPage}">
-	</form>	
+	</form><br/><br/>
 	
    <!-- footer  -->
    <footer>

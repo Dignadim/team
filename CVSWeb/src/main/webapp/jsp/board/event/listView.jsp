@@ -16,9 +16,9 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../../../css/listView.css"/>
 <style type="text/css">
-
-
-	
+* {
+	font-family: "Pretendard";
+}
 </style>
 </head>
 <body>
@@ -81,19 +81,19 @@
             </div>
          </nav>
       </div>
-   </header>
+   </header><br/><br/>
 
 	<div class="m-3">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">
-			<tr class="table-secondary">
+			<tr class="table-primary">
 				<th colspan="5" style="font-size: 30px; text-align: center;">행사 정보 게시판</th>
 			</tr>
-			<tr class="table-secondary">
+			<tr>
 				<td colspan="5" align="right"> 
-					${eventboardList.totalCount}(${eventboardList.currentPage} / ${eventboardList.totalPage})
+					${eventboardList.totalCount}건 (${eventboardList.currentPage} / ${eventboardList.totalPage})
 				</td>
 			</tr>
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<th style="width: 150px; text-align: center;">번호</th>
 				<th style="width: 560px; text-align: center;">제목</th>
 				<th style="width: 70px; text-align: center;">닉네임</th>
@@ -197,40 +197,40 @@
 			</c:forEach>
 			</c:if>
 
-			<tr>
-				<td colspan="5" align="center">
+			<tr align="center" class="table table-light">
+				<td colspan="4" align="center">
 					<c:if test="${eventboardList.currentPage > 1}">
 						<button 
-							class="btn btn-outline-secondary" 
+							class="btn btn-outline-primary" 
 							type="button" 
 							title="첫 페이지로 이동합니다."
 							onclick="location.href='?currentPage=1'"
-						>처음</button> 
+						>≪</button> 
 					</c:if>
 					<c:if test="${eventboardList.currentPage <= 1}">
 						<button 
-							class="btn btn-secondary" 
+							class="btn btn-outline-secondary" 
 							type="button" 
 							disabled="disabled" 
 							title="이미 첫 페이지입니다."
-						>처음</button>
+						>≪</button>
 					</c:if>
 					
 					<c:if test="${eventboardList.startPage > 1}">
 						<button 
-							class="btn btn-outline-secondary"
+							class="btn btn-outline-primary"
 							type="button" 
 							title="이전 10페이지로 이동합니다."
 							onclick="location.href='?currentPage=${eventboardList.startPage - 1}'"
-						>이전</button>
+						>＜</button>
 					</c:if>
 					<c:if test="${eventboardList.startPage <= 1}">
 						<button 
-							class="btn btn-secondary" 
+							class="btn btn-outline-secondary" 
 							type="button" 
 							disabled="disabled" 
 							title="이미 첫 10페이지입니다."
-						>이전</button>
+						>＜</button>
 					</c:if>
 					
 					<c:forEach var="i" begin="${eventboardList.startPage}" end="${eventboardList.endPage}" step="1">
@@ -243,7 +243,7 @@
 						</c:if>
 						<c:if test="${eventboardList.currentPage != i}">
 							<button 
-								class="btn btn-outline-secondary" 
+								class="btn btn-outline-primary" 
 								type="button" 
 								onclick="location.href='?currentPage=${i}'"
 							>${i}</button>
@@ -252,41 +252,39 @@
 				
 					<c:if test="${eventboardList.endPage < eventboardList.totalPage}">
 					<button 
-						class="btn btn-outline-secondary" 
+						class="btn btn-outline-primary" 
 						type="button" 
 						title="다음 10페이지로 이동합니다."
 						onclick="location.href='?currentPage=${eventboardList.endPage + 1}'"
-					>다음</button>
+					>＞</button>
 					</c:if>
 					<c:if test="${eventboardList.endPage >= eventboardList.totalPage}">
 					<button 
-						class="btn btn-secondary" 
+						class="btn btn-outline-secondary" 
 						type="button" 
 						disabled="disabled" 
 						title="이미 마지막 10페이지입니다."
-					>다음</button>
+					>＞</button>
 					</c:if>
 					
 					<c:if test="${eventboardList.currentPage < eventboardList.totalPage}">
 					<button 
-						class="btn btn-outline-secondary" 
+						class="btn btn-outline-primary" 
 						type="button" 
 						title="마지막 페이지로 이동합니다."
 						onclick="location.href='?currentPage=${eventboardList.totalPage}'"
-					>끝</button>
+					>≫</button>
 					</c:if>
 					<c:if test="${eventboardList.currentPage >= eventboardList.totalPage}">
 					<button 
-						class="btn btn-secondary" 
+						class="btn btn-outline-secondary" 
 						type="button" 
 						disabled="disabled" 
 						title="이미 마지막 페이지입니다."
-					>끝</button>
+					>≫</button>
 					</c:if>
 				</td>
-			</tr>
-			<tr class="table-secondary">
-				<td colspan="5" align="right">
+				<td colspan="1" align="right">
 				<c:if test="${grade.trim().equals('y')}">
 					<input class="btn btn-outline-primary btn-sm" type="button" value="글쓰기" 
 						 onclick="location.href='insert.jsp'"/>
@@ -294,7 +292,7 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div><br/><br/>
 
    <!-- footer  -->
    <footer>

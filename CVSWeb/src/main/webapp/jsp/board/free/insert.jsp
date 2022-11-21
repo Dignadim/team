@@ -81,16 +81,16 @@
          </nav>
       </div>
    </header>
-   <br/><br/><br/>
+   <br/><br/>
 	
 	<form class="m-3" action="insertOK.jsp" method="post" name='insertForm'>
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
-			<tr class="table-secondary" style="height: 30px;">
+			<tr style="height: 30px;" class="table-light">
 				<th style="display: none;">
 					id: <input type="text" id="memberID" name="id" value="${id}">
 					nickname: <input type="text" id="nickname" name="nickname" value="${nickname}">
 				</th>
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+				<th class="align-middle table-primary" style="padding: 10px; text-align: center;">
 					<label for="subject">제목</label>
 				</th>
 				<td colspan="2">
@@ -103,8 +103,8 @@
 				</c:if>
 				</th>
 			</tr>		
-			<tr class="table-secondary">
-				<th class="align-top table-secondary" style="padding: 10px; text-align: center;">
+			<tr class="table-light">
+				<th class="align-top table-primary" style="padding: 10px; text-align: center; vertical-align: middle;">
 					<label for="content">내용</label>
 				</th>
 				<td colspan="2">
@@ -113,7 +113,7 @@
 				</td>
 				<th></th>
 			</tr>
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<td colspan="4" align="right">
 					<input class="btn btn-primary btn-lg" type="button" value="등록"
 						style="font-size: 13px;" onclick="insertEmptyChk()"/>
@@ -125,7 +125,7 @@
 				</td>
 			</tr>	
 		</table>	
-	</form>	
+	</form><br/><br/>	
 	
    <!-- footer  -->
    <footer>

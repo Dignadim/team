@@ -2,6 +2,7 @@
 
 * {
 	box-sizing: border-box;
+	font-family: Pretendard;
 }
 
 body {
@@ -10,7 +11,6 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Pretendard', sans-serif;
 	height: 100vh;
 	margin: 20px 0 50px;
 }
@@ -45,8 +45,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	border: 1px solid #0d6efd;
+	background-color: #0d6efd;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -54,6 +54,7 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	cursor: pointer;
 }
 
 button:active {
@@ -62,6 +63,7 @@ button:active {
 
 button:focus {
 	outline: none;
+	
 }
 
 button.ghost {
@@ -89,13 +91,14 @@ input {
 }
 
 .container {
+	justify-content: center;
 	background-color: #fff;
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
-	width: 1000px;
+	width: 800px;
 	max-width: 100%;
 	min-height: 480px;
 }
@@ -113,7 +116,7 @@ input {
 
  #modal>#content{
 	margin:100px auto;
-	padding:20px;
+	padding:30px;
 	position: relative;
 	background-color:#fff;
 }
@@ -123,6 +126,8 @@ input {
 	top: 0;
 	height: 100%;
 	transition: all 0.6s ease-in-out;
+	margin: 35px;
+	
 }
 
 .sign-up-container {
@@ -139,7 +144,9 @@ input {
 	animation: show 0.6s;
 }
 
-
+#modal_open:hover {
+	cursor: pointer;
+}
 
 
 

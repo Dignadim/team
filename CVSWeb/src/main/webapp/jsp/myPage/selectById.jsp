@@ -10,21 +10,20 @@
 </head>
 <body>
 
-
-
 <%
 	request.setCharacterEncoding("UTF-8");
 
-	String id = request.getParameter("id");
-	
-	MemberService service = MemberService.getInstance();
-
-	MemberVO vo = service.selectById(id);
-	
-	request.setAttribute("vo", vo);
-	
-	out.println("<script>");
-	out.println("location.href='changeInformationOK.jsp'");
+	out.println("<script>"); 
+	try{
+		String id = request.getParameter("id");
+		MemberService service = MemberService.getInstance();
+		MemberVO vo = service.selectById(id);
+		request.setAttribute("vo", vo);
+		out.println("location.href='changeInformationOK.jsp'");		
+	}catch(Exception e){
+		out.println("alert('올바르지 않은 접근경로')");
+		out.println("location.href='../myPage/myPageView.jsp'");
+	}
 	out.println("</script>");
 %>
 </body>
