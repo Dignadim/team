@@ -90,10 +90,8 @@
 		</script>		
 	</c:if>
 	<c:if test="${id != null && grade.trim() != null && grade.trim() == 'y'}">
-	
 	<div id="contentLeft" style="padding: 30px;">
 		<div class="body1 container" style= "overflow: auto">
-		
 			<c:set var="list" value="${memberListSort.list}" />
 					
 			<table class="table table-bordered" style="width: 100%;">
@@ -105,6 +103,7 @@
 				<tr>
 					<th colspan="5">
 						<select class="form-select" width="100"	onchange="memberCheck()" id="memberCheck">
+							<option>선택하세요</option>
 							<option>모든회원</option>
 							<option>관리자</option>
 							<option>일반회원</option>
@@ -173,13 +172,13 @@
 					</td>
 				</tr>
 			</table>
-		
-		
+			
+			
 		</div><br/>
 
 		<div class="body1 container" style= "overflow: auto">
-			<!-- 회원 관리  -->
-<c:set var="list" value="${memberList.list}" />
+			<!-- 가입된지 1달이하의 회원을 idx역순으로 표시   -->
+			<c:set var="list" value="${memberList.list}" />
 
 			<table class="table" style="width: 100%; padding-top: 20px;">
 				<tr class="table-primary">
@@ -197,11 +196,15 @@
 					</c:if>
 				</c:forEach>
 			</table>
-		</div><br/>
 
+		
+		
 		</div>
-	
-<div id="contentRight" style="padding: 30px;">
+
+	</div>
+
+
+	<div id="contentRight" style="padding: 30px;">
 		<div class="body3 container" style= "overflow: auto">
 			
 			<table class="table" style="margin-left: auto; margin-right: auto; max-width: 700px; width: 700px;">
@@ -260,8 +263,6 @@
 
 		</div>
 	</div>
-
-
 
 
 	<div class="body2 container" style= "display:none">

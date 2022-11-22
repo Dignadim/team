@@ -68,14 +68,17 @@ public class MemberDAO {
 
 	public void adminBlockWerning(SqlSession mapper, MemberVO vo) {
 		System.out.println("MemberDAO의 adminBlockWerning() 메소드");
+		System.out.println(vo);
 		mapper.update("adminBlockWerning", vo);
 	}
 	public void adminBlockBlock(SqlSession mapper, MemberVO vo) {
 		System.out.println("MemberDAO의 adminBlockBlock() 메소드");
+		System.out.println(vo);
 		mapper.update("adminBlockBlock", vo);
 		
 	}
 	public void adminBlockClear(SqlSession mapper, MemberVO vo) {
+		System.out.println(vo);
 		System.out.println("MemberDAO의 adminBlockClear() 메소드");
 		mapper.update("adminBlockClear", vo);
 		

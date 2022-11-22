@@ -83,20 +83,23 @@ public MemberVO selectById(String id) {
 
 // blockType
 public void blockUpdate(MemberVO vo, int banType) {
+	System.out.println("adminService의 blockUpdate() 메소드");
 	SqlSession mapper = MySession.getSession();
-	
 	MemberDAO dao = MemberDAO.getInstance();
 	
 	if(banType == 1) {
-		dao.adminBlockWerning(mapper, vo);
+		System.out.println("1번실행");
+		dao.adminBlockWerning(mapper, vo);		
 	} else if(banType == 2) {
+		System.out.println("2번실행");
 		dao.adminBlockBlock(mapper, vo);
 	} else if(banType == 3) {
+		System.out.println("3번실행");
 		dao.adminBlockClear(mapper, vo);
-		
-		mapper.commit();
-		mapper.close();
 	}
+		
+	mapper.commit();
+	mapper.close();
 
 	
 }

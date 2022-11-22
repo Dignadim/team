@@ -24,22 +24,26 @@ try{
 }
 
 AdminService service = AdminService.getInstance();
-MemberService service1 = MemberService.getInstance();
-
-//모든 멤버 목록 얻어옴
-MemberList memberListSort = service.amSelectList();
 
 
 //id 피라메터값 받아옴
 String id = request.getParameter("id");
 
-
 // id랑 맞는 정보 가져옴
- MemberVO vo = service1.selectById(id);
-
-MemberVO original = service.selectById(vo.getId());
+MemberVO vo = service.selectById(id);
 service.blockUpdate(vo, banType);
+
+// 수정된 정보를 다시 가져옴
+vo = service.selectById(id);
+
 %>
-	
+
+out.println("<script>");
+alert('수정되었습니다.');
+out.println("</script>");
+<% 
+request.setAttribute("vo", vo);
+pageContext.forward("adminPageView.jsp");	
+%>
 </body>
 </html>

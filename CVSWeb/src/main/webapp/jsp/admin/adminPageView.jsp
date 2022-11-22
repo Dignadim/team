@@ -45,8 +45,25 @@
 								</td>
 							</tr>
 							<tr height="70px">
-								<th>자기소개</th>
-								<td>자기소개 내용</td>
+								<th>등급</th>
+								<td>
+								<c:if
+									test="${vo.grade eq 'n'}">
+									정상
+									</c:if>
+								<c:if
+									test="${vo.grade eq 'y'}">
+									관리자
+									</c:if>
+								<c:if
+									test="${vo.grade eq 'w'}">
+									경고
+									</c:if>
+								<c:if
+									test="${vo.grade eq 'b'}">
+									차단
+									</c:if>
+								</td>
 							</tr>
 							<tr>
 								<td colspan="2" align="center">

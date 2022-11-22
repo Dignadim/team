@@ -17,10 +17,10 @@ function memberCheck() {
 	
 	}
 
-//function block(Type) {
-	
+
+
+//function block(Type){
 //	let banType = Type.value;
 	
-//	location.href='adminBlock.jsp'
-
+//   location.href='adminBlock.jsp?blockType='+blockType+'&vo='vo;
 //}
