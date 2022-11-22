@@ -3,8 +3,8 @@ function updateAverscore() {
 	let updateScore = document.getElementById('updateAverscore').value
 	let originalScore = document.getElementById('originalItemAverscore').value;
 	let ID = document.getElementsByName('ID')[0].value;
+	location.href='updateAverscoreOK.jsp?averscore=' + originalScore + '&itemIdx=' + itemIdx + '&updateScore=' + updateScore + '&ID=' + ID;		
 	
-	location.href='updateAverscoreOK.jsp?averscore=' + originalScore + '&itemIdx=' + itemIdx + '&updateScore=' + updateScore + '&ID=' + ID;
 }
 
 function test(idx, mode, title, content) {

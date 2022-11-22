@@ -66,6 +66,14 @@ function thisClose(ev_filename) {
 	opener.document.getElementById('ev_filename').value = ev_filename;
 	self.close();
 }
+
+function backPage() {
+	let frm = document.searchForm;
+	frm.category.value ='전체';
+	frm.searchText.value = '';
+	frm.submit();
+}
+
 //=========================Update========================
 
 //	게시글 수정 시, 기존에 머리말 옵션에 selected를 걸어주는 함수

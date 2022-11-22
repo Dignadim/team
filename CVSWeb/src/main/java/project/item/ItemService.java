@@ -278,17 +278,14 @@ public class ItemService {
 		} else if (mode == 4){
 			itemList.setList(dao.selectItemListLower(mapper, hmap));						
 		} else if (mode == 5){
-			itemList.setList(dao.selectItemListLower(mapper, hmap));						
+			itemList.setList(dao.selectItemListBetter(mapper, hmap));						
 		} else {
-			itemList.setList(dao.selectItemListLower(mapper, hmap));						
+			itemList.setList(dao.selectItemListWorse(mapper, hmap));						
 		}
 		
 		mapper.close();		
 		return itemList;
 	}
-	
-	
-
 	
 	//	특정 카테고리의 상품만 담긴 리스트를 받아서 그중에 조회수 높은 count 개수만큼만 담아서 반환하는 메소드
 	public ItemList selectItemCateListHit(ItemList list, int count)

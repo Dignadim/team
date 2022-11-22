@@ -181,7 +181,7 @@
 	 		select * from item where trim(itemPrice) <= #{itemPrice}  order by idx desc
 	 	]]>		
 	 </select>	
-
+	 
 	<update id="averscoreUpdate" parameterType="item_vo">
 		update item set averscore = #{averscore} where idx = #{idx}
 	</update>

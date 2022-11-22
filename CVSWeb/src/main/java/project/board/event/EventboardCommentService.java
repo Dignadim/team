@@ -31,6 +31,7 @@ public class EventboardCommentService {
 		System.out.println("EventboardCommentService의 evCommentCount() 메소드");
 		SqlSession mapper = MySession.getSession();
 		int evCommentCount = EventboardCommentDAO.getInstance().evCommentCount(mapper, evc_idx);
+		mapper.close();
 		return evCommentCount;
 	}		
 	

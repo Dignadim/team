@@ -63,6 +63,57 @@
  	<delete id="deleteSched" parameterType="int">
 		delete from schedule where gup = #{gup} 	
  	</delete>
+ 	
+ 	<!-- 특정 카테고리의 게시글의 수를 받아오는 명령문 -->
+ 	<select id="evSelectCountCategory" parameterType="param" resultType="int">
+ 		select count(*) from ev_board where ev_sellcvs = #{category}
+ 	</select>
+ 	
+ 	<!--  -->
+ 	<select id="evSelectListCategory" parameterType="param" resultType="ev_vo">
+		<![CDATA[  
+ 		select * from (
+			select rownum rnum, GG.* from (
+				select * from ev_board where trim(ev_sellcvs) = #{category} order by ev_idx desc
+			) GG where rownum <= #{endNo}
+		) where rnum >= #{startNo}	
+		]]>
+ 	</select>
+ 	
+ 	<select id="evSelectCountMulti" parameterType="param" resultType="int">
+ 		<!-- 카테고리가 "전체"일 경우 -->
+ 		<if test="category.equals('전체')">
+ 			select count(*) from ev_board where ev_subject like '%'||#{searchText}||'%'
+ 		</if>
+ 		<!-- 카테고리가 "전체"가 아닐 경우 -->
+ 		<if test="!category.equals('전체')">
+ 			select count(*) from ev_board where ev_sellcvs = #{category} and ev_subject like '%'||#{searchText}||'%'
+ 		</if>
+ 	</select>
+ 	
+ 	 <select id="evSelectListMulti" parameterType="param" resultType="ev_vo">
+ 	 	<!-- 카테고리가 "전체"일 경우 -->
+ 	 	<if test='category.equals("전체")'>
+			<![CDATA[  
+	 		select * from (
+				select rownum rnum, GG.* from (
+					select * from ev_board where ev_subject like '%'||#{searchText}||'%' order by ev_idx desc
+				) GG where rownum <= #{endNo}
+			) where rnum >= #{startNo}	
+			]]> 	 	
+ 	 	</if>
+ 	 	<!-- 카테고리가 "전체"가 아닐 경우 -->
+ 	 	<if test="!category.equals('전체')">
+			<![CDATA[  
+	 		select * from (
+				select rownum rnum, GG.* from (
+					select * from ev_board where trim(ev_sellcvs) = #{category} 
+						and ev_subject like '%'||#{searchText}||'%' order by ev_idx desc
+				) GG where rownum <= #{endNo}
+			) where rnum >= #{startNo}	
+			]]>
+		</if>
+ 	</select>
 
 </mapper>
 

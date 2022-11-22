@@ -51,5 +51,29 @@ public class EventboardDAO {
 		System.out.println("EventboardDAO의 evUpload() 메소드");
 		mapper.update("evUpload", ev_vo);
 	}
+	public int evSelectCountCategory(SqlSession mapper, Param param) {
+		System.out.println("EventboardDAO의 evSelectCountCategory() 메소드 실행");
+		// System.out.println(param);
+		return (int) mapper.selectOne("evSelectCountCategory", param);
+	}
+	public ArrayList<EventboardVO> evSelectListCategory(SqlSession mapper, Param param) {
+		System.out.println("EventboardDAO의 evSelectListCategory() 메소드");
+		// System.out.println(param);
+		return (ArrayList<EventboardVO>) mapper.selectList("evSelectListCategory", param);
+	}
+	
+	public int evSelectCountMulti(SqlSession mapper, Param param) {
+		System.out.println("EventboardDAO의 evSelectCountMulti() 메소드 실행");
+		return (int) mapper.selectOne("evSelectCountMulti", param);
+	}
+	public ArrayList<EventboardVO> evSelectListMulti(SqlSession mapper, Param param) {
+		System.out.println("EventboardDAO의 evSelectListMulti() 메소드");
+		System.out.println(param);		
+		return (ArrayList<EventboardVO>) mapper.selectList("evSelectListMulti", param);
+	}
+	
+	
+	
+	
 	
 }

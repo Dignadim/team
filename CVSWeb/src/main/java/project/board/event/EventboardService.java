@@ -81,5 +81,45 @@ public class EventboardService {
 		return ev_notice;
 	}
 	
+	public EventboardList evSelectListCategory(int currentPage, String category) {
+		System.out.println("EventboardService의 evSelectListCategory() 메소드 실행");
+		SqlSession mapper = MySession.getSession();
+		int pageSize = 10;
+		// 카테고리에 따른 검색어가 포함되었나 조건을 세워야하기 때문에 Param 클래스 객체를 사용한다.
+		EventboardDAO dao = EventboardDAO.getInstance();
+		Param param = new Param();
+		param.setCategory(category.trim());
+		// System.out.println(category.trim());
+		int totalCount = dao.evSelectCountCategory(mapper, param);
+		EventboardList eventboardList = new EventboardList(pageSize, totalCount, currentPage);
+		param.setStartNo(eventboardList.getStartNo());
+		param.setEndNo(eventboardList.getEndNo());
+		eventboardList.setList(dao.evSelectListCategory(mapper, param));
+		System.out.println(eventboardList);
+		return eventboardList;
+	}
+	
+	public EventboardList evSelectListMulti(int currentPage, String category, String searchText) {
+		System.out.println("EventboardService의 evSelectListCategory() 메소드 실행");
+		SqlSession mapper = MySession.getSession();
+		int pageSize = 10;
+		// 검색어 및 카테고리에 따른 검색어가 포함되었나 조건을 세워야하기 때문에 Param 클래스 객체를 사용한다.
+		EventboardDAO dao = EventboardDAO.getInstance();
+		System.out.println(searchText);
+		Param param = new Param();
+		param.setCategory(category.trim());
+		param.setSearchText(searchText.trim());
+		System.out.println(category.trim());
+		System.out.println(searchText.trim());
+		int totalCount = dao.evSelectCountMulti(mapper, param);
+		EventboardList eventboardList = new EventboardList(pageSize, totalCount, currentPage);
+		param.setStartNo(eventboardList.getStartNo());
+		param.setEndNo(eventboardList.getEndNo());
+		eventboardList.setList(dao.evSelectListMulti(mapper, param));
+		System.out.println(eventboardList);
+		return eventboardList;
+	}
+	
+	
 	
 }

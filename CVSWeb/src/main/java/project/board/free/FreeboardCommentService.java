@@ -31,6 +31,7 @@ public class FreeboardCommentService {
 		System.out.println("FreeboardCommentService의 fbCommentCount() 메소드");
 		SqlSession mapper = MySession.getSession();
 		int fbCommentCount = FreeboardCommentDAO.getInstance().fbCommentCount(mapper, fbc_idx);
+		mapper.close();
 		return fbCommentCount;
 	}		
 	

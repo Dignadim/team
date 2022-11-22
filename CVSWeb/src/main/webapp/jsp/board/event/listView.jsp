@@ -15,6 +15,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <link rel="stylesheet" href="../../../css/listView.css"/>
+<script type="text/javascript" src="../../../js/eventboard.js" defer="defer"></script>
 <style type="text/css">
 * {
 	font-family: "Pretendard";
@@ -79,6 +80,24 @@
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">
 			<tr class="table-primary">
 				<th colspan="5" style="font-size: 30px; text-align: center;">행사 정보 게시판</th>
+			</tr>
+			<tr>
+				<td colspan="5">
+					<form action="list.jsp" method="post" name="searchForm">
+						<select id="category" name="category" style="width: 130px; height: 30px;">
+							<option>전체</option>
+							<option>GS25</option>
+							<option>CU</option>
+							<option>세븐일레븐</option>
+							<option>ministop</option>
+							<option>이마트24</option>
+							<option>기타편의점</option>
+						</select>
+						<input type="text" id="searchText" name="searchText" value="${searchText}" style="width: 150px; padding-left: 10px;"/>
+						<input class="btn btn-primary" type="submit" value="검색"/>
+						<button class="btn btn-outline-secondary" onclick="backPage()">돌아가기</button>
+					</form>
+				</td>
 			</tr>
 			<tr>
 				<td colspan="5" align="right"> 

@@ -12,7 +12,40 @@
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
-<!-- <script type="text/javascript" src="../js/main.js" defer></script> -->
+<script type="text/javascript">
+	function fn_sendFB(sns) {
+	    var thisUrl = document.URL;
+	    var snsTitle = "편의점 행사 정리 사이트";
+	    if( sns == 'facebook' ) {
+	        var url = "http://www.facebook.com/sharer/sharer.php?u="+encodeURIComponent(thisUrl);
+	        window.open(url, "", "width=486, height=286");
+	    }
+	    else if( sns == 'twitter' ) {
+	        var url = "http://twitter.com/share?url="+encodeURIComponent(thisUrl)+"&text="+encodeURIComponent(snsTitle);
+	        window.open(url, "tweetPop", "width=486, height=286,scrollbars=yes");
+	    }
+	    else if( sns == 'kakaotalk' ) {
+	        // 사용할 앱의 JavaScript 키 설정
+	        Kakao.init('36e39b3dce6c1f9eab9b68b6fbfd8144');
+	        
+	        // 카카오링크 버튼 생성
+	        Kakao.Link.createDefaultButton({
+	            container: '#btnKakao', // HTML에서 작성한 ID값
+	            objectType: 'feed',
+	            content: {
+	            title: "편의점 행사 정리 사이트", // 보여질 제목
+	            description: "이번 달 편의점 행사를 확인해 보세요~!", // 보여질 설명
+	            imageUrl: thisUrl, // 콘텐츠 URL
+	            link: {
+	                mobileWebUrl: thisUrl,
+	                webUrl: thisUrl
+	            }
+	        }
+	    });
+	}
+	}    
+</script>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 </head>
 <body>
 	<jsp:useBean id="date" class="java.util.Date"/>
@@ -76,7 +109,7 @@
 			</h3>
 		</div>
 		<div class="container">
-			<div>
+			<div style="height: 400px; overflow: auto;">
 				<table class="table">
 					<thead class="table-primary">
 						<tr>
@@ -113,8 +146,8 @@
 						</c:forEach>
 					</tbody>
 				</table>
-				<button type="button" class="btn btn-primary" onclick="location.href='./board/event/list.jsp'">모든 행사 보러가기</button>
-			</div>
+			</div><br/>
+			<button type="button" class="btn btn-primary" onclick="location.href='./board/event/list.jsp'">모든 행사 보러가기</button>
 		</div><br/><br/><br/><br/>
 			
 		<div class="panel panel-primary">
@@ -147,28 +180,28 @@
 											<td style="padding: 20px;">
 												<h5>
 													<a href="./item/itemIncrement.jsp?idx=${evItemVO.idx}&job=itemView">${evItemVO.itemName}</a>
-													<span>
-														<c:if test="${evItemVO.sellCVS.trim() == 'CU'}">
-															<img alt="CU" src="../images/cu.png" height="20px;" align="right"><br/>
-														</c:if>
-														<c:if test="${evItemVO.sellCVS.trim() == 'GS25'}">
-															<img alt="GS25" src="../images/gs25.png" height="20px;" align="right"><br/>
-														</c:if>
-														<c:if test="${evItemVO.sellCVS.trim() == '세븐일레븐'}">
-															<img alt="711 logo" src="../images/7eleven.png" height="20px;" align="right"><br/>						
-														</c:if>
-														<c:if test="${evItemVO.sellCVS.trim() == 'ministop'}">
-															<img alt="mini logo" src="../images/ministop.png" height="20px;" align="right"><br/>
-														</c:if>
-														<c:if test="${evItemVO.sellCVS.trim() == '이마트24'}">
-															<img alt="emart logo" src="../images/emart24.png" height="20px;" align="right"><br/>
-														</c:if>
-														<c:if test="${evItemVO.sellCVS.trim() != 'CU' && evItemVO.sellCVS.trim() != 'GS25' && evItemVO.sellCVS.trim() != '세븐일레븐' && evItemVO.sellCVS.trim() != 'ministop' && evItemVO.sellCVS.trim() != '이마트24'}">
-															<img alt="other logo" src="../images/other.png" height="20px;" align="right"><br/>
-														</c:if>
-													</span>
 												</h5>
 												${evItemVO.eventType}
+												<span>
+													<c:if test="${evItemVO.sellCVS.trim() == 'CU'}">
+														<img alt="CU" src="../images/cu.png" height="20px;" align="right"><br/>
+													</c:if>
+													<c:if test="${evItemVO.sellCVS.trim() == 'GS25'}">
+														<img alt="GS25" src="../images/gs25.png" height="20px;" align="right"><br/>
+													</c:if>
+													<c:if test="${evItemVO.sellCVS.trim() == '세븐일레븐'}">
+														<img alt="711 logo" src="../images/7eleven.png" height="20px;" align="right"><br/>						
+													</c:if>
+													<c:if test="${evItemVO.sellCVS.trim() == 'ministop'}">
+														<img alt="mini logo" src="../images/ministop.png" height="20px;" align="right"><br/>
+													</c:if>
+													<c:if test="${evItemVO.sellCVS.trim() == '이마트24'}">
+														<img alt="emart logo" src="../images/emart24.png" height="20px;" align="right"><br/>
+													</c:if>
+													<c:if test="${evItemVO.sellCVS.trim() != 'CU' && evItemVO.sellCVS.trim() != 'GS25' && evItemVO.sellCVS.trim() != '세븐일레븐' && evItemVO.sellCVS.trim() != 'ministop' && evItemVO.sellCVS.trim() != '이마트24'}">
+														<img alt="other logo" src="../images/other.png" height="20px;" align="right"><br/>
+													</c:if>
+												</span>
 											</td>
 										</c:forEach>
 										<td align="center" style="vertical-align: middle;">
@@ -266,7 +299,7 @@
 		</div><br/><br/><br/><br/>
 	</div>
 	<div>
-		<iframe src="../jsp/util/calendar/calendar.jsp" width="900" height="900" style="border:0; margin-left: 200px; overflow: auto;" ></iframe>
+		<iframe src="../jsp/util/calendar/calendar.jsp" width="1300" height="900" style="border:0; overflow: visible;"></iframe>
 	</div>
 	</div>
 	
@@ -283,8 +316,22 @@
 					&copy;4조&nbsp;&nbsp;최성민&nbsp;&nbsp;길동현&nbsp;&nbsp;김민주&nbsp;&nbsp;신수혁&nbsp;&nbsp;최형록
 					&nbsp;<br/>
 				</div>
-				<div class="col-sm-3">
-					&nbsp;
+				<div class="col-sm-3" align="right" style="vertical-align: middle;">
+					<span>
+				   		<a href="#n" onclick="fn_sendFB('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
+				   			<img alt="facebook" src="../images/icon-facebook.png">
+				   		</a>
+					</span>
+					<span>
+				    	<a href="#n" onclick="fn_sendFB('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
+				   			<img alt="twitter" src="../images/icon-twitter.png">
+				    	</a>
+					</span>
+					<span>
+						<a href="#n" id="btnKakao" onclick="fn_sendFB('kakaotalk');return false;" class="kakaotalk" target="_self" title="카카오톡 새창열림">
+				   			<img alt="twitter" src="../images/icon-kakao.png">
+						</a>
+					</span>
 				</div>
 			</div>
 		</div>

@@ -15,6 +15,11 @@
 <title>만년 달력</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
 
 <!-- 내장된 css -->
 <style type="text/css">
@@ -23,7 +28,7 @@
 	}
 	
 	table {
-		border: 0px solid tomato;
+		border-radius: 10px;
 	}
 
 	tr {
@@ -35,57 +40,54 @@
 		font-size: 20pt;
 		width: 100px;
 		border-width: 0px;
+		text-align: center;
+		vertical-align: middle;
 	}
 
 	th#title {
-		background-color: #CFE2FF;
-		font-size: 25pt;
-		border-radius: 5px;
+		font-size: 20pt;
 	}
 	
 	th#sunday {
-		color: red;
+		color: orangered;
 	}
 	
 	th#saturday {
-		color: blue;
+		color: skyblue;
 	}
 	
 	td {
-		text-align: right;
+		text-align: left;
 		vertical-align: top;
-		border: 1px solid black;
-		border-radius: 5px;
+		box-sizing: border-box;
+		width: 100px;
+		height: 100px;
 	}
 	
 	td.sun {
-		color: red;
+		color: orangered;
 	}
 	
 	td.sat {
-		color: blue;
+		color: skyblue;
 	}
 	
 	td#beforesun {
-		color: red;
+		color: orangered;
 		font-size: 10pt;
-		background-color: lavender;
 	}
 	
 	td.before {
 		font-size: 10pt;
-		background-color: lavender;
 	}
 	
 	td#aftersat {
-		color: blue;
+		color: skyblue;
 		font-size: 10pt;
-		background-color: lavender;
 	}
 	
 	td.after {
 		font-size: 10pt;
-		background-color: lavender;
 	}
 	
 	td#choice {
@@ -99,7 +101,7 @@
 	}
 	
 	span {
-		font-size: 8pt;
+		font-size: 10pt;
 	}
 
 	a {
@@ -115,32 +117,6 @@
 	a:active {
 		color: DodgerBlue;
 		text-decoration: underline;
-	}
-
-	.button {
-	  background-color: #0d6efd; /* Green */
-	  border: none;
-	  color: white;
-	  padding: 5px;
-	  text-align: center;
-	  text-decoration: none;
-	  display: inline-block;
-	  font-size: 20px;
-	  margin: 0;
-	  transition-duration: 0.4s;
-	  cursor: pointer;
-	}
-	
-	.button1 {
-	  background-color: white; 
-	  color: black; 
-	  border: 2px solid #0d6efd;
-	  border-radius: 15px;
-	}
-	
-	.button1:hover {
-	  background-color: #0d6efd;
-	  color: white;
 	}
 	
 	.select {
@@ -219,25 +195,25 @@
 	 request.setAttribute("list", list);
 %>
 
-<table width="700" border="1" align="center" cellpadding="5" cellspacing="0">
+<table class="table table-bordered" width="1200" cellpadding="5" cellspacing="0">
 
-	<tr>
+	<tr class="table-light">
 		<th>
-			<input class="button button1" type="button" value="＜"
+			<input class="btn btn-outline-primary" type="button" value="이전 달"
 				onclick="location.href='?year=${year}&month=${month - 1}'">
 		</th>
-		<th id="title" colspan="5">
+		<th class="table-primary" id="title" colspan="5" style="text-align: center; vertical-align: middle;">
 			${year}년 ${month}월 행사
 		</th>
 		<th>
-			<button class="button button1" type="button" 
+			<button class="btn btn-outline-primary" type="button" 
 				onclick="location.href='?year=${year}&month=${month + 1}'">
-				＞
+				다음 달
 			</button>
 		</th>
 	</tr>
 	
-	<tr>
+	<tr class="table-light" style="height: 20px; vertical-align: middle; font-size: 16px;">
 		<th id="sunday">일</th>
 		<th>월</th>
 		<th>화</th>
@@ -253,10 +229,10 @@
 		<c:forEach var="i" begin="0" end="${week}">
 		<c:if test="${i < week}">
 			<c:if test="${i == 0}">
-				<td id="beforesun">${lMonth} / ${start + i + 1}</td>
+				<td id="beforesun" class="table-secondary">${lMonth} / ${start + i + 1}</td>
 			</c:if>
 			<c:if test="${i != 0}">
-				<td class="before">${lMonth} / ${start + i + 1}</td>
+				<td class="before table-secondary">${lMonth} / ${start + i + 1}</td>
 			</c:if>
 		</c:if>
 		</c:forEach>
@@ -284,7 +260,7 @@
 					else
 					{
 						//	이벤트 내용을 출력하고 bool을 true로 한다
-						out.println("<td class='event'>" + i + "<br><span>==" + list.get(j).getEvent() + "==</span>");
+						out.println("<td class='table-warning'>" + i + "<br><span>==" + list.get(j).getEvent() + "==</span>");
 						check = true;
 					}
 					
@@ -317,7 +293,7 @@
 							else
 							{
 								//	이벤트라고 찍어준다.
-								out.println("<td class='event'>" + i + "<br><span>==" + list.get(j).getEvent() + "==</span>");
+								out.println("<td class='table-warning'>" + i + "<br><span>==" + list.get(j).getEvent() + "==</span>");
 								check = true;
 							}
 						}
@@ -340,10 +316,10 @@
 		switch (MyCalendar.weekDay(year, month, i)) 
 		{
 			case 0: // 일요일
-				out.println("<td class='sun'>" + i + "</td>");
+				out.println("<td class='sun table-warning'>" + i + "</td>");
 				break;
 			case 6: // 토요일
-				out.println("<td class='sat'>" + i + "</td>");
+				out.println("<td class='sat wable-warning'>" + i + "</td>");
 				break;
 			default:
 				out.println("<td>" + i + "</td>");
@@ -364,10 +340,10 @@
 			<c:set var="j" value="1" />
 			<c:forEach var="i" begin="${nWeek}" end="6">
 				<c:if test="${i == 6}">
-					<td id="aftersat">${nMonth} / ${j}</td>
+					<td id="aftersat" class="table-secondary">${nMonth} / ${j}</td>
 				</c:if>
 				<c:if test="${i != 6}">
-					<td class="after">${nMonth} / ${j}</td>
+					<td class="after table-secondary">${nMonth} / ${j}</td>
 				</c:if>
 				<c:set var="j" value="${j + 1}"/>
 			</c:forEach>
@@ -376,13 +352,11 @@
 	</tr>
 	
 	<!-- 년, 월을 선택하고 보기 버튼을 클릭하면 선택된 달의 달력으로 한번에 넘어가게 한다. -->
-	<tr>
+	<tr class="table-light" style="height: 50px !important;">
 		<td id="choice" colspan="7">
 		
 			<form action="?" method="post">
-			<fieldset>
-				<legend>년</legend>
-				<select class="select" name="year"> <!-- 1900 ~ 2100 -->
+				<select class="form-select" name="year" style="width: 100px !important; display: inline !important;"> <!-- 1900 ~ 2100 -->
 				
 <%
 	for (int i=1900; i<=2100; i++) {
@@ -394,12 +368,9 @@
 	}
 %>
 				
-				</select>
-			</fieldset>
-			
-			<fieldset>
-				<legend>월</legend>
-				<select class="select" name="month"> <!-- 1 ~ 12 -->
+				</select> 년&nbsp;
+
+				<select class="form-select" name="month" style="width: 100px !important; display: inline !important;"> <!-- 1 ~ 12 -->
 				
 <%
 	for (int i=1; i<=12; i++) {
@@ -411,10 +382,9 @@
 	}
 %>
 				
-				</select>
-			</fieldset>
+				</select> 월&nbsp;
 
-			<input class="select" type="submit" value="보기">
+			<input class="btn btn-dark" type="submit" value="보기">
 			</form>
 
 		</td>
