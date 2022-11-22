@@ -18,7 +18,7 @@
 	rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../../css/adminpage.css">
-<script type="text/javascript" src="./js/adminmember.js" defer></script>
+<script type="text/javascript" src="../../js/adminmember.js" defer></script>
 </head>
 <body>
 
@@ -116,7 +116,9 @@
 		<div class="body1 container" style= "overflow: auto">
 			<!-- 회원 관리  -->
 
-			<c:set var="list" value="${memberList.list}" />
+		
+		<c:set var="list" value="${memberListSort.list}" />
+					
 			<table class="table table-bordered" style="width: 100%;">
 
 				<tr class="table-primary">
@@ -142,7 +144,6 @@
 					<th>가입일</th>
 					<th>상태</th>
 				</tr>
-				
 				<c:forEach var="memberListSort" items="${list}">
 
 					<tr>

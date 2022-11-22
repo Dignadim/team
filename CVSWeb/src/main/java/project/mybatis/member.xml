@@ -29,7 +29,7 @@
 	
 	
 	
-	<!-- admin에 쓰임  -->
+<!-- admin에 쓰임  -->
 	<select id="amSelectList" resultType="mb_vo">
 		select * from member order by signupdate desc
 	</select>

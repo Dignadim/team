@@ -46,7 +46,7 @@ return memberList;
 }
 
 
-// mode별 분기.
+//mode별 분기.
 public MemberList memberListSort(int mode) {
 	System.out.println("adminService의 memberListSort() 메소드");
 	SqlSession mapper = MySession.getSession();
