@@ -38,24 +38,15 @@
                   <li class="nav-item" style="padding-right: 70px;">
                       <a class="nav-link" href="../../item/itemList.jsp?">모든 상품 보기</a>
                    </li>               
-                  <li class="nav-item dropdown" style="padding-right: 70px;">
-                     <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">행사 보기</a>
-                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../event/list.jsp">모든 행사 보기</a></li>
-                        <li><a class="dropdown-item" href="#">GS25</a></li>
-                        <li><a class="dropdown-item" href="#">CU</a></li>
-                        <li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-                        <li><a class="dropdown-item" href="#">ministop</a></li>
-                        <li><a class="dropdown-item" href="#">이마트24</a></li>
-                        <li><a class="dropdown-item" href="#">기타 편의점</a></li>
-                     </ul>
-                  </li>
+					<li class="nav-item dropdown" style="padding-right: 70px;">
+						<a class="nav-link" href="../.././board/event/list.jsp">모든 행사 보기</a>
+					</li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">게시판</a>
                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./list.jsp">자유게시판</a></li>
+                        <li><a class="dropdown-item" href="../free/list.jsp">자유게시판</a></li>
                         <li><a class="dropdown-item" href="../rank/rank.jsp">랭킹게시판</a></li>
-                        <li><a class="dropdown-item" href="#">신상게시판</a></li>
+                        <li><a class="dropdown-item" href="../new/new.jsp">신상게시판</a></li>
                      </ul>
                   </li>
                </ul>
@@ -74,7 +65,7 @@
                <c:if test="${id != null}">
                   <button type="button" class="btn btn-danger" onclick="location.href='../../logRegi/login_out.jsp'">로그아웃</button>
                   <c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-                     <button class="btn btn-info" style="padding: 6px;" onclick="../../item/itemInsert.jsp">관리 페이지로</button>   
+                     <button class="btn btn-info" style="padding: 6px;" onclick="location.href='../../admin/connectadmin.jsp'">관리 페이지로</button>   
                   </c:if>
                   <c:if test="${grade.trim() == null || grade.trim() != 'y'}">
                      <button type="button" class="btn btn-warning" onclick="location.href='../../myPage/myPageView.jsp'">마이페이지</button>   

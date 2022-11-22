@@ -29,23 +29,14 @@
 					    	<a class="nav-link" href="./item/itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="./board/event/list.jsp">모든 행사 보기</a></li>
-								<li><a class="dropdown-item" href="#">GS25</a></li>
-								<li><a class="dropdown-item" href="#">CU</a></li>
-								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-								<li><a class="dropdown-item" href="#">ministop</a></li>
-								<li><a class="dropdown-item" href="#">이마트24</a></li>
-								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
-							</ul>
+							<a class="nav-link" href="./board/event/list.jsp">모든 행사 보기</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="./board/free/list.jsp">자유게시판</a></li>
 								<li><a class="dropdown-item" href="./board/rank/rank.jsp">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="#">신상게시판</a></li>
+								<li><a class="dropdown-item" href="./board/new/new.jsp">신상게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -113,7 +104,7 @@
 									<c:if test="${ev_vo.ev_sellcvs.trim() == '이마트24'}">
 										<img alt="emart logo" src="../images/emart24.png" height="25px"><br/>
 									</c:if>
-									<c:if test="${ev_vo.ev_sellcvs.trim() == '기타 편의점' || ev_vo.ev_sellcvs.trim() == '기타편의점'}">
+									<c:if test="${ev_vo.ev_sellcvs.trim() != 'CU' && ev_vo.ev_sellcvs.trim() != 'GS25' && ev_vo.ev_sellcvs.trim() != '세븐일레븐' && ev_vo.ev_sellcvs.trim() != 'ministop' && ev_vo.ev_sellcvs.trim() != '이마트24'}">
 										<img alt="other logo" src="../images/other.png" height="25px"><br/>
 									</c:if>
 								</td>
@@ -136,67 +127,60 @@
 				<div class="row">
 					<div class="col-sm-12">
 						<div class="panel panel-primary">
-							<div style="width: 1000px; padding: 30px; overflow: auto"  align="center" class="bg-light"> <!-- 스크롤 -->
+							<div style="width: 1200px; padding: 30px; overflow: auto"  align="center" class="bg-light"> <!-- 스크롤 -->
 								<table class="table">
+									<c:set var="eventItemList" value="${eventItemList.list}"/>
 									<tr>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
-										<td style="padding: 20px"><img alt="alt" src="../images/img02.jpg" width="150px"></td>
+										<c:forEach var="evItemVO" items="${eventItemList}">
+											<td style="padding: 20px">
+												<img alt="alt" src="${evItemVO.itemImage}" style="width: 150px; height: 150px; border-radius: 5px; margin: 5px;">
+											</td>
+										</c:forEach>
+										<td style="padding: 20px; width: 150px; vertical-align: middle;">	
+											<div align="center">
+												<button class="btn btn-outline-success" type="button" onclick="location.href='./item/itemList.jsp'">→</button>
+											</div>
+										</td>
 									</tr>
 									<tr>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="CU logo" src="../images/cu.png" height="20px;" align="right"></span></h5>
-											1+1
+										<c:forEach var="evItemVO" items="${eventItemList}">
+											<td style="padding: 20px;">
+												<h5>
+													<a href="./item/itemIncrement.jsp?idx=${evItemVO.idx}&job=itemView">${evItemVO.itemName}</a>
+													<span>
+														<c:if test="${evItemVO.sellCVS.trim() == 'CU'}">
+															<img alt="CU" src="../images/cu.png" height="20px;" align="right"><br/>
+														</c:if>
+														<c:if test="${evItemVO.sellCVS.trim() == 'GS25'}">
+															<img alt="GS25" src="../images/gs25.png" height="20px;" align="right"><br/>
+														</c:if>
+														<c:if test="${evItemVO.sellCVS.trim() == '세븐일레븐'}">
+															<img alt="711 logo" src="../images/7eleven.png" height="20px;" align="right"><br/>						
+														</c:if>
+														<c:if test="${evItemVO.sellCVS.trim() == 'ministop'}">
+															<img alt="mini logo" src="../images/ministop.png" height="20px;" align="right"><br/>
+														</c:if>
+														<c:if test="${evItemVO.sellCVS.trim() == '이마트24'}">
+															<img alt="emart logo" src="../images/emart24.png" height="20px;" align="right"><br/>
+														</c:if>
+														<c:if test="${evItemVO.sellCVS.trim() != 'CU' && evItemVO.sellCVS.trim() != 'GS25' && evItemVO.sellCVS.trim() != '세븐일레븐' && evItemVO.sellCVS.trim() != 'ministop' && evItemVO.sellCVS.trim() != '이마트24'}">
+															<img alt="other logo" src="../images/other.png" height="20px;" align="right"><br/>
+														</c:if>
+													</span>
+												</h5>
+												${evItemVO.eventType}
+											</td>
+										</c:forEach>
+										<td align="center" style="vertical-align: middle;">
+											<h5>더보기</h5>
 										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="gs logo" src="../images/gs25.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="711 logo" src="../images/7eleven.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="mini logo" src="../images/ministop.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="emart logo" src="../images/emart24.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="other logo" src="../images/other.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-										<td>
-											<h5><a href="connectMain.jsp">새우깡</a><span><img alt="logo" src="../images/cu.png" height="20px;" align="right"></span></h5>
-											1+1
-										</td>
-
 									</tr>
 								</table>
 							</div><br/>								
-							<h4>편의점별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="CU"> CU</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="GS25"> GS25</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="세븐일레븐"> 세븐일레븐</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="ministop"> ministop</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="이마트24"> 이마트24</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="기타편의점"> 기타 편의점</span>
-							</div><br/>		
-							<h4>행사별 보기</h4>	
-							<div>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="1+1"> 1+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="2+1"> 2+1</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="카드사할인"> 카드사 할인</span>
-								<span style="padding: 10px;"><input class="form-check-input" type="checkbox" value="포인트적립"> 포인트 적립</span>							
-							</div>
 						</div>
+					</div>
+					<div align="left">
+						<button type="button" class="btn btn-primary" onclick="location.href='./item/itemList.jsp'">모든 상품 보러가기</button>
 					</div>
 				</div>	
 			</div>
@@ -224,19 +208,22 @@
 								<tbody>
 									<tr>
 										<c:forEach var="vo" items="${list}">
-											<td><img style="border-radius: 10px;" alt="alt" src="${vo.itemImage}" height="150px"></td>
+											<td><img style="border-radius: 10px;" alt="alt" src="${vo.itemImage}" height="150px" width="150px;"></td>
 										</c:forEach>
 									</tr>
 									<tr>
 										<c:forEach var="vo" items="${list}">
 										<td>
-											<h4><a href="./item/itemIncrement.jsp?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h4>
+											<h5><a href="./item/itemIncrement.jsp?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h5>
 											${vo.eventType}
 										</td>
 										</c:forEach>									
 									</tr>
 								</tbody>
 							</table>
+						</div>
+						<div align="left">
+							<button type="button" class="btn btn-primary" onclick="location.href='./board/rank/rank.jsp'">인기 상품 보러가기</button>
 						</div>
 					</div>
 				</div>	
@@ -278,11 +265,11 @@
 				</div>	
 		</div><br/><br/><br/><br/>
 	</div>
+	<div>
+		<iframe src="../jsp/util/calendar/calendar.jsp" width="900" height="900" style="border:0; margin-left: 200px; overflow: auto;" ></iframe>
+	</div>
 	</div>
 	
-	<div>
-	<iframe src="../jsp/util/calendar/calendar.jsp" width="900" height="700" style="border:0; margin-left: 300px;" ></iframe>
-	</div>
 	
 	<!-- footer  -->
 	<footer>

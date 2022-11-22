@@ -16,7 +16,7 @@
 <script type="text/javascript" src="../../../js/eventboard.js" defer="defer"></script>
 <style type="text/css">
 	body {
-		font-family: 'Pretendard Variable';
+		font-family: "Pretendard";
 	}
 </style>
 </head>
@@ -34,24 +34,15 @@
                   <li class="nav-item" style="padding-right: 70px;">
                       <a class="nav-link" href="../../item/itemList.jsp?">모든 상품 보기</a>
                    </li>               
-                  <li class="nav-item dropdown" style="padding-right: 70px;">
-                     <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">행사 보기</a>
-                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./list.jsp">모든 행사 보기</a></li>
-                        <li><a class="dropdown-item" href="#">GS25</a></li>
-                        <li><a class="dropdown-item" href="#">CU</a></li>
-                        <li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-                        <li><a class="dropdown-item" href="#">ministop</a></li>
-                        <li><a class="dropdown-item" href="#">이마트24</a></li>
-                        <li><a class="dropdown-item" href="#">기타 편의점</a></li>
-                     </ul>
-                  </li>
+					<li class="nav-item dropdown" style="padding-right: 70px;">
+						<a class="nav-link" href="../.././board/event/list.jsp">모든 행사 보기</a>
+					</li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">게시판</a>
                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../free/list.jsp">자유게시판</a></li>
                         <li><a class="dropdown-item" href="../rank/rank.jsp">랭킹게시판</a></li>
-                        <li><a class="dropdown-item" href="#">신상게시판</a></li>
+                        <li><a class="dropdown-item" href="../new/new.jsp">신상게시판</a></li>
                      </ul>
                   </li>
                </ul>
@@ -70,7 +61,7 @@
                <c:if test="${id != null}">
                   <button type="button" class="btn btn-danger" onclick="location.href='../../logRegi/login_out.jsp'">로그아웃</button>
                   <c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-                     <button class="btn btn-info" style="padding: 6px;" onclick="../../item/itemInsert.jsp">관리 페이지로</button>   
+                     <button class="btn btn-info" style="padding: 6px;" onclick="location.href='../../admin/connectadmin.jsp'">관리 페이지로</button>   
                   </c:if>
                   <c:if test="${grade.trim() == null || grade.trim() != 'y'}">
                      <button type="button" class="btn btn-warning" onclick="location.href='../../myPage/myPageView.jsp'">마이페이지</button>   
@@ -81,11 +72,17 @@
          </nav>
       </div>
    </header>
+   <br/><br/>
 	
 	<form class="m-3" action="updateOK.jsp" method="post">
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
-			<tr class="table-secondary" style="height: 30px;">
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+			<tr>
+				<th colspan="4" class="table-primary" align="center">
+					행사 수정
+				</th>
+			</tr>
+			<tr style="height: 30px;">
+				<th class="align-middle table-light" style="padding: 10px; text-align: center;">
 					<label for="ev_sellcvs">머리말</label>
 				</th>
 				<td colspan="2">
@@ -96,16 +93,16 @@
 						<option disabled="disabled">-머리말선택-</option>
 						<option>GS25</option>
 						<option>CU</option>
-						<option>세븐일레븐</option>
+						<option>7-Eleven</option>
 						<option>ministop</option>
-						<option>이마트24</option>
+						<option>emart24</option>
 						<option>기타편의점</option>
 						<option>공지</option>
 					</select>
 				</td>
 			</tr>
-			<tr class="table-secondary">
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+			<tr>
+				<th class="align-middle table-light" style="padding: 10px; text-align: center;">
 					<label for="ev_subject">제목</label>
 				</th>
 				<td colspan="2">
@@ -113,8 +110,8 @@
 						value="${ev_vo.ev_subject}"/>
 				</td>
 			</tr>
-			<tr class="table-secondary">
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
+			<tr>
+				<th class="align-middle table-light" style="padding: 10px; text-align: center;">
 					<label for="ev_file">파일첨부</label>
 				</th>
 				<td colspan="2">
@@ -124,23 +121,9 @@
 						&nbsp;&nbsp;5MB 이하, *.jpg, *.png, *.gif 파일만 업로드 가능합니다.
 					</i>
 				</td>
-			</tr>			
-			
-			<!-- 이벤트 기간과 내용을 적어주는 공간 -->
-			<tr class="table-secodary">
-				<th class="align-middle table-secondary" style="padding: 10px; text-align: center;">
-					<label>행사정보</label>
-				</th>
-				<td colspan="3">
-					시작일: <input type="text" name="startSch" placeholder="ex)2022-11-19" value=" ${schedVO.sYear}-${schedVO.sMonth}-${schedVO.sDay}"/>&nbsp;&nbsp;
-					종료일: <input type="text" name="endSch" placeholder="하루만 하는 행사는 적을필요X." value=" ${schedVO.eYear}-${schedVO.eMonth}-${schedVO.eDay}"/><br/>
-					내용: <input type="text" name="contentSch" placeholder="행사내용 간략히" value=" ${schedVO.event}"/>
-				</td>	
-			
-			</tr>
-						
-			<tr class="table-secondary">
-				<th class="align-top table-secondary" style="padding: 10px; text-align: center;">
+			</tr>						
+			<tr>
+				<th class="align-top table-light" style="padding: 10px; text-align: center;">
 					<label for="ev_content">내용</label>
 				</th>
 				<td>
@@ -149,9 +132,9 @@
 				</td>
 				<th></th>
 			</tr>
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<td colspan="4" align="right">
-					<button type="button" class="btn btn-light" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#update">
+					<button type="button" class="btn btn-outline-primary" style="font-size: 15px;" data-bs-toggle="modal" data-bs-target="#update">
 	 				 		수정</button>
 	 				<!-- The Modal -->
 					<div class="modal" id="update">
@@ -188,7 +171,7 @@
 		</table>	
 		<input type="hidden" name="ev_idx" id="ev_idx" value="${ev_vo.ev_idx}">
 		<input type="hidden" name="currentPage" value="${currentPage}">
-	</form>	
+	</form><br/><br/>
 	
    <!-- footer  -->
    <footer>

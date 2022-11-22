@@ -44,6 +44,17 @@ public class ItemService {
 		return items;
 	}	
 	
+	// 모든 신상품 목록을 얻어온다.
+	public ArrayList<ItemVO> selectNewItems() {
+		System.out.println("ItemService의 selectNewItems()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ArrayList<ItemVO> items = ItemDAO.getInstance().selectNewItems(mapper);
+
+		mapper.close();
+		return items;		
+	}
+	
 	// itemList.jsp에서 호출되는, 브라우저에 출력할 페이지 번호를 넘겨받고 mapper를 얻어온 후 1페이지 분량의 상품 목록을 얻어오는 ItemDAO 클래스의 select sql 명령을 실행하는 메소드를 호출하는 메소드
 	public ItemList selectItemList(int currentPage) {
 		System.out.println("ItemService의 selectItemList()");
@@ -54,6 +65,7 @@ public class ItemService {
 		
 		int pageSize = 12;
 		int totalCount = dao.selectItemCount(mapper);
+		// System.out.println(totalCount);
 		
 		itemList = new ItemList(pageSize, totalCount, currentPage);
 		
@@ -66,6 +78,29 @@ public class ItemService {
 		mapper.close();		
 		return itemList;
 	}
+
+	public ItemList selectNewItemList(int currentPage) {
+		System.out.println("ItemService의 selectNewItemList()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemList itemList = null;
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		int pageSize = 12;
+		int totalCount = dao.selectNewItemCount(mapper);
+		
+		itemList = new ItemList(pageSize, totalCount, currentPage);
+		
+		HashMap<String, Integer> hmap = new HashMap<>();
+		hmap.put("startNo", itemList.getStartNo());
+		hmap.put("endNo", itemList.getEndNo());	
+		
+		itemList.setList(dao.selectNewItemList(mapper, hmap));
+		System.out.println(itemList);
+		
+		mapper.close();		
+		return itemList;
+	}	
 	
 	// itemSelectByIdx.jsp에서 호출되는, 상품 번호를 넘겨 받고 mapper를 얻어온 후 상품 1건을 얻어오는 ItemDAO 클래스의 select sql 명령을 실행하는 메소드를 호출하는 메소드
 	public ItemVO itemSelectByIdx(int idx) {
@@ -121,6 +156,18 @@ public class ItemService {
 		
 		mapper.close();
 		return itemTOP5;
+	}
+	
+	public ItemList selectEventItemList() {
+		System.out.println("ItemService의 selectEventItemList()");
+		SqlSession mapper = MySession.getSession();		
+		
+		ItemList eventItemList = new ItemList();
+		ItemDAO dao = ItemDAO.getInstance();
+		
+		eventItemList.setList(dao.selectEventItemList(mapper));
+		
+		return eventItemList;
 	}
 	
 	//	조회수 순위별 탑 아이템을 얻어온다.(count의 개수만큼)
@@ -213,7 +260,7 @@ public class ItemService {
 		ItemList itemList = null;
 		ItemDAO dao = ItemDAO.getInstance();
 		
-		int pageSize = 10;
+		int pageSize = 12;
 		int totalCount = dao.selectItemCount(mapper);
 		
 		itemList = new ItemList(pageSize, totalCount, currentPage);
@@ -228,6 +275,10 @@ public class ItemService {
 			itemList.setList(dao.selectItemListReverse(mapper, hmap));			
 		} else if (mode == 3) {
 			itemList.setList(dao.selectItemListHigher(mapper, hmap));			
+		} else if (mode == 4){
+			itemList.setList(dao.selectItemListLower(mapper, hmap));						
+		} else if (mode == 5){
+			itemList.setList(dao.selectItemListLower(mapper, hmap));						
 		} else {
 			itemList.setList(dao.selectItemListLower(mapper, hmap));						
 		}

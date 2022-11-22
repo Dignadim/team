@@ -26,8 +26,12 @@ public class ItemDAO {
 	
 	// ItemService 클래스에서 호출되는, mapper를 넘겨 받고 모든 상품을 얻어오는 item.xml 파일의 select sql 명령을 실행하는 메소드
 	public ArrayList<ItemVO> selectItems(SqlSession mapper) {
-		System.out.println("ItemDAO 클래스의 select() 메소드 실행");
+		System.out.println("ItemDAO 클래스의 selectItems() 메소드 실행");
 		return (ArrayList<ItemVO>) mapper.selectList("selectItems");
+	}
+	
+	public ArrayList<ItemVO> selectNewItems(SqlSession mapper) {
+		return (ArrayList<ItemVO>) mapper.selectList("selectNewItems");
 	}
 	
 	// ItemService 클래스에서 호출되는, mapper를 넘겨 받고 전체 글의 개수를 얻어오는, item.xml 파일의 select sql 명령을 실행하는 메소드
@@ -95,6 +99,20 @@ public class ItemDAO {
 	
 	public ArrayList<ItemVO> selectItemTOP(SqlSession mapper, int count) {
 		return (ArrayList<ItemVO>) mapper.selectList("selectItemTOP", count);
+	}
+	
+	public int selectNewItemCount(SqlSession mapper) {
+		System.out.println("ItemDAO의 selectNewItemCount() 메소드 실행");
+		return (int) mapper.selectOne("selectNewItemCount");
+	}
+	
+	public ArrayList<ItemVO> selectNewItemList(SqlSession mapper, HashMap<String, Integer> hmap) {
+		return (ArrayList<ItemVO>) mapper.selectList("selectNewItemList", hmap);
+	}
+	
+	public ArrayList<ItemVO> selectEventItemList(SqlSession mapper) {
+		System.out.println("ItemDAO의 selectEventItemList() 메소드 실행");
+		return (ArrayList<ItemVO>) mapper.selectList("selectEventItemList");
 	}
 	
 	public ArrayList<ItemVO> search(SqlSession mapper, String itemName) {

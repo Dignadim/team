@@ -33,23 +33,14 @@
 					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href=".././board/event/list.jsp">모든 행사 보기</a></li>
-								<li><a class="dropdown-item" href="#">GS25</a></li>
-								<li><a class="dropdown-item" href="#">CU</a></li>
-								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-								<li><a class="dropdown-item" href="#">ministop</a></li>
-								<li><a class="dropdown-item" href="#">이마트24</a></li>
-								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
-							</ul>
+							<a class="nav-link" href=".././board/event/list.jsp">모든 행사 보기</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
 								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="#">신상게시판</a></li>
+								<li><a class="dropdown-item" href="../board/new/new.jsp">신상게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -68,7 +59,7 @@
 					<c:if test="${id != null}">
 						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
 						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="../item/itemInsert.jsp">관리 페이지로</button>	
+							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='../admin/connectadmin.jsp'">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
 							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
@@ -84,7 +75,7 @@
 	<div class="m-3">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
 			<tr class="table-primary" style="box-sizing: border-box;">
-				<th colspan="4" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px; font-size: 25px;">모든 상품 보기</th>
+				<th colspan="4" style="font-size: 20px; text-align: center; padding: 10px; margin: 10px; font-size: 25px;" id="allItemShow">모든 상품 보기</th>
 			</tr>			
 			<tr>
 				<td colspan="1">
@@ -148,7 +139,7 @@
 							<div style="box-sizing: border-box;">
 								<div style="padding: 30px 10px; box-sizing: border-box;" id="hov_item">
 									<a href="itemIncrement.jsp?idx=${vo.idx}&currentPage=${itemList.currentPage}&job=itemView">
-										<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 230px; margin: 15px; padding: 5px 5px; border-radius: 20px; align-content: center;"><br/>
+										<img alt="상품 이미지" src="${vo.itemImage}" style="height: 230px; width: 230px; margin: 15px; padding: 5px 5px; border-radius: 20px; align-content: center;"><br/>
 										&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;">${vo.itemName}</span>
 									</a>
 									<c:if test="${vo.sellCVS.trim() == 'CU'}">
@@ -166,7 +157,7 @@
 									<c:if test="${vo.sellCVS == '이마트24'}">
 										<img alt="emart logo" src="../../images/emart24.png" height="25px" align="right"><br/>
 									</c:if>
-									<c:if test="${vo.sellCVS == '기타 편의점'}">
+									<c:if test="${vo.sellCVS != 'CU' && vo.sellCVS != 'GS25' && vo.sellCVS != '세븐일레븐' && vo.sellCVS != 'ministop' && vo.sellCVS != '이마트24'}">
 										<img alt="other logo" src="../../images/other.png" height="25px" align="right"><br/>
 									</c:if>
 									&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${vo.itemPrice}" pattern="#,###원"/>

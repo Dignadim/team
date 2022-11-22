@@ -1,7 +1,7 @@
 CREATE TABLE "TEAM"."ITEM" 
    (	"IDX" NUMBER NOT NULL ENABLE, 
 	"CATEGORY" CHAR(20 BYTE) NOT NULL ENABLE, 
-	"ITEMNAME" VARCHAR2(20 BYTE) NOT NULL ENABLE, 
+	"ITEMNAME" VARCHAR2(200 BYTE) NOT NULL ENABLE, 
 	"ITEMPRICE" NUMBER NOT NULL ENABLE, 
 	"SELLCVS" VARCHAR2(20 BYTE), 
 	"AVERSCORE" NUMBER(*,2) DEFAULT 0.0 NOT NULL ENABLE, 
@@ -28,3 +28,4 @@ insert into item (idx, sellcvs, category, itemname, itemprice, hit, eventtype, i
 select * from item order by idx desc;
 select count(*) from ITEM;
 commit;
+

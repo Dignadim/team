@@ -53,4 +53,19 @@
 	<select id="amSelectBlock" resultType="mb_vo">
 	select * from member where grade = 'b'
 	</select>
+	
+	
+	<!-- admin block에 쓰임  -->
+	
+	<update id="adminBlockWerning" parameterType="mb_vo">
+		update member set grade = 'w' where id = #{id}
+	</update>
+	
+	<update id="adminBlockBlock" parameterType="mb_vo">
+		update member set grade = 'b' where id = #{id}
+	</update>
+	
+	<update id="adminBlockClear" parameterType="mb_vo">
+		update member set grade = 'n' where id = #{id}
+	</update>
 </mapper>

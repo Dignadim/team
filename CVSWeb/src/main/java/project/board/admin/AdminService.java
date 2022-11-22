@@ -6,6 +6,7 @@ import project.board.free.FreeboardDAO;
 import project.board.free.FreeboardList;
 import project.member.MemberDAO;
 import project.member.MemberList;
+import project.member.MemberVO;
 import project.mybatis.MySession;
 
 public class AdminService {
@@ -72,6 +73,33 @@ public MemberList memberListSort(int mode) {
 }
 
 
+public MemberVO selectById(String id) {
+	SqlSession mapper = MySession.getSession();
+	MemberVO vo = MemberDAO.getInstance().selectById(mapper, id);
+	mapper.close();
+	return vo;
+}
+
+
+// blockType
+public void blockUpdate(MemberVO vo, int banType) {
+	SqlSession mapper = MySession.getSession();
+	
+	MemberDAO dao = MemberDAO.getInstance();
+	
+	if(banType == 1) {
+		dao.adminBlockWerning(mapper, vo);
+	} else if(banType == 2) {
+		dao.adminBlockBlock(mapper, vo);
+	} else if(banType == 3) {
+		dao.adminBlockClear(mapper, vo);
+		
+		mapper.commit();
+		mapper.close();
+	}
+
+	
+}
 }
 
 

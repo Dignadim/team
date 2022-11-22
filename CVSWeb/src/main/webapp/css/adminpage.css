@@ -1,5 +1,13 @@
+* {
+	font-family: Pretendard;	
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
 #contentLeft{
-	background-color : #80ffff;
 	text-decoration:none;
 	width : 50%;
 	margin-left : 50px;
@@ -12,7 +20,6 @@
 }
 
 #contentRight{
-	background-color : #c0c0c0;
 	text-decoration:none;
 	margin : 0% 0% 0% 45%;
 	width : 50%;
@@ -25,47 +32,48 @@
 
 
 .body1 {
-	margin : 30px auto;
-	background-color : #808080;
+	background-color : white;
 	text-decoration:none;
 	width : 90%;
 	height: 45%;
 	min-height : 500px; 
 	max-width : 800px;
 	min-width : 200px;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
 }
 
 
 .body2 {
 	clear:both;
 	margin : 15px 0px 15px 90px;
-	background-color : #808080;
+	background-color : white;
 	text-decoration:none;
 	width : 90%;
 	height: 90%;
 	min-height : 500px; 
 	max-width : 1630px;
 	min-width : 430px;	
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
 }
 
 
 .body3 {
-	
-	margin : 30px auto;
-	background-color : #808080;
+	background-color : white;
 	text-decoration:none;
-	width : 90%;
-	height: 1000px;
+	height: 1050px;
 	min-height : 500px;
 	max-height : 1030px; 
 	max-width : 800px;
 	min-width : 200px;
+	border: 1px solid #e7e7e7;
+	border-radius: 5px;
 }
 
 .clear {
 	clear:both;
 }
-
 
 #modal.modal-overlay {
             width: 100%;

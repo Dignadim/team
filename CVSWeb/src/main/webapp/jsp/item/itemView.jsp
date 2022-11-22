@@ -31,23 +31,14 @@
 					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">행사 보기</a>
-							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href=".././board/event/list.jsp">모든 행사 보기</a></li>
-								<li><a class="dropdown-item" href="#">GS25</a></li>
-								<li><a class="dropdown-item" href="#">CU</a></li>
-								<li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-								<li><a class="dropdown-item" href="#">ministop</a></li>
-								<li><a class="dropdown-item" href="#">이마트24</a></li>
-								<li><a class="dropdown-item" href="#">기타 편의점</a></li>
-							</ul>
+							<a class="nav-link" href=".././board/event/list.jsp">모든 행사 보기</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
 								<li><a class="dropdown-item" href="../board/free/list.jsp">자유게시판</a></li>
 								<li><a class="dropdown-item" href="../board/rank/rank.jsp">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="#">신상게시판</a></li>
+								<li><a class="dropdown-item" href="../new/new.jsp">신상게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -66,7 +57,7 @@
 					<c:if test="${id != null}">
 						<button type="button" class="btn btn-danger" onclick="location.href='../logRegi/login_out.jsp'">로그아웃</button>
 						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="../item/itemInsert.jsp">관리 페이지로</button>	
+							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='../admin/connectadmin.jsp'">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
 							<button type="button" class="btn btn-warning" onclick="location.href='../myPage/myPageView.jsp'">마이페이지</button>	
@@ -92,7 +83,7 @@
 			<tbody>
 				<tr>
 					<td rowspan="7" width="550px;">
-						<img alt="상품 이미지" src="../${vo.itemImage}" style="height: 500px; border-radius: 10px;">
+						<img alt="상품 이미지" src="${vo.itemImage}" style="height: 500px; border-radius: 10px;">
 					</td>
 				</tr>
 				<tr>
@@ -143,7 +134,7 @@
 							<img alt="emart logo" src="../../images/emart24.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6324.67179741723!2d126.97837037619794!3d37.570707368254006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e91d47728f%3A0x4598afb5329bec27!2z7J2066eI7Yq4MjTsooXroZztg4Dsm4zsoJA!5e0!3m2!1sko!2skr!4v1668399063235!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
-						<c:if test="${vo.sellCVS == '기타 편의점'}">
+						<c:if test="${vo.sellCVS != 'CU' && vo.sellCVS != 'GS25' && vo.sellCVS != '세븐일레븐' && vo.sellCVS != 'ministop' && vo.sellCVS != '이마트24'}">
 							<img alt="other logo" src="../../images/other.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3744758438597!2d126.98140911744352!3d37.56979879644267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e7a005c9c5%3A0xac4890a924a29f30!2z642U7KGw7J2A7Lu07ZOo7YSw7JWE7Lm0642w66-47ZWZ7JuQIOyiheuhnOy6oO2NvOyKpA!5e0!3m2!1sko!2skr!4v1668226910469!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>

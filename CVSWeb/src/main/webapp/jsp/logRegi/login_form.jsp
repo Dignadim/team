@@ -8,7 +8,6 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../../css/main.css">
 <link rel="stylesheet" href="../../css/register.css"/>
 <script defer="defer" type="text/javascript" src="../../js/register.js"></script>
 </head>
@@ -21,7 +20,7 @@
 	<center>
 		<h3>로그인</h3>
 		<hr>
-		<div class="container" style="margin-top: 100px; width: 800px">
+		<div class="container" style="margin-top: 50px; width: 800px"><br/><br/><br/>
 			<form action=login_control.jsp method=post name="login_form">
 				<input type="hidden" name=action value=login>
 				<table class="table table-hover table-bordered">
@@ -72,12 +71,10 @@
 						</tr>
 						<tr>
 							<td>
-								<input type="password" name="regipassword" placeholder="Password" 
-								onkeyup="pssChk()"/>
+								<input type="password" name="regipassword" placeholder="Password" onkeyup="pssChk()"/>
 							</td>
 							<td>
-								<input type="password" name="regipasswordCh" placeholder="Password 확인" 
-								onkeyup="pssChk()"/>
+								<input type="password" name="regipasswordCh" placeholder="Password 확인" onkeyup="pssChk()"/>
 							</td>
 						</tr>
 						<tr>

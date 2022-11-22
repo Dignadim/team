@@ -1,5 +1,7 @@
 package project.item;
 
+import java.util.Date;
+
 public class ItemVO {
 
 	private int idx;
@@ -12,12 +14,14 @@ public class ItemVO {
 	private int eventSale;
 	private int hit = 0;
 	private String itemImage;
+	private Date itemDate;
 	
 	public ItemVO() {
 	
 	}
 
-	public ItemVO(int idx, String category, String itemName, int itemPrice, String sellCVS, int averscore, String eventType, int eventSale, int hit, String itemImage) {
+	public ItemVO(int idx, String category, String itemName, int itemPrice, String sellCVS, double averscore,
+			String eventType, int eventSale, int hit, String itemImage, Date itemDate) {
 		super();
 		this.idx = idx;
 		this.category = category;
@@ -29,9 +33,8 @@ public class ItemVO {
 		this.eventSale = eventSale;
 		this.hit = hit;
 		this.itemImage = itemImage;
+		this.itemDate = itemDate;
 	}
-
-
 
 	public int getIdx() {
 		return idx;
@@ -113,11 +116,19 @@ public class ItemVO {
 		this.itemImage = itemImage;
 	}
 
+	public Date getItemDate() {
+		return itemDate;
+	}
+
+	public void setItemDate(Date itemDate) {
+		this.itemDate = itemDate;
+	}
+
 	@Override
 	public String toString() {
 		return "ItemVO [idx=" + idx + ", category=" + category + ", itemName=" + itemName + ", itemPrice=" + itemPrice
 				+ ", sellCVS=" + sellCVS + ", averscore=" + averscore + ", eventType=" + eventType + ", eventSale="
-				+ eventSale + ", hit=" + hit + ", itemImage=" + itemImage + "]";
+				+ eventSale + ", hit=" + hit + ", itemImage=" + itemImage + ", itemDate=" + itemDate + "]";
 	}
 
 	

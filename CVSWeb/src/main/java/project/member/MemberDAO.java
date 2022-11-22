@@ -64,6 +64,23 @@ public class MemberDAO {
 		return (ArrayList<MemberVO>) mapper.selectList("amSelectBlock");
 	}
 	
+	// 어드민 블락 코드
+
+	public void adminBlockWerning(SqlSession mapper, MemberVO vo) {
+		System.out.println("MemberDAO의 adminBlockWerning() 메소드");
+		mapper.update("adminBlockWerning", vo);
+	}
+	public void adminBlockBlock(SqlSession mapper, MemberVO vo) {
+		System.out.println("MemberDAO의 adminBlockBlock() 메소드");
+		mapper.update("adminBlockBlock", vo);
+		
+	}
+	public void adminBlockClear(SqlSession mapper, MemberVO vo) {
+		System.out.println("MemberDAO의 adminBlockClear() 메소드");
+		mapper.update("adminBlockClear", vo);
+		
+	}
+	
 	
 	
 }

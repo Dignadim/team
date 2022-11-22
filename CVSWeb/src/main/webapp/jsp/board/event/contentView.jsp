@@ -15,10 +15,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 <script type="text/javascript" src="../../../js/eventboard.js" defer="defer"></script>
-
+<style type="text/css">
+* {
+	font-family: "Pretendard";
+}
+</style>
 </head>
 <body>
-	
 	
    <!-- header -->
    <header>
@@ -32,24 +35,15 @@
                   <li class="nav-item" style="padding-right: 70px;">
                       <a class="nav-link" href="../../item/itemList.jsp?">모든 상품 보기</a>
                    </li>               
-                  <li class="nav-item dropdown" style="padding-right: 70px;">
-                     <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">행사 보기</a>
-                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="./list.jsp">모든 행사 보기</a></li>
-                        <li><a class="dropdown-item" href="#">GS25</a></li>
-                        <li><a class="dropdown-item" href="#">CU</a></li>
-                        <li><a class="dropdown-item" href="#">세븐일레븐</a></li>
-                        <li><a class="dropdown-item" href="#">ministop</a></li>
-                        <li><a class="dropdown-item" href="#">이마트24</a></li>
-                        <li><a class="dropdown-item" href="#">기타 편의점</a></li>
-                     </ul>
-                  </li>
+					<li class="nav-item dropdown" style="padding-right: 70px;">
+						<a class="nav-link" href="../.././board/event/list.jsp">모든 행사 보기</a>
+					</li>
                   <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" role="button"   data-bs-toggle="dropdown">게시판</a>
                      <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../free/list.jsp">자유게시판</a></li>
                         <li><a class="dropdown-item" href="../rank/rank.jsp">랭킹게시판</a></li>
-                        <li><a class="dropdown-item" href="#">신상게시판</a></li>
+                        <li><a class="dropdown-item" href="../new/new.jsp">신상게시판</a></li>
                      </ul>
                   </li>
                </ul>
@@ -68,7 +62,7 @@
                <c:if test="${id != null}">
                   <button type="button" class="btn btn-danger" onclick="location.href='../../logRegi/login_out.jsp'">로그아웃</button>
                   <c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-                     <button class="btn btn-info" style="padding: 6px;" onclick="../../item/itemInsert.jsp">관리 페이지로</button>   
+                     <button class="btn btn-info" style="padding: 6px;" onclick="location.href='../../admin/connectadmin.jsp'">관리 페이지로</button>   
                   </c:if>
                   <c:if test="${grade.trim() == null || grade.trim() != 'y'}">
                      <button type="button" class="btn btn-warning" onclick="location.href='../../myPage/myPageView.jsp'">마이페이지</button>   
@@ -79,24 +73,24 @@
          </nav>
       </div>
    </header>
-   <br/><br/><br/>
+   <br/><br/>
 	
 	<div class="m-5">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">			
-			<tr class="table-secondary">
+			<tr class="table-primary">
 				<th style="width: 70px; text-align: center;">닉네임</th>
 				<th style="width: 150px; text-align: center;">제목</th>
 				<th style="width: 150px; text-align: center;">작성일</th>
 				<th style="width: 70px; text-align: center;">조회수</th>
 			</tr>	
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<td align="center">
 					${ev_nickname}
 				</td>
 				<td align="center">
 					<c:set var="ev_subject" value="${fn:replace(ev_vo.ev_subject, '<', '&lt;')}"/>
 					<c:set var="ev_subject" value="${fn:replace(ev_subject, '>', '&gt;')}"/>
-					[${ev_vo.ev_sellcvs.trim()}] ${ev_subject} ${schedVO.sYear}-${schedVO.sMonth}-${schedVO.sDay} ~ ${schedVO.eYear}-${schedVO.eMonth}-${schedVO.eDay}
+					[${ev_vo.ev_sellcvs.trim()}] ${ev_subject}
 				</td>
 				<td align="center">
 					<jsp:useBean id="date" class="java.util.Date"/>
@@ -111,17 +105,19 @@
 					${ev_vo.ev_hit}
 				</td>
 			</tr>	
-			<tr class="table-secondary">
-				<th style="text-align: center;">내용 <br/><br/>${schedVO.event}</th>
-				<td colspan="3" height="400" style="background-color: #F2F2F2;" >
+			<tr class="table-light">
+				<th style="text-align: center;">내용</th>
+				<td colspan="3" height="400" style="background-color: white;" >
 					<c:set var="ev_content" value="${fn:replace(ev_vo.ev_content, '<', '&lt;')}"/>
 					<c:set var="ev_content" value="${fn:replace(ev_content, '>', '&gt;')}"/>
 					<c:set var="ev_content" value="${fn:replace(ev_content, enter, '<br/>')}"/>
-					<img alt="이미지" src="${ev_vo.ev_filename}"><br/>
-					${ev_content}
+					<div style="margin: 10px 15px;">
+						<img alt="이미지" src="${ev_vo.ev_filename}"><br/>
+						${ev_content}
+					</div>
 				</td>
 			</tr>	
-			<tr class="table-secondary">
+			<tr class="table-light">
 				<c:if test="${!grade.trim().equals('y')}">
 				<td colspan="4" height="45px"></td>
 				</c:if>

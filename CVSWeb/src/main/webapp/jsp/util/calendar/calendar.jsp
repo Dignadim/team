@@ -18,7 +18,10 @@
 
 <!-- 내장된 css -->
 <style type="text/css">
-
+	* {
+		font-family: Pretendard;
+	}
+	
 	table {
 		border: 0px solid tomato;
 	}
@@ -35,10 +38,9 @@
 	}
 
 	th#title {
-		font-size: 30pt;
-		font-family: D2Coding;
-		font-weight: bold;
-		color: tomato;
+		background-color: #CFE2FF;
+		font-size: 25pt;
+		border-radius: 5px;
 	}
 	
 	th#sunday {
@@ -53,7 +55,7 @@
 		text-align: right;
 		vertical-align: top;
 		border: 1px solid black;
-		border-radius: 10px;
+		border-radius: 5px;
 	}
 	
 	td.sun {
@@ -78,12 +80,12 @@
 	td#aftersat {
 		color: blue;
 		font-size: 10pt;
-		background-color: yellowgreen;
+		background-color: lavender;
 	}
 	
 	td.after {
 		font-size: 10pt;
-		background-color: yellowgreen;
+		background-color: lavender;
 	}
 	
 	td#choice {
@@ -92,13 +94,12 @@
 	}
 	
 	td.event {
-		background-color: orange;
+		background-color: cornflowerblue;
 		color: GhostWhite;
-		font-weight: bold;
 	}
 	
 	span {
-		font-size: 6pt;
+		font-size: 8pt;
 	}
 
 	a {
@@ -117,14 +118,14 @@
 	}
 
 	.button {
-	  background-color: #4CAF50; /* Green */
+	  background-color: #0d6efd; /* Green */
 	  border: none;
 	  color: white;
 	  padding: 5px;
 	  text-align: center;
 	  text-decoration: none;
 	  display: inline-block;
-	  font-size: 16px;
+	  font-size: 20px;
 	  margin: 0;
 	  transition-duration: 0.4s;
 	  cursor: pointer;
@@ -133,11 +134,12 @@
 	.button1 {
 	  background-color: white; 
 	  color: black; 
-	  border: 2px solid #4CAF50;
+	  border: 2px solid #0d6efd;
+	  border-radius: 15px;
 	}
 	
 	.button1:hover {
-	  background-color: #4CAF50;
+	  background-color: #0d6efd;
 	  color: white;
 	}
 	
@@ -221,16 +223,16 @@
 
 	<tr>
 		<th>
-			<input class="button button1" type="button" value="이전달"
+			<input class="button button1" type="button" value="＜"
 				onclick="location.href='?year=${year}&month=${month - 1}'">
 		</th>
 		<th id="title" colspan="5">
-			${year}년 ${month}월
+			${year}년 ${month}월 행사
 		</th>
 		<th>
 			<button class="button button1" type="button" 
 				onclick="location.href='?year=${year}&month=${month + 1}'">
-				다음달
+				＞
 			</button>
 		</th>
 	</tr>
