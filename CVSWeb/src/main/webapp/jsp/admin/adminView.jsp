@@ -34,7 +34,7 @@
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="itemList.jsp?">모든 상품 보기</a>
+					    	<a class="nav-link" href="../item/itemList.jsp?">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
 							<a class="nav-link" href=".././board/event/list.jsp">모든 행사 보기</a>
@@ -210,9 +210,9 @@
 				</tr>
 
 				<tr class="table-light">
-					<th style="width: 100px; text-align: center;">게시판이름</th>
-					<th style="width: 400px; text-align: center;">제목</th>
-					<th style="width: 100px; text-align: center;">닉네임</th>
+					<th style="width: 120px; text-align: center;">게시판 이름</th>
+					<th style="width: 390px; text-align: center;">제목</th>
+					<th style="width: 90px; text-align: center;">닉네임</th>
 					<th style="width: 100px; text-align: center;">작성일</th>
 				</tr>
 
@@ -240,7 +240,7 @@
 									<img alt="New" src="../../images/ic_new.gif" />
 								</c:if>
 							</td>
-							<td align="center">닉네임</td>
+							<td align="center">${nickname}</td>
 							<td align="center"><c:if
 									test="${date.year == fb_vo.fb_date.year && date.month == fb_vo.fb_date.month && date.date == fb_vo.fb_date.date}">
 									<fmt:formatDate value="${fb_vo.fb_date}" pattern="a h:mm" />
@@ -255,8 +255,41 @@
 					</c:forEach>
 				</c:if>
 
+					<tr>
+		 
+				 <c:set var="list" value="${eventboardList.list}" />
 
-			</table>
+
+				<c:if test="${list.size() != 0}">
+
+					<c:forEach var="ev_vo" items="${list}">
+						<tr>
+							<td align="center">이벤트게시판</td>
+							<td align="center"><i class="bi bi-tags"></i> 
+							<c:set var="ev_subject"	value="${fn:replace(ev_vo.ev_subject, '<', '&lt;')}" /> 
+							<c:set var="ev_subject" value="${fn:replace(ev_subject, '>', '&gt;')}" />
+							<a href="../board/event/selectByIdx.jsp?ev_idx=${ev_vo.ev_idx}&currentPage=${eventboardList.currentPage}&job=contentView">${ev_subject} (${ev_vo.ev_commentCount})</a>
+								<c:if test="${date.year == ev_vo.ev_date.year && date.month == ev_vo.ev_date.month && date.date == ev_vo.ev_date.date}">
+									<img alt="New" src="../../images/ic_new.gif" />
+								</c:if>
+							</td>
+							<td align="center">${nickname}</td>
+							<td align="center"><c:if
+									test="${date.year == ev_vo.ev_date.year && date.month == ev_vo.ev_date.month && date.date == ev_vo.ev_date.date}">
+									<fmt:formatDate value="${ev_vo.ev_date}" pattern="a h:mm" />
+								</c:if> <c:if
+									test="${date.year != ev_vo.ev_date.year || date.month != ev_vo.ev_date.month || date.date != ev_vo.ev_date.date}">
+									<fmt:formatDate value="${ev_vo.ev_date}"
+										pattern="yyyy.MM.dd(E)" />
+								</c:if></td>
+
+						</tr>
+
+					</c:forEach>
+				</c:if>
+ 
+
+					</table>
 
 		</div>
 	</div>

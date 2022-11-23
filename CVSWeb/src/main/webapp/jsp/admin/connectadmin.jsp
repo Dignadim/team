@@ -1,3 +1,5 @@
+<%@page import="project.board.event.EventboardList"%>
+<%@page import="project.board.event.EventboardCommentList"%>
 <%@page import="project.member.MemberList"%>
 <%@page import="project.board.admin.AdminService"%>
 <%@page import="project.board.free.FreeboardList"%>
@@ -38,6 +40,7 @@ request.setCharacterEncoding("UTF-8");
 	
 	AdminService service = AdminService.getInstance();
 	
+
 	// 모든 멤버 목록 얻어옴
 	MemberList memberListSort = service.amSelectList();
 	
@@ -53,16 +56,16 @@ request.setCharacterEncoding("UTF-8");
 //member 데이터를 memberList에 담음
 	MemberList memberList = service.amSelectList();
 
+// eventboard 데이터를 eventboardList에 다음
+	EventboardList eventboardList = service.aebSelectList();
 	
-	
-	
-	
-	
+
 
 //	데이터를 화면에 표시하는 페이지(adminView.jsp)로 넘겨준다.
 	request.setAttribute("memberListSort", memberListSort);
 	request.setAttribute("freeboardList", freeboardList);
 	request.setAttribute("memberList", memberList);
+	request.setAttribute("eventboardList", eventboardList);
 	pageContext.forward("adminView.jsp");
 %>
 

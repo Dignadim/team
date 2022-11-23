@@ -75,5 +75,15 @@ public class EventboardDAO {
 	
 	
 	
+	// admin에 들어가는 코드
+	
+	public ArrayList<EventboardVO> aebSelectList(SqlSession mapper) {
+		System.out.println("EventboardDAO의 aebSelectList() 메소드");
+		return (ArrayList<EventboardVO>) mapper.selectList("aebSelectList");
+	}
+	
+	
+	
+	
 	
 }

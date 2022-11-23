@@ -115,6 +115,15 @@
 		</if>
  	</select>
 
+
+	<!-- 어드민에 들어가는 코드 -->
+	<select id="aebSelectList" resultType="ev_vo">
+	select * from ev_board where ev_notice = 'yes'	
+	</select>
+		
+
+
+
 </mapper>
 
 

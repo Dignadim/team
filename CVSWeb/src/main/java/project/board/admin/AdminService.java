@@ -2,6 +2,8 @@ package project.board.admin;
 
 import org.apache.ibatis.session.SqlSession;
 
+import project.board.event.EventboardDAO;
+import project.board.event.EventboardList;
 import project.board.free.FreeboardDAO;
 import project.board.free.FreeboardList;
 import project.member.MemberDAO;
@@ -103,6 +105,21 @@ public void blockUpdate(MemberVO vo, int banType) {
 
 	
 }
+
+
+// aebSelectLis
+public EventboardList aebSelectList() {
+	System.out.println("adminService의 aebSelectList() 메소드");
+	SqlSession mapper = MySession.getSession();
+// 전체 카테고리 목록을 저장해서 리턴시킬 객체를 선언한다.
+EventboardList eventboardList = new EventboardList();
+//테이블에서 얻어온 전체 카테고리 목록을 freeboardList 클래스의 ArrayList에 저장한다.
+eventboardList.setList(EventboardDAO.getInstance().aebSelectList(mapper));
+
+mapper.close();
+return eventboardList;
+}
+
 }
 
 
