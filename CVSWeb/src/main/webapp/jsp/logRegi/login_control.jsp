@@ -19,6 +19,7 @@ request.setCharacterEncoding("UTF-8");
 <body>
 <%
 String action = request.getParameter("action");
+String ogUrl = request.getParameter("ogUrl");
 	
 	out.println("<script>");
 	if(action.equals("login") && v.getId() != null){
@@ -28,8 +29,7 @@ String action = request.getParameter("action");
 		 		if(vo.getId().equals(v.getId().trim())){
 					if(vo.getPassword().trim().equals(v.getPassword().trim())){
 						out.println("alert('로그인되었습니다.')");
-						out.println("location.href='../connectMain.jsp'");
-						//out.println("history.go(2)'");
+						out.println("location.href='"+ogUrl+"'");
 						session.setAttribute("id", vo.getId());
 						session.setAttribute("nickname", vo.getNickname());
 						session.setAttribute("email", vo.getEmail());

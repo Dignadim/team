@@ -28,13 +28,8 @@
 	String searchText = request.getParameter("searchText");
 	// out.println(searchText);
 	
-//	넘어온 카테고리("전체" 제외)가 있으면 카테고리와 검색어를 세션에 저장하고 넘어온 카테고리가 없으면 세션에 저장된
-//	카테고리를 읽어온다.
-	if (category == null || category.trim().length() == 0) {
-		category = (String) session.getAttribute("category");
-	} else {
-		session.setAttribute("category", category);
-	}
+//	넘어온 카테고리와 검색어가 있으면 세션에 저장한다.
+	session.setAttribute("category", category);
 	session.setAttribute("searchText", searchText);
 	
 	EventboardService service = EventboardService.getInstance();
@@ -43,14 +38,16 @@
 	ArrayList<EventboardVO> ev_notice = service.evSelectNotice();
 	EventboardList eventboardList = null;
 	
-	// category 값이 null인 경우(검색 버튼 누르기 전), 혹은 category가 "전체"인 경우
+	// 카테고리, 검색어 값이 null인 경우(검색 버튼 누르기 전), 혹은 category가 "전체"인 경우
 	if(category == null && (searchText == null || searchText.trim().length() == 0)	
 		|| category.equals("전체") && (searchText == null || searchText.trim().length() == 0)) {
 		eventboardList = service.evSelectList(currentPage);
-		// 카테고리가 null이 아니거나, "전체"가 아닌 경우
+	// 카테고리가 null이 아니거나, "전체"가 아닌 경우
 	} else if (category != null || !category.equals("전체")) {
+		// 검색어가 null인 경우
 		if (searchText == null || searchText.trim().length() == 0) {
 			eventboardList = service.evSelectListCategory(currentPage, category);
+		// 검색어가 null이 아닌 경우
 		} else {
 			eventboardList = service.evSelectListMulti(currentPage, category, searchText);
 			System.out.println("list"+searchText);

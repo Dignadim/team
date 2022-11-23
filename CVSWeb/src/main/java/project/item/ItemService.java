@@ -321,6 +321,16 @@ public class ItemService {
 		return list;
 	}
 	
+	public double getRealAvg(int idx) {
+		System.out.println("ItemService의 getRealAvg()");
+		SqlSession mapper = MySession.getSession();		
+		
+		double avg = ItemDAO.getInstance().getRealAvg(mapper, idx);
+		
+		mapper.close();		
+		return avg;
+	}
+	
 }
 
 //	list안의 조회수 기준으로 정렬해주는 기능

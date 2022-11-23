@@ -20,6 +20,11 @@
 	
 		ItemService service = ItemService.getInstance();
 		ItemVO vo = service.itemSelectByIdx(idx);
+		try {
+			vo.setAverscore(service.getRealAvg(idx));			
+		} catch (NullPointerException e) {
+			vo.setAverscore(0);
+		}
 		
 		request.setAttribute("vo", vo);
 		request.setAttribute("currentPage", currentPage);

@@ -202,6 +202,11 @@ public class ItemDAO {
 		
 		return list;
 	}
+	
+	public double getRealAvg(SqlSession mapper, int idx) {
+		System.out.println("ItemDAO의 getRealAvg() 메소드 실행");
+		return (double) mapper.selectOne("getRealAvg", idx);
+	}
 
 }
 

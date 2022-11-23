@@ -92,10 +92,8 @@
 						<option selected>(상위 항목 선택)</option>
 					</select>
 				</td>
-				<td colspan="1" align="right">
-					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 200px;">
-				</td>
-				<td colspan="1">
+				<td colspan="2" align="right">
+					<input type="text" class="form-control" id="itemName" placeholder="검색할 내용을 입력하세요." style="width: 200px;  display: inline !important;">
 					<button type="button" class="btn btn-primary" onclick="searchFunction()">검색</button>
 				</td>
 			</tr>
@@ -172,9 +170,6 @@
 						</td>				
 					<c:if test="${i.count % 4 == 0}">
 							<tr style="border-color: transparent;">
-								<td colspan="4">
-									&nbsp;
-								</td>
 							</tr>
 					</c:if>
 					</c:forEach>

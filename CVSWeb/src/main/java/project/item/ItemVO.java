@@ -1,5 +1,6 @@
 package project.item;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 
 public class ItemVO {
@@ -77,7 +78,8 @@ public class ItemVO {
 	}
 
 	public double getAverscore() {
-		return averscore;
+		DecimalFormat df = new DecimalFormat("#.00"); 
+		return Double.parseDouble(df.format(averscore));
 	}
 
 	public void setAverscore(double averscore) {

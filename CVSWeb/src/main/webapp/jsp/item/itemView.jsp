@@ -190,14 +190,14 @@
 									<span style="color: gray;">(평점 등록은 로그인한 회원만 가능합니다.)</span>
 								</c:if>
 								<c:if test="${nickname != null}">
-								<td>
+								<td style="vertical-align: middle;">
 									평점 등록:
 								</td>
 								<td>
 									<input type="number" class="form-control" max="5" min="0" id="updateAverscore" style="height: 30px; width: 70px; margin: 3px 15px; "> 
 								</td>
 								<td>
-									<input type="button" class="btn btn-outline-success" value="확인" onclick="updateAverscore()" style="height: 30px; width: 60px;">
+									<input type="button" class="btn btn-outline-success" value="확인" onclick="updateAverscore()" style="width: 60px;">
 								</td>
 								</c:if>						
 							</tr>
@@ -286,7 +286,7 @@
 						<td>
 							<input type="hidden" id="itemCommentIdx" name="idx" value="${co.idx}" size="1"> 
 							<fmt:formatDate value="${co.writeDate}" pattern="yyyy.MM.dd(E) a h:mm:ss"/>	
-							<c:if test="${id == co.ID}">
+							<c:if test="${id == co.ID && id != null}">
 							<span>
 								<input type="button" class="btn btn-outline-warning" onclick="test('${co.idx}', 2, '수정', '${content}')" value="수정"/>
 							</span>

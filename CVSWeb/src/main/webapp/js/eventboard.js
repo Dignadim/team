@@ -67,14 +67,7 @@ function thisClose(ev_filename) {
 	self.close();
 }
 
-function backPage() {
-	let frm = document.searchForm;
-	frm.category.value ='전체';
-	frm.searchText.value = '';
-	frm.submit();
-}
-
-//=========================Update========================
+//=========================Board========================
 
 //	게시글 수정 시, 기존에 머리말 옵션에 selected를 걸어주는 함수
 function fixSelected() {
@@ -85,6 +78,14 @@ function fixSelected() {
 			options[i].selected = true;
 		}
 	} 
+}
+
+// 게시판 검색기능 사용 시, 돌아가기 버튼을 누르면 값을 초기화 시켜주는
+function backPage() {
+	let frm = document.searchForm;
+	frm.category.value ='전체';
+	frm.searchText.value = '';
+	frm.submit();
 }
 
 //=========================Comment========================

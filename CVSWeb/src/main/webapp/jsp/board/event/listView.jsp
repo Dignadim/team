@@ -84,7 +84,7 @@
 			<tr>
 				<td colspan="5">
 					<form action="list.jsp" method="post" name="searchForm">
-						<select id="category" name="category" style="width: 130px; height: 30px;">
+						<select class="form-select" id="category" name="category" style="width: 130px; display: inline !important;">
 							<option>전체</option>
 							<option>GS25</option>
 							<option>CU</option>
@@ -93,7 +93,7 @@
 							<option>이마트24</option>
 							<option>기타편의점</option>
 						</select>
-						<input type="text" id="searchText" name="searchText" value="${searchText}" style="width: 150px; padding-left: 10px;"/>
+						<input class="form-control" type="text" id="searchText" name="searchText" value="${searchText}" style="width: 150px; padding-left: 10px; display: inline !important;"/>
 						<input class="btn btn-primary" type="submit" value="검색"/>
 						<button class="btn btn-outline-secondary" onclick="backPage()">돌아가기</button>
 					</form>
