@@ -22,7 +22,7 @@
 }
 </style>
 </head>
-<body>
+<body onload="fixSelected()">
 
     <!-- header -->
    <header>
@@ -84,6 +84,7 @@
 			<tr>
 				<td colspan="5">
 					<form action="list.jsp" method="post" name="searchForm">
+						<input id="beforeCvs" type="hidden" name="ev_sellcvs" value="${category}"/>
 						<select class="form-select" id="category" name="category" style="width: 130px; display: inline !important;">
 							<option>전체</option>
 							<option>GS25</option>
