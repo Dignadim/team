@@ -90,7 +90,7 @@
 				<td align="center">
 					<c:set var="ev_subject" value="${fn:replace(ev_vo.ev_subject, '<', '&lt;')}"/>
 					<c:set var="ev_subject" value="${fn:replace(ev_subject, '>', '&gt;')}"/>
-					[${ev_vo.ev_sellcvs.trim()}] ${ev_subject}
+					[${ev_vo.ev_sellcvs.trim()}] ${ev_subject}<br/> ${schedVO.sYear}-${schedVO.sMonth}-${schedVO.sDay} ~ ${schedVO.eYear}-${schedVO.eMonth}-${schedVO.eDay}
 				</td>
 				<td align="center">
 					<jsp:useBean id="date" class="java.util.Date"/>
@@ -106,7 +106,7 @@
 				</td>
 			</tr>	
 			<tr class="table-light">
-				<th style="text-align: center;">내용</th>
+				<th style="text-align: center;">내용<br/><br/>${schedVO.event}</th>
 				<td colspan="3" height="400" style="background-color: white;" >
 					<c:set var="ev_content" value="${fn:replace(ev_vo.ev_content, '<', '&lt;')}"/>
 					<c:set var="ev_content" value="${fn:replace(ev_content, '>', '&gt;')}"/>

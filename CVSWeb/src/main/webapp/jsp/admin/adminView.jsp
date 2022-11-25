@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="../../css/adminpage.css">
 <script type="text/javascript" src="../../js/adminmember.js" defer></script>
 </head>
-<body>
+<body onload="fixSelected()">
 
 	<jsp:useBean id="date" class="java.util.Date" />
 
@@ -104,13 +104,16 @@
 				</tr>
 				<tr>
 					<th colspan="5">
-						<select class="form-select" width="100"	onchange="memberCheck()" id="memberCheck">
-							<option>모든회원</option>
-							<option>관리자</option>
-							<option>일반회원</option>
-							<option>경고회원</option>
-							<option>차단회원</option>
-						</select>
+						<form action="connectadmin.jsp" method="post" name="mbChkForm">
+							<input type="hidden" name="mode" value="${mode}" id="mode"/>
+							<select class="form-select" width="100"	onchange="memberCheck()" name="selectMember">
+								<option value="1">모든회원</option>
+								<option value="2">관리자</option>
+								<option value="3">일반회원</option>
+								<option value="4">경고회원</option>
+								<option value="5">차단회원</option>
+							</select>
+						</form>
 					</th>
 				</tr>
 

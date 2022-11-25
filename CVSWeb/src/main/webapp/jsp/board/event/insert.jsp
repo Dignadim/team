@@ -121,6 +121,18 @@
 					</i>
 				</td>
 			</tr>		
+			<!-- 이벤트 기간과 내용을 적어주는 공간 -->
+			<tr class="table-light">
+				<th class="align-middle table-primary" style="padding: 10px; text-align: center;">
+					<label>행사정보</label>
+				</th>
+				<td colspan="3">
+					시작일: <input type="text" name="startSch" placeholder="ex)2022-11-19"/>&nbsp;&nbsp;
+					종료일: <input type="text" name="endSch" placeholder="하루만 하는 행사는 적을필요X."/><br/>
+					내용: <input type="text" name="contentSch" placeholder="행사내용 간략히"/>
+				</td>	
+			
+			</tr>
 			<tr class="table-light">
 				<th class="align-top table-primary" style="padding: 10px; text-align: center;">
 					<label for="content">내용</label>

@@ -32,9 +32,9 @@ request.setCharacterEncoding("UTF-8");
 
 //Adminmember.js 에서 가져온 mode 넘버를 받음
 	int mode = 1;
-	try{
+	try {
 		mode = Integer.parseInt(request.getParameter("mode"));
-	} catch (NumberFormatException e) {
+	} catch (NumberFormatException e){
 		
 	}
 	
@@ -66,6 +66,7 @@ request.setCharacterEncoding("UTF-8");
 	request.setAttribute("freeboardList", freeboardList);
 	request.setAttribute("memberList", memberList);
 	request.setAttribute("eventboardList", eventboardList);
+	request.setAttribute("mode", mode);
 	pageContext.forward("adminView.jsp");
 %>
 
