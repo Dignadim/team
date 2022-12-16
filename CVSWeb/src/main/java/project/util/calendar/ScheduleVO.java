@@ -23,6 +23,16 @@ public class ScheduleVO
 		this.event = event;
 		this.gup = gup;
 	}
+	public void init(int sYear, int sMonth, int sDay, int eYear, int eMonth, int eDay, String event, int gup) {
+		this.sYear = sYear;
+		this.sMonth = sMonth;
+		this.sDay = sDay;
+		this.eYear = eYear;
+		this.eMonth = eMonth;
+		this.eDay = eDay;
+		this.event = event;
+		this.gup = gup;
+	}
 	public int getsYear() {
 		return sYear;
 	}

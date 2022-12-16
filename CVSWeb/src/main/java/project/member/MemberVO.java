@@ -23,6 +23,15 @@ public class MemberVO
 	}
 	
 	
+//	기본생성자로 생성된 VObean을 초기화해주기 위해서 사용되는 메소드
+	public void init(String id, String pss, String nick, String email) 
+	{
+		this.id = id;
+		this.password = pss;
+		this.nickname = nick;
+		this.email = email;
+	}
+	
 	public String getId() {
 		return id;
 	}

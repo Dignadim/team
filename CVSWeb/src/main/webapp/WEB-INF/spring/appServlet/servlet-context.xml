@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- 폴더 경로 매핑 -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/css/**" location="/WEB-INF/css/" />
+	<resources mapping="/images/**" location="/WEB-INF/images/" />
+	<resources mapping="/js/**" location="/WEB-INF/js/" />
+	<resources mapping="/views/**" location="/WEB-INF/views/" />		<!-- views 안에 jsp 파일경로 매핑 -->
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<!-- DB 연결 경로 및 계정설정 -->
+	<beans:bean name="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" >
+		<beans:property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<beans:property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<beans:property name="username" value="team"/>
+		<beans:property name="password" value="0000"/>
+	</beans:bean>
+	
+	<!-- DB 정보와 sql 명령 경로 설정 -->
+	<beans:bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource"/>
+		<beans:property name="mapperLocations" value="classpath:project/controller/mybatis/*.xml"/>
+		<beans:property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</beans:bean>
+		
+	<beans:bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<beans:constructor-arg index="0" ref="sqlSessionFactory"/>
+	</beans:bean>
+	
+	
+	
+	
+	
+	
+	<context:component-scan base-package="project.controller.CVSWeb" />
+	
+	
+	
+</beans:beans>

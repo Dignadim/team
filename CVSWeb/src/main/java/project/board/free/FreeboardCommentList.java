@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class FreeboardCommentList {
 	
-	private ArrayList<FreeboardCommentVO> list = new ArrayList<>();
+	private ArrayList<FreeboardCommentVO> list = new ArrayList<FreeboardCommentVO>();
 
 	public ArrayList<FreeboardCommentVO> getList() {
 		return list;

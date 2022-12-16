@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class ItemCommentList {
 
-	private ArrayList<ItemVO> list = new ArrayList<>();
+	private ArrayList<ItemCommentVO> list = new ArrayList<ItemCommentVO>();
 
-	public ArrayList<ItemVO> getList() {
+	public ArrayList<ItemCommentVO> getList() {
 		return list;
 	}
-	public void setList(ArrayList<ItemVO> list) {
+	public void setList(ArrayList<ItemCommentVO> list) {
 		this.list = list;
 	}
 	
