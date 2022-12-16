@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EventboardCommentList {
 	
-	private ArrayList<EventboardCommentVO> list = new ArrayList<>();
+	private ArrayList<EventboardCommentVO> list = new ArrayList<EventboardCommentVO>();
 
 	public ArrayList<EventboardCommentVO> getList() {
 		return list;

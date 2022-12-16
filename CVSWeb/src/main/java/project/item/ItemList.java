@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ItemList {
 	
-	ArrayList<ItemVO> list = new ArrayList<>();
+	ArrayList<ItemVO> list = new ArrayList<ItemVO>();
 	private int pageSize = 12; 
 	private int totalCount = 0; 
 	private int totalPage = 0; 
@@ -18,8 +18,8 @@ public class ItemList {
 	
 	}
 
-	public ItemList(int pageSize, int totalCount, int currentPage) {
-		super();
+	public void initMvcboardList(int pageSize, int totalCount, int currentPage) 
+	{
 		this.pageSize = pageSize;
 		this.totalCount = totalCount;
 		this.currentPage = currentPage;
@@ -94,5 +94,6 @@ public class ItemList {
 	public String toString() {
 		return "ItemList [list=" + list + ", pageSize=" + pageSize + ", totalCount=" + totalCount + ", totalPage=" + totalPage + ", currentPage=" + currentPage + ", startNo=" + startNo + ", endNo=" + endNo + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
+
 		
 }

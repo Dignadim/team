@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class MemberList {
 
-	private ArrayList<MemberVO> list = new ArrayList<>();
+	private ArrayList<MemberVO> list = new ArrayList<MemberVO>();
 
 	public ArrayList<MemberVO> getList() {
 		return list;

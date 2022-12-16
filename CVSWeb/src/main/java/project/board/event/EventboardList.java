@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class EventboardList {
 
-	private ArrayList<EventboardVO> list = new ArrayList<>();
+	private ArrayList<EventboardVO> list = new ArrayList<EventboardVO>();
 	private int pageSize = 10;
 	private int totalCount = 0;
 	private int totalPage = 0;
@@ -93,6 +93,12 @@ public class EventboardList {
 		return "EventboardList [list=" + list + ", pageSize=" + pageSize + ", totalCount=" + totalCount + ", totalPage="
 				+ totalPage + ", currentPage=" + currentPage + ", startNo=" + startNo + ", endNo=" + endNo
 				+ ", startPage=" + startPage + ", endPage=" + endPage + "]";
+	}
+	public void initMvcboardList(int pageSize, int totalCount, int currentPage) {
+		this.pageSize = pageSize;
+		this.totalCount = totalCount;
+		this.currentPage = currentPage;
+		calculator();
 	}
 
 	

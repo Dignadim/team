@@ -12,6 +12,7 @@ public class ItemAvgVO {
 	public ItemAvgVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 
 	public int getItemIdx() {
 		return itemIdx;
@@ -65,6 +66,15 @@ public class ItemAvgVO {
 	public String toString() {
 		return "ItemAvgVO [itemIdx=" + itemIdx + ", averscore=" + averscore + ", avgIndex=" + avgIndex + ", ID=" + ID
 				+ ", updateScore=" + updateScore + ", newAvg=" + newAvg + "]";
+	}
+
+//	빈 객체를 초기화해주기 위한 메소드
+	public void init(double averscore, int itemIdx, double updateScore, String id) 
+	{
+		this.averscore = averscore;
+		this.itemIdx = itemIdx;
+		this.updateScore = updateScore;
+		this.ID = id;
 	}
 	
 	
