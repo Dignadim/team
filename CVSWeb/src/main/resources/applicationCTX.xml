@@ -3,30 +3,33 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<!-- itemList의 빈(기본생성자) -->
-	<bean id="itemList" class="project.item.ItemList"/>
-	<!-- itemCommentList의 빈(기본생성자) -->
-	<bean id="itemCommentList" class="project.item.ItemCommentList"/>
+	<!-- VO 클래스의 bean -->
+	<bean id="itemVO" class="com.project.item.ItemVO"/>
+	<bean id="itemCommentVO" class="com.project.item.ItemCommentVO"/>
+	<bean id="itemAvgVO" class="com.project.item.ItemAvgVO"/>
+	<bean id="memberVO" class="com.project.member.MemberVO"/>
+	<bean id="freeboardVO" class="com.project.board.free.FreeboardVO"/>
+	<bean id="freeboardCommentVO" class="com.project.board.free.FreeboardCommentVO"/>
+	<bean id="eventboardVO" class="com.project.board.event.EventboardVO"/>
+	<bean id="eventboardCommentVO" class="com.project.board.event.EventboardCommentVO"/>
+	<bean id="scheduleVO" class="com.project.util.calendar.ScheduleVO"/>
 	
-	<!-- 아이템 평점의 빈 -->
-	<bean id="itemAvgVO" class="project.item.ItemAvgVO"/>
 	
-	
-	<!-- 회원정보의 빈  -->
-	<bean id="memberVO" class="project.member.MemberVO"/>
-	<bean id="memberList" class="project.member.MemberList"/>
-	
-	<!-- 자유게시판의 빈 -->
-	<bean id="freeList" class="project.board.free.FreeboardList"/>
-	<!-- FreeboardCommentList의 빈 -->
-	<bean id="freeboardCommentList" class="project.board.free.FreeboardCommentList"/>
+	<!-- List 클래스의 bean -->
+	<bean id="itemList" class="com.project.item.ItemList"/>
+	<bean id="itemCommentList" class="com.project.item.ItemCommentList"/>
+	<bean id="memberList" class="com.project.member.MemberList"/>
+	<bean id="freeboardList" class="com.project.board.free.FreeboardList"/>
+	<bean id="freeboardCommentList" class="com.project.board.free.FreeboardCommentList"/>
+	<bean id="eventboardList" class="com.project.board.event.EventboardList"/>
+	<bean id="eventboardCommentList" class="com.project.board.event.EventboardCommentList"/>
 
-	<!-- 행사게시판의 빈 -->
-	<bean id="eventList" class="project.board.event.EventboardList"/>
-	<!-- EventboardCommentList의 빈 -->
-	<bean id="eventboardCommentList" class="project.board.event.EventboardCommentList"/>
-	<!-- 스케쥴 vo -->
-	<bean id="scheduleVO" class="project.util.calendar.ScheduleVO"/>
+	<!-- SearchTool 클래스의 bean -->
+	<bean id="searchTool" class="com.project.board.event.SearchTool"/>
+	
+	<!-- ScheduleManager 클래스의 bean -->
+	<bean id="scheduleManager" class="com.project.util.calendar.ScheduleManager"/>
+	
 	
 	
 </beans>

@@ -16,8 +16,7 @@
 <body>
 	<jsp:useBean id="date" class="java.util.Date"/>
 	<!-- header -->
-	<%@ include file="./util/hfer/header.jsp" %>
-	<br/><br/><br/>
+	<%@ include file="./util/hfer/headerOnlyMain.jsp" %>
 	
 	<div class="container">
 		<div class="panel-heading">
@@ -35,6 +34,7 @@
 						</tr>
 					</thead>
 					<tbody>
+						<c:set var="evList" value="${evList.list}"/>
 						<c:forEach var="ev_vo" items="${evList}">
 							<tr>
 								<td align="center">
@@ -57,14 +57,13 @@
 										<img alt="other logo" src="./images/other.png" height="25px"><br/>
 									</c:if>
 								</td>
-								
-								<td><a href="evSelectByIdx?ev_idx=${ev_vo.ev_idx}&currentPage=1&job=increment">${ev_vo.ev_subject}</a></td>
+								<td><a href="./event/increment?ev_idx=${ev_vo.ev_idx}&currentPage=1">${ev_vo.ev_subject}</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
 				</table>
 			</div><br/>
-			<button type="button" class="btn btn-primary" onclick="location.href='evList'">모든 행사 보러가기</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='./event/list'">모든 행사 보러가기</button>
 		</div><br/><br/><br/><br/>
 			
 		<div class="panel panel-primary">
@@ -79,15 +78,21 @@
 						<div class="panel panel-primary">
 							<div style="width: 1200px; padding: 30px; overflow: auto"  align="center" class="bg-light"> <!-- 스크롤 -->
 								<table class="table">
+									<c:set var="eventItemList" value="${eventItemList.list}"/>
 									<tr>
 										<c:forEach var="evItemVO" items="${eventItemList}">
 											<td style="padding: 20px">
+												<c:if test="${vo.itemImage.indexOf('http') == -1}">
+												<img alt="alt" src=".${evItemVO.itemImage}" style="width: 150px; height: 150px; border-radius: 5px; margin: 5px;">
+												</c:if>
+												<c:if test="${vo.itemImage.indexOf('http') != -1}">
 												<img alt="alt" src="${evItemVO.itemImage}" style="width: 150px; height: 150px; border-radius: 5px; margin: 5px;">
+												</c:if>
 											</td>
 										</c:forEach>
 										<td style="padding: 20px; width: 150px; vertical-align: middle;">	
 											<div align="center">
-												<button class="btn btn-outline-success" type="button" onclick="location.href='itemList'">→</button>
+												<button class="btn btn-outline-success" type="button" onclick="location.href='./item/list'">→</button>
 											</div>
 										</td>
 									</tr>
@@ -95,7 +100,7 @@
 										<c:forEach var="evItemVO" items="${eventItemList}">
 											<td style="padding: 20px;">
 												<h5>
-													<a href="itemSelectByIdx?idx=${evItemVO.idx}&currentPage=1&job=increment">${evItemVO.itemName}</a>
+													<a href="./item/increment?idx=${evItemVO.idx}&job=itemView">${evItemVO.itemName}</a>
 												</h5>
 												${evItemVO.eventType}
 												<span>
@@ -129,7 +134,7 @@
 						</div>
 					</div>
 					<div align="left">
-						<button type="button" class="btn btn-primary" onclick="location.href='itemList'">모든 상품 보러가기</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='./item/list'">모든 상품 보러가기</button>
 					</div>
 				</div>	
 			</div>
@@ -139,7 +144,7 @@
 			<div class="panel-heading">
 				<h3 class="panel-title">
 					&nbsp;&nbsp;&nbsp;${date.year + 1900}년 ${date.month +1}월 인기 상품 TOP5
-					<c:set var="list" value="${itemTOP5}"/>
+					<c:set var="list" value="${itemTOP5.list}"/>
 				</h3>				
 			</div>
 			<div class="container"  style="margin-top: 20px; padding: 5px 20px;"  align="center">
@@ -157,13 +162,18 @@
 								<tbody>
 									<tr>
 										<c:forEach var="vo" items="${list}">
+											<c:if test="${vo.itemImage.indexOf('http') == -1}">
+											<td><img style="border-radius: 10px;" alt="alt" src=".${vo.itemImage}" height="150px" width="150px;"></td>
+											</c:if>
+											<c:if test="${vo.itemImage.indexOf('http') != -1}">
 											<td><img style="border-radius: 10px;" alt="alt" src="${vo.itemImage}" height="150px" width="150px;"></td>
+											</c:if>
 										</c:forEach>
 									</tr>
 									<tr>
 										<c:forEach var="vo" items="${list}">
 										<td>
-											<h5><a href="itemSelectByIdx?idx=${vo.idx}&currentPage=1&job=increment">${vo.itemName}</a></h5>
+											<h5><a href="./item/increment?idx=${vo.idx}&job=itemView">${vo.itemName}</a></h5>
 											${vo.eventType}
 										</td>
 										</c:forEach>									
@@ -172,7 +182,7 @@
 							</table>
 						</div>
 						<div align="left">
-							<button type="button" class="btn btn-primary" onclick="location.href='rank'">인기 상품 보러가기</button>
+							<button type="button" class="btn btn-primary" onclick="location.href='./rank/view'">인기 상품 보러가기</button>
 						</div>
 					</div>
 				</div>	
@@ -196,31 +206,31 @@
 									</tr>
 								</thead>
 								<tbody>
+									<c:set var="freeHitList" value="${freeHitList.list}"/>
 									<c:forEach var="fb_vo" items="${freeHitList}" varStatus="i">
 										<tr>
 											<td>${i.count}</td>
 											<td>${fb_vo.nickname}</td>
 											<td>
-												<a href="fbSelectByIdx?idx=${fb_vo.fb_idx}&currentPage=1&job=increment">${fb_vo.fb_subject}</a>
+												<a href="./free/increment?fb_idx=${fb_vo.fb_idx}&currentPage=1">${fb_vo.fb_subject}</a>
 											</td>
 										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
-						<button type="button" class="btn btn-primary" onclick="location.href='fbList'" align="right">인기글 보러가기</button>
+						<button type="button" class="btn btn-primary" onclick="location.href='./free/list'" align="right">인기글 보러가기</button>
 					</div>
 				</div>	
 		</div><br/><br/><br/><br/>
 	</div>
 	<div>
 		<iframe src="./calendar" width="1300" height="900" style="border:0; overflow: visible;"></iframe>
-		
 	</div>
 	</div>
 	
 	<!-- footer  -->
-	<%@ include file="./util/hfer/footer.jsp" %>
+	<%@ include file="./util/hfer/footerOnlyMain.jsp" %>
 
 </body>
 </html>

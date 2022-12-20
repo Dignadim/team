@@ -1,97 +1,72 @@
-$(function()
-{
-//	onload함수로 alert창을 띄울 메시지가 있으면 띄우고 아니면 띄우지않음
-	if(document.getElementById('msg').value != null && document.getElementById('msg').value != '')
-	{
-		funcAlert(document.getElementById('msg').value);
-	}
-	
-}); 
-
-function funcAlert(msg)
-{
-	alert(msg);
-}
 
 //=========================insert========================
 
 //	게시글 작성 시, 제목과 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function insertEmptyChk() {
-	let ev_sellcvs = $('#ev_sellcvs').val().trim();
-	let ev_subject = $('#ev_subject').val().trim();
-	let ev_content = $('#ev_content').val().trim();
-	let startSch = $('#startSch').val().trim();
-	let endSch = $('#endSch').val().trim();
-	let contentSch = $('#contentSch').val().trim();
+	let ev_sellcvs = $('#ev_sellcvs').val();
+	let ev_subject = $('#ev_subject').val();
+	let ev_content = $('#ev_content').val();
 	
-	let ev_idx = 1;
-	let currentPage = 1;
-	
-	let job = document.querySelector('input[type=hidden][name=mode]').value;
-	
-	let id = $('#memberID').val().trim();
-	let nickname = $('#nickname').val().trim();
-	let ev_notice = $('#noticeOn').val().trim();
-	
-	if(ev_sellcvs == null || ev_sellcvs == "-머리말선택-") {
-		alert('머리말을 선택해주세요.');
-		return;
-	}
-	else if(ev_subject == null || ev_subject == "") {
-		alert('제목을 입력해주세요.');
-		return;
-	}
-	else if(ev_content == null || ev_content == "") {
-		alert('내용을 입력해주세요.');
-		return;
-	}
-	else if(startSch == null || startSch == "")
-	{
-		alert('행사정보 날짜를 입력해주세요.');
-	}
-	else if(contentSch == null || contentSch == "")
-	{
-		alert('행사정보 간략내용을 적어주세요.');
-	}
-	else
-	{
-		let locate = 'ev' + job + 'OK';
-		if(job == 'Update')
-		{
-			currentPage = document.querySelector('input[type=hidden][name=currentPage]').value;
-			ev_idx = document.querySelector('input[type=hidden][name=ev_idx]').value;
+	$.ajax({
+		type: 'POST', // 요청 방식
+		url: 'insertEmptyChk', // 요청할 서블릿
+		data: { // 서블릿으로 전송할 데이터
+			// 변수명: 값
+			ev_sellcvs: ev_sellcvs,
+			ev_subject: ev_subject,
+			ev_content: ev_content
+		},
+		// ajax 요청이 성공하면 response.getWriter().write(문자열)의 문자열이 콜백 함수의 인수로 넘어온다.
+		success: response => { // ajax 요청이 성공하면 실행할 콜백 함수
+			// console.log('요청성공: ', response);
 			
+			// 서블릿 응답에 따른 작업을 실행한다.
+			switch(response) {
+				case '1':
+					alert('머리말을 선택해주세요.')
+					break;
+				case '2':
+					alert('제목을 입력해주세요.');
+					break;
+				case '3':
+					alert('내용을 입력해주세요.');
+					break;
+				case '4':
+					document.insertForm.submit();
+					break;
+			}
+		},
+		// ajax 요청이 실패하면 에러 정보가 콜백 함수의 인수로 넘어온다.
+		error: error => { // ajax 요청이 실패하면 실행할 콜백 함수
+			console.log('요청실패: ', error.status);
 		}
-		location.href= locate + '?currentPage=' + currentPage + '&ev_subject=' + ev_subject + '&ev_notice=' + ev_notice +  
-		'&ev_content=' + ev_content + '&id=' + id + '&nickname=' + nickname + '&ev_idx=' + ev_idx +
-		'&ev_sellcvs=' + ev_sellcvs +
-		'&startSch=' + startSch + '&endSch=' + endSch + '&contentSch=' + contentSch;
-	}
+	});
 }
 
 //	게시글 작성 시, 머리말을 [공지]로 설정하면 일반글에서 공지글로 바뀌게 해주는 함수(수정에도 적용)
 function notice() {
 	let ev_sellcvs = $('#ev_sellcvs').val()
 	let noticeOn = document.getElementById('noticeOn');
-//	 console.log(ev_sellcvs);
+	 console.log(ev_sellcvs);
 	if(ev_sellcvs.trim() == '공지') {
 		noticeOn.value = 'yes'
 	} else {
 		noticeOn.value = 'no'
 	}
-//	console.log(noticeOn.value);
+	console.log(noticeOn.value);
 }
 
 function uploadWin() {
-//	let url = './eventImageInsert.jsp';
-//	let title = '이미지 업로드';
-//	let option = 'top=50px, left=100px, width=500px, height=600px';
-//	window.open(url, title, option);
-	alert('미구현 입니다.');
+	let url = '../event/eventImageInsert';
+	let title = '이미지 업로드';
+	let option = 'top=50px, left=100px, width=500px, height=600px';
+	window.open(url, title, option);
 }
 
-function thisClose(ev_filename) {
+function thisClose(ev_filename, fileRealname) {
 	opener.document.getElementById('ev_filename').value = ev_filename;
+	opener.document.getElementById('fileRealname').value = fileRealname;
+	
 	self.close();
 }
 
@@ -122,13 +97,26 @@ function backPage() {
 function commentEmptyChk() {
 	let evc_content = $('#evc_content').val();
 	
-	if(evc_content == null || evc_content == "") {
-		alert('내용을 입력해주세요.');
-		return;
-	} else {
-		document.commentForm.submit();
-		return;
-	}
+	$.ajax({
+		type: 'POST',
+		url: 'commentEmptyChk',
+		data: { 
+			evc_content: evc_content,
+		},
+		success: response => {
+			switch(response) {
+				case '1':
+					alert('내용을 입력해주세요.');
+					break;
+				case '2':
+					document.commentForm.submit();
+					break
+			}
+		},
+		error: error => {
+			console.log('요청실패: ', error.status);
+		}
+	});
 }
 
 //	댓글 수정 시, 입력폼을 수정폼으로 바꿔주는 함수

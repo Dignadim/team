@@ -8,12 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 작성</title>
-<link rel="icon" href="./images/favicon.png"/>
+<link rel="icon" href="../images/favicon.png"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="./css/freeboard.css"/>
-<script type="text/javascript" src="./js/freeboard.js" defer="defer"></script>
+<link rel="stylesheet" href="../css/freeboard.css"/>
+<script type="text/javascript" src="../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
 	body {
 		font-family: 'Pretendard Variable';
@@ -22,11 +22,10 @@
 </head>
 <body>
 	
-   
-   <br/><br/>
-	<!-- alert창을 띄울 메시지가 있으면 여기에 받아짐 -->
-	<input type="hidden" id="msg" value="${msg}">
-	<form class="m-3" method="post" name='insertForm'>
+<!-- header -->
+<%@ include file="../../util/hfer/header.jsp" %>
+	
+	<form class="m-3" action="insertOK" method="post" name='insertForm'>
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
 			<tr style="height: 30px;" class="table-light">
 				<th style="display: none;">
@@ -42,12 +41,7 @@
 				</td>
 				<th class="align-middle" width="80">
 				<c:if test="${grade.trim().equals('y')}">
-					공지글 <input class="form-check-input" type="checkbox" id="fb_notice" value="yes"/>
-				</c:if>
-				<c:if test="${!grade.trim().equals('y')}">
-					<div width=0 height=0 style="visibility:hidden">
-						<input class="form-check-input" type="checkbox" id="fb_notice" value="yes"/>
-					</div>
+					공지글 <input class="form-check-input" type="checkbox" name="fb_notice" value="yes"/>
 				</c:if>
 				</th>
 			</tr>		
@@ -63,19 +57,20 @@
 			</tr>
 			<tr class="table-light">
 				<td colspan="4" align="right">
-					<input class="btn btn-primary btn-lg" type="button" value="등록"
+ 			   <input class="btn btn-primary btn-lg" type="button" value="등록"
 						style="font-size: 13px;" onclick="insertEmptyChk()"/>
 				</td>
 			</tr>		
 			<tr>
 				<td colspan="4" align="right" style="border: 0px; outline: 0px;">
-					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='fbList'"/>
+					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='list'"/>
 				</td>
 			</tr>	
 		</table>	
-		<input type="hidden" name="mode" value="Insert"/>
 	</form><br/><br/>	
 	
+<!-- footer  -->
+<%@ include file="../../util/hfer/footer.jsp" %>
 	
 </body>
 </html>

@@ -10,7 +10,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
@@ -19,22 +19,22 @@
 		<div class="container-fluid">
 			<nav class="navbar navbar-expand-sm bg-light">
 				<div class="col-sm-2">
-					<a href="main"><img src="./images/teamlogo.png" style="width: 30px;"></a>
+					<a href="../"><img src="../images/teamlogo.png" style="width: 30px;"></a>
 				</div>
 				<div class="container-fluid col-sm-5">
 					<ul class="navbar-nav">
 						<li class="nav-item" style="padding-right: 70px;">
-					    	<a class="nav-link" href="itemList">모든 상품 보기</a>
+					    	<a class="nav-link" href="../item/list">모든 상품 보기</a>
 					    </li>					
 						<li class="nav-item dropdown" style="padding-right: 70px;">
-							<a class="nav-link" href="evList">모든 행사 보기</a>
+							<a class="nav-link" href="../event/list">모든 행사 보기</a>
 						</li>
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" role="button"	data-bs-toggle="dropdown">게시판</a>
 							<ul class="dropdown-menu">
-								<li><a class="dropdown-item" href="fbList">자유게시판</a></li>
-								<li><a class="dropdown-item" href="rank">랭킹게시판</a></li>
-								<li><a class="dropdown-item" href="newView">신상게시판</a></li>
+								<li><a class="dropdown-item" href="../free/list">자유게시판</a></li>
+								<li><a class="dropdown-item" href="../rank/view">랭킹게시판</a></li>
+								<li><a class="dropdown-item" href="../new/view">신상게시판</a></li>
 							</ul>
 						</li>
 					</ul>
@@ -48,15 +48,15 @@
 				</div>
 				<div class="col-sm-2">
 					<c:if test="${id == null}">
-						<button type="button" class="btn btn-primary" onclick="location.href='login_form'">로그인</button>	
+						<button type="button" class="btn btn-primary" onclick="location.href='../member/login'">로그인</button>	
 					</c:if>				
 					<c:if test="${id != null}">
-						<button type="button" class="btn btn-danger" onclick="location.href='login_out'">로그아웃</button>
+						<button type="button" class="btn btn-danger" onclick="location.href='../member/logout'">로그아웃</button>
 						<c:if test="${grade.trim() != null && grade.trim() == 'y'}">
-							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='adminView'">관리 페이지로</button>	
+							<button class="btn btn-info" style="padding: 6px;" onclick="location.href='../member/admin'">관리 페이지로</button>	
 						</c:if>
 						<c:if test="${grade.trim() == null || grade.trim() != 'y'}">
-							<button type="button" class="btn btn-warning" onclick="location.href='myPage'">마이페이지</button>	
+							<button type="button" class="btn btn-warning" onclick="location.href='../member/myPage'">마이페이지</button>	
 							<input type="hidden" value="${grade}">
 						</c:if>
 					</c:if>				
@@ -65,6 +65,14 @@
 			</nav>
 		</div>
 	</header>
+	<br/><br/><br/>
+	
+	<c:if test="${msg != null}">
+		<script type="text/javascript">
+		alert('${msg}');
+		</script>
+	</c:if>
+		
 
 
 </body>

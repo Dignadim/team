@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="project.controller.CVSWeb">
+	<logger name="com.project.CVSWeb">
 		<level value="info" />
 	</logger>
 	

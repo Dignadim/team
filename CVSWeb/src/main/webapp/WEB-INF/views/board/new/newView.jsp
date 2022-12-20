@@ -7,16 +7,16 @@
 <head>
 <meta charset="UTF-8">
 <title>신상 게시판</title>
+<link rel="icon" href="../images/favicon.png"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
 
-   <!-- header -->
-   <%@ include file="../../util/hfer/header.jsp" %>
-   <br/><br/>
+<!-- header -->
+<%@ include file="../../util/hfer/header.jsp" %>
 
 	<c:set var="list" value="${newItemList.list}"/>
 	<div class="m-3">
@@ -40,8 +40,8 @@
 			
 			<c:if test="${list == null}">
 				<tr>
-					<td align="center">
-						<h2>최신 상품이 없습니다!</h2>
+					<td align="center" colspan="6">
+						<marquee><h2>최신 상품이 없습니다</h2></marquee>
 					</td>			
 				</tr>
 			</c:if>
@@ -58,27 +58,27 @@
 				<!-- 판매 편의점 -->
 				<td align="center" style="vertical-align: middle;"> 
 					<c:if test="${vo.sellCVS == 'CU'}">
-						<img alt="CU logo" src="./images/cu.png" height="25px"><br/>
+						<img alt="CU logo" src="../images/cu.png" height="25px"><br/>
 					</c:if>
 					<c:if test="${vo.sellCVS == 'GS25'}">
-						<img alt="GS logo" src="./images/gs25.png" height="25px"><br/>
+						<img alt="GS logo" src="../images/gs25.png" height="25px"><br/>
 					</c:if>
 					<c:if test="${vo.sellCVS == '세븐일레븐'}">
-						<img alt="711 logo" src="./images/7eleven.png" height="25px"><br/>
+						<img alt="711 logo" src="../images/7eleven.png" height="25px"><br/>
 					</c:if>
 					<c:if test="${vo.sellCVS == 'ministop'}">
-						<img alt="mini logo" src="./images/ministop.png" height="25px"><br/>
+						<img alt="mini logo" src="../images/ministop.png" height="25px"><br/>
 					</c:if>
 					<c:if test="${vo.sellCVS == '이마트24'}">
-						<img alt="emart logo" src="./images/emart24.png" height="25px"><br/>
+						<img alt="emart logo" src="../images/emart24.png" height="25px"><br/>
 					</c:if>
 					<c:if test="${vo.sellCVS == '기타 편의점'}">
-						<img alt="other logo" src="./images/other.png" height="25px"><br/>
+						<img alt="other logo" src="../images/other.png" height="25px"><br/>
 					</c:if>
 				</td>
 			
 				<td align="left">
-					<h4><a href="itemSelectByIdx?idx=${vo.idx}&currentPage=1&job=increment">${vo.itemName}</a></h4>
+					<h4><a href="../item/increment?idx=${vo.idx}&currentPage=1">${vo.itemName}</a></h4>
 						${vo.eventType}
 				</td>
 				<td align="center" style="vertical-align: middle;">
@@ -86,34 +86,34 @@
 						${vo.averscore}/5.0
 					</c:if>
 					<c:if test="${vo.averscore >= 0.5 && vo.averscore < 1}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/halfstar.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/halfstar.png" height="15px">)
 					</c:if>						
 					<c:if test="${vo.averscore >= 1 && vo.averscore < 1.5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 1.5 && vo.averscore < 2}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/halfstar.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/halfstar.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 2 && vo.averscore < 2.5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 2.5 && vo.averscore < 3}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/halfstar.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/halfstar.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 3 && vo.averscore < 3.5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 3.5 && vo.averscore < 4}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/halfstar.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/halfstar.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 4 && vo.averscore < 4.5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore >= 4.5 && vo.averscore < 5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/halfstar.png" height="15px">)
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/halfstar.png" height="15px">)
 					</c:if>
 					<c:if test="${vo.averscore == 5}">
-						${vo.averscore}/5.0<br/>(<img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px"><img alt="별점" src="./images/star.png" height="15px">)						
+						${vo.averscore}/5.0<br/>(<img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px"><img alt="별점" src="../images/star.png" height="15px">)						
 					</c:if>
 				</td>
 				<td align="center" style="vertical-align: middle;">
@@ -173,10 +173,8 @@
 		</table>
 	</div><br/><br/>
 	
-	
-	
-   <!-- footer  -->
-   <%@ include file="../../util/hfer/footer.jsp" %>
+<!-- footer  -->
+<%@ include file="../../util/hfer/footer.jsp" %>
 	
 </body>
 </html>

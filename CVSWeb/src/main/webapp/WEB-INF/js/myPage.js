@@ -1,21 +1,6 @@
-$(function()
-{
-//	onload함수로 alert창을 띄울 메시지가 있으면 띄우고 아니면 띄우지않음
-	if(document.getElementById('msg').value != null && document.getElementById('msg').value != '')
-	{
-		funcAlert(document.getElementById('msg').value);
-	}
-}); 
-
-function funcAlert(msg)
-{
-	alert(msg);
-}
-
-
-function checkInfo()
+function checkInfo(form)
 {	
-	let form = document.changeInfo;
+	let id = form.id.value.trim();
 	let nickname = form.nickname.value.trim();
 	let email = form.email.value.trim();
 	let password = form.password.value;
@@ -25,7 +10,7 @@ function checkInfo()
 		alert('변경할 닉네임을 입력해주세요');
 		return false;
 	}else if(email == null || email == ''){
-		alert('변경할 이메일을 입력해주세요');
+		alert('변경할 닉네임을 입력해주세요');
 		return false;
 	}else if(password == null || password == ''|| password2 == null || password2 == '') {
 		alert('변경할 비밀번호를 입력해 주세요.')
@@ -35,7 +20,10 @@ function checkInfo()
 		alert('비밀번호가 일치하지 않습니다.');
 		return false;
 	}else{
-		document.changeInfo.submit();
+		var sessionData = "sessionData";
+		sessionStorage.setItem("mineSession", sessionData ); // 저장
+		sessionStorage.getItem("mineSession");
+		return true;
 	}
 	
 }

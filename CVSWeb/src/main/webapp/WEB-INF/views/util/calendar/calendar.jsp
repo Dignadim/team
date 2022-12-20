@@ -1,9 +1,8 @@
-<%@page import="project.util.calendar.ScheduleVO"%>
+<%@page import="com.project.util.calendar.ScheduleManager"%>
+<%@page import="com.project.util.calendar.ScheduleVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="project.util.calendar.ScheduleManager"%>
+<%@page import="com.project.util.calendar.MyCalendar"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="java.util.Date"%>
-<%@page import="project.util.calendar.MyCalendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -238,7 +237,8 @@
 		</c:forEach>
 
 <%
-//	1일부터 달력을 출력할 달의 마지막 날짜까지 반복하며 날짜를 출력한다.
+//	1일부터 달력을 출력할 달의 마지막 날짜까지 반복하며 날짜를 출력한다. 	
+
 	for (int i=1; i<=MyCalendar.lastDay(year, month); i++) {
 		boolean check = false;
 		
@@ -331,7 +331,6 @@
 		}
 	}
 
-
 %>	
 
 		<!-- 다음달 날짜를 출력 -->
@@ -373,6 +372,7 @@
 				<select class="form-select" name="month" style="width: 100px !important; display: inline !important;"> <!-- 1 ~ 12 -->
 				
 <%
+
 	for (int i=1; i<=12; i++) {
 		if (i == calendar.get(Calendar.MONTH) + 1) {
 			out.println("<option selected='selected'>" + i + "</option>");
@@ -380,6 +380,7 @@
 			out.println("<option>" + i + "</option>");
 		}
 	}
+
 %>
 				
 				</select> 월&nbsp;

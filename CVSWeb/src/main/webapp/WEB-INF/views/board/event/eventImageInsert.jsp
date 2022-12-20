@@ -9,7 +9,7 @@
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="../../css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 <style type="text/css">
 	body {
 		font-family: 'Pretendard Variable';
@@ -19,7 +19,7 @@
 <body>
 
 	<div class="container" style="margin-top: 100px; page: auto;">
-		<form method="post" action="eventImageInsertOK.jsp" enctype="multipart/form-data"> 
+		<form method="post" action="eventImageInsertOK" enctype="multipart/form-data"> 
 			<table class="table table-bordered">
 				<thead>
 					<tr>

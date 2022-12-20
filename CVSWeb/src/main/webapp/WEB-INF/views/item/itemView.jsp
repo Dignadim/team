@@ -8,22 +8,19 @@
 <head>
 <meta charset="UTF-8">
 <title>개별 페이지</title>
-<link rel="icon" href="../../images/favicon.png"/>
+<link rel="icon" href="../images/favicon.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="./js/jquery-3.6.1.js"></script>
-<link rel="stylesheet" href="./css/main.css">
-<script type="text/javascript" src="./js/itemView.js" defer></script>
+<script type="text/javascript" src="../js/jquery-3.6.1.js"></script>
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/itemView.js" defer></script>
 </head>
 <body>
 
-	<!-- header -->
-	<%@ include file="../util/hfer/header.jsp" %>
-	<br/><br/>
+<!-- header -->
+<%@ include file="../util/hfer/header.jsp" %>
 	
-	<!-- alert창을 띄울 메시지가 있으면 여기에 받아짐 -->
-	<input type="hidden" id="msg" value="${msg}">
 	<input type="hidden" id="itemIdx" value="${vo.idx}">
 	<div class="container" style="margin-top: 100px; width: 1200px">
 		<table class="table table-bordered">
@@ -37,7 +34,12 @@
 			<tbody>
 				<tr>
 					<td rowspan="7" width="550px;">
+						<c:if test="${vo.itemImage.indexOf('http') == -1}">
+						<img alt="상품 이미지" src="..${vo.itemImage}" style="height: 500px; border-radius: 10px;">
+						</c:if>
+						<c:if test="${vo.itemImage.indexOf('http') != -1}">
 						<img alt="상품 이미지" src="${vo.itemImage}" style="height: 500px; border-radius: 10px;">
+						</c:if>
 					</td>
 				</tr>
 				<tr>
@@ -68,28 +70,28 @@
 					<th>판매 편의점</th>
 					<td>
 						<c:if test="${vo.sellCVS.trim() == 'CU'}">
-							<img alt="CU logo" src="./images/cu.png" height="25px"><br/>
+							<img alt="CU logo" src="../images/cu.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3821600492383!2d126.98137292694796!3d37.5696178151788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8997954a9%3A0xa2ed1e3817e7b2d9!2zQ1Ug7KKF66Gc7KSR7JWZ7KCQ!5e0!3m2!1sko!2skr!4v1668227950249!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
 						<c:if test="${vo.sellCVS == 'GS25'}">
-							<img alt="GS logo" src="./images/gs25.png" height="25px"><br/>
+							<img alt="GS logo" src="../images/gs25.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1935.4668399954119!2d126.98242737232472!3d37.569456602090085!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8dcae3cc9%3A0x94a435a373a6744!2zR1MyNSDsooXqsIHsoJA!5e0!3m2!1sko!2skr!4v1668228075583!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
 						<c:if test="${vo.sellCVS == '세븐일레븐'}">
-							<img alt="711 logo" src="./images/7eleven.png" height="25px"><br/>
+							<img alt="711 logo" src="../images/7eleven.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1581.2017416599197!2d126.98376299081372!3d37.56911559768425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8cf20e3b9%3A0x89d788e635b74329!2z7IS467iQ7J2866CI67iQIOyiheqwgeygkA!5e0!3m2!1sko!2skr!4v1668228222061!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 								
 						</c:if>
 						<c:if test="${vo.sellCVS == 'ministop'}">
-							<img alt="mini logo" src="./images/ministop.png" height="25px"><br/>
+							<img alt="mini logo" src="../images/ministop.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1070.6773883622582!2d126.98381273587631!3d37.56899528979441!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e8d27b7071%3A0x6d7f39083e9cb50f!2z66-464uI7Iqk7YaxIOyyreqzhOyEvO2EsOygkA!5e0!3m2!1sko!2skr!4v1668228185522!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
 						<c:if test="${vo.sellCVS == '이마트24'}">
-							<img alt="emart logo" src="./images/emart24.png" height="25px"><br/>
+							<img alt="emart logo" src="../images/emart24.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6324.67179741723!2d126.97837037619794!3d37.570707368254006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e91d47728f%3A0x4598afb5329bec27!2z7J2066eI7Yq4MjTsooXroZztg4Dsm4zsoJA!5e0!3m2!1sko!2skr!4v1668399063235!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
 						<c:if test="${vo.sellCVS != 'CU' && vo.sellCVS != 'GS25' && vo.sellCVS != '세븐일레븐' && vo.sellCVS != 'ministop' && vo.sellCVS != '이마트24'}">
-							<img alt="other logo" src="./images/other.png" height="25px"><br/>
+							<img alt="other logo" src="../images/other.png" height="25px"><br/>
 							<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.3744758438597!2d126.98140911744352!3d37.56979879644267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2e7a005c9c5%3A0xac4890a924a29f30!2z642U7KGw7J2A7Lu07ZOo7YSw7JWE7Lm0642w66-47ZWZ7JuQIOyiheuhnOy6oO2NvOyKpA!5e0!3m2!1sko!2skr!4v1668226910469!5m2!1sko!2skr" width="300" height="300" style="border:0; border-radius: 150px"  loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 						</c:if>
 					</td>
@@ -108,34 +110,34 @@
 							${vo.averscore}/5.0
 						</c:if>
 						<c:if test="${vo.averscore >= 0.5 && vo.averscore < 1}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/halfstar.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/halfstar.png" height="20px">)
 						</c:if>						
 						<c:if test="${vo.averscore >= 1 && vo.averscore < 1.5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 1.5 && vo.averscore < 2}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/halfstar.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 2 && vo.averscore < 2.5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 2.5 && vo.averscore < 3}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/halfstar.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 3 && vo.averscore < 3.5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 3.5 && vo.averscore < 4}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/halfstar.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 4 && vo.averscore < 4.5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore >= 4.5 && vo.averscore < 5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/halfstar.png" height="20px">)
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/halfstar.png" height="20px">)
 						</c:if>
 						<c:if test="${vo.averscore == 5}">
-							${vo.averscore}/5.0(<img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px"><img alt="별점" src="./images/star.png" height="20px">)						
+							${vo.averscore}/5.0(<img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px"><img alt="별점" src="../images/star.png" height="20px">)						
 						</c:if>
 						<br/>
 						<table>
@@ -166,7 +168,7 @@
 						</c:if>
 					</td>
 					<td colspan="2" align="right">
-						<button class="btn btn-outline-secondary" onclick="location.href='itemList?currentPage=${currentPage}'">돌아가기</button>
+						<button class="btn btn-outline-secondary" onclick="location.href='list?currentPage=${currentPage}'">돌아가기</button>
 					</td>
 				</tr>
 			</tbody>
@@ -185,6 +187,7 @@
 			<!-- <tr style="display: none;"> -->
 			<tr>
 				<td colspan="4" style="display: none;">
+					itemIdx: <input type="text" name="itemIdx" value="${vo.idx}" size="1">
 					gup: <input type="text" id="itemCommentGup" name="gup" value="${vo.idx}" size="1">
 					currentPage: <input type="text" id="itemCommentCurrentPage" name="currentPage" value="${currentPage}" size="1">
 					nickname: <input type="text" name="nickname" value="${nickname}">
@@ -239,13 +242,14 @@
 						<td> ${content}</td>
 						<td>
 							<input type="hidden" id="itemCommentIdx" name="idx" value="${co.idx}" size="1"> 
+							<input type="hidden" name="comment" value="${content}" size="1"> 
 							<fmt:formatDate value="${co.writeDate}" pattern="yyyy.MM.dd(E) a h:mm:ss"/>	
 							<c:if test="${id == co.ID && id != null}">
 							<span>
 								<input type="button" class="btn btn-outline-warning" onclick="test('${co.idx}', 2, '수정', '${content}')" value="수정"/>
 							</span>
 							<span>
-								<input type="button" class="btn btn-outline-danger" onclick="deleteItemComment('${co.idx}', '${currentPage}', '${vo.idx}')" value="삭제"/>
+								<input type="button" class="btn btn-outline-danger" onclick="deleteItemComment('${co.idx}', 3)" value="삭제"/>
 							</span>
 							</c:if>
 						</td>
@@ -255,8 +259,8 @@
 		</table>
 	</form>
 
-	<!-- footer  -->
-	<%@ include file="../util/hfer/footer.jsp" %>
+<!-- footer  -->
+<%@ include file="../util/hfer/footer.jsp" %>
 
 </body>
 </html>

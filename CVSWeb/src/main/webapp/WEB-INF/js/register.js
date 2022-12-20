@@ -50,17 +50,15 @@ function idChk()
 		{
 			type: 'POST',
 			url: 'register',
-			//url: 'http://localhost:/CVSWeb/svtRegi',
-			//url: './SvtRegister',
-			//url: 'CVSWeb/java/project/member/controller/SvtRegister',
 			data: 
 			{
 				userID: id.toLowerCase(),
 				SvtKind: 'idChk'
 			},
-			success: res =>
+			success: response =>
 			{
-				switch(res)
+				// console.log('연결성공');
+				switch(response)
 				{
 					case '0':
 						$('#idChkMsg').html('사용중인 아이디 입니다~~~');
@@ -138,9 +136,9 @@ function register()
 				userEmail: email,
 				SvtKind: 'regiChk'
 			},
-			success: res =>
+			success: response =>
 			{
-				switch(res)
+				switch(response)
 				{
 					case '0':
 						$('#idChkMsg').html('사용중인 아이디 입니다~~~');

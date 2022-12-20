@@ -1,3 +1,4 @@
+<%-- <%@page import="com.project.board.free.FreeboardCommentVO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,12 +9,13 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 보기</title>
+<link rel="icon" href="../images/favicon.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
-<script type="text/javascript" src="./js/freeboard.js" defer="defer"></script>
+<script type="text/javascript" src="../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
 	* {
 		font-family: "Pretendard";
@@ -22,13 +24,9 @@
 </head>
 <body>
 	
-   <!-- header -->
-   <%@ include file="../../util/hfer/header.jsp" %>
-   
-   
-   <br/><br/>
-	<!-- alert창을 띄울 메시지가 있으면 여기에 받아짐 -->
-	<input type="hidden" id="msg" value="${msg}">
+<!-- header -->
+<%@ include file="../../util/hfer/header.jsp" %>
+	
 	<div class="m-5">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">			
 			<tr class="table-primary">
@@ -76,7 +74,7 @@
 				<c:if test="${id.trim().equals(fb_vo.id)}">
 				<td colspan="4" align="right">
 					<input class="btn btn-light btn-sm" type="button" value="수정하기" style="font-size: 13px;" 
-						onclick="location.href= 'fbUpdate?fb_idx=${fb_vo.fb_idx}&currentPage=${currentPage}'"/>
+						onclick="location.href='update?fb_idx=${fb_vo.fb_idx}&currentPage=${currentPage}'"/>
 					<button type="button" class="btn btn-light btn-sm" style="font-size: 13px;" data-bs-toggle="modal" data-bs-target="#delete">
  					 		삭제하기</button>
  					<!-- The Modal -->
@@ -100,7 +98,7 @@
 					      <!-- Modal footer -->
 					      <div class="modal-footer">
 					      	<input type="button" class="btn btn-secondary" data-bs-dismiss="modal" value="예"
-					      		onclick="location.href= 'fbDelete?fb_idx=${fb_vo.fb_idx}&currentPage=${currentPage}'"/>
+					      		onclick="location.href='deleteOK?fb_idx=${fb_vo.fb_idx}&currentPage=${currentPage}'"/>
 					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
 					      </div>
 					
@@ -113,14 +111,14 @@
 			<tr>
 				<td colspan="4" align="right" style="border: 0px; outline: 0px;">
 					<input class="btn btn-dark btn-lg" type="button" value="목록보기"
-						style="font-size: 13px;" onclick="location.href='fbList?currentPage=${currentPage}'"/>
+						style="font-size: 13px;" onclick="location.href='list?currentPage=${currentPage}'"/>
 				</td>
 			</tr>
 		</table>
 	</div>
 	
 	<!-- 댓글작성 폼 -->
-	<form class="m-3" action="fbCommentOK" method="post" name="commentForm" id="commentForm">
+	<form class="m-3" action="commentOK" method="post" name="commentForm" id="commentForm">
 		<table class="table" style="width: 1000px; margin-left: auto; margin-right: auto;">	
 			<tr class="table-secondary" height="48px">
 				<th colspan="4" style="font-size: 30px; text-align: center;"></th>
@@ -128,7 +126,8 @@
 			
 			<tr style="display: none;">
 				<td colspan="4">
-					fbc_idx: <input type="text" name="fbc_idx" value="1" size="4"/>
+					fb_idx: <input type="text" name="fb_idx" value="${fb_vo.fb_idx}" size="4"/>
+					fbc_idx: <input type="text" name="fbc_idx" value="${fb_vo.fb_idx}" size="4"/>
 					fb_gup: <input type="text" name="fbc_gup" value="${fb_vo.fb_idx}" size="4"/>
 					mode: <input type="text" name="mode" value="1" size="4"/>
 					currentPage: <input type="text" name="currentPage" value="${currentPage}" size="4"/>
@@ -152,12 +151,12 @@
 								style="resize: none;" disabled="disabled"></textarea>
 							<div align="right">
 								<input class="btn btn-dark mt-3" type="button" value="로그인하러가기" name="commentBtn" 
-									onclick="location.href='login_form'">
+									onclick="location.href='../../logRegi/login_form'">
 							</div>
 							</c:if>
 							<c:if test="${id != null}">
 							<div class="form-inline mb-2">
-								<img alt="Profile" src="./images/profile.jpg" width="30px"/> ${nickname}
+								<img alt="Profile" src="../images/profile.jpg" width="30px"/> ${nickname}
 							</div>
 							<textarea class="form-control" id="fbc_content" name="fbc_content" rows="3" placeholder="욕설 x 비방 x" 
 								style="resize: none;"></textarea>
@@ -187,7 +186,7 @@
 				<c:forEach var="fbc_vo" items="${comment}">
 					<div class="card mb-2" style="width: 1000px; margin-left: auto; margin-right: auto;">
 						<div class="card-header bg-light" style="height: 132px;">
-							<img alt="Profile" src="./images/profile.jpg" width="30px"/> ${fbc_vo.nickname}
+							<img alt="Profile" src="../images/profile.jpg" width="30px"/> ${fbc_vo.nickname}
 							<div align="right">
 								<c:set var="writeDate" value="${fbc_vo.fbc_date}"></c:set>
 								<c:if test="${date.year == writeDate.year && date.month == writeDate.month 
@@ -212,14 +211,14 @@
 									type="button"
 									value="수정"
 									style="font-size: 13px;"
-									onclick="updateComment('${fbc_vo.fbc_idx}', 2, '댓글수정', '${fbc_content}')"
+									onclick="updateComment(${fbc_vo.fbc_idx}, 2, '댓글수정', '${fbc_content}')"
 								/>	
 								<input 
 									class="btn btn-outline-danger btn-sm"
 									type="button"
 									value="삭제"
 									style="font-size: 13px;"
-									onclick="deleteComment('${fbc_vo.fbc_idx}', 3)"
+									onclick="deleteComment(${fbc_vo.fbc_idx}, 3)"
 								/>
 							</div>
 							</c:if>
@@ -230,8 +229,8 @@
 		</table>
 	</form>
 	
-   <!-- footer  -->
-   <%@ include file="../../util/hfer/footer.jsp" %>
+<!-- footer  -->
+<%@ include file="../../util/hfer/footer.jsp" %>
 	
 </body>
 </html>

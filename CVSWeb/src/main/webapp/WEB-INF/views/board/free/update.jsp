@@ -8,12 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>게시글 수정</title>
-<link rel="icon" href="./images/favicon.png"/>
+<link rel="icon" href="../images/favicon.png"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="./css/freeboard.css"/>
-<script type="text/javascript" src="./js/freeboard.js" defer="defer"></script>
+<link rel="stylesheet" href="../css/freeboard.css"/>
+<script type="text/javascript" src="../js/freeboard.js" defer="defer"></script>
 <style type="text/css">
 	body {
 		font-family: 'Pretendard Variable';
@@ -22,9 +22,10 @@
 </head>
 <body>
 	
-   <br/><br/>
+<!-- header -->
+<%@ include file="../../util/hfer/header.jsp" %>
 	
-	<form class="m-3" method="post">
+	<form class="m-3" action="updateOK" method="post" name="frm">
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
 			<tr>
 				<th colspan="4" class="table-primary" align="center">
@@ -33,8 +34,8 @@
 			</tr>
 			<tr>
 				<td colspan="4" style="display: none;">
-					id: <input type="text" id="memberID" name="id" value="${fb_vo.id}">
-					nickname: <input type="text" id="nickname" name="nickname" value="${fb_vo.nickname}">
+					id: <input type="text" id="memberID" name="id" value="${id}">
+					nickname: <input type="text" id="nickname" name="nickname" value="${nickname}">
 					postID: <input type="text" id="postID" name="postID" value="${fb_vo.id}">
 				</td>
 			</tr>
@@ -50,17 +51,12 @@
 				<c:if test="${grade.trim().equals('y')}">
 					공지글 
 					<c:if test="${fn:trim(fb_vo.fb_notice) == 'yes'}">
-						<input class="form-check-input" type="checkbox" id="fb_notice" checked="checked"/>
+						<input class="form-check-input" type="checkbox" name="fb_notice" checked="checked"/>
 					</c:if>
 					<c:if test="${fn:trim(fb_vo.fb_notice) != 'yes'}">
-						<input class="form-check-input" type="checkbox" id="fb_notice" value="yes"/>
+						<input class="form-check-input" type="checkbox" name="fb_notice" value="yes"/>
 					</c:if>		
-				</c:if>		
-				<c:if test="${!grade.trim().equals('y')}">
-					<div width=0 height=0 style="visibility:hidden">
-						<input class="form-check-input" type="checkbox" id="fb_notice" value="yes"/>
-					</div>
-				</c:if>	
+				</c:if>			
 				</th>
 			</tr>		
 			<tr>
@@ -96,7 +92,7 @@
 							
 						    <!-- Modal footer -->
 						    <div class="modal-footer">
-						    	<input class="btn btn-secondary" value="예" type="button" data-bs-dismiss="modal" onclick="insertEmptyChk()"/>
+						    	<input class="btn btn-secondary" value="예" type="submit" data-bs-dismiss="modal"/>
 						        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">아니오</button>
 						    </div>
 							</div>
@@ -106,15 +102,16 @@
 			</tr>		
 			<tr>
 				<td colspan="4" align="right" style="border: 0px; outline: 0px;">
-					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='fbList'"/>
+					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='list'"/>
 				</td>
 			</tr>	
 		</table>	
-		<input type="hidden" name="mode" value="Update"/>
 		<input type="hidden" name="fb_idx" id="fb_idx" value="${fb_vo.fb_idx}">
 		<input type="hidden" name="currentPage" value="${currentPage}">
 	</form><br/><br/>
 	
+<!-- footer  -->
+<%@ include file="../../util/hfer/footer.jsp" %>
 
 </body>
 </html>

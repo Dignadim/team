@@ -2,5 +2,5 @@
 function categorySelect()
 {
 	let option = $("#category option:selected").val();
-	location.href='rank?category=' + option;
+	location.href='view?category=' + option;
 }

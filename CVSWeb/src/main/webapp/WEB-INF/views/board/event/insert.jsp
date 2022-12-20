@@ -8,12 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>행사 정보 작성</title>
-<link rel="icon" href="./images/favicon.png"/>
+<link rel="icon" href="../images/favicon.png"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="stylesheet" href="./css/freeboard.css"/>
-<script type="text/javascript" src="./js/eventboard.js" defer="defer"></script>
+<link rel="stylesheet" href="../css/freeboard.css"/>
+<script type="text/javascript" src="../js/eventboard.js" defer="defer"></script>
 <style type="text/css">
 	body {
 		font-family: "Pretendard";
@@ -22,11 +22,16 @@
 </head>
 <body>
 	
-
-   <br/><br/>
-	<!-- alert창을 띄울 메시지가 있으면 여기에 받아짐 -->
-	<input type="hidden" id="msg" value="${msg}">
-	<form class="m-3" method="post" name='insertForm'>
+<!-- header -->
+<%@ include file="../../util/hfer/header.jsp" %>
+	
+	<c:if test="${msg != null}">
+		<script type="text/javascript">
+		alert('${msg}');
+		</script>
+	</c:if>
+	
+	<form class="m-3" action="insertOK" method="post" name='insertForm'>
 		<table class="table" style="width: 900px; height: 450px; margin-left: auto; margin-right: auto; margin-top: 80px;">
 			<tr class="table-light" style="height: 30px;">
 				<th class="align-middle table-primary" style="padding: 10px; text-align: center;">
@@ -34,7 +39,7 @@
 				</th>
 				<td style="display: none;">
 					ev_notice: <input id="noticeOn" name="ev_notice" type="text" value="no"/>
-					id: <input type="text" id="memberID" name="id" value="${id}">
+					id: <input type="text" id="id" name="id" value="${id}">
 					nickname: <input type="text" id="nickname" name="nickname" value="${nickname}">
 				</td>
 				<td colspan="2">
@@ -67,7 +72,8 @@
 				</th>
 				<td colspan="2">
 					<i style="color: red;">
-						<input type="text" name="ev_filename" value="" id="ev_filename" disabled="disabled"/>
+						<input type="hidden" name="ev_filename" value="${ev_vo.ev_filename}" id="ev_filename"/>
+						<input type="text" name="fileRealname" value="" id="fileRealname" disabled="disabled"/>
 						<button class="btn btn-outline-success btn-sm" type="button" onclick="uploadWin()">이미지 불러오기</button>
 						&nbsp;&nbsp;5MB 이하, *.jpg, *.png, *.gif 파일만 업로드 가능합니다.
 					</i>
@@ -79,11 +85,10 @@
 					<label>행사정보</label>
 				</th>
 				<td colspan="3">
-					시작일: <input type="text" id="startSch" name="startSch" placeholder="ex)2022-11-19"/>&nbsp;&nbsp;
-					종료일: <input type="text" id="endSch" name="endSch" placeholder="하루만 하는 행사는 적을필요X."/><br/>
-					내용: <input type="text" id="contentSch" name="contentSch" placeholder="행사내용 간략히"/>
+					시작일: <input type="text" name="startSch" placeholder="ex)2022-11-19"/>&nbsp;&nbsp;
+					종료일: <input type="text" name="endSch" placeholder="하루만 하는 행사는 적을필요X."/><br/>
+					내용: <input type="text" name="contentSch" placeholder="행사내용 간략히"/>
 				</td>	
-			
 			</tr>
 			<tr class="table-light">
 				<th class="align-top table-primary" style="padding: 10px; text-align: center;">
@@ -103,13 +108,14 @@
 			</tr>		
 			<tr>
 				<td colspan="4" align="right" style="border: 0px; outline: 0px;">
-					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='evList'"/>
+					<input class="btn btn-dark" type="button" value="목록보기" onclick="location.href='list'"/>
 				</td>
 			</tr>	
 		</table>	
-		<input type="hidden" name="mode" value="Insert"/>
 	</form>	
 	
+<!-- footer  -->
+<%@ include file="../../util/hfer/footer.jsp" %>
 	
 </body>
 </html>

@@ -7,23 +7,21 @@
 <head>
 <meta charset="UTF-8">
 <title>모든 상품 페이지</title>
-<link rel="icon" href="./images/favicon.png"/>
+<link rel="icon" href="../images/favicon.png"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<script type="text/javascript" src="./js/jquery-3.6.1.js"></script>
-<link rel="stylesheet" href="./css/main.css">
-<script type="text/javascript" src="./js/itemListView.js" defer></script>
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/itemListView.js" defer></script>
 </head>
 <body>
 
-	<!-- header -->
-	<%@ include file="../util/hfer/header.jsp" %>
-	<br/><br/>
-	
-	
-	<!-- alert창을 띄울 메시지가 있으면 여기에 받아짐 -->
-	<input type="hidden" id="msg" value="${msg}">
+	<%
+		request.setCharacterEncoding("UTF-8");
+	%>
+<!-- header -->
+<%@ include file="../util/hfer/header.jsp" %>
 	
 	<div class="m-3">
 		<table class="table" style="width: 1200px; margin-left: auto; margin-right: auto; box-sizing: border-box;">
@@ -53,13 +51,14 @@
 			
 			<tr>
 				<td colspan="3" align="left">
+					<input type="hidden" value="0" name="mode" id="beforeSort"/>
 					<input type="button" class="btn btn-outline-info" value="최신순" onclick="sort('${itemList.currentPage}', 1)">
 					<input type="button" class="btn btn-outline-info" value="오래된순" onclick="sort('${itemList.currentPage}', 2)">
 					<input type="button" class="btn btn-outline-info" value="높은 가격 순" onclick="sort('${itemList.currentPage}', 3)">
 					<input type="button" class="btn btn-outline-info" value="낮은 가격 순" onclick="sort('${itemList.currentPage}', 4)"> 
 					<input type="button" class="btn btn-outline-info" value="평점 높은 순" onclick="sort('${itemList.currentPage}', 5)"> 
 					<input type="button" class="btn btn-outline-info" value="평점 낮은 순" onclick="sort('${itemList.currentPage}', 6)"> 
-					&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='itemList?currentPage=' + ${itemList.currentPage}">
+					&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" class="btn btn-outline-secondary" value="되돌리기" onclick="location.href='list?currentPage=' + ${itemList.currentPage}">
 				</td>
 				<td colspan="1" align="right" style="vertical-align: middle;">
 					${itemList.totalCount} 건 (${itemList.currentPage} / ${itemList.totalPage})<br/>	
@@ -89,34 +88,39 @@
 						<td>
 							<div style="box-sizing: border-box;">
 								<div style="padding: 30px 10px; box-sizing: border-box;" id="hov_item">
-									<a href="itemSelectByIdx?idx=${vo.idx}&currentPage=${itemList.currentPage}&job=increment">
+									<a href="increment?idx=${vo.idx}&currentPage=${itemList.currentPage}">
+										<c:if test="${vo.itemImage.indexOf('http') == -1}">
+										<img alt="상품 이미지" src="..${vo.itemImage}" style="height: 230px; width: 230px; margin: 15px; padding: 5px 5px; border-radius: 20px; align-content: center;"><br/>
+										</c:if>
+										<c:if test="${vo.itemImage.indexOf('http') != -1}">
 										<img alt="상품 이미지" src="${vo.itemImage}" style="height: 230px; width: 230px; margin: 15px; padding: 5px 5px; border-radius: 20px; align-content: center;"><br/>
+										</c:if>
 										&nbsp;&nbsp;&nbsp;<span style="font-size: 20px;">${vo.itemName}</span>
 									</a>
 									<c:if test="${vo.sellCVS.trim() == 'CU'}">
-										<img alt="CU logo" src="./images/cu.png" height="25px" align="right"><br/>
+										<img alt="CU logo" src="../images/cu.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == 'GS25'}">
-										<img alt="GS logo" src="./images/gs25.png" height="25px" align="right"><br/>
+										<img alt="GS logo" src="../images/gs25.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == '세븐일레븐'}">
-										<img alt="711 logo" src="./images/7eleven.png" height="25px" align="right"><br/>
+										<img alt="711 logo" src="../images/7eleven.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == 'ministop'}">
-										<img alt="mini logo" src="./images/ministop.png" height="25px" align="right"><br/>
+										<img alt="mini logo" src="../images/ministop.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS == '이마트24'}">
-										<img alt="emart logo" src="./images/emart24.png" height="25px" align="right"><br/>
+										<img alt="emart logo" src="../images/emart24.png" height="25px" align="right"><br/>
 									</c:if>
 									<c:if test="${vo.sellCVS != 'CU' && vo.sellCVS != 'GS25' && vo.sellCVS != '세븐일레븐' && vo.sellCVS != 'ministop' && vo.sellCVS != '이마트24'}">
-										<img alt="other logo" src="./images/other.png" height="25px" align="right"><br/>
+										<img alt="other logo" src="../images/other.png" height="25px" align="right"><br/>
 									</c:if>
 									&nbsp;&nbsp;&nbsp;<fmt:formatNumber value="${vo.itemPrice}" pattern="#,###원"/>
 									<c:if test="${vo.eventType == '1+1'}">
-										<img alt="1on1" src="./images/1on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 2}" pattern="(개당 #,###.0원)"/>
+										<img alt="1on1" src="../images/1on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 2}" pattern="(개당 #,###.0원)"/>
 									</c:if>
 									<c:if test="${vo.eventType == '2+1'}">
-										<img alt="2on1" src="./images/2on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 3 * 2}" pattern="(개당 #,###.0원)"/>
+										<img alt="2on1" src="../images/2on1.png" height="35px"><fmt:formatNumber value="${vo.itemPrice / 3 * 2}" pattern="(개당 #,###.0원)"/>
 									</c:if>
 								</div>
 							</div>
@@ -134,16 +138,22 @@
 				<td colspan="5">
 				
 				<!-- 처음으로 -->
-				<c:if test="${itemList.currentPage > 1}">
+				<c:if test="${itemList.currentPage > 1 && mode == 0}">
 					<button class="btn btn-outline-primary" title="첫 번째 페이지로 이동합니다." onclick="location.href='?currentPage=1'">≪</button>							
+				</c:if>
+				<c:if test="${itemList.currentPage > 1 && mode >= 1}">
+					<button class="btn btn-outline-primary" title="첫 번째 페이지로 이동합니다." onclick="location.href='?currentPage=1&mode=${mode}'">≪</button>							
 				</c:if>
 				<c:if test="${itemList.currentPage <= 1}">
 					<button class="btn btn-outline-secondary" disabled title="첫 번째 페이지입니다.">≪</button>						
 				</c:if>
 
 				<!-- 10페이지 앞으로 -->
-				<c:if test="${itemList.startPage > 1}">
+				<c:if test="${itemList.startPage > 1 && mode == 0}">
 					<button class="btn btn-outline-primary" title=" 10페이지 앞으로 이동합니다." onclick="location.href='?currentPage=${itemList.startPage-1}'">＜</button>							
+				</c:if>
+				<c:if test="${itemList.startPage > 1 && mode >= 1}">
+					<button class="btn btn-outline-primary" title=" 10페이지 앞으로 이동합니다." onclick="location.href='?currentPage=${itemList.startPage-1}&mode=${mode}'">＜</button>							
 				</c:if>
 				<c:if test="${itemList.startPage <= 1}">
 					<button class="btn btn-outline-secondary" disabled title="첫 10페이지입니다.">＜</button>				
@@ -154,22 +164,31 @@
 					<c:if test="${itemList.currentPage == i}">
 						<input class="btn btn-outline-secondary" type="button" value="${i}" disabled/>	
 					</c:if>
-					<c:if test="${itemList.currentPage != i}">
+					<c:if test="${itemList.currentPage != i && mode == 0}">
 						<input class="btn btn-outline-primary" type="button" value="${i}" onclick="location.href='?currentPage=${i}'" value="${i}"/>	
+					</c:if>							
+					<c:if test="${itemList.currentPage != i && mode >= 1}">
+						<input class="btn btn-outline-primary" type="button" value="${i}" onclick="location.href='?currentPage=${i}&mode=${mode}'" value="${i}"/>	
 					</c:if>							
 				</c:forEach>
 
 				<!-- 10페이지 뒤로 -->
-				<c:if test="${itemList.endPage < itemList.totalPage}">
+				<c:if test="${itemList.endPage < itemList.totalPage && mode == 0}">
 					<button class="btn btn-outline-primary" title=" 10페이지 뒤로 이동합니다." onclick="location.href='?currentPage=${itemList.endPage+1}'">＞</button>								
+				</c:if>
+				<c:if test="${itemList.endPage < itemList.totalPage && mode >= 1}">
+					<button class="btn btn-outline-primary" title=" 10페이지 뒤로 이동합니다." onclick="location.href='?currentPage=${itemList.endPage+1}&mode=${mode}'">＞</button>								
 				</c:if>
 				<c:if test="${itemList.endPage >= itemList.totalPage}">
 					<button class="btn btn-outline-secondary" disabled title="마지막 10페이지입니다.">＞</button>							
 				</c:if>
 				
 				<!-- 마지막으로 -->
-				<c:if test="${itemList.currentPage < itemList.totalPage}">
+				<c:if test="${itemList.currentPage < itemList.totalPage && mode == 0}">
 					<button class="btn btn-outline-primary" title="마지막 페이지로 이동합니다." onclick="location.href='?currentPage=${itemList.totalPage}'">≫</button>								
+				</c:if>
+				<c:if test="${itemList.currentPage < itemList.totalPage && mode >= 1}">
+					<button class="btn btn-outline-primary" title="마지막 페이지로 이동합니다." onclick="location.href='?currentPage=${itemList.totalPage}&mode=${mode}'">≫</button>								
 				</c:if>
 				<c:if test="${itemList.currentPage >= itemList.totalPage}">
 					<button class="btn btn-outline-secondary" disabled title="마지막 페이지입니다.">≫</button>						
@@ -179,7 +198,7 @@
 				<!-- 상품 입력 버튼 -->
 				<td align="right" colspan="1">
 					<c:if test="${grade == 'y'}">
-						<input class="btn btn-outline-primary" type="button" value="상품 입력" onclick="location.href='itemInsert'"/>
+						<input class="btn btn-outline-primary" type="button" value="상품 입력" onclick="location.href='insert'"/>
 					</c:if>
 				</td>					
 			</tr>
@@ -187,8 +206,9 @@
 		</table>
 		<br/><br/>
 	</div>	
-	<!-- footer  -->
-	<%@ include file="../util/hfer/footer.jsp" %>
 	
+<!-- footer  -->
+<%@ include file="../util/hfer/footer.jsp" %>
+
 </body>
 </html>

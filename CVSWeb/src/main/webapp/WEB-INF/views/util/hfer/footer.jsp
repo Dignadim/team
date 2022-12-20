@@ -7,10 +7,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="icon" href="../images/favicon.png"/>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/main.css">
+<link rel="stylesheet" href="../css/main.css">
 <script type="text/javascript">
 	function fn_sendFB(sns) {
 	    var thisUrl = document.URL;
@@ -48,6 +49,7 @@
 </head>
 <body>
 
+	<br/><br/><br/>
 	<footer>
 		<div class="container-fluid" style="background-color: #f8f9fa; color: #777;">
 			<div class="row" style="padding: 30px; font-size: 16px;" align="center">
@@ -62,17 +64,17 @@
 				<div class="col-sm-3" align="right" style="vertical-align: middle;">
 					<span>
 				   		<a href="#n" onclick="fn_sendFB('facebook');return false;" class="facebook" target="_self" title="페이스북 새창열림">
-				   			<img alt="facebook" src="./images/icon-facebook.png">
+				   			<img alt="facebook" src="../images/icon-facebook.png">
 				   		</a>
 					</span>
 					<span>
 				    	<a href="#n" onclick="fn_sendFB('twitter');return false;" class="twitter" target="_self" title="트위터 새창열림">
-				   			<img alt="twitter" src="./images/icon-twitter.png">
+				   			<img alt="twitter" src="../images/icon-twitter.png">
 				    	</a>
 					</span>
 					<span>
 						<a href="#n" id="btnKakao" onclick="fn_sendFB('kakaotalk');return false;" class="kakaotalk" target="_self" title="카카오톡 새창열림">
-				   			<img alt="twitter" src="./images/icon-kakao.png">
+				   			<img alt="twitter" src="../images/icon-kakao.png">
 						</a>
 					</span>
 				</div>

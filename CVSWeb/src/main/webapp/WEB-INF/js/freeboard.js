@@ -1,63 +1,46 @@
-$(function()
-{
-//	onload함수로 alert창을 띄울 메시지가 있으면 띄우고 아니면 띄우지않음
-	if(document.getElementById('msg').value != null && document.getElementById('msg').value != '')
-	{
-		funcAlert(document.getElementById('msg').value);
-	}
-	console.log(document.getElementById('msg').value);
-}); 
-
-function funcAlert(msg)
-{
-	alert(msg);
-}
-
 //=========================insert========================
 
 //	게시글 작성 시, 제목과 내용이 비어있으면 alert를 날려주는 함수(서블릿 연결)
 function insertEmptyChk() {
-	let fb_subject = $('#fb_subject').val().trim();
-	let fb_content = $('#fb_content').val().trim();
+	let fb_subject = $('#fb_subject').val();
+	let fb_content = $('#fb_content').val();
 	
-	let id = $('#memberID').val().trim();
-	let nickname = $('#nickname').val().trim();
-	let notice = document.querySelector('#fb_notice');
-	let fb_notice = notice.checked ? 'yes' : 'no';
-	
-	let fb_idx = 1;
-	let currentPage = 1;
-	
-	let job = document.querySelector('input[type=hidden][name=mode]').value;
-	
-	if(fb_subject == null || fb_subject == "") {
-		alert('제목을 입력해주세요.');
-		return;
-	}
-	else if(fb_content == null || fb_content == "") {
-		alert('내용을 입력해주세요.');
-		return;
-	}
-	else
-	{
-		let locate = 'fb' + job + 'OK';
-		if(job == 'Update')
-		{
-			currentPage = document.querySelector('input[type=hidden][name=currentPage]').value;
-			fb_idx = document.querySelector('input[type=hidden][name=fb_idx]').value;
+	$.ajax({
+		type: 'POST', // 요청 방식
+		url: 'insertEmptyChk', // 요청할 서블릿
+		data: { // 서블릿으로 전송할 데이터
+			// 변수명: 값
+			fb_subject: fb_subject,
+			fb_content: fb_content,
+		},
+		// ajax 요청이 성공하면 response.getWriter().write(문자열)의 문자열이 콜백 함수의 인수로 넘어온다.
+		success: response => { // ajax 요청이 성공하면 실행할 콜백 함수
+			// console.log('요청성공: ', response);
 			
+			// 서블릿 응답에 따른 작업을 실행한다.
+			switch(response) {
+				case '1':
+					alert('제목을 입력해주세요.');
+					break;
+				case '2':
+					alert('내용을 입력해주세요.');
+					break;
+				case '3':
+					document.insertForm.submit();
+					break;
+			}
+		},
+		// ajax 요청이 실패하면 에러 정보가 콜백 함수의 인수로 넘어온다.
+		error: error => { // ajax 요청이 실패하면 실행할 콜백 함수
+			console.log('요청실패: ', error.status);
 		}
-		location.href= locate + '?currentPage=' + currentPage + '&fb_subject=' + fb_subject + '&fb_notice=' + fb_notice +  
-		'&fb_content=' + fb_content + '&id=' + id + '&nickname=' + nickname + '&fb_idx=' + fb_idx;
-	}
-	
-	
+	});
 }
 
 function cautionMsg() {
 	let returnValue = confirm('로그인 후 이용 가능합니다.\n로그인페이지로 이동하시겠습니까?');
 		if (returnValue == true) {
-			location.href='login_form'
+			location.href='../member/login'
 		}
 }
 
@@ -67,14 +50,26 @@ function cautionMsg() {
 function commentEmptyChk() {
 	let fbc_content = $('#fbc_content').val();
 	
-	if(fbc_content == null || fbc_content == "") {
-		alert('내용을 입력해주세요.');
-		return;
-	} else {
-		document.commentForm.submit();
-		return;
-	}
-	
+	$.ajax({
+		type: 'POST',
+		url: 'commentEmptyChk',
+		data: { 
+			fbc_content: fbc_content,
+		},
+		success: response => {
+			switch(response) {
+				case '1':
+					alert('내용을 입력해주세요.');
+					break;
+				case '2':
+					document.commentForm.submit();
+					break
+			}
+		},
+		error: error => {
+			console.log('요청실패: ', error.status);
+		}
+	});
 }
 
 //	댓글 수정 시, 입력폼을 수정폼으로 바꿔주는 함수

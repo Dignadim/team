@@ -8,13 +8,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <script	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="./css/main.css">
-<script type="text/javascript" src="./js/itemInsert.js" defer></script>
+<link rel="stylesheet" href="../css/main.css">
+<script type="text/javascript" src="../js/itemInsert.js" defer></script>
 </head>
 <body>
 
 	<div class="container" style="margin-top: 100px; width: 800px">
-		<form method="post"> 
+		<form method="post" action="insertOK"> 
 			<table class="table table-hover table-bordered">
 				<thead>
 					<tr>
@@ -90,18 +90,14 @@
 				<tfoot>
 					<tr>
 						<td colspan="1" align="center">
-							<input class="btn btn-success" type="button" onclick="location.href='main'" value="메인으로">
+							<input class="btn btn-success" type="button" onclick="location.href='../'" value="메인으로">
 						</td>
 						<td colspan="1" align="center">
-							<input class="btn btn-primary" type="button" value="등록" onclick="itemUpdateCheck()">
+							<input class="btn btn-primary" type="submit" value="등록">
 						</td>
 					</tr>					
 				</tfoot>
 			</table>
-			<!-- 어차피 새로 입력하는거라 상관없는거지만 js에서 받는값이 존재하게 하기 위해 넣어주기만한다. -->
-			<input type="hidden" name="idx" value="1"/>
-			<input type="hidden" name="currentPage" value="1"/>	
-			<input type="hidden" name="mode" value="Insert"/>
 		</form>
 	</div>
 
