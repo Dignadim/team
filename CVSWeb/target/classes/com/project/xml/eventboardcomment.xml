@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.EventboardDAO">
+
+	<insert id="evInsertComment" parameterType="evc_vo">
+		insert into ev_boardcomment (evc_idx, evc_gup, evc_content, id, nickname) 
+			values (ev_boardcomment_idx_seq.nextval, #{evc_gup}, #{evc_content}, #{id}, #{nickname})
+	</insert>
+	
+	<select id="evCommentCount" parameterType="int" resultType="int">
+		select count(*) from ev_boardcomment where evc_gup = #{evc_idx}
+	</select>
+	
+	<select id="evSelectCommentList" parameterType="int" resultType="evc_vo">
+		select * from ev_boardcomment where evc_gup = #{evc_idx} order by evc_idx desc
+	</select>
+	
+	<update id="evUpdateComment" parameterType="evc_vo">
+		update ev_boardcomment set evc_content = #{evc_content} where evc_idx = #{evc_idx}
+	</update>
+	
+	<delete id="evDeleteComment" parameterType="int">
+		update ev_boardcomment set evc_content = 'del' where evc_idx = #{evc_idx}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
