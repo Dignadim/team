@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="com.project.item.ItemVO" alias="item_vo"/>
+		<typeAlias type="com.project.item.ItemCommentVO" alias="item_co"/>
+		<typeAlias type="com.project.item.ItemAvgVO" alias="item_ao"/>
+		<typeAlias type="com.project.item.SearchKeywordVO" alias="sk_vo"/>
+		<typeAlias type="com.project.item.ItemParam" alias="itemParam"/>
+		<typeAlias type="com.project.item.MyItemVO" alias="mi_vo"/>
+		<typeAlias type="com.project.member.MemberVO" alias="mb_vo"/>
+		<typeAlias type="com.project.member.MsgVO" alias="msg_vo"/>				
+		<typeAlias type="com.project.board.free.FreeboardVO" alias="fb_vo"/>
+		<typeAlias type="com.project.board.free.FreeboardCommentVO" alias="fbc_vo"/>
+		<typeAlias type="com.project.board.event.EventboardVO" alias="ev_vo"/>
+		<typeAlias type="com.project.board.event.EventboardCommentVO" alias="evc_vo"/>
+		<typeAlias type="com.project.board.event.SearchTool" alias="searchTool"/>
+		<typeAlias type="com.project.util.calendar.ScheduleVO" alias="sche_vo"/>
+		<typeAlias type="com.project.map.MapVO" alias="map_vo"/>
+		<typeAlias type="com.project.map.AddressVO" alias="address_vo"/>
+		<typeAlias type="com.project.map.MapParam" alias="mapParam"/>
+		<typeAlias type="com.project.util.report.ReportVO" alias="report_vo"/>
+
+	</typeAliases>
+ 	
+</configuration>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

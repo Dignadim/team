@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.FreeboardDAO">
+
+	<insert id="fbInsertComment" parameterType="fbc_vo">
+		insert into fb_boardcomment (fbc_idx, fbc_gup, fbc_content, id, nickname, reGup, userImage) 
+			values (fb_boardcomment_idx_seq.nextval, #{fbc_gup}, #{fbc_content}, #{id}, #{nickname}, 0, #{userImage})
+	</insert>
+	
+	<select id="fbCommentCount" parameterType="int" resultType="int">
+		select count(*) from fb_boardcomment where fbc_gup = #{fbc_gup}
+	</select>
+	
+	<select id="fbSelectCommentList" parameterType="int" resultType="fbc_vo">
+		select * from fb_boardcomment where fbc_gup = #{fbc_gup} and reGup = 0 order by fbc_idx desc
+	</select>
+	
+	
+	<update id="fbUpdateComment" parameterType="fbc_vo">
+		update fb_boardcomment set fbc_content = #{fbc_content} where fbc_idx = #{fbc_idx}
+	</update>
+	
+	<delete id="fbDeleteComment" parameterType="int">
+		update fb_boardcomment set del = 'y' where fbc_idx = #{fbc_idx}
+	</delete>
+	
+	<!-- 대댓글 sql 명령문 -->
+	<!-- 대댓글을 등록하는 명령문 -->
+	<insert id="fbReplyInsert" parameterType="fbc_vo">
+		insert into fb_boardcomment (fbc_idx, fbc_gup, fbc_content, id, nickname, reGup, userImage) 
+			values (fb_boardcomment_idx_seq.nextval, #{fbc_gup}, #{fbc_content}, #{id}, #{nickname}, #{reGup}, #{userImage})
+	</insert>
+	
+	<!-- 해당 댓글의 대댓글을 가져오는 명령문 -->
+	<select id="fbReplyCommentList" parameterType="int" resultType="fbc_vo">
+		select * from fb_boardcomment where reGup = #{fbc_idx} order by fbc_idx desc
+	</select>
+	
+	<!-- 해당 댓글의 대댓글의 개수를 카운트하는 명령문 -->
+ 	 <select id="fbReplyCount" resultType="int">
+ 		select count(*) from fb_boardcomment where reGup = #{fbc_idx}
+ 	</select>
+ 	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- VO 클래스의 bean -->
+	<bean id="itemVO" class="com.project.item.ItemVO"/>
+	<bean id="itemCommentVO" class="com.project.item.ItemCommentVO"/>
+	<bean id="itemAvgVO" class="com.project.item.ItemAvgVO"/>
+	<bean id="memberVO" class="com.project.member.MemberVO"/>
+	<bean id="freeboardVO" class="com.project.board.free.FreeboardVO"/>
+	<bean id="freeboardCommentVO" class="com.project.board.free.FreeboardCommentVO"/>
+	<bean id="eventboardVO" class="com.project.board.event.EventboardVO"/>
+	<bean id="eventboardCommentVO" class="com.project.board.event.EventboardCommentVO"/>
+	<bean id="scheduleVO" class="com.project.util.calendar.ScheduleVO"/>
+	<bean id="searchVO" class="com.project.item.SearchKeywordVO"/>	
+	<bean id="myItemVO" class="com.project.item.MyItemVO"/>	
+	<bean id="mapVO" class="com.project.map.MapVO"/>	
+	<bean id="addressVO" class="com.project.map.AddressVO"/>	
+	<bean id="msgVO" class="com.project.member.MsgVO"/>	
+	<bean id="reportVO" class="com.project.util.report.ReportVO"/>	
+
+	
+	<!-- List 클래스의 bean -->
+	<bean id="itemList" class="com.project.item.ItemList"/>
+	<bean id="itemCommentList" class="com.project.item.ItemCommentList"/>
+	<bean id="memberList" class="com.project.member.MemberList"/>
+	<bean id="freeboardList" class="com.project.board.free.FreeboardList"/>
+	<bean id="freeboardCommentList" class="com.project.board.free.FreeboardCommentList"/>
+	<bean id="eventboardList" class="com.project.board.event.EventboardList"/>
+	<bean id="eventboardCommentList" class="com.project.board.event.EventboardCommentList"/>
+	<bean id="searchList" class="com.project.item.SearchKeywordList"/>	
+	<bean id="itemAvgList" class="com.project.item.ItemAvgList"/>	
+	<bean id="myItemList" class="com.project.item.MyItemList"/>	
+	<bean id="mapList" class="com.project.map.MapList"/>	
+	<bean id="msgList" class="com.project.member.MsgList"/>	
+	<bean id="reportList" class="com.project.util.report.ReportList"/>	
+
+
+	<!-- SearchTool 클래스의 bean -->
+	<bean id="searchTool" class="com.project.board.event.SearchTool"/>
+	
+	<!-- ScheduleManager 클래스의 bean -->
+	<bean id="scheduleManager" class="com.project.util.calendar.ScheduleManager"/>
+
+	<!-- itemManager 클래스의 bean -->
+	<bean id="itemManager" class="com.project.item.ItemManager"/>	
+
+	<!-- eventManager 클래스의 bean -->
+	<bean id="eventManager" class="com.project.board.event.EventManager"/>	
+
+	<!-- mapManager 클래스의 bean -->
+	<bean id="mapManager" class="com.project.map.MapManager"/>	
+	
+	<!-- ItemParam 클래스의 bean -->
+	<bean id="itemParam" class="com.project.item.ItemParam"/>
+
+
+
+</beans>

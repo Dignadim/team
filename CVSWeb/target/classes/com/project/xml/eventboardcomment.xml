@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.EventboardDAO">
+
+	<insert id="evInsertComment" parameterType="evc_vo">
+		insert into ev_boardcomment (evc_idx, evc_gup, evc_content, id, nickname, reGup, userImage) 
+			values (ev_boardcomment_idx_seq.nextval, #{evc_gup}, #{evc_content}, #{id}, #{nickname}, 0, #{userImage})
+	</insert>
+	
+	<select id="evCommentCount" parameterType="int" resultType="int">
+		select count(*) from ev_boardcomment where evc_gup = #{evc_idx}
+	</select>
+	
+	<select id="evSelectCommentList" parameterType="int" resultType="evc_vo">
+		select * from ev_boardcomment where evc_gup = #{evc_idx} and reGup = 0 order by evc_idx desc
+	</select>
+	
+	<update id="evUpdateComment" parameterType="evc_vo">
+		update ev_boardcomment set evc_content = #{evc_content} where evc_idx = #{evc_idx}
+	</update>
+	
+	<update id="evDeleteComment" parameterType="int">
+		update ev_boardcomment set del = 'y' where evc_idx = #{evc_idx}
+	</update>
+	
+	<!-- 대댓글 sql 명령문 -->
+	<!-- 대댓글을 등록하는 명령문 -->
+	<insert id="evReplyInsert" parameterType="evc_vo">
+		insert into ev_boardcomment (evc_idx, evc_gup, evc_content, id, nickname, reGup, userImage) 
+			values (ev_boardcomment_idx_seq.nextval, #{evc_gup}, #{evc_content}, #{id}, #{nickname}, #{reGup}, #{userImage})
+	</insert>
+	
+	<!-- 해당 댓글의 대댓글을 가져오는 명령문 -->
+	<select id="evReplyCommentList" parameterType="int" resultType="evc_vo">
+		select * from ev_boardcomment where reGup = #{evc_idx} order by evc_idx desc
+	</select>
+	
+	<!-- 해당 댓글의 대댓글의 개수를 카운트하는 명령문 -->
+ 	 <select id="evReplyCount" resultType="int">
+ 		select count(*) from ev_boardcomment where reGup = #{evc_idx}
+ 	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
