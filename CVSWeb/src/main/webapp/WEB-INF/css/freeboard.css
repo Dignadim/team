@@ -1,0 +1,65 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+
+ * {
+ 	font-family: Pretendard;
+ }
+ 
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: skyblue;
+	text-decoration: none;
+}
+
+.button {
+	background-color: #4CAF50; /* Green */
+	border: none;
+	color: white;
+	padding: 2px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+	cursor: pointer;
+	width: 50px;
+	height: 30px;
+}
+
+.button1 {
+	background-color: white;
+	color: black;
+	border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+	background-color: #4CAF50;
+	color: white;
+}
+
+.button2 {
+	background-color: #4CAF50;
+	color: white;
+	cursor: not-allowed;
+}
+
+span {
+	background-color: lightgrey;
+	font-weight: bold;
+}
+
+.fbInsertItem {
+	width: 50px;
+	height: 50px;
+	cursor: pointer;
+}
+
+
+.fbImage {
+	width: 300px;
+	height: 300px;
+}

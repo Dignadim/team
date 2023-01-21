@@ -1,0 +1,173 @@
+
+
+/* header{
+	background-color : hotpink;
+	text-decoration:none;
+	width : 100%;
+	height: 100px;
+ }*/
+
+/* nav {
+	float:left;
+	background-color : yellow;
+	text-decoration:none;
+	width : 20%;
+	max-width : 400px;
+	min-width : 200px;
+	height: 800px;
+}
+ */
+  
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css");
+ 
+ * {
+ 	font-family: Pretendard;
+ }
+ 
+#content {
+	text-align: center;
+	text-decoration:none;
+	width : 70%;
+	height: 800px;
+	border: 1px solid #e7e7e7;
+	border-radius: 10px;
+}
+
+.b {
+	float:left;
+	margin : 30px 0px 30px;
+	background-color : transparent;
+	text-decoration:none;
+	width : 45%;
+	height: 90%;
+	min-height : 800px; 
+	max-width : 800px;
+	min-width : 200px;
+}
+.clear {
+	clear:both;
+}
+
+#profile {
+	background-image: linear-gradient(#444444, #444444), linear-gradient(to right, #fbfcb9be, #ffcdf3aa, #65d3ffaa);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+	border-radius: 50%; 
+	width: 300px; 
+	padding: 4px;
+}
+
+.myItemList {
+	width:80px; 
+	height:80px;
+	padding: 5px;
+	margin: 5px;
+	border: 3px solid transparent;
+	transition-duration: 0.3s;
+	transition-timing-function: ease-out;
+	border-radius: 15px;
+	
+}
+
+.myItemList:hover {
+	border: 3px solid #0d6efd;
+	border-radius: 15px;
+		
+}
+
+.tog {
+	padding: 10px;
+	color: #0d6efd;
+	border-radius: 3px;
+	margin: 10px;
+}
+
+.tog:hover {
+	cursor: pointer;
+}
+
+.tog1 {
+	background-color: #0d6efd;
+	color: #f8f9fa;
+}
+
+.tog3 {
+	background-color: #f8f9fa;
+	color: darkgray;
+}
+
+a {
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	color: skyblue;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+.goTrash {
+	cursor: pointer;
+}
+
+#profile {
+	cursor: pointer;
+}
+
+/* footer{
+	clear:both;
+	background-color : pink;
+	text-decoration:none;
+	width : 100%;
+	height: 100px;
+} */
+
+
+/* .container {
+	
+		
+		border: 4px solid dodgerblue;
+		display: grid;
+
+		grid-template:
+			"header header header" 80px
+			"main . aside"	350px
+			"footer footer footer" 130px
+			/ 2fr 500px 1fr;
+			;
+
+		gap: 30px 15px;
+	}
+
+
+	.container .item{
+	border: 4px solid red;
+	}
+	
+	
+	.container .item:nth-child(1){
+		grid-area: header;
+	}
+	
+	.container .item:nth-child(2){
+		grid-area: main;
+	}
+	
+	.container .item:nth-child(3){
+		grid-area: aside;
+	}
+	
+	.container .item:nth-child(4){
+		grid-area: footer;
+	} */
+	
+
+
+/* 	<div class="container">
+		<div class="item">Header</div>
+		<div class="item">Main</div>
+		<div class="item">Aside</div>
+		<div class="item">Footer</div>
+	</div> */
+	

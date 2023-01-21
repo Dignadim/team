@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.MapDAO">
+
+	<!-- 크롤링한 지도 정보를 등록한다. -->
+<!-- 	<insert id="autoMapInsert" parameterType="java.util.ArrayList">
+		<foreach collection="list" item="item" separator=" " index="index" open="INSERT ALL" close="SELECT * FROM DUAL">
+			into map (mapidx, storename, whichcvs, address) 
+			values (map_seq, #{item.storeName}, #{item.whichCVS}, #{item.address})
+		</foreach>
+	</insert>
+ -->		
+		
+	<insert id="autoMapInsert" parameterType="java.util.ArrayList">
+	    INSERT INTO map
+	        (mapidx, storename, whichcvs, address)
+	        <foreach collection="list" item="item" separator="UNION ALL">
+	            SELECT 
+					map_seq, 
+					#{item.storeName}, 
+					#{item.whichCVS}, 
+					#{item.address}
+	            FROM DUAL
+	        </foreach>
+	</insert>		
+		
+
+	<select id="getGugun" parameterType="String" resultType="address_vo">
+		select * from address where sido = #{sido}
+	</select>
+
+	<select id="searchAdd" parameterType="mapParam" resultType="map_vo">
+		select * from map where address like '%' || #{ssido} || '%' and address like '%' || #{sgugun} || '%' and whichCVS = #{whichCVS} and storeName like '%' || #{storeName} || '%'
+	</select>
+	
+	<select id="itemMap" parameterType="mapParam" resultType="map_vo">
+		select * from map where address like '%' || #{ssido} || '%' and address like '%' || #{sgugun} || '%' and whichCVS = #{whichCVS}
+	</select>
+
+	<delete id="deleteRepeated">
+		DELETE FROM map WHERE ROWID IN (
+   			SELECT ROWID FROM (
+	        	SELECT * FROM (
+            		SELECT ROW_NUMBER() OVER(PARTITION BY storename ORDER BY storename) AS num FROM map)
+		        WHERE num > 1 )
+        	) and whichcvs = '세븐일레븐'
+	</delete>
+
+</mapper>

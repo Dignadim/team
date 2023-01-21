@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.dao.MemberDAO">
+
+	<!-- 회원가입 1건을 저장한다. -->
+	<insert id="mbInsert" parameterType="mb_vo">
+		insert into member (id, password, nickname, email, image, introduce) 
+		values (#{id}, #{password}, #{nickname}, #{email}, #{image}, ${introduce})
+	</insert>
+	
+	<!-- MemberVO에서 String id를 넘겨받아서 같은 아이디를 가진 memberVO를 찾아주는 명령문 -->
+	 <select id="mbSearch" resultType="mb_vo" parameterType="String">
+   		 select * from member where id=#{id}
+  	</select>
+  	
+	<update  id="updateInfo" parameterType="mb_vo">
+		update member set nickname = #{nickname}, email = #{email}, password = #{password}, image = #{image}, introduce = #{introduce} where id = #{id} 
+	</update>
+
+	<delete id="deleteMe" parameterType="String">
+		delete from member where id = #{id}
+	</delete>
+	
+	
+	<!-- admin에 쓰임  -->
+	<select id="amSelectList" resultType="mb_vo">
+		select * from member order by signupdate desc
+	</select>
+	
+	<select id="amSelectAdmin" resultType="mb_vo">
+		select * from member where grade = 'y' order by signupdate desc
+	</select>
+	
+	<select id="amSelectNomal" resultType="mb_vo">
+		select * from member where grade = 'n' order by signupdate desc
+	</select>
+	
+	<select id="amSelectBlock" resultType="mb_vo">
+		select * from member where grade = 'b' order by signupdate desc
+	</select>
+	
+	<select id="msrch" parameterType="String" resultType="mb_vo">
+		select * from member where id like '%' || #{id} || '%' order by signupdate desc
+	</select>
+	
+	
+	<!-- admin block에 쓰임  -->	
+	<update id="adminBlockBlock" parameterType="mb_vo">
+		update member set grade = 'b' where id = #{id}
+	</update>
+	
+	<update id="adminBlockClear" parameterType="mb_vo">
+		update member set grade = 'n' where id = #{id}
+	</update>
+	
+	
+
+	<!-- 쪽지 -->
+	<insert id="goMsg" parameterType="msg_vo">
+		<if test="mid == 'admin1' or mid == 'admin2' or mid == 'admin3'">
+			insert into msg (msgidx, mid, fid, msg, notice) values (msg_msgidx_seq.nextval, #{mid}, #{fid}, #{msg},	'y')
+		</if>
+		<if test="mid != 'admin1' and mid != 'admin2' and mid != 'admin3'">
+			insert into msg (msgidx, mid, fid, msg, notice) values (msg_msgidx_seq.nextval, #{mid}, #{fid}, #{msg},	'n')
+		</if>		
+	</insert>
+	
+	<select id="getMsg" parameterType="String" resultType="msg_vo">
+		select * from msg where fid = #{id} and (trash not like '%' || #{id} || '%' or trash is null) order by notice desc, msgidx desc			
+	</select>
+	
+	<select id="getToMsg" parameterType="String" resultType="msg_vo">
+		select * from msg where mid = #{id} and (trash not like '%' || #{id} || '%' or trash is null) order by msgidx desc			
+	</select>
+	
+	<select id="getTrashMsg" parameterType="String" resultType="msg_vo">
+		select * from msg where (fid = #{id} or mid = #{id}) and trash like '%' || #{id} || '%' order by msgidx desc
+	</select>
+	
+	<update id="goTrash" parameterType="msg_vo">
+		<if test="mid != null and fid == null">
+			update msg set trash = #{mid} where msgidx = #{msgIdx}
+		</if>
+		<if test="mid == null and fid != null">
+			update msg set trash = #{fid} where msgidx = #{msgIdx}		
+		</if>
+	</update>
+	
+	<update id="recover" parameterType="msg_vo">
+		update msg set trash = #{trash} where msgidx = #{msgIdx}
+	</update>
+	
+	<select id="getIfTrash" parameterType="int" resultType="int">
+		select count(trash) from msg where msgidx = #{msgIdx}
+	</select>
+	
+	<select id="getTrashId" parameterType="int" resultType="String">
+		select trash from msg where msgidx = #{msgIdx}
+	</select>
+	
+	<update id="goTrashList" parameterType="msg_vo">
+		update msg set trash = <foreach collection="list" item="item" separator=", " open="'(" close=")'">${item}</foreach>
+		where msgidx = #{msgIdx}		
+	</update>
+	
+	<select id="getTrashId2" parameterType="int" resultType="String">
+		select trash from msg where msgidx = #{msgIdx}
+	</select>
+	
+	<select id="isAdmin" parameterType="String" resultType="String">
+		select grade from member where id = #{id}
+	</select>
+
+	<select id="getAllMember" resultType="mb_vo">
+		select id from member where grade != 'y'
+	</select>
+
+	<insert id="goNotice" parameterType="com.project.member.MemberList">
+		insert into msg (msgidx, mid, fid, msg)
+		<foreach collection="list" item="item" separator="UNION ALL">
+			 SELECT msg_seq, 'admin1', #{item.id}, #{msg} from dual
+		</foreach>
+	</insert>	
+	
+	<!-- 신고기능에 쓰임 -->
+	<select id="rpSelectList" resultType="report_vo">
+		select * from report order by report_date desc
+	</select>
+	
+</mapper>
