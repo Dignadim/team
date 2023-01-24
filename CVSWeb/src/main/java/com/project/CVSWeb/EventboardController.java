@@ -92,7 +92,8 @@ public class EventboardController {
 					Integer.parseInt(endSch[1]),
 					Integer.parseInt(endSch[2]),
 					event,
-					eventboardList.getList().get(0).getEv_idx()
+					eventboardList.getList().get(0).getEv_idx(),
+					eventboardList.getList().get(0).getEv_sellcvs()
 					);
 			
 			
@@ -334,7 +335,8 @@ public class EventboardController {
 				Integer.parseInt(endSch[1]),
 				Integer.parseInt(endSch[2]),
 				event,
-				eventboardVO.getEv_idx()
+				eventboardVO.getEv_idx(),
+				eventboardVO.getEv_sellcvs()
 				);
 		
 		//	그걸 db에 입력하라고 넘겨준다.
@@ -565,9 +567,6 @@ public class EventboardController {
 		list.addAll(eventManager.getGS25Event()); // 리스트에 GS25 행사 목록을 추가한다.
 		list.addAll(eventManager.getEmart24Event()); // 리스트에 이마트24 행사 목록을 추가한다.
 		list.addAll(eventManager.getCUEvent()); // 리스트에 CU 행사 목록을 추가한다.
-		
-		
-		
 		
 		logger.info("행사 정보 크롤링 완료!");
 

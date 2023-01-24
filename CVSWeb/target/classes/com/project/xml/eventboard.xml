@@ -92,7 +92,15 @@
 		</if>
  	</select>
  	
- 	
+
+	<!-- 가장 최근에 insert된 1건을 가져오는 sql 명령문 -->
+	<select id="selectRecentlyInsert" resultType="ev_vo">
+ 		<![CDATA[  
+	 		select * from (
+					select * from ev_board order by ev_date desc
+			) where rownum <= 1	
+		]]>
+	</select>
  	
  	
 	<!-- 어드민에 들어가는 코드 -->
@@ -117,9 +125,10 @@
 	
 	<!-- 스케줄을 추가하는 용도 -->
 	<insert id="insertSched" parameterType="sche_vo">
-	 	insert into schedule (syear, smonth, sday, eyear, emonth, eday, event, gup, CVS)
-	 	values (#{sYear}, #{sMonth}, #{sDay}, #{eYear}, #{eMonth}, #{eDay}, #{event}, schedule_gup_seq.nextval, #{CVS})
- 	</insert>
+		insert into schedule (syear, smonth, sday, eyear, emonth, eday, event, gup, CVS)
+		values (#{sYear}, #{sMonth}, #{sDay}, #{eYear}, #{eMonth}, #{eDay},
+		#{event}, #{gup}, #{CVS})
+	</insert>
 
 	<!-- 스케줄을 수정해주는 용도 -->
 	 <update id="updateSched" parameterType="sche_vo">
@@ -156,6 +165,18 @@
 	        </foreach>
 	</insert>	 	
 
+	<select id="evListAll" resultType="ev_vo">
+		select * from ev_board
+	</select>
+
+	<select id="addEventList" parameterType="java.util.HashMap" resultType="ev_vo">
+ 		<![CDATA[  
+	 		select * from (
+					select * from ev_board order by ev_date desc
+			) where rownum <= #{afterCnt} - #{beforeCnt}
+		]]>
+	</select>
+
 	<!-- 해당 날짜에서 기간이 없는 행사를 가져오는 용도 --> 	
  	<select id="detailedSchedule" parameterType="sche_vo" resultType="sche_vo">
  		<![CDATA[  
@@ -176,5 +197,22 @@
 			order by cvs, syear, smonth, sday, gup
 		]]>
  	</select>
+ 	
+ 	
+	<!-- 신고기능 명령문 -->
+	<!-- 신고접수 -->
+	<insert id="reportOK" parameterType="report_vo">
+		insert into report
+		(report_idx, report_reason, report_comment, report_id, report_subject,
+		report_location)
+		values (#{report_idx}, #{report_reason}, #{report_comment}, #{report_id},
+		#{report_subject}, #{report_location})
+	</insert>
+
+	<!-- 신고 기록 삭제(게시글이 삭제되면 없어져야 하므로) -->
+	<delete id="reportDelete" parameterType="int">
+		delete from report where
+		report_idx = #{report_idx}
+	</delete>
  	
 </mapper>

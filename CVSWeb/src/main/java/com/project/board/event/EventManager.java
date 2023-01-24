@@ -128,81 +128,84 @@ public class EventManager {
 		return list;
 	}
 	
-   public ArrayList<EventboardVO> getCUEvent() {
-	      ArrayList<EventboardVO> list = new ArrayList<EventboardVO>();
-	      
-			try {
-				int page = 0;
-				while (true) {
-					targetSite = "https://cu.bgfretail.com/brand_info/news_listAjax.do";
-					page++;
-					Map<String, String> data = new HashMap<String, String>();
-					data.put("pageIndex", page + "");
-					data.put("idx", 0 + "");
-					data.put("search2", "");
-					data.put("searchKeyword", "");
-					data.put("searchCondition", "");
+	   public ArrayList<EventboardVO> getCUEvent() {
+		      ArrayList<EventboardVO> list = new ArrayList<EventboardVO>();
+		      
+				try {
+					int page = 0;
+					while (true) {
+						targetSite = "https://cu.bgfretail.com/brand_info/news_listAjax.do";
+						page++;
+						Map<String, String> data = new HashMap<String, String>();
+						data.put("pageIndex", page + "");
+						data.put("idx", 0 + "");
+						data.put("search2", "");
+						data.put("searchKeyword", "");
+						data.put("searchCondition", "");
 
-					Thread.sleep(500);
-					doc = Jsoup.connect(targetSite)
-							.data(data)
-							.post();
-					
-		            Date date = new Date();
-		            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
+						Thread.sleep(500);
+						doc = Jsoup.connect(targetSite)
+								.data(data)
+								.post();
+						
+			            Date date = new Date();
+			            SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM");
 
-		            Elements dds = doc.select("dl > dd"); // 행사 날짜
-		            String stop = "n"; // while 반복을 끝낼 때 사용
-		            
-		            Elements elements = doc.select("tbody > tr");
-		            
-					for (int i = 0; i < dds.size(); i++) {
-						if (!dds.get(i).text().trim().substring(0, 7).equals(sdf.format(date))) {
-							stop = "y"; // 현재 월과 사이트에 등록된 월이 같지 않으면 while문을 멈추기 위해 stop의 값을 y로 바꿔준다.
+			            Elements dds = doc.select("dl > dd"); // 행사 날짜
+			            String stop = "n"; // while 반복을 끝낼 때 사용
+			            
+			            Elements elements = doc.select("tbody > tr");
+			            
+						for (int i = 0; i < dds.size(); i++) {
+							if (!dds.get(i).text().trim().substring(0, 7).equals(sdf.format(date))) {
+								stop = "y"; // 현재 월과 사이트에 등록된 월이 같지 않으면 while문을 멈추기 위해 stop의 값을 y로 바꿔준다.
+								break;
+							} else {
+								String idx[] = elements.get(i).select("h3 > a").attr("href").split("'");
+								targetSite = "https://cu.bgfretail.com/brand_info/news_view.do?category=brand_info&depth2=5&idx="+idx[1];
+								
+								Thread.sleep(500);
+
+								doc = Jsoup.connect(targetSite)
+										.header("Origin", "https://cu.bgfretail.com")
+										.header("Referer", "https://cu.bgfretail.com/brand_info/news_list.do?category=brand_info&depth2=5&sf=N")
+										.cookie("JSESSIONID", "Z1dGjLYJpky11TnymspbhCGBSJZyy5cNyYv1GXJjL1MGLMjgLycS!-578416747")
+										.data("pageIndex", page + "")
+										.data("search2", "")
+										.data("searchKeyword", "")
+										.data("searchCondition", "")
+										.post();
+
+								Elements tbody = doc.select("tbody");
+								
+								String subject = doc.select("thead th").get(0).text();
+								String image = tbody.select("img").attr("src");
+								String content = tbody.select("span").text();
+								
+								if (image != null && !image.equals("")) {
+									EventboardVO eventboardVO = new EventboardVO();
+									eventboardVO.setEv_sellcvs("CU");
+									eventboardVO.setEv_subject(subject);
+									eventboardVO.setEv_content(content);
+									eventboardVO.setEv_filename(image);
+									eventboardVO.setId("admin1");
+									eventboardVO.setNickname("관리자1");
+									eventboardVO.setEv_notice("no");
+
+									list.add(eventboardVO);
+								}   
+							}
+						}
+						if(stop.equals("y")) {
 							break;
-						} else {
-							
-							String idx[] = elements.get(i).select("h3 > a").attr("href").split("'");
-							targetSite = "https://cu.bgfretail.com/brand_info/news_view.do?category=brand_info&depth2=5&idx=" + idx[1];
-							
-							Thread.sleep(500);
-
-							doc = Jsoup.connect(targetSite)
-									.data("pageIndex", page + "")
-									.data("search2", "")
-									.data("searchKeyword", "")
-									.data("searchCondition", "")
-									.post();
-
-							Elements tbody = doc.select("tbody");
-							
-							String subject = doc.select("tr > th").text().replace(" 다음글 이전글", "");// 행사 제목
-							String image = tbody.select("img").attr("src");
-
-							if (image != null && !image.equals("")) {
-								EventboardVO eventboardVO = new EventboardVO();
-								eventboardVO.setEv_sellcvs("CU");
-								eventboardVO.setEv_subject(subject);
-								eventboardVO.setEv_content(".");
-								eventboardVO.setEv_filename(image);
-								eventboardVO.setId("admin1");
-								eventboardVO.setNickname("관리자1");
-								eventboardVO.setEv_notice("no");
-
-								list.add(eventboardVO);
-							}   
 						}
 					}
-					if(stop.equals("y")) {
-						break;
-					}
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			
-	      return list;
-	   }
+				
+		      return list;
+		   }
 	   
 	public ArrayList<EventboardVO> getSevenElevenEvent() {
 		ArrayList<EventboardVO> list = new ArrayList<EventboardVO>();

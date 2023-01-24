@@ -196,6 +196,7 @@ public class ScheduleManager
 					scheduleVO.seteMonth(eMonth);
 					scheduleVO.seteDay(eDay);
 					scheduleVO.setEvent(event);
+					scheduleVO.setCVS("GS25");
 					
 					list.add(scheduleVO);
 				}
@@ -282,6 +283,7 @@ public class ScheduleManager
 						scheduleVO.setsMonth(sMonth);
 						scheduleVO.setsDay(sDay);
 						scheduleVO.setEvent(event);
+						scheduleVO.setCVS("CU");
 						
 						list.add(scheduleVO);
 					}
@@ -357,6 +359,7 @@ public class ScheduleManager
 				scheduleVO.seteMonth(eMonth);
 				scheduleVO.seteDay(eDay);
 				scheduleVO.setEvent(event);
+				scheduleVO.setCVS("세븐일레븐");
 				
 				list.add(scheduleVO);
 			}
@@ -439,6 +442,7 @@ public class ScheduleManager
 						scheduleVO.seteMonth(eMonth);
 						scheduleVO.seteDay(eDay);
 						scheduleVO.setEvent(event);
+						scheduleVO.setCVS("이마트24");
 						
 						list.add(scheduleVO);
 					}
