@@ -280,6 +280,26 @@ reportBtn.addEventListener('click', function () {
 	}
 });
 
+const reportModal = document.getElementById('report-modal');
+reportModal.addEventListener('show.bs.modal', function (event) {
+	const triggerBtn = event.relatedTarget;
+	const title = triggerBtn.getAttribute('data-bs-title');
+	const nickname = triggerBtn.getAttribute('data-bs-nickname');
+	const content = triggerBtn.getAttribute('data-bs-content');
+	const idx = triggerBtn.getAttribute('data-bs-idx');
+	const location = triggerBtn.getAttribute('data-bs-location');
+	const subject = triggerBtn.getAttribute('data-bs-subject');
+	
+	document.getElementById('modal-titlename').innerText = title;
+	document.getElementById('writer').innerText = nickname;
+	document.getElementById('report_content').innerText = content;
+	document.getElementById('report_idx').value = idx;
+	document.getElementById('report_location').value = location;
+	document.getElementById('report_subject').value = subject;
+	
+	console.log(document.getElementById('report_idx').value);
+});
+
 // 신고접수 버튼이 눌렸을 때
 const reportOK = document.getElementById('reportOK');
 reportOK.addEventListener('click', function () {
@@ -297,6 +317,36 @@ reportOK.addEventListener('click', function () {
 		if (returnValue == true) {
 			document.reportFrm.submit();
 		}
+	}
+});
+
+//댓글 신고
+//신고버튼 활성화
+const reportCommentBtn = document.getElementById('reportCommentBtn');
+const realReportComment = document.getElementById('realReportComment')
+reportCommentBtn.addEventListener('click', function () {
+	if(id == null || id == '') {
+		let returnValue = confirm('로그인 후 이용 가능합니다.\n로그인페이지로 이동하시겠습니까?');
+		if (returnValue == true) {
+			location.href='../member/login'
+		}
+	} else {
+		realReportComment.click();
+	}
+});
+
+//대댓글 신고
+//신고버튼 활성화
+const reportReplyBtn = document.getElementById('reportReplyBtn');
+const realReportReply = document.getElementById('realReportReply')
+reportReplyBtn.addEventListener('click', function () {
+	if(id == null || id == '') {
+		let returnValue = confirm('로그인 후 이용 가능합니다.\n로그인페이지로 이동하시겠습니까?');
+		if (returnValue == true) {
+			location.href='../member/login'
+		}
+	} else {
+		realReportReply.click();
 	}
 });
 

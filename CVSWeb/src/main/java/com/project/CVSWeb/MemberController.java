@@ -265,9 +265,11 @@ public class MemberController {
 		session.setAttribute("introduce", memberVO.getIntroduce());
 		
 		FreeboardDAO mapperF = sqlSession.getMapper(FreeboardDAO.class);
-		mapperF.changeCommentImage(memberVO);
+		mapperF.changeCommentInfo(memberVO);
+		mapperF.changeBoardInfo(memberVO);
 		EventboardDAO mapperE = sqlSession.getMapper(EventboardDAO.class);
-		mapperE.changeCommentImage(memberVO);
+		mapperE.changeCommentInfo(memberVO);
+		mapperE.changeBoardInfo(memberVO);
 		
 		rttr.addFlashAttribute("msg", id + "님의 정보가 수정되었습니다.");
 			
@@ -483,14 +485,14 @@ public class MemberController {
 		String uniqueName = uuids[0];
 //		System.out.println("생성된 파일이름: " + uniqueName);
 		
-		File savePathFile = new File(folderPath + "/" + uniqueName + fileExtension);
+//		File savePathFile = new File(folderPath + "/" + uniqueName + fileExtension);
 		File saveFile = new File(uploadFolder + "/" + uniqueName + fileExtension);
 //		System.out.println(saveFile);
 		
 		String link = "../userProfile/"+uniqueName+fileExtension;
 		
 		try {
-			image.transferTo(savePathFile); // transferTo(): 파일 저장 메서드
+//			image.transferTo(savePathFile); // transferTo(): 파일 저장 메서드
 			image.transferTo(saveFile);
 			response.getWriter().write(link);
 		} catch (IllegalStateException e) {

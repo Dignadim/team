@@ -41,6 +41,12 @@
  		select * from fb_board where fb_notice = 'yes' order by fb_idx desc
  	</select>
  	
+ 	<!-- 프로필 이미지, 닉네임을 바꾸면 기존 게시글 프로필 이미지, 닉네임도 바꿔주는 명령문 -->
+	<update id="changeBoardInfo" parameterType="mb_vo">
+		update fb_board set nickname = #{nickname} where id = #{id}
+	</update>
+ 	
+ 	
  	<!-- 카테고리가 "제목"일 때, 검색어가 포함된 게시글의 수를 받아오는 명령문 -->
  	<select id="fbSelectCountSubject" parameterType="searchTool" resultType="int">
  		select count(*) from fb_board where fb_subject like '%'||#{searchText}||'%'

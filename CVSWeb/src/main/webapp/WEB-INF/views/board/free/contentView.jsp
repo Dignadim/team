@@ -142,7 +142,7 @@
 							data-bs-nickname="${fb_vo.nickname}" 
 							data-bs-content="${fb_vo.fb_content}" 
 							data-bs-location="freeboard"
-							data-bs-title="게시글 신고" 
+							data-bs-title="게시글 신고"
 							data-bs-subject="${fb_vo.fb_subject}"
 						>
 					</span>

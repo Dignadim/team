@@ -68,7 +68,7 @@ public interface EventboardDAO {
 
 	ScheduleVO initSchedListGetIdx(int gup);
 
-	void changeCommentImage(MemberVO memberVO);
+	void changeCommentInfo(MemberVO memberVO);
 
 	ArrayList<ScheduleVO> detailedSchedule(ScheduleVO scheduleVO);
 
@@ -87,6 +87,8 @@ public interface EventboardDAO {
 	ArrayList<EventboardVO> selectRecentlyInsert();
 
 	ArrayList<EventboardVO> addEventList(HashMap<String, Integer> hmap);
+
+	void changeBoardInfo(MemberVO memberVO);
 
 
 }

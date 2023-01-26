@@ -41,6 +41,11 @@
 		delete from ev_board where ev_idx = #{ev_idx} 	
  	</delete>
  	
+ 	<!-- 관리자의 프로필 닉네임을 바꾸면 기존 게시글 프로필 이미지, 닉네임도 바꿔주는 명령문 -->
+	<update id="changeBoardInfo" parameterType="mb_vo">
+		update ev_board set nickname = #{nickname} where id = #{id}
+	</update>
+ 	
  	<!-- 특정 카테고리의 게시글의 수를 받아오는 명령문 -->
  	<select id="evSelectCountCategory" parameterType="searchTool" resultType="int">
  		select count(*) from ev_board where ev_sellcvs = #{category}

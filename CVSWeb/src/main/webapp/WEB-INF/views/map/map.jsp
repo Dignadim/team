@@ -38,6 +38,7 @@
 					</td>
 					<td>
 						<select class="form-select" name="sido" onchange="selectSido()" id="ssido">
+							<option selected>(시도 선택)</option>
 							<option>강원</option>
 							<option>경기</option>
 							<option>경남</option>

@@ -24,7 +24,7 @@ function selectSido() {
 		},
 		success: res => {
 			sgugun.innerHTML = '<option>(구군 선택)</option>'
-
+			
 			let object = eval('(' + res + ')')
 			let result = object.result;
 			let opt = ''
@@ -35,6 +35,10 @@ function selectSido() {
 				opt += '</option>'
 			}
 			sgugun.innerHTML = opt
+			
+			if(ssido.value == '(시도 선택)') {
+				sgugun.innerHTML = '<option>(구군 선택)</option>'
+			}
 		},
 		error: e => {
 			console.log(e)

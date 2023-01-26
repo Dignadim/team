@@ -65,11 +65,13 @@ public interface FreeboardDAO {
 
 	void reportDelete(int fb_idx);
 
-	void changeCommentImage(MemberVO memberVO);
+	void changeCommentInfo(MemberVO memberVO);
 
 	ArrayList<FreeboardCommentVO> selectReportComment(int idx);
 
 	void deleteRC(int idx);
+
+	void changeBoardInfo(MemberVO memberVO);
 
 
 
